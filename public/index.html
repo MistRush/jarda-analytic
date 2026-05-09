@@ -507,25 +507,11 @@ function render(d) {
     }
   });
 
-  // 🖥 Kategorie zařízení (hlavní donut = deviceChart2)
-  const ctxDev = document.getElementById('deviceChart2')?.getContext('2d');
-  if (ctxDev) {
-    if (deviceChart) deviceChart.destroy();
-    deviceChart = new Chart(ctxDev, {
-      type: 'doughnut',
-      data: {
-        labels: d.devices.map(x => x.device),
-        datasets: [{ data: d.devices.map(x => x.sessions), backgroundColor: ['#1a73e8','#34a853','#fbbc04','#ea4335'], borderWidth:0 }]
-      },
-      options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, usePointStyle:true } } }, cutout:'70%' }
-    });
-  }
-
-  // 🖥 Kategorie zařízení sekce (donut s %)
+  // 🖥 Kategorie zařízení (donut s % legend)
   const totalDevSessions = d.devices.reduce((s,x) => s+x.sessions, 0);
   const ctxDev2 = document.getElementById('deviceChart2')?.getContext('2d');
   if(ctxDev2) {
-    if(window._dev2Chart) window._dev2Chart.destroy();
+    if(window._dev2Chart) { window._dev2Chart.destroy(); window._dev2Chart = null; }
     window._dev2Chart = new Chart(ctxDev2, {
       type: 'doughnut',
       data: {
