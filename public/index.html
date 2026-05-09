@@ -83,6 +83,20 @@
     #dashboard{display:none}
     /* ── SECURITY NOTE ── */
     .sec-note{background:rgba(26,115,232,0.1);border:1px solid rgba(26,115,232,0.3);color:#174ea6;padding:16px;border-radius:8px;font-size:.9rem;display:flex;align-items:flex-start;gap:12px;margin-top:24px}
+    /* ── SETTINGS ── */
+    .settings-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:7px 10px;cursor:pointer;color:var(--text2);font-size:1rem;transition:all .2s;position:relative;}
+    .settings-btn:hover{background:var(--bg);color:var(--accent);}
+    .settings-panel{position:absolute;top:calc(100% + 8px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.12);padding:16px;min-width:240px;z-index:500;display:none;}
+    .settings-panel.open{display:block;}
+    .settings-panel h3{font-size:.85rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;}
+    .section-toggle{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);font-size:.875rem;cursor:pointer;}
+    .section-toggle:last-child{border-bottom:none;}
+    .section-toggle input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer;}
+    [data-section]{transition:opacity .2s;}
+    [data-section].hidden{display:none;}
+    .heatmap-table{border-collapse:collapse;font-size:.7rem;width:100%;}
+    .heatmap-table th{padding:2px 4px;color:var(--text3);font-weight:400;text-align:center;white-space:nowrap;}
+    .heatmap-table td{width:3.8%;padding:3px;text-align:center;border-radius:3px;cursor:default;}
   </style>
 </head>
 <body>
@@ -109,6 +123,25 @@
       <span style="color:var(--text3)">-</span>
       <input type="date" id="endDate" title="Do data" class="preset-select">
     </div>
+
+    <div style="position:relative; flex-shrink:0;">
+      <button class="settings-btn" id="settingsBtn" title="Nastavení sekcí">⚙</button>
+      <div class="settings-panel" id="settingsPanel">
+        <h3>Zobrazit sekce</h3>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-realtime" checked> Aktivní uživatelé (Realtime)</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-trend" checked> Denní trend</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-acquisition" checked> Akvizice (Zdroje)</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-pages" checked> TOP stránky</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-geo" checked> Geografie</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-devices" checked> Prohlížeč / Zařízení / Rozlišení</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-newvs" checked> Nový vs. vracející se</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-events" checked> Top události</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-landing" checked> Landing pages</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-os-lang" checked> OS + Jazyk</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-campaigns" checked> Kampaně (UTM)</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-heatmap" checked> Heatmapa hodin</label>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -119,34 +152,34 @@
   </div>
 
   <div id="dashboard">
-    <div class="kpi-grid" id="kpiGrid"></div>
+    <div class="kpi-grid" id="kpiGrid" data-section="sec-realtime"></div>
 
-    <div class="charts-row" style="grid-template-columns: 1fr;">
+    <div class="charts-row" style="grid-template-columns: 1fr;" data-section="sec-trend">
       <div class="chart-card">
         <div class="card-head">Denní trend</div>
         <div class="card-body"><canvas id="trendChart"></canvas></div>
       </div>
     </div>
 
-    <div class="tables-row">
+    <div class="tables-row" data-section="sec-acquisition">
       <div class="chart-card">
         <div class="card-head">Akvizice návštěvnosti (Zdroje)</div>
         <div class="card-body" id="sourcesTable" style="overflow-x:auto;"></div>
       </div>
     </div>
 
-    <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;">
+    <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;" data-section="sec-pages">
       <div class="chart-card">
         <div class="card-head">TOP stránky</div>
         <div class="card-body" id="pagesTable" style="overflow-x:auto; max-height:840px; overflow-y:auto; padding:0;"></div>
       </div>
-      <div class="chart-card">
+      <div class="chart-card" data-section="sec-geo">
         <div class="card-head">Geografie</div>
         <div class="card-body" id="geoTable" style="overflow-x:auto;"></div>
       </div>
     </div>
 
-    <div class="tables-row" style="grid-template-columns: 1fr 1fr 1fr; align-items: start; margin-bottom:24px;">
+    <div class="tables-row" style="grid-template-columns: 1fr 1fr 1fr; align-items: start; margin-bottom:24px;" data-section="sec-devices">
       <div class="chart-card">
         <div class="card-head">Prohlížeč</div>
         <div class="card-body" style="padding:16px 20px;"><canvas id="browserChart" style="max-height:220px;"></canvas></div>
@@ -163,6 +196,58 @@
         <div class="card-body" style="padding:16px 20px;"><canvas id="screenChart" style="max-height:220px;"></canvas></div>
       </div>
     </div>
+
+    <!-- Nový vs. vracející se + Top události -->
+    <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;" data-section="sec-newvs">
+      <div class="chart-card">
+        <div class="card-head">Nový vs. vracíjící se uživatelé</div>
+        <div class="card-body" style="padding:16px 20px; min-height:200px;">
+          <canvas id="newVsChart" style="max-height:180px;"></canvas>
+          <div id="newVsPcts" style="margin-top:12px; display:flex; justify-content:center; gap:24px; font-size:.8rem; color:var(--text2);"></div>
+        </div>
+      </div>
+      <div class="chart-card" data-section="sec-events">
+        <div class="card-head">Top události</div>
+        <div class="card-body" id="eventsTable" style="overflow-x:auto; padding:0;"></div>
+      </div>
+    </div>
+
+    <!-- Landing Pages -->
+    <div class="tables-row" data-section="sec-landing">
+      <div class="chart-card">
+        <div class="card-head">Landing pages (vstupní stránky)</div>
+        <div class="card-body" id="landingTable" style="overflow-x:auto; max-height:320px; overflow-y:auto; padding:0;"></div>
+      </div>
+    </div>
+
+    <!-- OS + Jazyk -->
+    <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;" data-section="sec-os-lang">
+      <div class="chart-card">
+        <div class="card-head">Operační systém</div>
+        <div class="card-body" style="padding:16px 20px;"><canvas id="osChart" style="max-height:200px;"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-head">Jazyk prohlížeče</div>
+        <div class="card-body" id="langTable" style="overflow-x:auto; padding:0;"></div>
+      </div>
+    </div>
+
+    <!-- Kampaně -->
+    <div class="tables-row" data-section="sec-campaigns">
+      <div class="chart-card">
+        <div class="card-head">Kampaně (UTM)</div>
+        <div class="card-body" id="campaignsTable" style="overflow-x:auto; padding:0;"></div>
+      </div>
+    </div>
+
+    <!-- Heatmapa hodin -->
+    <div class="tables-row" data-section="sec-heatmap">
+      <div class="chart-card">
+        <div class="card-head">Aktivita podle hodin a dnů v týdnu</div>
+        <div class="card-body" id="heatmapDiv" style="overflow-x:auto; padding:16px;"></div>
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -587,6 +672,8 @@ function render(d) {
   } else {
     renderLeafletMap(d.geo);
   }
+
+  renderNewSections(d);
 }
 
 function renderLeafletMap(geoData) {
@@ -642,6 +729,149 @@ function renderLeafletMap(geoData) {
     map.setView([49.8, 15.5], 7);
   }
 }
+
+function renderNewSections(d) {
+  // ─── Nový vs. vracející se ───
+  const totalNvR = d.newVsReturning.reduce((s,x) => s+x.sessions, 0);
+  const ctxNvR = document.getElementById('newVsChart')?.getContext('2d');
+  if(ctxNvR) {
+    if(window._nvRChart) window._nvRChart.destroy();
+    window._nvRChart = new Chart(ctxNvR, {
+      type: 'doughnut',
+      data: {
+        labels: d.newVsReturning.map(x => x.type === 'new' ? 'Noví' : 'Vracející se'),
+        datasets: [{ data: d.newVsReturning.map(x => x.sessions), backgroundColor: ['#1a73e8','#34a853'], borderWidth:0 }]
+      },
+      options: { responsive:true, maintainAspectRatio:false, cutout:'75%', plugins:{ legend:{ display:false } } }
+    });
+  }
+  const nvRColors = ['#1a73e8','#34a853'];
+  document.getElementById('newVsPcts').innerHTML = d.newVsReturning.map((x,i) =>
+    `<span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:50%;background:${nvRColors[i]};display:inline-block;"></span>${x.type==='new'?'NOVÍ':'VRACEJÍCÍ SE'} ${totalNvR?(x.sessions/totalNvR*100).toFixed(1):0} %</span>`
+  ).join('');
+
+  // ─── Top události ───
+  document.getElementById('eventsTable').innerHTML = `
+    <table style="min-width:350px;">
+      <thead><tr><th>Událost</th><th class="metric-col">Počet</th><th class="metric-col">Uživatelé</th></tr></thead>
+      <tbody>${d.events.map(e => `
+        <tr><td style="font-weight:500;">${e.name}</td><td class="metric-col">${fmt(e.count)}</td><td class="metric-col">${fmt(e.users)}</td></tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // ─── Landing Pages ───
+  document.getElementById('landingTable').innerHTML = `
+    <table style="min-width:600px;">
+      <thead><tr><th>Vstupní stránka</th><th class="metric-col">Relace</th><th class="metric-col">Míra odk.</th></tr></thead>
+      <tbody>${d.landingPages.map(p => `
+        <tr>
+          <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;" title="${p.path}">
+            <a href="https://${p.host}${p.path}" target="_blank" rel="noopener" style="color:#1a73e8;text-decoration:none;font-weight:500;">${p.path}</a>
+          </td>
+          <td class="metric-col">${fmt(p.sessions)}</td>
+          <td class="metric-col">${p.bounceRate}%</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // ─── Operační systém ───
+  const ctxOs = document.getElementById('osChart')?.getContext('2d');
+  if(ctxOs) {
+    if(window._osChart) window._osChart.destroy();
+    window._osChart = new Chart(ctxOs, {
+      type:'bar',
+      data:{ labels: d.operatingSystems.map(x=>x.os), datasets:[{ data:d.operatingSystems.map(x=>x.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: ctx=>`  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } }, scales:{ x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368' } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } } }
+    });
+  }
+
+  // ─── Jazyk ───
+  document.getElementById('langTable').innerHTML = `
+    <table>
+      <thead><tr><th>Jazyk</th><th class="metric-col">Relace</th></tr></thead>
+      <tbody>${d.languages.map(l => `
+        <tr><td>${l.language}</td><td class="metric-col">${fmt(l.sessions)}</td></tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // ─── Kampaně ───
+  document.getElementById('campaignsTable').innerHTML = `
+    <table style="min-width:700px;">
+      <thead><tr><th>Kampaň</th><th>Zdroj</th><th>Medium</th><th class="metric-col">Relace</th><th class="metric-col">Konverze</th></tr></thead>
+      <tbody>${d.campaigns.map(c => `
+        <tr>
+          <td style="font-weight:500;color:#1a73e8;">${c.campaign || '(direct)'}</td>
+          <td>${c.source}</td><td>${c.medium}</td>
+          <td class="metric-col">${fmt(c.sessions)}</td>
+          <td class="metric-col">${fmt(c.conversions)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // ─── Heatmapa hodin ───
+  const days = ['Ne','Po','Út','St','Čt','Pá','So'];
+  const allVals = d.hourHeatmap.flat();
+  const maxVal = Math.max(...allVals, 1);
+  let html = '<table class="heatmap-table"><thead><tr><th></th>';
+  for(let h=0;h<24;h++) html += `<th>${h}h</th>`;
+  html += '</tr></thead><tbody>';
+  for(let dow=0;dow<7;dow++) {
+    html += `<tr><th style="text-align:left;padding-right:8px;color:var(--text2);">${days[dow]}</th>`;
+    for(let h=0;h<24;h++) {
+      const v = d.hourHeatmap[dow][h];
+      const intensity = v/maxVal;
+      const bg = `rgba(26,115,232,${(0.05 + intensity*0.9).toFixed(2)})`;
+      const txt = intensity > 0.5 ? '#fff' : '#202124';
+      html += `<td style="background:${bg};color:${txt};" title="${days[dow]} ${h}:00 — ${v} relací">${v||''}</td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  document.getElementById('heatmapDiv').innerHTML = html;
+}
+
+// ─── SETTINGS PANEL ───
+
+const settingsBtn = document.getElementById('settingsBtn');
+const settingsPanel = document.getElementById('settingsPanel');
+
+const STORAGE_KEY = 'jarda_sections';
+function saveSections() {
+  const state = {};
+  document.querySelectorAll('.section-toggle input').forEach(cb => {
+    state[cb.dataset.target] = cb.checked;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+function loadSections() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    document.querySelectorAll('.section-toggle input').forEach(cb => {
+      const key = cb.dataset.target;
+      if (key in saved) cb.checked = saved[key];
+      applySection(cb);
+    });
+  } catch(e) {}
+}
+function applySection(cb) {
+  document.querySelectorAll(`[data-section="${cb.dataset.target}"]`).forEach(el => {
+    el.classList.toggle('hidden', !cb.checked);
+  });
+}
+
+settingsBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  settingsPanel.classList.toggle('open');
+});
+document.addEventListener('click', (e) => {
+  if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+    settingsPanel.classList.remove('open');
+  }
+});
+document.querySelectorAll('.section-toggle input').forEach(cb => {
+  cb.addEventListener('change', () => { applySection(cb); saveSections(); });
+});
+loadSections();
 </script>
 </body>
 </html>

@@ -145,7 +145,73 @@ apiRouter.get('/analytics', async (req, res) => {
       limit: 8,
     });
 
+    // 10-16. NOVÉ SEKCE (paralelně)
+    const [
+      [newVsReturningResponse],
+      [eventsResponse],
+      [landingPagesResponse],
+      [osResponse],
+      [languageResponse],
+      [campaignsResponse],
+      [hourResponse],
+    ] = await Promise.all([
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'newVsReturning' }],
+        metrics: [{ name: 'sessions' }],
+      }),
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'eventName' }],
+        metrics: [{ name: 'eventCount' }, { name: 'totalUsers' }],
+        orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+        limit: 10,
+      }),
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'landingPage' }, { name: 'hostName' }],
+        metrics: [{ name: 'sessions' }, { name: 'bounceRate' }],
+        orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+        limit: 20,
+      }),
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'operatingSystem' }],
+        metrics: [{ name: 'sessions' }],
+        orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+        limit: 8,
+      }),
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'language' }],
+        metrics: [{ name: 'sessions' }],
+        orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+        limit: 8,
+      }),
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'sessionCampaignName' }, { name: 'sessionSource' }, { name: 'sessionMedium' }],
+        metrics: [{ name: 'sessions' }, { name: 'conversions' }],
+        orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+        limit: 10,
+      }),
+      analyticsClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [dateRanges[0]],
+        dimensions: [{ name: 'hour' }, { name: 'dayOfWeek' }],
+        metrics: [{ name: 'sessions' }],
+        limit: 200,
+      }),
+    ]);
+
     // 9. REALTIME
+
     const [rtResponse] = await analyticsClient.runRealtimeReport({
       property: `properties/${propertyId}`,
       metrics: [{ name: 'activeUsers' }],
@@ -277,6 +343,46 @@ apiRouter.get('/analytics', async (req, res) => {
         resolution: r.dimensionValues[0].value,
         sessions: parseInt(r.metricValues[0].value)
       })),
+      newVsReturning: newVsReturningResponse.rows?.map(r => ({
+        type: r.dimensionValues[0].value,
+        sessions: parseInt(r.metricValues[0].value)
+      })) || [],
+      events: eventsResponse.rows?.map(r => ({
+        name: r.dimensionValues[0].value,
+        count: parseInt(r.metricValues[0].value),
+        users: parseInt(r.metricValues[1].value)
+      })) || [],
+      landingPages: landingPagesResponse.rows?.map(r => ({
+        path: r.dimensionValues[0].value,
+        host: r.dimensionValues[1]?.value || '',
+        sessions: parseInt(r.metricValues[0].value),
+        bounceRate: (parseFloat(r.metricValues[1].value) * 100).toFixed(1)
+      })) || [],
+      operatingSystems: osResponse.rows?.map(r => ({
+        os: r.dimensionValues[0].value,
+        sessions: parseInt(r.metricValues[0].value)
+      })) || [],
+      languages: languageResponse.rows?.map(r => ({
+        language: r.dimensionValues[0].value,
+        sessions: parseInt(r.metricValues[0].value)
+      })) || [],
+      campaigns: campaignsResponse.rows?.map(r => ({
+        campaign: r.dimensionValues[0].value,
+        source: r.dimensionValues[1].value,
+        medium: r.dimensionValues[2].value,
+        sessions: parseInt(r.metricValues[0].value),
+        conversions: parseInt(r.metricValues[1].value)
+      })) || [],
+      hourHeatmap: (() => {
+        // Build 7x24 matrix [dayOfWeek][hour] = sessions
+        const matrix = Array.from({length:7}, () => Array(24).fill(0));
+        (hourResponse.rows || []).forEach(r => {
+          const hour = parseInt(r.dimensionValues[0].value);
+          const dow = parseInt(r.dimensionValues[1].value);
+          matrix[dow][hour] += parseInt(r.metricValues[0].value);
+        });
+        return matrix;
+      })(),
       realtime: {
         activeUsers: parseInt(rtResponse.rows[0]?.metricValues[0]?.value || 0),
         active5min: active5min,
