@@ -125,7 +125,27 @@ apiRouter.get('/analytics', async (req, res) => {
       limit: 8,
     });
 
-    // 7. REALTIME
+    // 7. PROHLÍŽEČ
+    const [browsersResponse] = await analyticsClient.runReport({
+      property: `properties/${propertyId}`,
+      dateRanges: [dateRanges[0]],
+      dimensions: [{ name: 'browser' }],
+      metrics: [{ name: 'sessions' }],
+      orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+      limit: 8,
+    });
+
+    // 8. ROZLIŠENÍ OBRAZOVKY
+    const [screenResponse] = await analyticsClient.runReport({
+      property: `properties/${propertyId}`,
+      dateRanges: [dateRanges[0]],
+      dimensions: [{ name: 'screenResolution' }],
+      metrics: [{ name: 'sessions' }],
+      orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+      limit: 8,
+    });
+
+    // 9. REALTIME
     const [rtResponse] = await analyticsClient.runRealtimeReport({
       property: `properties/${propertyId}`,
       metrics: [{ name: 'activeUsers' }],
@@ -247,6 +267,14 @@ apiRouter.get('/analytics', async (req, res) => {
       geo: geoResponse.rows.map(r => ({
         country: r.dimensionValues[0].value,
         city: r.dimensionValues[1].value,
+        sessions: parseInt(r.metricValues[0].value)
+      })),
+      browsers: browsersResponse.rows.map(r => ({
+        browser: r.dimensionValues[0].value,
+        sessions: parseInt(r.metricValues[0].value)
+      })),
+      screenResolutions: screenResponse.rows.map(r => ({
+        resolution: r.dimensionValues[0].value,
         sessions: parseInt(r.metricValues[0].value)
       })),
       realtime: {
