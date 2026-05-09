@@ -461,30 +461,127 @@ function render(d) {
       </tbody>
     </table>`;
 
-  // Pages table
+  // Pages table — klikatelné odkazy
   document.getElementById('pagesTable').innerHTML = `
-    <table>
-      <thead><tr><th>Stránka</th><th>Zobrazení</th></tr></thead>
+    <table style="min-width:350px;">
+      <thead><tr><th>Stránka</th><th class="metric-col">Zobrazení</th></tr></thead>
       <tbody>${d.topPages.map(p => `
         <tr>
-          <td title="${p.path}">${p.path}</td>
-          <td>${fmt(p.views)}</td>
+          <td style="max-width:260px; overflow:hidden; text-overflow:ellipsis;" title="${p.path}">
+            <a href="https://${p.host}${p.path}" target="_blank" rel="noopener" style="color:#1a73e8; text-decoration:none; font-weight:500;">${p.path}</a>
+          </td>
+          <td class="metric-col">${fmt(p.views)}</td>
         </tr>`).join('')}
       </tbody>
     </table>`;
 
-  // Geo table
+  // GeoChart Mapa
   document.getElementById('geoTable').innerHTML = `
-    <table>
-      <thead><tr><th>Země</th><th>Město</th><th>Relace</th></tr></thead>
-      <tbody>${d.geo.map(g => `
+    <div id="geo_chart_div" style="width:100%; min-height:240px;"></div>
+    <table style="min-width:350px; margin-top:12px;">
+      <thead><tr><th>Město</th><th>Stát</th><th class="metric-col">Relace</th></tr></thead>
+      <tbody>${d.geo.filter(g => g.city !== '(not set)').map(g => `
         <tr>
-          <td>${g.country}</td>
-          <td>${g.city}</td>
-          <td>${fmt(g.sessions)}</td>
+          <td style="font-weight:500;">${g.city}</td>
+          <td style="color:#5f6368;">${g.country}</td>
+          <td class="metric-col">${fmt(g.sessions)}</td>
         </tr>`).join('')}
       </tbody>
     </table>`;
+
+  // GeoChart Mapa - Leaflet OpenStreetMap (bez API klíče)
+  const geoContainer = document.getElementById('geoTable');
+  geoContainer.innerHTML = `
+    <div id="leaflet_map" style="width:100%; height:240px; border-radius:6px; overflow:hidden;"></div>
+    <table style="min-width:350px; margin-top:12px;">
+      <thead><tr><th>Město</th><th>Stát</th><th class="metric-col">Relace</th></tr></thead>
+      <tbody>${d.geo.filter(g => g.city !== '(not set)').map(g => `
+        <tr>
+          <td style="font-weight:500;">${g.city}</td>
+          <td style="color:#5f6368;">${g.country}</td>
+          <td class="metric-col">${fmt(g.sessions)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // Coords lookup pro česká města
+  const cityCoords = {
+    'Prague': [50.0755, 14.4378], 'Brno': [49.1951, 16.6068],
+    'Ostrava': [49.8209, 18.2625], 'Plzeň': [49.7384, 13.3736],
+    'Liberec': [50.7663, 15.0543], 'Olomouc': [49.5938, 17.2509],
+    'České Budějovice': [48.9747, 14.4747], 'Hradec Králové': [50.2092, 15.8328],
+    'Pardubice': [50.0343, 15.7812], 'Kladno': [50.1478, 14.1027],
+    'Havirov': [49.7797, 18.4305], 'Opava': [49.9381, 17.9026],
+    'Zlín': [49.2265, 17.6674], 'Jihlava': [49.3961, 15.5911],
+    'Karlovy Vary': [50.2322, 12.8714], 'Bratislava': [48.1486, 17.1077],
+    'Warsaw': [52.2298, 21.0118], 'Vienna': [48.2082, 16.3738],
+    'Kraków': [50.0647, 19.9450], 'Budapest': [47.4979, 19.0402],
+    'Cologne': [50.9333, 6.9500]
+  };
+
+  // Dynamicky načíst Leaflet jen jednou
+  if (!window.L) {
+    const leafletCSS = document.createElement('link');
+    leafletCSS.rel = 'stylesheet';
+    leafletCSS.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    document.head.appendChild(leafletCSS);
+
+    const leafletJS = document.createElement('script');
+    leafletJS.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    leafletJS.onload = () => renderLeafletMap(d.geo);
+    document.head.appendChild(leafletJS);
+  } else {
+    renderLeafletMap(d.geo);
+  }
+}
+
+function renderLeafletMap(geoData) {
+  const cityCoords = {
+    'Prague': [50.0755, 14.4378], 'Brno': [49.1951, 16.6068],
+    'Ostrava': [49.8209, 18.2625], 'Plzeň': [49.7384, 13.3736],
+    'Liberec': [50.7663, 15.0543], 'Olomouc': [49.5938, 17.2509],
+    'České Budějovice': [48.9747, 14.4747], 'Hradec Králové': [50.2092, 15.8328],
+    'Pardubice': [50.0343, 15.7812], 'Kladno': [50.1478, 14.1027],
+    'Havirov': [49.7797, 18.4305], 'Opava': [49.9381, 17.9026],
+    'Bratislava': [48.1486, 17.1077], 'Warsaw': [52.2298, 21.0118],
+    'Vienna': [48.2082, 16.3738], 'Karlovy Vary': [50.2322, 12.8714],
+    'Zlín': [49.2265, 17.6674], 'Jihlava': [49.3961, 15.5911],
+  };
+
+  const mapDiv = document.getElementById('leaflet_map');
+  if (!mapDiv) return;
+  if (window._leafletMap) { window._leafletMap.remove(); }
+
+  const map = L.map('leaflet_map', { zoomControl: true, scrollWheelZoom: false });
+  window._leafletMap = map;
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  const maxSess = Math.max(...geoData.map(g => g.sessions), 1);
+  let bounds = [];
+
+  geoData.filter(g => g.city !== '(not set)' && cityCoords[g.city]).forEach(g => {
+    const coords = cityCoords[g.city];
+    const radius = 8 + (g.sessions / maxSess) * 20;
+    const circle = L.circleMarker(coords, {
+      radius,
+      fillColor: '#1a73e8',
+      color: '#fff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.75
+    }).addTo(map);
+    circle.bindPopup(`<b>${g.city}</b><br>${g.sessions} relací`);
+    bounds.push(coords);
+  });
+
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, { padding: [20, 20] });
+  } else {
+    map.setView([49.8, 15.5], 7);
+  }
 }
 </script>
 </body>
