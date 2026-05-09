@@ -109,7 +109,7 @@ apiRouter.get('/analytics', async (req, res) => {
     const [pagesResponse] = await analyticsClient.runReport({
       property: `properties/${propertyId}`,
       dateRanges: [dateRanges[0]],
-      dimensions: [{ name: 'pagePath' }],
+      dimensions: [{ name: 'pagePath' }, { name: 'hostName' }],
       metrics: [{ name: 'screenPageViews' }],
       orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
       limit: 10,
@@ -128,6 +128,12 @@ apiRouter.get('/analytics', async (req, res) => {
     // 7. REALTIME
     const [rtResponse] = await analyticsClient.runRealtimeReport({
       property: `properties/${propertyId}`,
+      metrics: [{ name: 'activeUsers' }],
+    });
+
+    const [rtTrendResponse] = await analyticsClient.runRealtimeReport({
+      property: `properties/${propertyId}`,
+      dimensions: [{ name: 'minutesAgo' }],
       metrics: [{ name: 'activeUsers' }],
     });
 
@@ -168,6 +174,14 @@ apiRouter.get('/analytics', async (req, res) => {
       if(trendDataCurrent[i] === undefined) trendDataCurrent[i] = 0;
       if(trendDataPrevious[i] === undefined) trendDataPrevious[i] = 0;
       if(!trendLabels[i]) trendLabels[i] = `Den ${i+1}`;
+    }
+
+    const rtTrend = Array(30).fill(0);
+    if (rtTrendResponse && rtTrendResponse.rows) {
+      rtTrendResponse.rows.forEach(r => {
+        const minAgo = parseInt(r.dimensionValues[0].value);
+        if (minAgo < 30) rtTrend[minAgo] = parseInt(r.metricValues[0].value);
+      });
     }
 
     const response = {
@@ -217,6 +231,7 @@ apiRouter.get('/analytics', async (req, res) => {
       })),
       topPages: pagesResponse.rows.map(r => ({
         path: r.dimensionValues[0].value,
+        host: r.dimensionValues[1]?.value || '',
         views: parseInt(r.metricValues[0].value)
       })),
       geo: geoResponse.rows.map(r => ({
@@ -225,7 +240,8 @@ apiRouter.get('/analytics', async (req, res) => {
         sessions: parseInt(r.metricValues[0].value)
       })),
       realtime: {
-        activeUsers: parseInt(rtResponse.rows[0]?.metricValues[0]?.value || 0)
+        activeUsers: parseInt(rtResponse.rows[0]?.metricValues[0]?.value || 0),
+        trend: rtTrend.reverse() // from 30 min ago to 0 min ago
       }
     };
 

@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>google.charts.load('current', { 'packages': ['geochart'] });</script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     :root {
@@ -280,8 +282,18 @@ function render(d) {
   ];
 
   document.getElementById('kpiGrid').innerHTML = kpis.map(k => {
+    if(k.lbl === 'Aktivní uživatelé') {
+      return `
+      <div class="kpi" style="padding-bottom:8px;">
+        <div class="kpi-lbl">${k.lbl} (30 min)</div>
+        <div class="kpi-val">${k.val}</div>
+        <div style="height:40px; margin-top:auto; width:100%; position:relative;">
+          <canvas id="rtChart"></canvas>
+        </div>
+      </div>`;
+    }
+
     const t = calcTrend(k.cur, k.prev);
-    // Reverse logic for bounce rate (down is good/green)
     if(k.lbl === 'Míra opuštění') {
       t.cls = t.cls === 'up' ? 'down' : (t.cls === 'down' ? 'up' : '');
     }
@@ -292,6 +304,34 @@ function render(d) {
       <div class="kpi-trend ${t.cls}">${t.text}</div>
     </div>`;
   }).join('');
+
+  // 🔴 Realtime Chart
+  const ctxRt = document.getElementById('rtChart');
+  if(ctxRt && window.rtChartInst) window.rtChartInst.destroy();
+  if(ctxRt) {
+    window.rtChartInst = new Chart(ctxRt.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: Array.from({length:30}, (_,i) => `Před ${30-i} min`),
+        datasets: [{
+          data: d.realtime.trend,
+          backgroundColor: '#1a73e8',
+          borderWidth: 0,
+          borderRadius: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: {
+          x: { display: false },
+          y: { display: false, beginAtZero: true }
+        },
+        layout: { padding: 0 }
+      }
+    });
+  }
 
   const ctxTrend = document.getElementById('trendChart').getContext('2d');
   if (trendChart) trendChart.destroy();
@@ -397,7 +437,7 @@ function render(d) {
         <tr>
           <th>Seskupení kanálů</th>
           <th class="metric-col">Návštěvy</th>
-          <th class="metric-col">Relace se zap.</th>
+          <th class="metric-col">Relace se zapojením</th>
           <th class="metric-col">Míra zapojení</th>
           <th class="metric-col">Prům. doba</th>
           <th class="metric-col">Konverze</th>
