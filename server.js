@@ -112,7 +112,7 @@ apiRouter.get('/analytics', async (req, res) => {
       dimensions: [{ name: 'pagePath' }, { name: 'hostName' }],
       metrics: [{ name: 'screenPageViews' }],
       orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
-      limit: 10,
+      limit: 50,
     });
 
     // 6. GEOGRAFIE
@@ -136,6 +136,16 @@ apiRouter.get('/analytics', async (req, res) => {
       dimensions: [{ name: 'minutesAgo' }],
       metrics: [{ name: 'activeUsers' }],
     });
+
+    // Počet aktivních za posledních 5 minut
+    let active5min = 0;
+    if (rtTrendResponse && rtTrendResponse.rows) {
+      rtTrendResponse.rows.forEach(r => {
+        if (parseInt(r.dimensionValues[0].value) <= 5) {
+          active5min += parseInt(r.metricValues[0].value);
+        }
+      });
+    }
 
     // Zpracování dat
     const getMetrics = (idx) => overviewResponse.rows[idx]?.metricValues.map(m => m.value) || [];
@@ -241,7 +251,8 @@ apiRouter.get('/analytics', async (req, res) => {
       })),
       realtime: {
         activeUsers: parseInt(rtResponse.rows[0]?.metricValues[0]?.value || 0),
-        trend: rtTrend.reverse() // from 30 min ago to 0 min ago
+        active5min: active5min,
+        trend: rtTrend.reverse()
       }
     };
 

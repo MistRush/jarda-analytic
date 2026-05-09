@@ -52,6 +52,9 @@
     .kpi-trend{font-size:0.75rem; font-weight:500; margin-top:2px;}
     .kpi-trend.up{color:#137333;}
     .kpi-trend.down{color:#c5221f;}
+    .info-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#e8eaed;color:#5f6368;font-size:9px;font-weight:700;cursor:help;margin-left:4px;position:relative;vertical-align:middle;flex-shrink:0;}
+    .info-icon::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#202124;color:#fff;font-size:11px;font-weight:400;padding:6px 10px;border-radius:6px;white-space:nowrap;max-width:240px;white-space:normal;text-align:left;width:max-content;max-width:220px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:999;line-height:1.4;}
+    .info-icon:hover::after{opacity:1;}
     /* ── CHARTS ROW ── */
     .charts-row{display:grid;grid-template-columns:2.5fr 1fr;gap:24px;margin-bottom:24px}
     .tables-row{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:24px}
@@ -139,7 +142,7 @@
     <div class="tables-row" style="grid-template-columns: 1fr 1fr;">
       <div class="chart-card">
         <div class="card-head">TOP stránky</div>
-        <div class="card-body" id="pagesTable" style="overflow-x:auto;"></div>
+        <div class="card-body" id="pagesTable" style="overflow-x:auto; max-height:360px; overflow-y:auto; padding:0;"></div>
       </div>
       <div class="chart-card">
         <div class="card-head">Geografie</div>
@@ -271,24 +274,50 @@ function render(d) {
   const p = d.prevOverview;
   
   const kpis = [
-    { val: d.realtime.activeUsers, lbl:'Aktivní uživatelé', cur:d.realtime.activeUsers, prev:0 },
-    { val: fmt(o.totalUsers),      lbl:'Uživatelé',         cur:o.totalUsers, prev:p.totalUsers },
-    { val: fmt(o.sessions),        lbl:'Návštěvy',          cur:o.sessions, prev:p.sessions },
-    { val: fmt(o.pageViews),       lbl:'Zobrazení stránek', cur:o.pageViews, prev:p.pageViews },
-    { val: o.bounceRate+'%',       lbl:'Míra opuštění',     cur:parseFloat(o.bounceRate), prev:parseFloat(p.bounceRate) },
-    { val: o.avgSessionDuration,   lbl:'Průměrná doba',     cur:0, prev:0 }, // Trend calculation for duration is complex without raw seconds
-    { val: o.purchases,            lbl:'Nákupy',            cur:o.purchases, prev:p.purchases },
-    { val: o.revenue + ' Kč',      lbl:'Tržby',             cur:o.revenue, prev:p.revenue },
+    { val: d.realtime.activeUsers, lbl:'Aktivní uživatelé', cur:d.realtime.activeUsers, prev:0,
+      tip:'Počet uživatelů aktivních na webu v posledních 30 minutách (real-time data).' },
+    { val: fmt(o.totalUsers),      lbl:'Uživatelé',         cur:o.totalUsers, prev:p.totalUsers,
+      tip:'Celkový počet unikátních uživatelů za vybrané období.' },
+    { val: fmt(o.sessions),        lbl:'Návštěvy',          cur:o.sessions, prev:p.sessions,
+      tip:'Počet návštěv (sezení) webu. Jeden uživatel může mít více návštěv.' },
+    { val: fmt(o.pageViews),       lbl:'Zobrazení stránek', cur:o.pageViews, prev:p.pageViews,
+      tip:'Celkový počet zobrazení stránek. Zahrnuje opakovaná zobrazení stejné stránky.' },
+    { val: o.bounceRate+'%',       lbl:'Míra opuštění',     cur:parseFloat(o.bounceRate), prev:parseFloat(p.bounceRate),
+      tip:'Procento návštěv bez zapojení — uživatel přišel a ihned odešel (méně než 10 s, 1 stránka, žádná konverze).' },
+    { val: o.avgSessionDuration,   lbl:'Průměrná doba',     cur:0, prev:0,
+      tip:'Průměrná délka jedné návštěvy (od příchodu do odchodu ze stránek).' },
+    { val: o.purchases,            lbl:'Nákupy',            cur:o.purchases, prev:p.purchases,
+      tip:'Počet dokončených nákupů (e-commerce transakce) za vybrané období.' },
+    { val: o.revenue + ' Kč',      lbl:'Tržby',             cur:o.revenue, prev:p.revenue,
+      tip:'Celkové tržby z e-commerce transakcí za vybrané období.' },
   ];
 
   document.getElementById('kpiGrid').innerHTML = kpis.map(k => {
     if(k.lbl === 'Aktivní uživatelé') {
       return `
-      <div class="kpi" style="padding-bottom:8px;">
-        <div class="kpi-lbl">${k.lbl} (30 min)</div>
-        <div class="kpi-val">${k.val}</div>
-        <div style="height:40px; margin-top:auto; width:100%; position:relative;">
-          <canvas id="rtChart"></canvas>
+      <div class="kpi rt-tile" style="grid-column: span 2; padding:16px;">
+        <div style="display:flex; gap:32px; align-items:flex-start; margin-bottom:12px;">
+          <div>
+            <div class="kpi-lbl" style="font-size:.75rem; display:flex; align-items:center; gap:2px;">AKTIVNÍ UŽIVATELÉ V POSLEDNÍCH 30 MIN <span class="info-icon" data-tip="Počet uživatelů aktivních na webu v posledních 30 minutách (real-time data).">i</span></div>
+            <div class="kpi-val" style="font-size:2.2rem; font-weight:400;">${k.val}</div>
+          </div>
+          <div style="border-left:1px solid var(--border); padding-left:24px;">
+            <div class="kpi-lbl" style="font-size:.75rem; display:flex; align-items:center; gap:2px;">POSLEDNÍCH 5 MINUT <span class="info-icon" data-tip="Počet uživatelů aktivních v posledních 5 minutách.">i</span></div>
+            <div class="kpi-val" style="font-size:2.2rem; font-weight:400;">${d.realtime.active5min}</div>
+          </div>
+        </div>
+        <div class="kpi-lbl" style="font-size:.7rem; margin-bottom:4px;">AKTIVNÍCH UŽIVATELŮ ZA MINUTU</div>
+        <div style="height:50px; position:relative; display:flex; align-items:flex-end; gap:2px;">
+          ${d.realtime.trend.map((v, i) => {
+            const maxV = Math.max(...d.realtime.trend, 1);
+            const h = Math.max(2, Math.round((v / maxV) * 48));
+            const isRecent = i >= 25;
+            return `<div style="flex:1; height:${h}px; background:${isRecent ? '#1a73e8' : '#aecbfa'}; border-radius:2px 2px 0 0;" title="Před ${30-i} min: ${v} uživatelů"></div>`;
+          }).join('')}
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:4px;">
+          <span style="font-size:.7rem; color:var(--text3);">− 30 min</span>
+          <span style="font-size:.7rem; color:var(--text3);">− 1 min</span>
         </div>
       </div>`;
     }
@@ -299,40 +328,13 @@ function render(d) {
     }
     return `
     <div class="kpi">
-      <div class="kpi-lbl">${k.lbl}</div>
+      <div class="kpi-lbl" style="display:flex; align-items:center; gap:2px;">${k.lbl} <span class="info-icon" data-tip="${k.tip || ''}">i</span></div>
       <div class="kpi-val">${k.val}</div>
       <div class="kpi-trend ${t.cls}">${t.text}</div>
     </div>`;
   }).join('');
 
-  // 🔴 Realtime Chart
-  const ctxRt = document.getElementById('rtChart');
-  if(ctxRt && window.rtChartInst) window.rtChartInst.destroy();
-  if(ctxRt) {
-    window.rtChartInst = new Chart(ctxRt.getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: Array.from({length:30}, (_,i) => `Před ${30-i} min`),
-        datasets: [{
-          data: d.realtime.trend,
-          backgroundColor: '#1a73e8',
-          borderWidth: 0,
-          borderRadius: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: { enabled: false } },
-        scales: {
-          x: { display: false },
-          y: { display: false, beginAtZero: true }
-        },
-        layout: { padding: 0 }
-      }
-    });
-  }
-
+  // (rtChart canvas no longer needed - using pure HTML bars)
   const ctxTrend = document.getElementById('trendChart').getContext('2d');
   if (trendChart) trendChart.destroy();
   trendChart = new Chart(ctxTrend, {
@@ -573,7 +575,12 @@ function renderLeafletMap(geoData) {
       opacity: 1,
       fillOpacity: 0.75
     }).addTo(map);
-    circle.bindPopup(`<b>${g.city}</b><br>${g.sessions} relací`);
+    circle.bindTooltip(`<b>${g.city}</b><br>${g.sessions.toLocaleString('cs-CZ')} relací`, {
+      permanent: false,
+      sticky: true,
+      direction: 'top',
+      offset: [0, -4]
+    });
     bounds.push(coords);
   });
 
