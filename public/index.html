@@ -181,28 +181,41 @@
       </div>
     </div>
 
-    <div class="tables-row" style="grid-template-columns: 1fr 1fr 1fr; align-items: start; margin-bottom:24px;" data-section="sec-devices">
+    <!-- Prohlížeč + Operační systém (oba horizontal bary) -->
+    <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;" data-section="sec-devices">
       <div class="chart-card">
         <div class="card-head">Prohlížeč</div>
-        <div class="card-body" style="padding:16px 20px;"><canvas id="browserChart" style="max-height:220px;"></canvas></div>
+        <div class="card-body" style="padding:16px 20px;"><canvas id="browserChart" style="max-height:240px;"></canvas></div>
+      </div>
+      <div class="chart-card" data-section="sec-os-lang">
+        <div class="card-head">Operační systém</div>
+        <div class="card-body" style="padding:16px 20px;"><canvas id="osChart" style="max-height:240px;"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Rozlišení + Zařízení donut + Jazyk -->
+    <div class="tables-row" style="grid-template-columns: 1.4fr 1fr 0.8fr; align-items: start;" data-section="sec-devices">
+      <div class="chart-card">
+        <div class="card-head">Rozlišení obrazovky</div>
+        <div class="card-body" style="padding:16px 20px;"><canvas id="screenChart" style="max-height:220px;"></canvas></div>
       </div>
       <div class="chart-card">
         <div class="card-head">Kategorie zařízení</div>
         <div class="card-body" style="padding:16px 20px; position:relative; min-height:220px;">
-          <canvas id="deviceChart2" style="max-height:200px;"></canvas>
-          <div id="devicePcts" style="margin-top:12px; display:flex; justify-content:center; gap:20px; font-size:.8rem; color:var(--text2);"></div>
+          <canvas id="deviceChart2" style="max-height:180px;"></canvas>
+          <div id="devicePcts" style="margin-top:10px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; font-size:.78rem; color:var(--text2);"></div>
         </div>
       </div>
-      <div class="chart-card">
-        <div class="card-head">Rozlišení obrazovky</div>
-        <div class="card-body" style="padding:16px 20px;"><canvas id="screenChart" style="max-height:220px;"></canvas></div>
+      <div class="chart-card" data-section="sec-os-lang">
+        <div class="card-head">Jazyk prohlížeče</div>
+        <div class="card-body" id="langTable" style="overflow-x:auto; padding:0;"></div>
       </div>
     </div>
 
     <!-- Nový vs. vracející se + Top události -->
     <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;" data-section="sec-newvs">
       <div class="chart-card">
-        <div class="card-head">Nový vs. vracíjící se uživatelé</div>
+        <div class="card-head">Nový vs. vracející se uživatelé</div>
         <div class="card-body" style="padding:16px 20px; min-height:200px;">
           <canvas id="newVsChart" style="max-height:180px;"></canvas>
           <div id="newVsPcts" style="margin-top:12px; display:flex; justify-content:center; gap:24px; font-size:.8rem; color:var(--text2);"></div>
@@ -219,18 +232,6 @@
       <div class="chart-card">
         <div class="card-head">Landing pages (vstupní stránky)</div>
         <div class="card-body" id="landingTable" style="overflow-x:auto; max-height:480px; overflow-y:auto; padding:0;"></div>
-      </div>
-    </div>
-
-    <!-- OS + Jazyk -->
-    <div class="tables-row" style="grid-template-columns: 1fr 1fr; align-items: start;" data-section="sec-os-lang">
-      <div class="chart-card">
-        <div class="card-head">Operační systém</div>
-        <div class="card-body" style="padding:16px 20px;"><canvas id="osChart" style="max-height:200px;"></canvas></div>
-      </div>
-      <div class="chart-card" style="max-width:320px;">
-        <div class="card-head">Jazyk prohlížeče</div>
-        <div class="card-body" id="langTable" style="overflow-x:auto; padding:0;"></div>
       </div>
     </div>
 
@@ -551,13 +552,14 @@ function render(d) {
   // 🌐 Prohlížeč (horizontální bar)
   const ctxBrowser = document.getElementById('browserChart')?.getContext('2d');
   if(ctxBrowser) {
-    const totalBrowserSessions = d.browsers.reduce((s,x) => s+x.sessions, 0);
+    const browserData = d.browsers.map(b => b.sessions);
+    const totalBrowserSessions = browserData.reduce((s,x) => s+x, 0);
     if(window._browserChart) window._browserChart.destroy();
     window._browserChart = new Chart(ctxBrowser, {
       type: 'bar',
       data: {
         labels: d.browsers.map(b => b.browser),
-        datasets: [{ data: d.browsers.map(b => b.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
+        datasets: [{ data: browserData, backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
       },
       options: {
         indexAxis: 'y', responsive:true, maintainAspectRatio:false,
@@ -565,7 +567,16 @@ function render(d) {
           const pct = totalBrowserSessions ? (ctx.parsed.x/totalBrowserSessions*100).toFixed(1) : 0;
           return `  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací (${pct} %)`;
         } } } },
-        scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } }
+        scales: {
+          x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } },
+          y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' },
+            callback: function(val, idx) {
+              const label = this.getLabelForValue(val);
+              const pct = totalBrowserSessions ? (browserData[idx]/totalBrowserSessions*100).toFixed(1) : 0;
+              return `${label}  ${pct}%`;
+            }
+          } }
+        }
       }
     });
   }
@@ -573,13 +584,14 @@ function render(d) {
   // 📐 Rozlišení obrazovky (horizontální bar)
   const ctxScreen = document.getElementById('screenChart')?.getContext('2d');
   if(ctxScreen) {
-    const totalScreenSessions = d.screenResolutions.reduce((s,x) => s+x.sessions, 0);
+    const screenData = d.screenResolutions.map(s => s.sessions);
+    const totalScreenSessions = screenData.reduce((s,x) => s+x, 0);
     if(window._screenChart) window._screenChart.destroy();
     window._screenChart = new Chart(ctxScreen, {
       type: 'bar',
       data: {
         labels: d.screenResolutions.map(s => s.resolution),
-        datasets: [{ data: d.screenResolutions.map(s => s.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
+        datasets: [{ data: screenData, backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
       },
       options: {
         indexAxis: 'y', responsive:true, maintainAspectRatio:false,
@@ -587,10 +599,20 @@ function render(d) {
           const pct = totalScreenSessions ? (ctx.parsed.x/totalScreenSessions*100).toFixed(1) : 0;
           return `  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací (${pct} %)`;
         } } } },
-        scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#5f6368' } } }
+        scales: {
+          x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } },
+          y:{ grid:{ display:false }, ticks:{ color:'#5f6368',
+            callback: function(val, idx) {
+              const label = this.getLabelForValue(val);
+              const pct = totalScreenSessions ? (screenData[idx]/totalScreenSessions*100).toFixed(1) : 0;
+              return `${label}  ${pct}%`;
+            }
+          } }
+        }
       }
     });
   }
+
 
 
   // 🔗 Zdroje návštěvnosti (Akvizice)
@@ -802,20 +824,31 @@ function renderNewSections(d) {
   // ─── Operační systém ───
   const ctxOs = document.getElementById('osChart')?.getContext('2d');
   if(ctxOs) {
-    const totalOsSessions = d.operatingSystems.reduce((s,x) => s+x.sessions, 0);
+    const osData = d.operatingSystems.map(x=>x.sessions);
+    const totalOsSessions = osData.reduce((s,x) => s+x, 0);
     if(window._osChart) window._osChart.destroy();
     window._osChart = new Chart(ctxOs, {
       type:'bar',
-      data:{ labels: d.operatingSystems.map(x=>x.os), datasets:[{ data:d.operatingSystems.map(x=>x.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }] },
+      data:{ labels: d.operatingSystems.map(x=>x.os), datasets:[{ data:osData, backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }] },
       options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
         plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: ctx=>{
           const pct = totalOsSessions ? (ctx.parsed.x/totalOsSessions*100).toFixed(1) : 0;
           return `  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací (${pct} %)`;
         } } } },
-        scales:{ x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368' } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } }
+        scales:{
+          x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368' } },
+          y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' },
+            callback: function(val, idx) {
+              const label = this.getLabelForValue(val);
+              const pct = totalOsSessions ? (osData[idx]/totalOsSessions*100).toFixed(1) : 0;
+              return `${label}  ${pct}%`;
+            }
+          } }
+        }
       }
     });
   }
+
 
   // ─── Jazyk ───
   document.getElementById('langTable').innerHTML = `
