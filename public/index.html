@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JARDA Analytic – Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#090c14;--surface:#111827;--surface2:#1a2235;--border:rgba(255,255,255,.07);
+      --accent:#6366f1;--accent2:#06b6d4;--green:#22c55e;--orange:#f97316;--red:#ef4444;
+      --text:#f1f5f9;--text2:#94a3b8;--text3:#475569;
+    }
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+    /* ── HEADER ── */
+    header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .logo{font-size:1.1rem;font-weight:800;color:var(--accent);white-space:nowrap}
+    .logo span{color:var(--text2);font-weight:400}
+    .search-row{display:flex;gap:10px;flex:1;min-width:260px}
+    .search-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
+    .search-row input:focus{border-color:var(--accent)}
+    .search-row input::placeholder{color:var(--text3)}
+    .preset-select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;cursor:pointer}
+    .preset-select:focus{border-color:var(--accent)}
+    .day-btns{display:flex;gap:4px}
+    .day-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:600;transition:all .2s}
+    .day-btn.active,.day-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+    .btn-load{padding:10px 22px;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;border:none;border-radius:8px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;transition:opacity .2s}
+    .btn-load:hover{opacity:.85}
+    /* ── MAIN ── */
+    main{flex:1;padding:32px;display:flex;flex-direction:column;gap:24px}
+    /* ── CARDS ── */
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
+    .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;position:relative;overflow:hidden;transition:transform .2s}
+    .kpi:hover{transform:translateY(-2px)}
+    .kpi::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent-col,var(--accent)) 0%,transparent 60%);opacity:.06;pointer-events:none}
+    .kpi-icon{font-size:1.4rem;margin-bottom:10px}
+    .kpi-val{font-size:1.9rem;font-weight:800;line-height:1}
+    .kpi-lbl{font-size:.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+    .kpi-sub{font-size:.75rem;color:var(--green);margin-top:4px;font-weight:600}
+    /* ── CHARTS ROW ── */
+    .charts-row{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .card-head{padding:16px 20px;border-bottom:1px solid var(--border);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+    .card-body{padding:20px}
+    canvas{max-height:220px}
+    /* ── TABLES ROW ── */
+    .tables-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    table{width:100%;border-collapse:collapse;font-size:.85rem}
+    th{text-align:left;color:var(--text3);font-size:.73rem;text-transform:uppercase;letter-spacing:.07em;padding:0 0 10px;border-bottom:1px solid var(--border)}
+    td{padding:10px 0;border-bottom:1px solid var(--border);color:var(--text2)}
+    td:first-child{color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    td:last-child{text-align:right;font-weight:700;color:var(--text)}
+    tr:last-child td{border-bottom:none}
+    /* ── SOURCE BADGE ── */
+    .src-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.72rem;font-weight:600;background:var(--accent-soft,rgba(99,102,241,.12));color:var(--accent)}
+    /* ── DEVICE BAR ── */
+    .dev-bar{height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;margin-top:4px}
+    .dev-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .6s ease}
+    /* ── LOADER / EMPTY ── */
+    #state{text-align:center;padding:80px 20px;color:var(--text3)}
+    .spinner{width:40px;height:40px;border:3px solid rgba(99,102,241,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    #dashboard{display:none}
+    /* ── SECURITY NOTE ── */
+    .sec-note{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);border-radius:10px;padding:12px 16px;font-size:.82rem;color:var(--text2);display:flex;gap:10px;align-items:center}
+    /* responsive */
+    @media(max-width:900px){
+      .charts-row,.tables-row{grid-template-columns:1fr}
+      main{padding:16px}
+      header{padding:12px 16px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex; flex-direction:column; justify-content:center;">
+    <div class="logo">JARDA <span>Analytic</span></div>
+    <div style="font-size:0.6rem; color:var(--text3); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:2px;">Just Another Rapid Development Architecture</div>
+  </div>
+  <div class="search-row">
+    <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:160px"/>
+    <select id="datePreset" class="preset-select">
+      <option value="today">Dnes</option>
+      <option value="this_week">Tento týden</option>
+      <option value="this_month">Tento měsíc</option>
+      <option value="last_month">Minulý měsíc</option>
+      <option value="this_quarter">Tento kvartál</option>
+      <option value="this_year">Tento rok</option>
+      <option value="custom">Vlastní (Kalendář)</option>
+    </select>
+    <div class="date-picker" id="customDates" style="display:flex; align-items:center; gap:5px; display:none;">
+      <input type="date" id="startDate" title="Od data" class="preset-select">
+      <span style="color:var(--text3)">-</span>
+      <input type="date" id="endDate" title="Do data" class="preset-select">
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="state">
+    <div class="spinner" id="spinner" style="display:none"></div>
+    <p id="stateMsg" style="font-size:1rem;color:var(--text2)">Zadej GA4 Property ID pro načtení dat</p>
+  </div>
+
+  <div id="dashboard">
+    <!-- KPI grid -->
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <!-- Trend chart + Donut -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="card-head">Denní trend</div>
+        <div class="card-body"><canvas id="trendChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-head">Zařízení</div>
+        <div class="card-body"><canvas id="deviceChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="tables-row" style="grid-template-columns: 1fr 1fr 1fr">
+      <div class="chart-card">
+        <div class="card-head">Zdroje návštěvnosti</div>
+        <div class="card-body" id="sourcesTable"></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-head">TOP stránky</div>
+        <div class="card-body" id="pagesTable"></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-head">Geografie</div>
+        <div class="card-body" id="geoTable"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+let trendChart = null;
+let deviceChart = null;
+
+const dateInputStart = document.getElementById('startDate');
+const dateInputEnd = document.getElementById('endDate');
+const datePreset = document.getElementById('datePreset');
+const customDates = document.getElementById('customDates');
+
+// Předvyplnění Property ID z URL (např. ?propertyId=123456)
+const urlParams = new URLSearchParams(window.location.search);
+const urlPropertyId = urlParams.get('propertyId');
+if (urlPropertyId) {
+  document.getElementById('propInput').value = urlPropertyId;
+}
+
+// Zpracování předvoleb
+datePreset.addEventListener('change', function(e) {
+  const val = e.target.value;
+  
+  if (val === 'custom') {
+    customDates.style.display = 'flex';
+    return;
+  } else {
+    customDates.style.display = 'none';
+  }
+
+  const today = new Date();
+  let start = new Date(today);
+  let end = new Date(today);
+
+  switch(val) {
+    case 'today':
+      break;
+    case 'this_week':
+      const day = start.getDay();
+      const diff = start.getDate() - day + (day === 0 ? -6 : 1);
+      start.setDate(diff);
+      break;
+    case 'this_month':
+      start.setDate(1);
+      break;
+    case 'last_month':
+      start.setMonth(start.getMonth() - 1);
+      start.setDate(1);
+      end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
+      break;
+    case 'this_quarter':
+      const q = Math.floor(start.getMonth() / 3);
+      start.setMonth(q * 3);
+      start.setDate(1);
+      break;
+    case 'this_year':
+      start.setMonth(0);
+      start.setDate(1);
+      break;
+  }
+  
+  // Oprava timezone offsetu pro správné datum
+  const format = d => {
+    const tzOffset = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - tzOffset).toISOString().split('T')[0];
+  };
+
+  dateInputStart.value = format(start);
+  dateInputEnd.value = format(end);
+  
+  if (document.getElementById('propInput').value.trim() !== '') {
+    loadData();
+  }
+});
+
+// Set default
+datePreset.value = 'this_month';
+datePreset.dispatchEvent(new Event('change'));
+
+// Automatický refresh při změně custom data
+dateInputStart.addEventListener('change', loadData);
+dateInputEnd.addEventListener('change', loadData);
+
+// Enter to load in property ID
+document.getElementById('propInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') loadData();
+});
+
+async function loadData() {
+  const propertyId = document.getElementById('propInput').value.trim();
+  if (!propertyId) return;
+
+  const start = dateInputStart.value;
+  const end = dateInputEnd.value;
+
+  const state = document.getElementById('state');
+  const dash = document.getElementById('dashboard');
+  const spinner = document.getElementById('spinner');
+  const msg = document.getElementById('stateMsg');
+
+  spinner.style.display = 'block';
+  msg.innerText = 'Načítám data z Google Analytics...';
+  state.style.display = 'block';
+  dash.style.display = 'none';
+
+  try {
+    const res = await fetch(`/api/analytics?propertyId=${encodeURIComponent(propertyId)}&startDate=${start}&endDate=${end}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Chyba API');
+    render(data);
+    state.style.display = 'none';
+    dash.style.display = 'flex';
+    dash.style.flexDirection = 'column';
+    dash.style.gap = '24px';
+  } catch (err) {
+    spinner.style.display = 'none';
+    msg.innerHTML = `<span style="color:#ef4444">${err.message}</span>`;
+  }
+}
+
+function fmt(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1)+'M';
+  if (n >= 1000) return (n/1000).toFixed(1)+'k';
+  return n.toLocaleString('cs-CZ');
+}
+
+function render(d) {
+  const o = d.overview;
+  const kpis = [
+    { val: d.realtime.activeUsers, lbl:'Aktivní (30 min)', col:'#ef4444' },
+    { val: fmt(o.totalUsers),     lbl:'Uživatelé',         col:'#6366f1' },
+    { val: fmt(o.sessions),       lbl:'Návštěvy',          col:'#06b6d4' },
+    { val: fmt(o.pageViews),      lbl:'Zobrazení',         col:'#8b5cf6' },
+    { val: o.bounceRate+'%',      lbl:'Míra opuštění',     col:'#f97316' },
+    { val: o.purchases,           lbl:'Nákupy',            col:'#22c55e' },
+    { val: o.revenue + ' Kč',     lbl:'Tržby',             col:'#10b981' },
+  ];
+
+  document.getElementById('kpiGrid').innerHTML = kpis.map(k => `
+    <div class="kpi" style="--accent-col:${k.col}; border-top: 3px solid ${k.col}">
+      <div class="kpi-val" style="color:${k.col}">${k.val}</div>
+      <div class="kpi-lbl">${k.lbl}</div>
+    </div>
+  `).join('');
+
+  // Trend chart
+  const labels = d.trend.map(t => t.date.replace(/(\d{4})(\d{2})(\d{2})/,'$3.$2'));
+  const users  = d.trend.map(t => t.users);
+  const sessions = d.trend.map(t => t.sessions);
+
+  if (trendChart) trendChart.destroy();
+  trendChart = new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label:'Uživatelé', data:users, borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,.1)', fill:true, tension:.4, pointRadius:2 },
+        { label:'Návštěvy',  data:sessions, borderColor:'#06b6d4', backgroundColor:'rgba(6,182,212,.06)', fill:true, tension:.4, pointRadius:2 },
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:true,
+      plugins:{ legend:{ labels:{ color:'#94a3b8', font:{ size:12 } } } },
+      scales:{
+        x:{ ticks:{ color:'#475569', maxTicksLimit:8 }, grid:{ color:'rgba(255,255,255,.04)' } },
+        y:{ ticks:{ color:'#475569' }, grid:{ color:'rgba(255,255,255,.04)' } }
+      }
+    }
+  });
+
+  // Device donut
+  const devLabels = d.devices.map(x => x.device);
+  const devData   = d.devices.map(x => x.sessions);
+  if (deviceChart) deviceChart.destroy();
+  deviceChart = new Chart(document.getElementById('deviceChart'), {
+    type:'doughnut',
+    data: {
+      labels: devLabels,
+      datasets:[{ data:devData, backgroundColor:['#6366f1','#06b6d4','#22c55e','#f97316'], borderWidth:0, hoverOffset:4 }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      plugins:{ legend:{ position:'bottom', labels:{ color:'#94a3b8', padding:14, font:{size:12} } } }
+    }
+  });
+
+  // Sources table
+  const srcColors = { 'Organic Search':'#22c55e','Direct':'#6366f1','Social':'#f97316','Referral':'#06b6d4','Email':'#8b5cf6' };
+  const total = d.sources.reduce((s,x) => s + x.sessions, 0);
+  document.getElementById('sourcesTable').innerHTML = `
+    <table>
+      <thead><tr><th>Kanál</th><th>Relace</th><th>Podíl</th></tr></thead>
+      <tbody>${d.sources.map(s => `
+        <tr>
+          <td><span class="src-badge" style="background:${srcColors[s.channel]||'#475569'}20;color:${srcColors[s.channel]||'#94a3b8'}">${s.channel}</span></td>
+          <td>${fmt(s.sessions)}</td>
+          <td style="text-align:right">${total ? Math.round(s.sessions/total*100)+'%' : '-'}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // Pages table
+  document.getElementById('pagesTable').innerHTML = `
+    <table>
+      <thead><tr><th>Stránka</th><th>Zobrazení</th></tr></thead>
+      <tbody>${d.topPages.map(p => `
+        <tr>
+          <td title="${p.path}">${p.path}</td>
+          <td>${fmt(p.views)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // Geo table
+  document.getElementById('geoTable').innerHTML = `
+    <table>
+      <thead><tr><th>Země</th><th>Město</th><th>Relace</th></tr></thead>
+      <tbody>${d.geo.map(g => `
+        <tr>
+          <td>${g.country}</td>
+          <td>${g.city}</td>
+          <td>${fmt(g.sessions)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+</script>
+</body>
+</html>

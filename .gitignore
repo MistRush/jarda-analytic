@@ -1,0 +1,7 @@
+credentials.json
+.env
+node_modules/
+client_secret.json
+client_secret_*.json
+oauth_token.json
+.DS_Store
