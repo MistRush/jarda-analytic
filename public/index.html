@@ -5,20 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JARDA Analytic – Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --bg:#090c14;--surface:#111827;--surface2:#1a2235;--border:rgba(255,255,255,.07);
-      --accent:#6366f1;--accent2:#06b6d4;--green:#22c55e;--orange:#f97316;--red:#ef4444;
-      --text:#f1f5f9;--text2:#94a3b8;--text3:#475569;
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    :root {
+      --bg: #f8f9fa;
+      --surface: #ffffff;
+      --surface2: #ffffff;
+      --text: #202124;
+      --text2: #5f6368;
+      --text3: #80868b;
+      --border: #dadce0;
+      --accent: #1a73e8;
+      --accent-hover: #174ea6;
+      --shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
     }
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
-    /* ── HEADER ── */
-    header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-    .logo{font-size:1.1rem;font-weight:800;color:var(--accent);white-space:nowrap}
-    .logo span{color:var(--text2);font-weight:400}
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: 'Roboto', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding-bottom: 50px;}
+    
+    header { background:var(--surface); border-bottom:1px solid var(--border); padding:12px 24px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; box-shadow: 0 1px 2px 0 rgba(60,64,67,0.05); }
+    .logo { font-size:1.2rem; font-weight:500; color:var(--text); white-space:nowrap; }
+    .logo span { color:var(--accent); font-weight:700;}
     .search-row{display:flex;gap:10px;flex:1;min-width:260px}
     .search-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
     .search-row input:focus{border-color:var(--accent)}
@@ -33,46 +41,42 @@
     /* ── MAIN ── */
     main{flex:1;padding:32px;display:flex;flex-direction:column;gap:24px}
     /* ── CARDS ── */
-    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
-    .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;position:relative;overflow:hidden;transition:transform .2s}
-    .kpi:hover{transform:translateY(-2px)}
-    .kpi::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent-col,var(--accent)) 0%,transparent 60%);opacity:.06;pointer-events:none}
-    .kpi-icon{font-size:1.4rem;margin-bottom:10px}
-    .kpi-val{font-size:1.9rem;font-weight:800;line-height:1}
-    .kpi-lbl{font-size:.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
-    .kpi-sub{font-size:.75rem;color:var(--green);margin-top:4px;font-weight:600}
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+    .kpi{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:4px; transition:box-shadow .2s;}
+    .kpi:hover{box-shadow:var(--shadow);}
+    .kpi-val{font-size:1.75rem;font-weight:400;color:var(--text);line-height:1.2}
+    .kpi-lbl{font-size:.85rem;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:0.02em}
+    .kpi-trend{font-size:0.75rem; font-weight:500; margin-top:2px;}
+    .kpi-trend.up{color:#137333;}
+    .kpi-trend.down{color:#c5221f;}
     /* ── CHARTS ROW ── */
-    .charts-row{display:grid;grid-template-columns:2fr 1fr;gap:20px}
-    .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-    .card-head{padding:16px 20px;border-bottom:1px solid var(--border);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
-    .card-body{padding:20px}
+    .charts-row{display:grid;grid-template-columns:2.5fr 1fr;gap:24px;margin-bottom:24px}
+    .tables-row{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:24px}
+    @media(max-width:1100px){.charts-row,.tables-row{grid-template-columns:1fr}}
+    .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .2s;}
+    .chart-card:hover{box-shadow:var(--shadow);}
+    .card-head{padding:16px 20px;border-bottom:1px solid var(--border);font-size:1rem;font-weight:500;color:var(--text)}
+    .card-body{padding:20px;flex:1;position:relative;overflow-x:auto;}
     canvas{max-height:220px}
     /* ── TABLES ROW ── */
-    .tables-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    table{width:100%;border-collapse:collapse;font-size:.85rem}
-    th{text-align:left;color:var(--text3);font-size:.73rem;text-transform:uppercase;letter-spacing:.07em;padding:0 0 10px;border-bottom:1px solid var(--border)}
-    td{padding:10px 0;border-bottom:1px solid var(--border);color:var(--text2)}
-    td:first-child{color:var(--text);font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    td:last-child{text-align:right;font-weight:700;color:var(--text)}
+    table{width:100%;border-collapse:collapse;text-align:left;font-size:.85rem}
+    th{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text2);font-weight:500;white-space:nowrap; border-right:1px solid var(--border);}
+    th:last-child{border-right:none;}
+    td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text); white-space:nowrap; border-right:1px solid var(--border);}
+    td:last-child{border-right:none;}
     tr:last-child td{border-bottom:none}
-    /* ── SOURCE BADGE ── */
-    .src-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.72rem;font-weight:600;background:var(--accent-soft,rgba(99,102,241,.12));color:var(--accent)}
-    /* ── DEVICE BAR ── */
-    .dev-bar{height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;margin-top:4px}
-    .dev-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .6s ease}
+    tr:hover td{background:rgba(26,115,232,0.04)}
+    .bar-bg{background:#e8eaed;height:4px;border-radius:2px;margin-top:6px;overflow:hidden;width:100%;}
+    .bar-fg{background:var(--accent);height:100%;border-radius:2px;}
+    .metric-col{text-align:right;}
+    th.metric-col{text-align:right;}
     /* ── LOADER / EMPTY ── */
     #state{text-align:center;padding:80px 20px;color:var(--text3)}
-    .spinner{width:40px;height:40px;border:3px solid rgba(99,102,241,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px}
+    .spinner{width:40px;height:40px;border:3px solid rgba(26,115,232,.2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px}
     @keyframes spin{to{transform:rotate(360deg)}}
     #dashboard{display:none}
     /* ── SECURITY NOTE ── */
-    .sec-note{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);border-radius:10px;padding:12px 16px;font-size:.82rem;color:var(--text2);display:flex;gap:10px;align-items:center}
-    /* responsive */
-    @media(max-width:900px){
-      .charts-row,.tables-row{grid-template-columns:1fr}
-      main{padding:16px}
-      header{padding:12px 16px}
-    }
+    .sec-note{background:rgba(26,115,232,0.1);border:1px solid rgba(26,115,232,0.3);color:#174ea6;padding:16px;border-radius:8px;font-size:.9rem;display:flex;align-items:flex-start;gap:12px;margin-top:24px}
   </style>
 </head>
 <body>
@@ -80,7 +84,6 @@
 <header>
   <div style="display:flex; flex-direction:column; justify-content:center;">
     <div class="logo">JARDA <span>Analytic</span></div>
-    <div style="font-size:0.6rem; color:var(--text3); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:2px;">Just Another Rapid Development Architecture</div>
   </div>
   <div class="search-row">
     <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:160px"/>
@@ -108,10 +111,8 @@
   </div>
 
   <div id="dashboard">
-    <!-- KPI grid -->
     <div class="kpi-grid" id="kpiGrid"></div>
 
-    <!-- Trend chart + Donut -->
     <div class="charts-row">
       <div class="chart-card">
         <div class="card-head">Denní trend</div>
@@ -123,19 +124,10 @@
       </div>
     </div>
 
-    <!-- Tables -->
-    <div class="tables-row" style="grid-template-columns: 1fr 1fr 1fr">
+    <div class="tables-row">
       <div class="chart-card">
         <div class="card-head">Zdroje návštěvnosti</div>
         <div class="card-body" id="sourcesTable"></div>
-      </div>
-      <div class="chart-card">
-        <div class="card-head">TOP stránky</div>
-        <div class="card-body" id="pagesTable"></div>
-      </div>
-      <div class="chart-card">
-        <div class="card-head">Geografie</div>
-        <div class="card-body" id="geoTable"></div>
       </div>
     </div>
   </div>
@@ -150,17 +142,14 @@ const dateInputEnd = document.getElementById('endDate');
 const datePreset = document.getElementById('datePreset');
 const customDates = document.getElementById('customDates');
 
-// Předvyplnění Property ID z URL (např. ?propertyId=123456)
 const urlParams = new URLSearchParams(window.location.search);
 const urlPropertyId = urlParams.get('propertyId');
 if (urlPropertyId) {
   document.getElementById('propInput').value = urlPropertyId;
 }
 
-// Zpracování předvoleb
 datePreset.addEventListener('change', function(e) {
   const val = e.target.value;
-  
   if (val === 'custom') {
     customDates.style.display = 'flex';
     return;
@@ -173,16 +162,13 @@ datePreset.addEventListener('change', function(e) {
   let end = new Date(today);
 
   switch(val) {
-    case 'today':
-      break;
+    case 'today': break;
     case 'this_week':
       const day = start.getDay();
       const diff = start.getDate() - day + (day === 0 ? -6 : 1);
       start.setDate(diff);
       break;
-    case 'this_month':
-      start.setDate(1);
-      break;
+    case 'this_month': start.setDate(1); break;
     case 'last_month':
       start.setMonth(start.getMonth() - 1);
       start.setDate(1);
@@ -193,13 +179,9 @@ datePreset.addEventListener('change', function(e) {
       start.setMonth(q * 3);
       start.setDate(1);
       break;
-    case 'this_year':
-      start.setMonth(0);
-      start.setDate(1);
-      break;
+    case 'this_year': start.setMonth(0); start.setDate(1); break;
   }
   
-  // Oprava timezone offsetu pro správné datum
   const format = d => {
     const tzOffset = d.getTimezoneOffset() * 60000;
     return new Date(d.getTime() - tzOffset).toISOString().split('T')[0];
@@ -213,15 +195,12 @@ datePreset.addEventListener('change', function(e) {
   }
 });
 
-// Set default
 datePreset.value = 'this_month';
 datePreset.dispatchEvent(new Event('change'));
 
-// Automatický refresh při změně custom data
 dateInputStart.addEventListener('change', loadData);
 dateInputEnd.addEventListener('change', loadData);
 
-// Enter to load in property ID
 document.getElementById('propInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') loadData();
 });
@@ -229,10 +208,8 @@ document.getElementById('propInput').addEventListener('keydown', e => {
 async function loadData() {
   const propertyId = document.getElementById('propInput').value.trim();
   if (!propertyId) return;
-
   const start = dateInputStart.value;
   const end = dateInputEnd.value;
-
   const state = document.getElementById('state');
   const dash = document.getElementById('dashboard');
   const spinner = document.getElementById('spinner');
@@ -249,9 +226,7 @@ async function loadData() {
     if (!res.ok) throw new Error(data.error || 'Chyba API');
     render(data);
     state.style.display = 'none';
-    dash.style.display = 'flex';
-    dash.style.flexDirection = 'column';
-    dash.style.gap = '24px';
+    dash.style.display = 'block';
   } catch (err) {
     spinner.style.display = 'none';
     msg.innerHTML = `<span style="color:#ef4444">${err.message}</span>`;
@@ -265,67 +240,119 @@ function fmt(n) {
 }
 
 function render(d) {
+  const calcTrend = (cur, prev) => {
+    if(!prev || prev == 0) return { text: '', cls: '' };
+    const perc = ((cur - prev) / prev) * 100;
+    const sign = perc > 0 ? '↑' : '↓';
+    return { 
+      text: `${sign} ${Math.abs(perc).toFixed(1)} %`, 
+      cls: perc > 0 ? 'up' : 'down' 
+    };
+  };
+
   const o = d.overview;
+  const p = d.prevOverview;
+  
   const kpis = [
-    { val: d.realtime.activeUsers, lbl:'Aktivní (30 min)', col:'#ef4444' },
-    { val: fmt(o.totalUsers),     lbl:'Uživatelé',         col:'#6366f1' },
-    { val: fmt(o.sessions),       lbl:'Návštěvy',          col:'#06b6d4' },
-    { val: fmt(o.pageViews),      lbl:'Zobrazení',         col:'#8b5cf6' },
-    { val: o.bounceRate+'%',      lbl:'Míra opuštění',     col:'#f97316' },
-    { val: o.purchases,           lbl:'Nákupy',            col:'#22c55e' },
-    { val: o.revenue + ' Kč',     lbl:'Tržby',             col:'#10b981' },
+    { val: d.realtime.activeUsers, lbl:'Aktivní uživatelé', cur:d.realtime.activeUsers, prev:0 },
+    { val: fmt(o.totalUsers),      lbl:'Uživatelé',         cur:o.totalUsers, prev:p.totalUsers },
+    { val: fmt(o.sessions),        lbl:'Návštěvy',          cur:o.sessions, prev:p.sessions },
+    { val: fmt(o.pageViews),       lbl:'Zobrazení stránek', cur:o.pageViews, prev:p.pageViews },
+    { val: o.bounceRate+'%',       lbl:'Míra opuštění',     cur:parseFloat(o.bounceRate), prev:parseFloat(p.bounceRate) },
+    { val: o.avgSessionDuration,   lbl:'Průměrná doba',     cur:0, prev:0 }, // Trend calculation for duration is complex without raw seconds
+    { val: o.purchases,            lbl:'Nákupy',            cur:o.purchases, prev:p.purchases },
+    { val: o.revenue + ' Kč',      lbl:'Tržby',             cur:o.revenue, prev:p.revenue },
   ];
 
-  document.getElementById('kpiGrid').innerHTML = kpis.map(k => `
-    <div class="kpi" style="--accent-col:${k.col}; border-top: 3px solid ${k.col}">
-      <div class="kpi-val" style="color:${k.col}">${k.val}</div>
+  document.getElementById('kpiGrid').innerHTML = kpis.map(k => {
+    const t = calcTrend(k.cur, k.prev);
+    // Reverse logic for bounce rate (down is good/green)
+    if(k.lbl === 'Míra opuštění') {
+      t.cls = t.cls === 'up' ? 'down' : (t.cls === 'down' ? 'up' : '');
+    }
+    return `
+    <div class="kpi">
       <div class="kpi-lbl">${k.lbl}</div>
-    </div>
-  `).join('');
+      <div class="kpi-val">${k.val}</div>
+      <div class="kpi-trend ${t.cls}">${t.text}</div>
+    </div>`;
+  }).join('');
 
-  // Trend chart
-  const labels = d.trend.map(t => t.date.replace(/(\d{4})(\d{2})(\d{2})/,'$3.$2'));
-  const users  = d.trend.map(t => t.users);
-  const sessions = d.trend.map(t => t.sessions);
-
+  const ctxTrend = document.getElementById('trendChart').getContext('2d');
   if (trendChart) trendChart.destroy();
-  trendChart = new Chart(document.getElementById('trendChart'), {
+  trendChart = new Chart(ctxTrend, {
     type: 'line',
     data: {
-      labels,
+      labels: d.trend.labels,
       datasets: [
-        { label:'Uživatelé', data:users, borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,.1)', fill:true, tension:.4, pointRadius:2 },
-        { label:'Návštěvy',  data:sessions, borderColor:'#06b6d4', backgroundColor:'rgba(6,182,212,.06)', fill:true, tension:.4, pointRadius:2 },
+        {
+          label: 'Aktuální období',
+          data: d.trend.current,
+          borderColor: '#1a73e8',
+          backgroundColor: 'rgba(26,115,232,0.1)',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointBackgroundColor: '#1a73e8',
+          fill: true,
+          tension: 0.3
+        },
+        {
+          label: 'Předchozí období',
+          data: d.trend.previous,
+          borderColor: '#aecbfa',
+          borderDash: [5, 5],
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          fill: false,
+          tension: 0.3
+        }
       ]
     },
     options: {
-      responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{ labels:{ color:'#94a3b8', font:{ size:12 } } } },
-      scales:{
-        x:{ ticks:{ color:'#475569', maxTicksLimit:8 }, grid:{ color:'rgba(255,255,255,.04)' } },
-        y:{ ticks:{ color:'#475569' }, grid:{ color:'rgba(255,255,255,.04)' } }
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { boxWidth: 12, usePointStyle: true } },
+        tooltip: {
+          backgroundColor: '#ffffff',
+          titleColor: '#202124',
+          bodyColor: '#5f6368',
+          borderColor: '#dadce0',
+          borderWidth: 1,
+          padding: 12,
+          usePointStyle: true,
+          callbacks: {
+            title: function(context) { return context[0].label; },
+            label: function(context) {
+              let label = context.dataset.label + ': ';
+              return label + fmt(context.parsed.y);
+            },
+            afterBody: function(context) {
+              if(context.length > 1) {
+                const cur = context[0].parsed.y;
+                const prev = context[1].parsed.y;
+                if(prev > 0) {
+                  const perc = ((cur - prev) / prev) * 100;
+                  const sign = perc > 0 ? '↑' : '↓';
+                  return `\nZměna: ${sign} ${Math.abs(perc).toFixed(1)}%`;
+                }
+              }
+              return '';
+            }
+          }
+        }
+      },
+      scales: {
+        y: { beginAtZero: true, grid: { color: '#f1f3f4' }, border: { dash: [4, 4] } },
+        x: { grid: { display: false } }
       }
     }
   });
 
-  // Device donut
-  const devLabels = d.devices.map(x => x.device);
-  const devData   = d.devices.map(x => x.sessions);
+  const ctxDev = document.getElementById('deviceChart').getContext('2d');
   if (deviceChart) deviceChart.destroy();
-  deviceChart = new Chart(document.getElementById('deviceChart'), {
-    type:'doughnut',
-    data: {
-      labels: devLabels,
-      datasets:[{ data:devData, backgroundColor:['#6366f1','#06b6d4','#22c55e','#f97316'], borderWidth:0, hoverOffset:4 }]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      plugins:{ legend:{ position:'bottom', labels:{ color:'#94a3b8', padding:14, font:{size:12} } } }
-    }
-  });
-
-  // Sources table
-  const srcColors = { 'Organic Search':'#22c55e','Direct':'#6366f1','Social':'#f97316','Referral':'#06b6d4','Email':'#8b5cf6' };
   const total = d.sources.reduce((s,x) => s + x.sessions, 0);
   document.getElementById('sourcesTable').innerHTML = `
     <table>
