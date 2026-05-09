@@ -1,0 +1,18 @@
+[build]
+  publish = "public"
+  command = "npm install"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Přesměrování API požadavků na serverless funkci
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Všechno ostatní směrujeme na index.html (SPA chování)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

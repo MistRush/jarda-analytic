@@ -14,20 +14,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Autentifikace přes credentials.json (Service Account)
 // ============================================================
 function getAnalyticsClient() {
+  if (process.env.GOOGLE_CREDENTIALS) {
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+    return new BetaAnalyticsDataClient({ credentials });
+  }
+
   const keyPath = path.join(__dirname, 'credentials.json');
   const fs = require('fs');
   if (!fs.existsSync(keyPath)) {
-    throw new Error('credentials.json nenalezen. Přidej soubor s klíčem Service Accountu.');
+    throw new Error('credentials.json nenalezen. Přidej soubor s klíčem Service Accountu nebo ENV proměnnou GOOGLE_CREDENTIALS.');
   }
   return new BetaAnalyticsDataClient({ keyFilename: keyPath });
 }
 
 // ============================================================
-// GET /api/analytics?propertyId=XXXXXX&days=30
-// Vrací základní metriky pro daný property ID
-// Každý web vidí JEN svá data – propertyId se předává explicitně
-// ============================================================
-app.get('/api/analytics', async (req, res) => {
+const apiRouter = express.Router();
+
+apiRouter.get('/analytics', async (req, res) => {
   const { propertyId, startDate, endDate } = req.query;
 
   if (!propertyId) {
@@ -172,12 +175,19 @@ app.get('/api/analytics', async (req, res) => {
   }
 });
 
+app.use('/api', apiRouter);
+app.use('/.netlify/functions/api', apiRouter);
+
 // Fallback – vrátí index.html pro SPA
 app.get('{*path}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const PORT = process.env.PORT || 3333;
-app.listen(PORT, () => {
-  console.log(`✅ JARDA Analytic běží na http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  const PORT = process.env.PORT || 3333;
+  app.listen(PORT, () => {
+    console.log(`✅ JARDA Analytic běží na http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
