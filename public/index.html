@@ -108,6 +108,7 @@
   </div>
   <div class="search-row">
     <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:140px; padding:8px 12px;"/>
+    <span id="dateRangeLabel" style="font-size:.75rem; color:var(--text3); white-space:nowrap; align-self:center; padding:0 4px;"></span>
     
     <div class="date-tabs" id="dateTabs">
       <button class="date-tab" data-val="today">Dnes</button>
@@ -216,7 +217,7 @@
     <div class="tables-row" data-section="sec-landing">
       <div class="chart-card">
         <div class="card-head">Landing pages (vstupní stránky)</div>
-        <div class="card-body" id="landingTable" style="overflow-x:auto; max-height:320px; overflow-y:auto; padding:0;"></div>
+        <div class="card-body" id="landingTable" style="overflow-x:auto; max-height:480px; overflow-y:auto; padding:0;"></div>
       </div>
     </div>
 
@@ -226,7 +227,7 @@
         <div class="card-head">Operační systém</div>
         <div class="card-body" style="padding:16px 20px;"><canvas id="osChart" style="max-height:200px;"></canvas></div>
       </div>
-      <div class="chart-card">
+      <div class="chart-card" style="max-width:320px;">
         <div class="card-head">Jazyk prohlížeče</div>
         <div class="card-body" id="langTable" style="overflow-x:auto; padding:0;"></div>
       </div>
@@ -301,7 +302,12 @@ function handlePresetChange(val) {
 
   dateInputStart.value = format(start);
   dateInputEnd.value = format(end);
-  
+
+  // Zobraz rozsah dat v hlavičce jako Google
+  const fmtLabel = d => d.toLocaleDateString('cs-CZ', { day:'numeric', month:'short', year:'numeric' });
+  const labelEl = document.getElementById('dateRangeLabel');
+  if(labelEl) labelEl.textContent = `${fmtLabel(start)} – ${fmtLabel(end)}`;
+
   if (document.getElementById('propInput').value.trim() !== '') {
     loadData();
   }
@@ -564,21 +570,21 @@ function render(d) {
 
 
   // 🔗 Zdroje návštěvnosti (Akvizice)
-  const maxSessions = Math.max(...d.sources.map(s => s.sessions), 1);
+  const tip = (text) => `<span class="info-icon" data-tip="${text}">i</span>`;
   document.getElementById('sourcesTable').innerHTML = `
     <table style="min-width: 800px;">
       <thead>
         <tr>
-          <th>Seskupení kanálů</th>
-          <th class="metric-col">Návštěvy</th>
-          <th class="metric-col">Relace se zapojením</th>
-          <th class="metric-col">Míra zapojení</th>
-          <th class="metric-col">Prům. doba</th>
-          <th class="metric-col">Konverze</th>
+          <th>Seskupíni kanálů ${tip('Seskupní kanálu (např. Organic Search, Direct, Paid Social...) určuje zdroj návštěvnosti.')}</th>
+          <th class="metric-col">Návštěvy ${tip('Celkový počet sezírení (relací) za vybrané období.')}</th>
+          <th class="metric-col">Relace se zapojením ${tip('Relace, které trvaly déle než 10 sekund, měly konverzí nebo více než 1 zobrazení stránky. Indikuje kvalitu návštěvnosti.')}</th>
+          <th class="metric-col">Míra zapojení ${tip('Podíl relací se zapojením z celkových relací. Opaček míry okamžitého odchodu — vyšší = lepší.')}</th>
+          <th class="metric-col">Prům. doba ${tip('Průměrná délka jedné relace v daném kanálu.')}</th>
+          <th class="metric-col">Konverze ${tip('Počet konverzních událostí (nákupy, formuláře apod.) z daného kanálu.')}</th>
         </tr>
       </thead>
       <tbody>${d.sources.map(s => {
-        const pct = (s.sessions / maxSessions) * 100;
+        const pct = (s.sessions / Math.max(...d.sources.map(x=>x.sessions),1)) * 100;
         return `
         <tr>
           <td title="${s.channel}" style="font-weight:500; color:#1a73e8;">${s.channel}</td>
@@ -772,11 +778,18 @@ function renderNewSections(d) {
   // ─── Operační systém ───
   const ctxOs = document.getElementById('osChart')?.getContext('2d');
   if(ctxOs) {
+    const totalOsSessions = d.operatingSystems.reduce((s,x) => s+x.sessions, 0);
     if(window._osChart) window._osChart.destroy();
     window._osChart = new Chart(ctxOs, {
       type:'bar',
       data:{ labels: d.operatingSystems.map(x=>x.os), datasets:[{ data:d.operatingSystems.map(x=>x.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }] },
-      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: ctx=>`  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } }, scales:{ x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368' } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } } }
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: ctx=>{
+          const pct = totalOsSessions ? (ctx.parsed.x/totalOsSessions*100).toFixed(1) : 0;
+          return `  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací (${pct} %)`;
+        } } } },
+        scales:{ x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368' } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } }
+      }
     });
   }
 
