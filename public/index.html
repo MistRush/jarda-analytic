@@ -551,6 +551,7 @@ function render(d) {
   // 🌐 Prohlížeč (horizontální bar)
   const ctxBrowser = document.getElementById('browserChart')?.getContext('2d');
   if(ctxBrowser) {
+    const totalBrowserSessions = d.browsers.reduce((s,x) => s+x.sessions, 0);
     if(window._browserChart) window._browserChart.destroy();
     window._browserChart = new Chart(ctxBrowser, {
       type: 'bar',
@@ -560,7 +561,10 @@ function render(d) {
       },
       options: {
         indexAxis: 'y', responsive:true, maintainAspectRatio:false,
-        plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } },
+        plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => {
+          const pct = totalBrowserSessions ? (ctx.parsed.x/totalBrowserSessions*100).toFixed(1) : 0;
+          return `  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací (${pct} %)`;
+        } } } },
         scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } }
       }
     });
@@ -569,6 +573,7 @@ function render(d) {
   // 📐 Rozlišení obrazovky (horizontální bar)
   const ctxScreen = document.getElementById('screenChart')?.getContext('2d');
   if(ctxScreen) {
+    const totalScreenSessions = d.screenResolutions.reduce((s,x) => s+x.sessions, 0);
     if(window._screenChart) window._screenChart.destroy();
     window._screenChart = new Chart(ctxScreen, {
       type: 'bar',
@@ -578,7 +583,10 @@ function render(d) {
       },
       options: {
         indexAxis: 'y', responsive:true, maintainAspectRatio:false,
-        plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } },
+        plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => {
+          const pct = totalScreenSessions ? (ctx.parsed.x/totalScreenSessions*100).toFixed(1) : 0;
+          return `  ${ctx.parsed.x.toLocaleString('cs-CZ')} relací (${pct} %)`;
+        } } } },
         scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#5f6368' } } }
       }
     });
