@@ -105,6 +105,7 @@
   <div style="display:flex; flex-direction:column; justify-content:center;">
     <div class="logo">JARDA <span>Analytic</span></div>
     <div style="font-size:0.6rem; color:var(--text3); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:2px;">Just Another Rapid Development Architecture</div>
+    <div id="propertyName" style="font-size:0.72rem; color:var(--accent); font-weight:500; margin-top:3px; display:none;"></div>
   </div>
   <div class="search-row">
     <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:140px; padding:8px 12px;"/>
@@ -330,6 +331,20 @@ document.getElementById('propInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') loadData();
 });
 
+async function fetchPropertyInfo(propertyId) {
+  try {
+    const res = await fetch(`/api/property-info?propertyId=${encodeURIComponent(propertyId)}`);
+    if (!res.ok) return;
+    const info = await res.json();
+    const el = document.getElementById('propertyName');
+    if (el && info.displayName) {
+      const domain = info.websiteUri ? ` — ${info.websiteUri.replace(/^https?:\/\//, '')}` : '';
+      el.textContent = `📊 ${info.displayName}${domain}`;
+      el.style.display = 'block';
+    }
+  } catch(e) {}
+}
+
 async function loadData() {
   const propertyId = document.getElementById('propInput').value.trim();
   if (!propertyId) return;
@@ -346,6 +361,7 @@ async function loadData() {
   dash.style.display = 'none';
 
   try {
+    fetchPropertyInfo(propertyId); // paralelně — nezpomaluje dashboard
     const res = await fetch(`/api/analytics?propertyId=${encodeURIComponent(propertyId)}&startDate=${start}&endDate=${end}`);
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Chyba API');

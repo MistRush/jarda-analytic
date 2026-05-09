@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { BetaAnalyticsDataClient } = require('@google-analytics/data');
+const { AnalyticsAdminServiceClient } = require('@google-analytics/admin');
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,15 @@ function getAnalyticsClient() {
     throw new Error('credentials.json nenalezen. Přidej soubor s klíčem Service Accountu nebo ENV proměnnou GOOGLE_CREDENTIALS.');
   }
   return new BetaAnalyticsDataClient({ keyFilename: keyPath });
+}
+
+function getAdminClient() {
+  if (process.env.GOOGLE_CREDENTIALS) {
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+    return new AnalyticsAdminServiceClient({ credentials });
+  }
+  const keyPath = path.join(__dirname, 'credentials.json');
+  return new AnalyticsAdminServiceClient({ keyFilename: keyPath });
 }
 
 // ============================================================
@@ -393,6 +403,24 @@ apiRouter.get('/analytics', async (req, res) => {
     res.json(response);
   } catch (err) {
     console.error('GA API chyba:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── Property info (název webu z GA4 Admin API) ──
+apiRouter.get('/property-info', async (req, res) => {
+  const { propertyId } = req.query;
+  if (!propertyId) return res.status(400).json({ error: 'Chybí propertyId' });
+  try {
+    const adminClient = getAdminClient();
+    const [property] = await adminClient.getProperty({ name: `properties/${propertyId}` });
+    res.json({
+      displayName: property.displayName || '',
+      websiteUri: property.websiteUri || '',
+      industryCategory: property.industryCategory || '',
+      timeZone: property.timeZone || '',
+    });
+  } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
