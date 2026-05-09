@@ -507,66 +507,75 @@ function render(d) {
     }
   });
 
-  // 📱 Zařízení (Donut) - v hlavní sekci
-  const ctxDev = document.getElementById('deviceChart').getContext('2d');
-  if (deviceChart) deviceChart.destroy();
-  deviceChart = new Chart(ctxDev, {
-    type: 'doughnut',
-    data: {
-      labels: d.devices.map(x => x.device),
-      datasets: [{ data: d.devices.map(x => x.sessions), backgroundColor: ['#1a73e8','#34a853','#fbbc04','#ea4335'], borderWidth:0 }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, usePointStyle:true } } }, cutout:'70%' }
-  });
+  // 🖥 Kategorie zařízení (hlavní donut = deviceChart2)
+  const ctxDev = document.getElementById('deviceChart2')?.getContext('2d');
+  if (ctxDev) {
+    if (deviceChart) deviceChart.destroy();
+    deviceChart = new Chart(ctxDev, {
+      type: 'doughnut',
+      data: {
+        labels: d.devices.map(x => x.device),
+        datasets: [{ data: d.devices.map(x => x.sessions), backgroundColor: ['#1a73e8','#34a853','#fbbc04','#ea4335'], borderWidth:0 }]
+      },
+      options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, usePointStyle:true } } }, cutout:'70%' }
+    });
+  }
 
   // 🖥 Kategorie zařízení sekce (donut s %)
   const totalDevSessions = d.devices.reduce((s,x) => s+x.sessions, 0);
-  const ctxDev2 = document.getElementById('deviceChart2').getContext('2d');
-  if(window._dev2Chart) window._dev2Chart.destroy();
-  window._dev2Chart = new Chart(ctxDev2, {
-    type: 'doughnut',
-    data: {
-      labels: d.devices.map(x => x.device),
-      datasets: [{ data: d.devices.map(x => x.sessions), backgroundColor:['#1a73e8','#34a853','#fbbc04'], borderWidth:0 }]
-    },
-    options: { responsive:true, maintainAspectRatio:false, cutout:'75%', plugins:{ legend:{ display:false } } }
-  });
+  const ctxDev2 = document.getElementById('deviceChart2')?.getContext('2d');
+  if(ctxDev2) {
+    if(window._dev2Chart) window._dev2Chart.destroy();
+    window._dev2Chart = new Chart(ctxDev2, {
+      type: 'doughnut',
+      data: {
+        labels: d.devices.map(x => x.device),
+        datasets: [{ data: d.devices.map(x => x.sessions), backgroundColor:['#1a73e8','#34a853','#fbbc04'], borderWidth:0 }]
+      },
+      options: { responsive:true, maintainAspectRatio:false, cutout:'75%', plugins:{ legend:{ display:false } } }
+    });
+  }
   document.getElementById('devicePcts').innerHTML = d.devices.map((x,i) => {
     const colors = ['#1a73e8','#34a853','#fbbc04'];
     return `<span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:50%;background:${colors[i]||'#aaa'};display:inline-block;"></span>${x.device.toUpperCase()} ${totalDevSessions ? (x.sessions/totalDevSessions*100).toFixed(1) : 0} %</span>`;
   }).join('');
 
   // 🌐 Prohlížeč (horizontální bar)
-  const ctxBrowser = document.getElementById('browserChart').getContext('2d');
-  if(window._browserChart) window._browserChart.destroy();
-  window._browserChart = new Chart(ctxBrowser, {
-    type: 'bar',
-    data: {
-      labels: d.browsers.map(b => b.browser),
-      datasets: [{ data: d.browsers.map(b => b.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
-    },
-    options: {
-      indexAxis: 'y', responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } },
-      scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } }
-    }
-  });
+  const ctxBrowser = document.getElementById('browserChart')?.getContext('2d');
+  if(ctxBrowser) {
+    if(window._browserChart) window._browserChart.destroy();
+    window._browserChart = new Chart(ctxBrowser, {
+      type: 'bar',
+      data: {
+        labels: d.browsers.map(b => b.browser),
+        datasets: [{ data: d.browsers.map(b => b.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
+      },
+      options: {
+        indexAxis: 'y', responsive:true, maintainAspectRatio:false,
+        plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } },
+        scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#1a73e8', font:{ weight:'500' } } } }
+      }
+    });
+  }
 
   // 📐 Rozlišení obrazovky (horizontální bar)
-  const ctxScreen = document.getElementById('screenChart').getContext('2d');
-  if(window._screenChart) window._screenChart.destroy();
-  window._screenChart = new Chart(ctxScreen, {
-    type: 'bar',
-    data: {
-      labels: d.screenResolutions.map(s => s.resolution),
-      datasets: [{ data: d.screenResolutions.map(s => s.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
-    },
-    options: {
-      indexAxis: 'y', responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } },
-      scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#5f6368' } } }
-    }
-  });
+  const ctxScreen = document.getElementById('screenChart')?.getContext('2d');
+  if(ctxScreen) {
+    if(window._screenChart) window._screenChart.destroy();
+    window._screenChart = new Chart(ctxScreen, {
+      type: 'bar',
+      data: {
+        labels: d.screenResolutions.map(s => s.resolution),
+        datasets: [{ data: d.screenResolutions.map(s => s.sessions), backgroundColor:'#aecbfa', hoverBackgroundColor:'#1a73e8', borderWidth:0, borderRadius:3 }]
+      },
+      options: {
+        indexAxis: 'y', responsive:true, maintainAspectRatio:false,
+        plugins: { legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x.toLocaleString('cs-CZ')} relací` } } },
+        scales: { x:{ grid:{ color:'#f1f3f4' }, ticks:{ color:'#5f6368', callback: v => v>=1000?(v/1000).toFixed(0)+'k':v } }, y:{ grid:{ display:false }, ticks:{ color:'#5f6368' } } }
+      }
+    });
+  }
+
 
   // 🔗 Zdroje návštěvnosti (Akvizice)
   const maxSessions = Math.max(...d.sources.map(s => s.sessions), 1);
