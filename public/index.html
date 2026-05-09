@@ -31,11 +31,12 @@
     .search-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
     .search-row input:focus{border-color:var(--accent)}
     .search-row input::placeholder{color:var(--text3)}
-    .preset-select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;cursor:pointer}
+    .preset-select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-family:inherit;font-size:.85rem;outline:none;cursor:pointer}
     .preset-select:focus{border-color:var(--accent)}
-    .day-btns{display:flex;gap:4px}
-    .day-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:600;transition:all .2s}
-    .day-btn.active,.day-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+    .date-tabs{display:flex;gap:2px;background:var(--surface);padding:4px;border-radius:8px;border:1px solid var(--border);align-items:center;}
+    .date-tab{background:transparent;border:none;padding:6px 12px;font-size:.85rem;color:var(--text2);cursor:pointer;border-radius:6px;font-weight:500;transition:all .2s;}
+    .date-tab.active{background:#e8f0fe;color:#1a73e8;}
+    .date-tab:hover:not(.active){background:var(--bg);color:var(--text);}
     .btn-load{padding:10px 22px;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;border:none;border-radius:8px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;transition:opacity .2s}
     .btn-load:hover{opacity:.85}
     /* ── MAIN ── */
@@ -87,16 +88,17 @@
     <div style="font-size:0.6rem; color:var(--text3); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:2px;">Just Another Rapid Development Architecture</div>
   </div>
   <div class="search-row">
-    <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:160px"/>
-    <select id="datePreset" class="preset-select">
-      <option value="today">Dnes</option>
-      <option value="this_week">Tento týden</option>
-      <option value="this_month">Tento měsíc</option>
-      <option value="last_month">Minulý měsíc</option>
-      <option value="this_quarter">Tento kvartál</option>
-      <option value="this_year">Tento rok</option>
-      <option value="custom">Vlastní (Kalendář)</option>
-    </select>
+    <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:140px; padding:8px 12px;"/>
+    
+    <div class="date-tabs" id="dateTabs">
+      <button class="date-tab" data-val="today">Dnes</button>
+      <button class="date-tab" data-val="this_week">Týden</button>
+      <button class="date-tab active" data-val="this_month">Měsíc</button>
+      <button class="date-tab" data-val="last_month">Minulý měsíc</button>
+      <button class="date-tab" data-val="this_year">Rok</button>
+      <button class="date-tab" data-val="custom">Vlastní</button>
+    </div>
+
     <div class="date-picker" id="customDates" style="display:flex; align-items:center; gap:5px; display:none;">
       <input type="date" id="startDate" title="Od data" class="preset-select">
       <span style="color:var(--text3)">-</span>
@@ -151,8 +153,8 @@ let deviceChart = null;
 
 const dateInputStart = document.getElementById('startDate');
 const dateInputEnd = document.getElementById('endDate');
-const datePreset = document.getElementById('datePreset');
 const customDates = document.getElementById('customDates');
+const dateTabs = document.querySelectorAll('.date-tab');
 
 const urlParams = new URLSearchParams(window.location.search);
 const urlPropertyId = urlParams.get('propertyId');
@@ -160,8 +162,7 @@ if (urlPropertyId) {
   document.getElementById('propInput').value = urlPropertyId;
 }
 
-datePreset.addEventListener('change', function(e) {
-  const val = e.target.value;
+function handlePresetChange(val) {
   if (val === 'custom') {
     customDates.style.display = 'flex';
     return;
@@ -186,11 +187,6 @@ datePreset.addEventListener('change', function(e) {
       start.setDate(1);
       end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
       break;
-    case 'this_quarter':
-      const q = Math.floor(start.getMonth() / 3);
-      start.setMonth(q * 3);
-      start.setDate(1);
-      break;
     case 'this_year': start.setMonth(0); start.setDate(1); break;
   }
   
@@ -205,10 +201,17 @@ datePreset.addEventListener('change', function(e) {
   if (document.getElementById('propInput').value.trim() !== '') {
     loadData();
   }
+}
+
+dateTabs.forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    dateTabs.forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    handlePresetChange(e.target.dataset.val);
+  });
 });
 
-datePreset.value = 'this_month';
-datePreset.dispatchEvent(new Event('change'));
+handlePresetChange('this_month');
 
 dateInputStart.addEventListener('change', loadData);
 dateInputEnd.addEventListener('change', loadData);
