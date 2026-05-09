@@ -14,7 +14,7 @@ async function testMultipleDates() {
         { startDate: '14daysAgo', endDate: '7daysAgo' },
         { startDate: '7daysAgo', endDate: 'today' }
       ],
-      dimensions: [{ name: 'nthDay' }],
+      dimensions: [{ name: 'nthDay' }, { name: 'date' }],
       metrics: [{ name: 'sessions' }, { name: 'totalUsers' }],
       orderBys: [{ dimension: { dimensionName: 'nthDay' }, desc: false }]
     });

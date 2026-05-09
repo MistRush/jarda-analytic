@@ -136,6 +136,11 @@ apiRouter.get('/analytics', async (req, res) => {
     const currentOverview = getMetrics(0);
     const prevOverview = getMetrics(1);
 
+    const formatSeconds = (s) => {
+      const sec = Math.round(parseFloat(s || 0));
+      return `${Math.floor(sec / 60)}m ${sec % 60}s`;
+    };
+
     const trendDataCurrent = [];
     const trendDataPrevious = [];
     const trendLabels = [];
@@ -147,14 +152,14 @@ apiRouter.get('/analytics', async (req, res) => {
       const dateRangeId = row.dimensionValues[2].value;
       const val = parseInt(row.metricValues[0].value);
 
-      if (!trendLabels[nthDay]) {
+      if (val > 0 && !trendLabels[nthDay] && dateRangeId === 'date_range_0') {
         trendLabels[nthDay] = `${dateStr.substring(6,8)}. ${dateStr.substring(4,6)}.`;
       }
 
       if (dateRangeId === 'date_range_0') {
-        trendDataCurrent[nthDay] = val;
+        trendDataCurrent[nthDay] = (trendDataCurrent[nthDay] || 0) + val;
       } else if (dateRangeId === 'date_range_1') {
-        trendDataPrevious[nthDay] = val;
+        trendDataPrevious[nthDay] = (trendDataPrevious[nthDay] || 0) + val;
       }
     });
 
@@ -175,7 +180,7 @@ apiRouter.get('/analytics', async (req, res) => {
         totalUsers: parseInt(currentOverview[0] || 0),
         sessions: parseInt(currentOverview[1] || 0),
         bounceRate: (parseFloat(currentOverview[2] || 0) * 100).toFixed(1),
-        avgSessionDuration: currentOverview[3],
+        avgSessionDuration: formatSeconds(currentOverview[3]),
         pageViews: parseInt(currentOverview[4] || 0),
         newUsers: parseInt(currentOverview[5] || 0),
         purchases: parseInt(currentOverview[6] || 0),
@@ -185,7 +190,7 @@ apiRouter.get('/analytics', async (req, res) => {
         totalUsers: parseInt(prevOverview[0] || 0),
         sessions: parseInt(prevOverview[1] || 0),
         bounceRate: (parseFloat(prevOverview[2] || 0) * 100).toFixed(1),
-        avgSessionDuration: prevOverview[3],
+        avgSessionDuration: formatSeconds(prevOverview[3]),
         pageViews: parseInt(prevOverview[4] || 0),
         newUsers: parseInt(prevOverview[5] || 0),
         purchases: parseInt(prevOverview[6] || 0),
