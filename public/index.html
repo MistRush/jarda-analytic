@@ -84,6 +84,7 @@
 <header>
   <div style="display:flex; flex-direction:column; justify-content:center;">
     <div class="logo">JARDA <span>Analytic</span></div>
+    <div style="font-size:0.6rem; color:var(--text3); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-top:2px;">Just Another Rapid Development Architecture</div>
   </div>
   <div class="search-row">
     <input id="propInput" type="text" placeholder="GA4 Property ID" autocomplete="off" style="max-width:160px"/>
@@ -351,18 +352,58 @@ function render(d) {
     }
   });
 
+  // 📱 Zařízení (Donut)
   const ctxDev = document.getElementById('deviceChart').getContext('2d');
   if (deviceChart) deviceChart.destroy();
-  const total = d.sources.reduce((s,x) => s + x.sessions, 0);
+  deviceChart = new Chart(ctxDev, {
+    type: 'doughnut',
+    data: {
+      labels: d.devices.map(x => x.device),
+      datasets: [{
+        data: d.devices.map(x => x.sessions),
+        backgroundColor: ['#1a73e8', '#34a853', '#fbbc04', '#ea4335'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, usePointStyle: true } }
+      },
+      cutout: '70%'
+    }
+  });
+
+  // 🔗 Zdroje návštěvnosti (Akvizice)
+  const maxSessions = Math.max(...d.sources.map(s => s.sessions), 1);
   document.getElementById('sourcesTable').innerHTML = `
-    <table>
-      <thead><tr><th>Kanál</th><th>Relace</th><th>Podíl</th></tr></thead>
-      <tbody>${d.sources.map(s => `
+    <table style="min-width: 800px;">
+      <thead>
         <tr>
-          <td><span class="src-badge" style="background:${srcColors[s.channel]||'#475569'}20;color:${srcColors[s.channel]||'#94a3b8'}">${s.channel}</span></td>
-          <td>${fmt(s.sessions)}</td>
-          <td style="text-align:right">${total ? Math.round(s.sessions/total*100)+'%' : '-'}</td>
-        </tr>`).join('')}
+          <th>Seskupení kanálů</th>
+          <th class="metric-col">Návštěvy</th>
+          <th class="metric-col">Relace se zap.</th>
+          <th class="metric-col">Míra zapojení</th>
+          <th class="metric-col">Prům. doba</th>
+          <th class="metric-col">Konverze</th>
+        </tr>
+      </thead>
+      <tbody>${d.sources.map(s => {
+        const pct = (s.sessions / maxSessions) * 100;
+        return `
+        <tr>
+          <td title="${s.channel}" style="font-weight:500; color:#1a73e8;">${s.channel}</td>
+          <td class="metric-col">
+            ${fmt(s.sessions)}
+            <div class="bar-bg"><div class="bar-fg" style="width:${pct}%"></div></div>
+          </td>
+          <td class="metric-col">${fmt(s.engagedSessions)}</td>
+          <td class="metric-col">${s.engagementRate}%</td>
+          <td class="metric-col">${Math.floor(s.avgDuration / 60)}m ${s.avgDuration % 60}s</td>
+          <td class="metric-col">${fmt(s.conversions)}</td>
+        </tr>`;
+      }).join('')}
       </tbody>
     </table>`;
 
