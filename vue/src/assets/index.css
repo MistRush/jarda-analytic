@@ -1,0 +1,97 @@
+
+@import "tailwindcss" source(none);
+@import "../../../www/jolanda/front-vue/src/assets/index.css";
+
+@source "../";
+@source "../../../www/jolanda/front-vue/src";
+
+@plugin "@iconify/tailwind4";
+
+:root{
+ --color-primary: #da251c;
+ --color-primary-hex: 218, 37, 28;
+}
+
+body {
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.1);
+}
+
+main a {
+ text-decoration: underline;
+}
+
+main a:hover {
+ text-decoration: none;
+}
+
+.menu-item {
+ border-bottom: 1px solid #152234;
+}
+
+.submenu {
+ margin-top: 5px !important;
+ margin-bottom: 10px !important;
+ padding-left: 17px !important;
+}
+
+.submenu .item-name-wrapper {
+ padding-top: 3px !important;
+ padding-bottom: 6px !important;
+}
+
+.icon-wrapper {
+ margin-right: 8px;
+}
+
+.level-1 {
+ margin-bottom: 0 !important;
+}
+
+.submenu .menu-item {
+ border-bottom: 0;
+}
+
+.header-wrapper {
+ background: #29384e !important;
+ color: #ecf2ff !important;
+ line-height: 20px !important;
+}
+
+.table-wrapper {
+ border-radius: 0 !important;
+}
+
+.table-wrapper thead {
+ background: #29384e !important;
+ border-radius: 0 !important;
+}
+
+.table-wrapper th {
+ padding-right: 5px !important;
+}
+
+.sorting:after {
+  top: 4px !important;
+}
+
+.vue-input {
+ min-height: 34px !important;
+}
+
+.select .input-wrapper {
+ min-height: 34px !important;
+}
+
+.dataTable-search .vue-input {
+ min-height: 38px !important;
+}
+
+.modal-wrapper .content-wrapper .body .content[data-v-c53a6d20] {
+ padding: 10px 15px 10px 15px !important;
+}
+
+.side-filter a {
+ text-decoration: none !important;
+}

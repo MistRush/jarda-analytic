@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="534.47247"
+   height="512"
+   viewBox="0 0 534.47247 512"
+   fill="none"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="star.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview13"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.47974537"
+     inkscape:cx="52.110977"
+     inkscape:cy="508.60313"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <path
+     d="m 267.25056,433.13269 -119.40223,62.7566 c -25.7282,13.53385 -55.783872,-8.31 -50.880676,-36.96523 L 119.76662,325.95482 23.16316,231.77176 C 2.335536,211.4895 13.830565,176.14589 42.582178,171.94329 L 176.09047,152.55224 235.79075,31.557852 c 12.86327,-26.0771354 50.02301,-26.0771354 62.88628,0 l 59.70195,120.994388 133.51014,19.39105 c 28.75156,4.17204 40.24589,39.51287 19.42458,59.82847 l -96.60605,94.18306 22.79785,132.96924 c 4.90338,28.65709 -25.15413,50.49908 -50.88067,36.96523 z"
+     fill="url(#paint0_linear_3_1781)"
+     id="path2"
+     style="fill:url(#paint0_linear_3_1781);stroke-width:18.5243" />
+  <defs
+     id="defs9">
+    <linearGradient
+       id="paint0_linear_3_1781"
+       x1="14.5"
+       y1="0.328125"
+       x2="14.5"
+       y2="26.6719"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(18.524294,0,0,18.524294,-1.366525,5.9217097)">
+      <stop
+         stop-color="#FF2F3D"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="#B30511"
+         id="stop6" />
+    </linearGradient>
+  </defs>
+</svg>

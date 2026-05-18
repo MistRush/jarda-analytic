@@ -1,0 +1,18 @@
+.btn {
+  color: $dark-color-font-light;
+  &.btn-icon, &.btn-white, &.btn-secondary, &.btn-dark {
+    color: $dark-color-font-light;
+    @include button-gradient($color-dark-default-left, $color-dark-default-right);
+    &:hover{
+      color: $dark-color-font-light
+    }
+
+    &::before {
+      @include button-gradient(darken($color-dark-default-left,5), darken($color-dark-default-right,3));
+    }
+  }
+
+  &.btn-icon {
+    border: 1px solid $color-dark-default-left;
+  }
+}

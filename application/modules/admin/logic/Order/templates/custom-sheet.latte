@@ -1,0 +1,149 @@
+<div style="font-size: 14px; border-bottom: 0.1px solid #999;"><br />
+    <b>{_('Provozovatel')}</b><br />
+    {$settings->ProjectName}<br />
+    {$settings->AddressStreet}<br />
+    {$settings->AddressZipCode} {$settings->AddressCity}<br />
+
+    <br /><div style="font-size: 20px; text-align: center; font-weight: bold;"><u>{_('Objednávka')}</u></div>
+    <div style="font-weight: bold; font-size: 12px;"><br />{_('Informace o objednávce')}</div>
+    <table border="0" cellpadding="4" cellspacing="4" style="border: 1px solid #888; width: 635px; font-size: 9px;">
+        <tr>
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Datum')}:</b></td>
+            <td width="20%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{formatDate($order['Date'])}</td>
+            <td width="20%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Č. objednávky')}:</b></td>
+            <td width="35%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$order['OrderNumber']}</td>
+        </tr>
+    </table>
+
+    <div style="font-weight: bold; font-size: 12px;"><br />{_('Fakturační adresa')}</div>
+    <table border="0" cellpadding="4" cellspacing="4" style="border: 1px solid #888; width: 635px; font-size: 9px;">
+        <tr n:if="$address['CompanyName']">
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Společnost')}:</b></td>
+            <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$address['CompanyName']}</td>
+        </tr>
+        <tr>
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Jméno a příjmení')}:</b></td>
+            <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$address['FirstName']} {$address['LastName']}</td>
+        </tr>
+        <tr>
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Email')}:</b></td>
+            <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$address['Email']}</td>
+        </tr>
+        <tr>
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Telefon')}:</b></td>
+            <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$address['Phone']}</td>
+        </tr>
+        <tr n:if="$address['CompanyName']">
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('IČ')}:</b></td>
+            <td width="20%" style="border-bottom: 0.1em solid #ddd;">{$address['IC']}</td>
+            <td width="20%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('DIČ')}:</b></td>
+            <td width="35%" style="border-bottom: 0.1em solid #ddd;">{$address['DIC']}</td>
+        </tr>
+        <tr>
+            <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Poznámka')}:</b></td>
+            <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$order['Description']}</td>
+        </tr>
+    </table>
+
+    {if $order['DeliveryAddress_ID']}
+        {var $deliveryAddress = \Admin_Model_Address::getAddressByID($order['DeliveryAddress_ID'])}
+        <div style="font-weight: bold; font-size: 12px;"><br />{_('Doručovací adresa')}</div>
+        <table border="0" cellpadding="4" cellspacing="4" style="border: 1px solid #888; width: 635px; font-size: 9px;">
+            <tr n:if="$deliveryAddress['CompanyName']">
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Společnost')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$deliveryAddress['CompanyName']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Jméno a příjmení')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$deliveryAddress['FirstName']} {$deliveryAddress['LastName']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Adresa')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$deliveryAddress['Street']}, {$deliveryAddress['City']} {$deliveryAddress['ZipCode']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Telefon')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$deliveryAddress['Phone']}</td>
+            </tr>
+        </table>
+    {/if}
+
+     {if $order['Zasilkovna_ID']}
+        {var $zasilkovnaAddress = \Admin_Model_Zasilkovna::getZasilkovnaDetailsByID($order['Zasilkovna_ID'])}
+        <div style="font-weight: bold; font-size: 20px;"><br />{_('Doručení na výdejní místo Zásilkovny')}</div>
+        <table border="0" cellpadding="4" cellspacing="4" style="border: 1px solid #888; width: 635px; font-size: 14px;">
+            <tr n:if="$zasilkovnaAddress['PickupPlace_ID']">
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('ID výdejního místa')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$zasilkovnaAddress['PickupPlace_ID']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Název')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$zasilkovnaAddress['PickupPlaceName']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Adresa')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$zasilkovnaAddress['PickupPlaceAddress']}</td>
+            </tr>
+        </table>
+    {/if}
+
+         {if $order['PPL_ID']}
+        {var $PPLAddress = \Admin_Model_PPL::getPPLDetailsByID($order['PPL_ID'])}
+        <div style="font-weight: bold; font-size: 20px;"><br />{_('Doručení na výdejní místo PPL')}</div>
+        <table border="0" cellpadding="4" cellspacing="4" style="border: 1px solid #888; width: 635px; font-size: 14px;">
+            <tr n:if="$PPLAddress['PickupPlace_ID']">
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('ID výdejního místa')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$PPLAddress['PickupPlace_ID']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Název')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$PPLAddress['PickupPlaceName']}</td>
+            </tr>
+            <tr>
+                <td width="25%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;"><b>{_('Adresa')}:</b></td>
+                <td width="75%" style="border-bottom: 0.1em solid #ddd;" colspan="3">{$PPLAddress['PickupPlaceAddress']}</td>
+            </tr>
+        </table>
+    {/if}
+
+
+    <div style="font-weight: bold; font-size: 12px;"><br />{_('Seznam zboží')}</div>
+    <table border="0" cellpadding="4" cellspacing="4" style="border: 1px solid #888; width: 635px; font-size: 9px;">
+        <tr>
+            <td width="39%" style="font-style: italic; border-bottom: 0.1em solid #aaa; text-align: left;">{_('Název zboží')}</td>
+            <td width="17%" style="font-style: italic; border-bottom: 0.1em solid #aaa; text-align: right;">{_('Cena za kus bez DPH')}</td>
+            <td width="16%" style="font-style: italic; border-bottom: 0.1em solid #aaa; text-align: right;">{_('Cena za kus s DPH')}</td>
+            <td width="10%" style="font-style: italic; border-bottom: 0.1em solid #aaa; text-align: center;">{_('Počet')}</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #aaa; text-align: right;">{_('Cena celkem')}</td>
+        </tr>
+
+        <tr n:foreach="$order['orderItems'] as $orderItem">
+            <td width="39%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: left;">{$orderItem['product']['productLangs'][0]['Name']}<br><b>{_('Kód produktu')}: {$orderItem['product']['Code']}</b></td>
+            <td width="17%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;">{price($orderItem['PriceWithoutVat'], $currencyLabel)}</td>
+            <td width="16%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;">{price($orderItem['PriceWithVat'], $currencyLabel)}</td>
+            <td width="10%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: center;">{$orderItem['Quantity']}</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #ddd; text-align: right;">{price($orderItem['PriceWithoutVat'] * $orderItem['Quantity'], $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td width="82%" colspan="4" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: left;">{_('Doprava bez DPH')} ({$order['shipping']['Name']})</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: right;">{price($order['PriceShippingWithoutVat'], $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td width="82%" colspan="4" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: left;">{_('Platba bez DPH')} ({$order['payment']['Name']})</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: right;">{price($order['PricePaymentWithoutVat'], $currencyLabel)}</td>
+        </tr>
+
+        <tr>
+            <td width="82%" colspan="4" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: left;">{_('Celkem bez DPH')}</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: right;">{price($order['PriceTotalWithoutVat'], $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td width="82%" colspan="4" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: left;">{_('Celkem DPH')}</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: right;">{price($order['PriceTotalWithVat'] - $order['PriceTotalWithoutVat'], $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td width="82%" colspan="4" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: left;">{_('Celkem s DPH')}</td>
+            <td width="18%" style="font-style: italic; border-bottom: 0.1em solid #aaa; border-top: 0.1em solid #aaa; text-align: right;">{price($order['PriceTotalWithVat'], $currencyLabel)}</td>
+        </tr>
+    </table>
+</div>

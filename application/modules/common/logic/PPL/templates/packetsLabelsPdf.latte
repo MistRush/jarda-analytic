@@ -1,0 +1,11 @@
+{contentType application/xml}
+<packetsLabelsPdf>
+    <apiPassword>{$apiPassword}</apiPassword>
+    <packetIds>
+        {foreach $data as $item}
+            <id>{$item}</id>
+        {/foreach}
+    </packetIds>
+    <format>A7 on A7</format>
+    <offset>0</offset>
+</packetsLabelsPdf>

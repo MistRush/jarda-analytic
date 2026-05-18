@@ -1,0 +1,352 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="orderStateTypeSelect" class="tab-selector"></div>
+    {$orderGrid->render()}
+{/block}
+{block scripts}
+    <script>
+        /**
+         * @namespace { Grid } orderGrid
+         */
+        var orderGrid;
+
+        var tree;
+        $(function () {
+            orderGrid = {$orderGrid|noescape};
+        });
+
+        var regeneratePDF = function () {
+            if ( orderGrid.getCurrentItem() ) {
+                $.post(basePath + '/admin/order/regenerate-custom-sheet/', {
+                    Order_ID: orderGrid.getCurrentItem()[0].ID,
+                }).done(function() {
+                    alerts.alert('Upozornění', 'info', 'Zakázkový list byl přegenerován.');
+                });
+            } else {
+                alerts.alert('Upozornění', 'error', 'Nejprve vyberte objednávku');
+            }
+        };
+
+        var showInvoice = function () {
+            if ( orderGrid.getCurrentItem() ) {
+                if (confirm('Opravdu chcete vytvořit fakturu?') == true) {
+                    window.open(basePath + '/admin/order/show-invoice?Order_ID='+orderGrid.getCurrentItem()[0].ID);
+                    orderGrid.refresh();
+                }
+            } else {
+                alerts.alert('Upozornění', 'error', 'Nejprve vyberte objednávku');
+            }
+        };
+
+        var showPDF = function () {
+            if ( orderGrid.getCurrentItem() ) {
+                window.open(basePath + '/files/orders/' + orderGrid.getCurrentItem()[0].Folder + '/' + orderGrid.getCurrentItem()[0].ID + '.pdf');
+            } else {
+                alerts.alert('Upozornění', 'error', 'Nejprve vyberte objednávku');
+            }
+        };
+
+        var printOrderList = function () {
+            window.open(basePath + '/admin/order/print-orders?' + orderGrid.formatFilterUrl());
+        };
+
+        var rowFormatter = (row, data, index) => {
+            if(data.Color) {
+                $(row).css('--rowColor', data.Color);
+                $(row).addClass('customColor');
+            }
+        };
+
+        var showPreview = function (ID) {
+            evidsoft.modules.orderList.init();
+            return '<div class="btn btn-icon orderPreview" data-id="' + ID + '"><i class="ci ci-search"></i></div>';
+        };
+
+        var setOrderState = function () {
+            var items = orderGrid.getCurrentItem();
+
+            if (!items) {
+                alerts.error({_('Vyberte alespoň jednu objednávku')});
+                return;
+            }
+
+            var dialog = new Dialog();
+            dialog.title = {_('Nastavení stavu objednávky')};
+            dialog.enableConfirmButton('setStateFinal();');
+            dialog.enableCancelButton();
+            dialog.showFromUrl(basePath + '/admin/order/set-order-state');
+        };
+
+        $(() => {
+            var select = $('#order_datagrid_switches').find('[name="orderStateType"]');
+            select.find('option').each(function (index, el) {
+                if (!["7","8","9","10","11"].includes($(el).val())) {
+                    $('#orderStateTypeSelect').append('<button class="tab-item' + ($(el).prop('selected')?' active"':'') + '" data-value="' + $(el).val() + '">' + ($(el).text().length?$(el).text():'Všechny objednávky') + '</button>');
+                }
+            });
+
+            $('#orderStateTypeSelect .tab-item').click(function() {
+                $('#orderStateTypeSelect .tab-item').removeClass('active');
+                $(this).addClass('active');
+                select.val($(this).data('value'));
+                select.trigger('change');
+            });
+        });
+    </script>
+
+    <script>
+        var formatPayment = function (value, col, data) {
+            var DatePaid = new Date(data.DatePayed);
+            DatePaid = DatePaid.toLocaleDateString();
+            var tootlip = 'data-toggle="bstooltip" title="' + DatePaid + '"';
+
+            return '<div class="payment' + (data.DatePayed?' paid':'') + '" ' + (data.DatePayed?tootlip:'') + '>' + value + '</div>';
+        };
+
+        var formatBalikobotState = function (value, col, data) {
+            if ( !value )
+                value = '';
+
+            let littleCircle = '';
+            if ( data.BalikobotPackageID )
+                littleCircle = 'labels';
+
+            if ( data.BalikobotID )
+                littleCircle = 'transit';
+
+            if ( data.DateShipped )
+                littleCircle = 'shipped';
+
+            return '<div class="shipping ' + littleCircle + '">' + value + '</div>';
+        };
+
+        var formatBalikobotTrackingURL = function (value, col, data) {
+            if ( !value )
+                return value = '';
+
+            return '<a href="' + value + '" target="_blank">' + value + '</a>';
+        };
+
+        var balikobotAddPackage = function (specify = false) {
+            if (specify === false) {
+                if (orderGrid.getCurrentItem()) {
+                    var items = orderGrid.getCurrentItem();
+                    var IDs = [];
+                    items.forEach(function(item) {
+                        if (!item.BalikobotPackageID)
+                            IDs.push(item.ID);
+                    });
+                    $.post(basePath + '/admin/order/balikobot-add-package/', {
+                        Order_IDs: IDs,
+                    }).done(function(data) {
+                        alerts.alert({_('Upozornění')}, 'info', data);
+                        orderGrid.refresh();
+                    });
+                } else {
+                    alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+                }
+            } else {
+                if (orderGrid.getCurrentItem()) {
+                    if (orderGrid.getCurrentItem().length > 1) {
+                        alerts.alert({_('Upozornění')}, 'error', {_('Vyberte pouze jednu objednávku')});
+                    } else {
+                        if (orderGrid.getCurrentItem()[0].BalikobotPackageID) {
+                            alerts.alert({_('Upozornění')}, 'error', {_('Objednávka již má přidané balíky')});
+                        } else {
+                            var dialog = new Dialog();
+                            dialog.title = {_('Přidat balík s upřesněním')};
+                            dialog.enableCancelButton();
+                            dialog.enableConfirmButton('confirmAddPackage()');
+                            dialog.showFromUrl('/admin/order/balikobot-add-package-dialog/', { Order_ID: orderGrid.getCurrentItem()[0].ID });
+                        }
+                    }
+                } else {
+                    alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+                }
+            }
+        };
+
+        var balikobotPrintLabel = function (position) {
+            if ( orderGrid.getCurrentItem() && orderGrid.getCurrentItem().length == 1 ) {
+                if ( orderGrid.getCurrentItem()[0].BalikobotLabelIURL ) {
+                    window.open(orderGrid.getCurrentItem()[0].BalikobotLabelIURL + '?p=' + position );
+                } else {
+                    alerts.alert({_('Upozornění')}, 'error', {_('Daná objednávka nemá ještě přiřazený štítek')});
+                }
+            } else if (orderGrid.getCurrentItem()) {
+                alerts.alert({_('Upozornění')}, 'error', {_('Vyberte pouze jednu objednávku')});
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        var balikobotPrintLabels = function () {
+            if (orderGrid.getCurrentItem()) {
+                var items = orderGrid.getCurrentItem();
+                var balikobotPackageIDs = [];
+                items.forEach(function(item) {
+                    if ( item.BalikobotPackageID )
+                        balikobotPackageIDs.push(item.BalikobotPackageID);
+                });
+
+                if ( balikobotPackageIDs ) {
+                    $.post(basePath + '/admin/order/balikobot-print-labels/', {
+                        Order_IDs: balikobotPackageIDs.join(','),
+                    }).done(function (data) {
+                        window.open(data);
+                    });
+                } else {
+                    alerts.alert({_('Upozornění')}, 'error', {_('Žádná objednávka nemá přiřazený Balíkobot ID.')});
+                }
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        var balikobotOrderShipment = function () {
+            if ( orderGrid.getCurrentItem()) {
+                var IDs = [];
+                for (var index in orderGrid.getCurrentItem()) {
+                    IDs.push(orderGrid.getCurrentItem()[index].ID);
+                }
+
+                $.post(basePath + '/admin/order/balikobot-order-shipment/', {
+                    Order_IDs: IDs.join(),
+                }).done(function(data) {
+                    data = JSON.parse(data);
+
+                    if (data.total > 0) {
+                        var text = ""
+                        for (var i in data.orders) {
+                            text += i + ': ' + data.orders[i] + '\n';
+                        }
+
+                        alerts.alert('Odesláno ' + data.success + '/' + data.total, 'info', text);
+
+                        if (data.success > 0)
+                            orderGrid.refresh();
+                    }
+                });
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        var balikobotTrackingURL = function () {
+            if ( orderGrid.getCurrentItem() && orderGrid.getCurrentItem().length == 1 ) {
+                if ( orderGrid.getCurrentItem()[0].BalikobotTrackingURL ) {
+                    window.open(orderGrid.getCurrentItem()[0].BalikobotTrackingURL);
+                } else {
+                    alerts.alert({_('Upozornění')}, 'error', {_('Daná objednávka ještě nemá tracking URL')});
+                }
+            } else if (orderGrid.getCurrentItem()) {
+                alerts.alert({_('Upozornění')}, 'error', {_('Vyberte pouze jednu objednávku')});
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        var balikobotDeletePackate = function () {
+            if (orderGrid.getCurrentItem()) {
+                var items = orderGrid.getCurrentItem();
+                var IDs = [];
+                items.forEach(function(item) {
+                    IDs.push(item.ID);
+                });
+                $.post(basePath + '/admin/order/balikobot-delete-package/', {
+                    Order_IDs: IDs,
+                }).done(function(data) {
+                    alerts.alert({_('Upozornění')}, 'info', data);
+                    orderGrid.refresh();
+                });
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        var exportPohoda = function () {
+            if ( orderGrid.getCurrentItem() && orderGrid.getCurrentItem().length == 1 ) {
+                window.open(basePath + '/admin/order/export-pohoda?id=' + orderGrid.getCurrentItem()[0].ID);
+            } else if (orderGrid.getCurrentItem()) {
+                alerts.alert({_('Upozornění')}, 'error', {_('Vyberte pouze jednu objednávku')});
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        const exportCsv = function () {
+            window.open(basePath + '/admin/order/export-csv');
+        }
+
+        const getZasilkovnaLabels = function () {
+            const orders = orderGrid.getCurrentItem();
+            let orderIDs = [];
+            if ( orderGrid.getCurrentItem()) {
+                for (const orderItem of orders) {
+                    orderIDs.push(orderItem.ID)
+                }
+                window.open(basePath + '/admin/order/get-labels?OrderIDs=' + orderIDs.join(','), '_blank');
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        const sendOrderToZasilkovna = function () {
+            if (orderGrid.getCurrentItem()) {
+                var items = orderGrid.getCurrentItem();
+                var IDs = [];
+                items.forEach(function(item) {
+                    IDs.push(item.ID);
+                });
+                $.post(basePath + '/admin/order/send-order-to-zasilkovna/', {
+                    OrderIDs: IDs,
+                }).done(function(data) {
+                    alerts.alert({_('Upozornění')}, 'info', data);
+                    orderGrid.refresh();
+                });
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        const createNewPplShipment = function () {
+            const orders = orderGrid.getCurrentItem();
+            let orderIDs = [];
+            if ( orderGrid.getCurrentItem()) {
+                for (const orderItem of orders) {
+                    orderIDs.push(orderItem.ID)
+                }
+                window.open(basePath + '/admin/order/new-ppl-shipment?OrderIDs=' + orderIDs.join(','), '_blank');
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        const getAlreadyGeneratedPplLabels = function () {
+            const orders = orderGrid.getCurrentItem();
+            let orderIDs = [];
+            if ( orderGrid.getCurrentItem()) {
+                for (const orderItem of orders) {
+                    orderIDs.push(orderItem.ID)
+                }
+                window.open(basePath + '/admin/order/get-ppl-labels?OrderIDs=' + orderIDs.join(','), '_blank');
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+        const getPplPackageList = function () {
+            const orders = orderGrid.getCurrentItem();
+            let orderIDs = [];
+            if ( orderGrid.getCurrentItem()) {
+                for (const orderItem of orders) {
+                    orderIDs.push(orderItem.ID)
+                }
+                window.open(basePath + '/admin/order/get-ppl-package-list?OrderIDs=' + orderIDs.join(','), '_blank');
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', {_('Nejprve vyberte objednávku')});
+            }
+        };
+
+    </script>
+{/block}

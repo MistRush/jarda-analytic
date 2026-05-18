@@ -1,0 +1,49 @@
+.ppl-selected-pickup-point {
+    background: #FFFFFF;
+    padding: 5px 8px;
+    border-radius: 8px;
+    border: 1px solid $border-primary-item;
+    display: none;
+    margin-top: 8px;
+}
+
+#ppl-parcel-shop-modal {
+    z-index: -999999;
+    position: fixed;
+    -webkit-backface-visibility: hidden;
+    left: 0;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.3);
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+    background: white;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    margin: 0 auto;
+    border: 10px solid white;
+    box-shadow: 0 3px 40px rgba(73, 98, 154, 0.1607843137);
+    transition: opacity 0.5s;
+
+    #ppl-parcel-shop-map {
+        height: auto!important;
+    }
+
+    .btn.btn-primary:not(.reverse):before {
+        background: initial!important;
+    }
+
+    .ppl-modal-header {
+        background: white;
+        a {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 3rem;
+            line-height: 29px;
+            padding-right: 1rem;
+            padding-bottom: 0.5rem;
+            cursor: pointer;
+        }
+    }
+}

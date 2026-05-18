@@ -1,0 +1,60 @@
+{block bottom}
+    <script src="{$basePath}/jolanda/front/js/assets/tinymce/tinymce.min.js"></script>
+
+    {if isset($jolandaConfig['vue']['jolanda']['development']) && $jolandaConfig['vue']['jolanda']['development']}
+        <script type="module" src="http://localhost:5173/src/main.js"></script>
+    {else}
+        <script type="module" src="{$basePath}/jolanda/front-vue/dist/build.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front-vue/dist/build.js')}"></script>
+        <link rel="stylesheet" href="{$basePath}/jolanda/front-vue/dist/build.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front-vue/dist/build.css')}"/>
+    {/if}
+
+    {if isDevelopment()}
+
+        <script src="{$basePath}/jolanda/front/js/libs.js"></script>
+        <script src="{$basePath}/jolanda/front/js/assets.js"></script>
+
+        <script src="{$basePath}/jolanda/front/js/modules/src/Alerts.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Alerts.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Helpers.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Helpers.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/TreeView.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/TreeView.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/CategoryTree.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/CategoryTree.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/RelationSwitcher.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/RelationSwitcher.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Grid.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Grid.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/SubGrid.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/SubGrid.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Form.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Form.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Panel.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Panel.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/EntityEditor.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/EntityEditor.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Breadcrumb.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Breadcrumb.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Dialog.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Dialog.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/QuickEditor.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/QuickEditor.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Cookie.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Cookie.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/StateRestore.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/StateRestore.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Iterator.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Iterator.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/Import.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/Import.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/AuthWindow.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/AuthWindow.js')}"></script>
+
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/Input.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/Input.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/Select.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/Select.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/Radio.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/Radio.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/Checkbox.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/Checkbox.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/SelectAjax.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/SelectAjax.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/DateBox.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/DateBox.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/DateTimeBox.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/DateTimeBox.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/modules/src/inputs/BlockEditor.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/modules/src/inputs/BlockEditor.js')}"></script>
+
+        <script src="{$basePath}/jolanda/front/js/components/src/layout/Plugins.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/layout/Plugins.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/components/src/layout/Menu.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/layout/Menu.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/components/src/layout/Layout.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/layout/Layout.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/components/src/layout/Cron.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/layout/Cron.js')}"></script>
+        <script src="{$basePath}/jolanda/front/js/components/src/helpers/Formatters.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/helpers/Formatters.js')}"></script>
+
+        <script src="{$basePath}/jolanda/front/js/components/src/application.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/application.js')}"></script>
+        {block projectJs}
+        {/block}
+
+        <script src="{$basePath}/project/js/src/application.js"></script>
+    {else}
+
+        <script src="{$basePath}/jolanda/front/js/app.min.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/app.min.js')}"></script>
+        <script src="{$basePath}/project/js/components.min.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/project/js/components.min.js')}"></script>
+    {/if}
+{/block}

@@ -1,0 +1,58 @@
+{
+    "name": "evidsoft/vamot",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MM",
+            "email": "melecky@evidsoft.cz",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "psr/container" : "1.0.0",
+        "tracy/tracy": "2.7.5",
+        "phpoffice/phpspreadsheet": "^1.1.0",
+        "latte/latte": "^2.8.1",
+        "nette/forms": "3.0",
+        "nikic/php-parser": "^4.11",
+        "voda/gettext-extractor": "4.0.4",
+        "laminas/laminas-i18n": "^2.10",
+        "sepia/po-parser": "^6.0",
+        "laminas/laminas-servicemanager": "3.4",
+        "trekksoft/potomoco": "^1.0",
+        "phpmailer/phpmailer": "6.1",
+        "setasign/fpdi": "^2.3",
+        "setasign/fpdf": "^1.8",
+        "tecnickcom/tcpdf": "6.4.4",
+        "gopay/payments-sdk-php": "v1.4.4",
+        "inspirum/balikobot": "^4.0",
+        "heureka/overeno-zakazniky": "^3.0",
+        "rbdwllr/reallysimplejwt": "^5.0",
+        "mpdf/mpdf": "^8.1",
+        "ext-curl": "*",
+        "soundasleep/html2text": "^2.1",
+        "edsdk/flmngr-server-php": "^1.5",
+        "salamek/ppl-my-api": "dev-master",
+        "clegginabox/pdf-merger": "dev-master",
+        "dfridrich/qr-platba": "1.0.2",
+        "zircote/swagger-php": "^4.11",
+        "doctrine/annotations": "^2.0",
+        "dragonmantank/cron-expression": "^3.4",
+        "ondrakoupil/csob-eapi-paygate": "^1.9",
+        "league/csv": "9.8.0",
+        "prewk/xml-string-streamer": "^1.2",
+        "miladrahimi/php-jwt": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "CDBTest\\": ["application/modules/admin/logic/CDBTest"],
+            "Jolanda\\": ["www/jolanda/Jolanda"]
+        }
+    },
+
+    "config": {
+        "vendor-dir": "library/",
+        "platform-check": true
+    }
+}

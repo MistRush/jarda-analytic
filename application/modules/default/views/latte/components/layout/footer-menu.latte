@@ -1,0 +1,55 @@
+{*<div class="menu-container">*}
+{*    <div class="container">*}
+{*        <div class="row">*}
+{*            <div class="col-lg-3 col-md-6">*}
+{*                <div class="headline">{$eshop->getSettings('ProjectName')}</div>*}
+{*                <p>*}
+{*                    <b>IČ:</b> {$eshop->getSettings('RegistrationNumber')}<br>*}
+{*                    <b>DIČ:</b> {$eshop->getSettings('VATNumber')}<br>*}
+{*                    <b>Sídlo:</b> {$eshop->getSettings('AddressStreet')} {$eshop->getSettings('AddressDescriptionNumber')}, {$eshop->getSettings('AddressZipCode')} {$eshop->getSettings('AddressCity')} <br>*}
+{*                </p>*}
+
+{*                <div n:if="$eshop->getSettings('FacebookURL') || $eshop->getSettings('InstagramURL')" class="social">*}
+{*                    <div class="headline me-2">{_('Sledujte nás')}: </div>*}
+{*                    <a n:if="$eshop->getSettings('FacebookURL')" href="{$eshop->getSettings('FacebookURL')}" class="me-2" target="_blank">*}
+{*                        <img src="/img/front/icons/layout/footer/facebook.svg" alt="{$eshop->getSettings('ProjectName')} Facebook">*}
+{*                    </a>*}
+{*                    <a n:if="$eshop->getSettings('InstagramURL')" href="{$eshop->getSettings('InstagramURL')}" target="_blank">*}
+{*                        <img src="/img/front/icons/layout/footer/instagram.svg" alt="{$eshop->getSettings('ProjectName')} Instagram">*}
+{*                    </a>*}
+{*                </div>*}
+
+{*                <div class="payments">*}
+{*                    <img src="/img/front/icons/layout/footer/visa.svg" alt="Visa" class="me-2">*}
+{*                    <img src="/img/front/icons/layout/footer/mastercard.svg" alt="Mastercard" class="me-2">*}
+{*                    <img src="/img/front/icons/layout/footer/google-pay.svg" alt="Google Pay" class="me-2">*}
+{*                    <img src="/img/front/icons/layout/footer/apple-pay.svg" alt="Apple Pay">*}
+{*                </div>*}
+{*            </div>*}
+{*            <div class="col-lg-3 col-md-6 d-none">*}
+{*                <div class="headline">{_('O společnosti')}</div>*}
+{*                <ul>*}
+{*                    <li n:foreach="$menuItems1 as $menuItem">*}
+{*                        <a href="{$menuItem['Url']}" {if $menuItem['InNewWindow']}target="_blank"{/if}>{$menuItem['Name']}</a>*}
+{*                    </li>*}
+{*                </ul>*}
+{*            </div>*}
+{*            <div class="col-lg-3 col-md-6">*}
+{*                <div class="headline">{_('Jak nakoupit')}</div>*}
+{*                <ul>*}
+{*                    <li n:foreach="$menuItems2 as $menuItem">*}
+{*                        <a href="{$menuItem['Url']}" {if $menuItem['InNewWindow']}target="_blank"{/if}>{$menuItem['Name']}</a>*}
+{*                    </li>*}
+{*                </ul>*}
+{*            </div>*}
+{*            <div class="col-lg-3 col-md-6">*}
+{*                <div class="headline">{_('Výdejní místa')}</div>*}
+{*                <ul>*}
+{*                    <li n:foreach="$menuItems3 as $menuItem">*}
+{*                        <a href="{$menuItem['Url']}" {if $menuItem['InNewWindow']}target="_blank"{/if}>{$menuItem['Name']}</a>*}
+{*                    </li>*}
+{*                </ul>*}
+{*            </div>*}
+{*        </div>*}
+{*    </div>*}
+{*</div>*}

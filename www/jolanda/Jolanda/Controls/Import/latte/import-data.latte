@@ -1,0 +1,38 @@
+{varType array|null $rows}
+{varType array|null $firstRow}
+{varType Jolanda\Controls\Import\Import $import}
+
+{if $firstRow}
+    <table class="import__selected__item__data__table">
+        <thead>
+        <tr>
+            <th n:foreach="$firstRow as $index => $col">
+                <select name="select_{$import->getUID()|noescape}[{$index}]" data-index="{$index}"
+                        class="import__selected__item__data__table__select"
+                        data-data="{json_encode($import->getColumns())}"
+                        data-selected="{$import->getSelectedColumn($col)}">
+                </select>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr n:foreach="$rows as $row">
+            <td n:foreach="$row as $col">
+                <span title="{$col}" data-toggle="bstooltip">{$col}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{elseif $rows === false}
+    <div class="import__selected__item__data__empty">
+        <h2>{jlang 'FILE_NOT_ACCEPTED'}</h2>
+    </div>
+{elseif $rows === null}
+    <div class="import__selected__item__data__empty">
+        <h2>{jlang 'FILE_NOT_FOUND'}</h2>
+    </div>
+{else}
+    <div class="import__selected__item__data__empty">
+        <h2>{jlang 'NO_RECORDS'}</h2>
+    </div>
+{/if}

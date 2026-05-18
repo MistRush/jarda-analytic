@@ -1,0 +1,43 @@
+#loginPage {
+  background-color: $dark-color-main;
+  background-image: url("../img/background-dark.jpg");
+  main{
+    background-color: $dark-color-main;
+    color: $dark-color-font;
+    .logo{
+      #black{
+        path{
+          fill: #fff;
+        }
+      }
+    }
+    .login-column{
+      .login-form{
+        background: $dark-color-main !important;
+        .input{
+          background: $dark-color-main !important;
+          border-bottom: 1px solid #414246;
+          input {
+            border:none!important;
+          }
+
+
+
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus,
+          input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px $dark-color-main inset !important;
+            -webkit-text-fill-color: $dark-color-font !important;
+            caret-color: $dark-color-font;
+          }
+        }
+      }
+      .forgotten a{
+        color: $dark-color-font;
+      }
+    }
+
+
+  }
+}

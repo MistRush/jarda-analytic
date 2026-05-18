@@ -1,0 +1,63 @@
+<div data-panel="title">{_('Cron')}: {$logs->cron->getName()}</div>
+<div data-panel="content">
+    <div id="cron-detail">
+
+        <div class="d-flex flex-xl-nowrap flex-wrap">
+            <div class="grid-container grid-cols-2">
+                <div class="grid-col grid-span-cols grid-title">{_('Info')}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Název')}:</div>
+                <div class="grid-col grid-col-2">{$logs->cron->Name}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Služba')}:</div>
+                <div class="grid-col grid-col-2">{$logs->cron->Script}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Stav')}:</div>
+                <div class="grid-col grid-col-2"><i class="ci ci-{$logs->cron->Active ? 'check' : 'times'}"></i></div>
+                <div class="grid-col grid-col-1 grid-label no-border">{_('Poznámka')}:</div>
+                <div class="grid-col grid-col-2 no-border">{$logs->cron->Note}</div>
+            </div>
+
+            <div class="grid-container grid-cols-2">
+                <div class="grid-col grid-span-cols grid-title">{_('Spuštění')}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Minuta')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->Minute}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Hodina')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->Hour}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Den')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->Day}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Měsíc')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->Month}</div>
+                <div class="grid-col grid-col-1 grid-label no-border">{_('Týden')}: </div>
+                <div class="grid-col grid-col-2 no-border">{$logs->cron->Week}</div>
+            </div>
+
+            <div class="grid-container grid-cols-2">
+                <div class="grid-col grid-span-cols grid-title">{_('Data a časy')}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Další spuštění')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->NextRun|date: 'd. m. Y. H:i:s'}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Naposled spuštěn')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->LastRun|date: 'd. m. Y. H:i:s'}</div>
+                <div class="grid-col grid-col-1 grid-label">{_('Naposled ukončen')}: </div>
+                <div class="grid-col grid-col-2">{$logs->cron->LastFinish|date: 'd. m. Y. H:i:s'}</div>
+                <div class="grid-col grid-col-1 grid-label no-border">{_('Posladní stav')}: </div>
+                <div class="grid-col grid-col-2 no-border">{$logs->cron->LastStatus}</div>
+            </div>
+        </div>
+
+        <div class="grid-container grid-logs">
+            <div class="grid-col grid-span-cols grid-title">{_('Logy')}</div>
+            <div class="grid-col grid-col-1 grid-label">{_('Začátek')}</div>
+            <div class="grid-col grid-col-2 grid-label">{_('Konec')}</div>
+            <div class="grid-col grid-col-3 grid-label">{_('Stav')}</div>
+            <div class="grid-col grid-col-4 grid-label">{_('Zpráva')}</div>
+
+            <div class="grid-col grid-span-cols grid-subgrid grid-logs grid-scroll no-border">
+                {foreach $logs->logs as $item}
+                    <div class="grid-col grid-col-1">{$item->DateTimeStart|date: 'd. m. Y. H:i:s'}</div>
+                    <div class="grid-col grid-col-2">{$item->DateTimeStop|date: 'd. m. Y. H:i:s'}</div>
+                    <div class="grid-col grid-col-3">{$item->Status|noescape}</div>
+                    <div class="grid-col grid-col-4">{$item->Message|noescape}</div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+</div>
+

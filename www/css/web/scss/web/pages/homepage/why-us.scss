@@ -1,0 +1,97 @@
+.why-us {
+  padding: 80px 0;
+  scroll-margin: 100px;
+
+  .why-us-wrapper {
+    display: flex;
+    align-items: center;
+
+    .left {
+      width: 35%;
+      h2 {
+        color: #FF4D9B;
+        font-family: Oxanium;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 56px;
+      }
+    }
+
+    .right {
+      background-image: url('/img/front/why-us-bg.webp');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      min-width: 73%;
+      min-height: 300px;
+      margin-left: -7%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .right-info-holder {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 30px;
+      }
+
+      .right-info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        -webkit-transform: translateZ(0);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(5px);
+        background: rgba(255, 255, 255, 0.77);
+        border: 1px solid #ffffff;
+        box-shadow: 2px 6px 19px rgb(0 0 0 / 23%);
+        border-radius: 13px;
+        padding: 13px 20px 10px 20px;
+
+        .number {
+          color: #FF4D9B;
+          font-family: Oxanium;
+          font-size: 54px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 34px;
+        }
+
+        .text {
+          color: #0E1B36;
+          font-family: Onest;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 24px;
+        }
+
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .why-us .why-us-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .why-us .why-us-wrapper .left {
+    width: 100%;
+  }
+
+  .why-us .why-us-wrapper .right {
+    width: 100%;
+  }
+
+  .why-us .why-us-wrapper .right .right-info-holder {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

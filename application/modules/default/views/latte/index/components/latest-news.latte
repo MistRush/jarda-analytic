@@ -1,0 +1,10 @@
+<div class="latest-news-container">
+    <div class="container">
+        <h2 class="with-icon news">{_('Novinky z našeho magazínu')}</h2>
+        <div class="row news-list mt-4">
+            <div n:foreach="$latestNews as $newsItem" class="col-lg-4 col-sm-6">
+                {include '../../components/news/item.latte', 'newsItem' => $newsItem}
+            </div>
+        </div>
+    </div>
+</div>

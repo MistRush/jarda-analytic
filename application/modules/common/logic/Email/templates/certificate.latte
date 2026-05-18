@@ -1,0 +1,14 @@
+{layout 'layout.latte'}
+
+{block content}
+<div style="">
+    {capture $title}{_('Certifikát pro montážní středisko')}{/capture}
+    {include 'components/header.latte' 'title' => ($title)}
+    <p style="margin:25px 0 34px;font-size:16px;">
+     Vaše registrace montážního střediska byla schválena a aktivována. <br>Vygenerovaný certifikát naleznete v příloze.
+    </p>
+    <p style="margin:25px 0 34px;font-size:16px;">
+    Děkujeme a těšíme se na spolupráci.
+    </p>
+</div>
+{/block}

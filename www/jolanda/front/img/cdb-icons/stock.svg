@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="20.833"
+   height="18.83"
+   viewBox="0 0 20.833 18.83"
+   version="1.1"
+   id="svg7"
+   sodipodi:docname="stock.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs11" />
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="44.025491"
+     inkscape:cx="10.425778"
+     inkscape:cy="13.060615"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="stock" />
+  <g
+     id="stock"
+     transform="translate(0 -0.5)"
+     style="fill:#000000">
+    <path
+       id="Path_24500"
+       data-name="Path 24500"
+       d="m 271.371,159.241 h 0.8 0.8 c 0.4,0 0.6,-0.3 0.6,-0.6 0,-0.3 -0.2,-0.6 -0.6,-0.6 h -0.8 -0.8 c -0.4,0 -0.6,0.3 -0.6,0.6 0,0.3 0.2,0.6 0.6,0.6 z"
+       transform="translate(-259.752,-151.129)"
+       fill="#fff"
+       style="fill:#000000"
+       sodipodi:nodetypes="scssscsss" />
+    <path
+       id="Path_24501"
+       data-name="Path 24501"
+       d="M 20.232,9.314 H 18.0285 15.825 V 5.207 1.1 c 0,-0.16568542 -0.06716,-0.31568542 -0.175736,-0.42426407 C 15.540685,0.56715729 15.390685,0.5 15.225,0.5 H 10.417 5.609 C 5.4433146,0.5 5.2933146,0.56715729 5.1847359,0.67573593 5.0761573,0.78431458 5.009,0.93431458 5.009,1.1 V 5.207 9.314 H 2.8045 0.6 C 0.43431458,9.314 0.28431458,9.3811573 0.17573593,9.4897359 0.06715729,9.5983146 0,9.7483146 0,9.914 v 4.407 4.407 c 0,0.165685 0.06715729,0.315685 0.17573593,0.424264 C 0.28431458,19.260843 0.43431458,19.328 0.6,19.328 h 9.816 9.816 c 0.165685,0 0.315685,-0.06716 0.424264,-0.175736 C 20.764843,19.043685 20.832,18.893685 20.832,18.728 V 14.3215 9.915 C 20.832276,9.7491193 20.765217,9.5988692 20.656618,9.4900893 20.548019,9.3813094 20.397881,9.3139998 20.232,9.314 Z m -6.01,1.2 h 1 1 v 1.4 1.4 h -1 -1 v -1.4 z M 11.418,1.7 v 1.4 1.4 h -1 -1 V 3.1 1.7 h 1 z m -5.208,0 h 1 1 V 3.4035 5.107 c 0,0.1656854 0.067157,0.3156854 0.1757359,0.4242641 C 8.4943146,5.6398427 8.6443146,5.707 8.81,5.707 h 1.6 1.6 c 0.165685,0 0.315685,-0.067157 0.424264,-0.1757359 C 12.542843,5.4226854 12.61,5.2726854 12.61,5.107 V 3.4035 1.7 h 1 1 v 3.807 3.807 h -4.2 -4.2 V 5.507 Z m 0.2,8.814 v 1.4 1.4 h -1 -1 v -1.4 -1.4 h 1 z m -5.208,0 h 1 1 v 1.703 1.703 c 0,0.165685 0.067157,0.315685 0.1757359,0.424264 C 3.4863146,14.452843 3.6363146,14.52 3.802,14.52 H 5.4065 7.011 c 0.1656854,0 0.3156854,-0.06716 0.4242641,-0.175736 C 7.5438427,14.235685 7.611,14.085685 7.611,13.92 v -1.702 -1.702 h 1.1 1.1 v 3.806 3.806 H 5.5055 1.2 l 0.001,-3.807 z m 18.43,7.612 h -4.307 -4.307 v -3.805 -3.805 h 1 1 v 1.703 1.703 c 0,0.165685 0.06716,0.315685 0.175736,0.424264 C 13.302315,14.454843 13.452315,14.522 13.618,14.522 h 1.6025 1.6025 c 0.165685,0 0.315685,-0.06716 0.424264,-0.175736 C 17.355843,14.237685 17.423,14.087685 17.423,13.922 v -1.703 -1.703 h 1.1 1.1 l 0.0045,3.805 z"
+       fill="#fff"
+       style="fill:#000000"
+       sodipodi:nodetypes="ccccssscssscccssscssscsssccscccccccccccccccccccccccssscssscccccccccccccccccccccccssscsssccccccccccccccccccssscssscccccc" />
+    <path
+       id="Path_24502"
+       data-name="Path 24502"
+       d="m 394.449,374.652 c -0.4,0 -0.6,0.3 -0.6,0.6 0,0.3 0.2,0.6 0.6,0.6 h 0.8 0.8 c 0.4,0 0.6,-0.3 0.6,-0.6 0,-0.3 -0.2,-0.6 -0.6,-0.6 h -0.8 z"
+       transform="translate(-377.822,-358.928)"
+       fill="#fff"
+       style="fill:#000000"
+       sodipodi:nodetypes="ssscssscs" />
+    <path
+       id="Path_24503"
+       data-name="Path 24503"
+       d="m 149.9,374.652 h -0.8 -0.8 c -0.4,0 -0.6,0.3 -0.6,0.6 0,0.3 0.2,0.6 0.6,0.6 h 0.8 0.8 c 0.4,0 0.6,-0.3 0.6,-0.6 0,-0.3 -0.2,-0.6 -0.6,-0.6 z"
+       transform="translate(-141.682,-358.928)"
+       fill="#fff"
+       style="fill:#000000"
+       sodipodi:nodetypes="scssscsss" />
+  </g>
+</svg>

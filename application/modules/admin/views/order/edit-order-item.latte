@@ -1,0 +1,65 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+<script>
+    /**
+     * @namespace { EntityEditor } itemeditor
+     */
+    var itemeditor;
+
+    var updatePrices = function() {
+        if (itemeditor.pricePerUnit && itemeditor.vatCoef) {
+            itemeditor.form.setValue('PriceWithoutVat', itemeditor.pricePerUnit);
+            itemeditor.form.setValue('PriceWithVat', Math.ceil(itemeditor.form.getValue('PriceWithoutVat') * itemeditor.vatCoef));
+        }
+    }
+
+    $(() => {
+        itemeditor = {$editor->getId()|noescape};
+        itemeditor.onAfterLoad = function () {
+            itemeditor.pricePerUnit = itemeditor.form.getValue('PriceWithoutVat');
+            itemeditor.vatCoef = itemeditor.data.vat?(1 + (itemeditor.data.vat / 100)):1;
+        }
+
+        itemeditor.onAfterConfirm = function () {
+            $('#products-information').load(basePath + '/admin/order/info-items/Order_ID/' + editor.entity_id);
+        }
+
+        $(itemeditor.form.getInput('Product_ID')).on('change input cut paste', function(e) {
+            itemeditor.pricePerUnit = 0;
+            $.ajax({
+                url: basePath + '/admin/order/get-product-price',
+                method: 'POST',
+                data: {
+                    Product_ID: itemeditor.form.getValue('Product_ID'),
+                    Eshop_ID: editor.data.Eshop_ID,
+                },
+                success: function(data) {
+                    try {
+                        data = JSON.parse(data);
+                        if (data['Price']) {
+                            itemeditor.pricePerUnit = data['Price'];
+                        }
+                        if (data['Vat']) {
+                            itemeditor.vatCoef = 1 + (data['Vat'] / 100);
+                            itemeditor.vatCoef = itemeditor.vatCoef < 1?1:itemeditor.vatCoef;
+                        }
+                    } catch (ex) {
+
+                    }
+                },
+                complete: function () {
+                    updatePrices();
+                }
+            })
+        });
+
+        $(itemeditor.form.getInput('PriceWithoutVat')).on('change input cut paste', function(e) {
+            itemeditor.form.setValue('PriceWithVat', Math.ceil(e.currentTarget.value * itemeditor.vatCoef));
+        });
+
+        $(itemeditor.form.getInput('PriceWithVat')).on('change input cut paste', function(e) {
+            itemeditor.form.setValue('PriceWithoutVat', Math.ceil(e.currentTarget.value / itemeditor.vatCoef));
+        });
+
+        $(itemeditor.form.getInput('Quantity')).on('change input cut paste', updatePrices);
+    });
+</script>

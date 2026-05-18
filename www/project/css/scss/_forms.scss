@@ -1,0 +1,32 @@
+.form-group {
+  input, select {
+    height: 30px;
+    padding: 9px 15px 9px 8px;
+    font-size: 14px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+}
+
+.form-group input:not(.select2-search__field):focus, .form-group select:not(.select2-search__field):focus {
+  border-left: 2px solid $color-primary!important;
+}
+
+
+label.checkbox, label.radiobox {
+  input:checked ~ .checkmark {
+    border: 1px solid $color-primary;
+  }
+
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .checkmark {
+    &:after {
+      border-color: $color-primary;
+    }
+  }
+}

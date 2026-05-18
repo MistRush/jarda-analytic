@@ -1,0 +1,42 @@
+.product-flags {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 5;
+
+    .flag {
+        border-radius: 6px;
+        font-weight: 500;
+        padding: 5px 12px;
+        margin: 0 6px 6px 0;
+        display: inline-block;
+        font-size: 14px;
+
+        &.discount {
+            color: #dc773f;
+            background: #FDE9DE;
+        }
+
+        &.clearance-sale {
+            color: $font-primary-red;
+            background: #FAD3D3;
+        }
+
+        &.news {
+            color: #01BC08;
+            background: #D3FAD9;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .product-flags {
+        top: 5px;
+        left: 5px;
+
+        .flag {
+            padding: 3px 8px;
+            font-size: 12px;
+        }
+    }
+}

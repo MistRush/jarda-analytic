@@ -1,0 +1,2 @@
+import{a3 as s}from"./build.js";const u=()=>{const{user:r}=s(),e={TYPE_SUPERADMIN:"superadmin",TYPE_ADMIN:"admin",TYPE_API_USER:"api-user",TYPE_CUSTOMER:"customer"};return{userTypes:e,getUserTypes:()=>({[e.TYPE_SUPERADMIN]:"Super administrátor",[e.TYPE_ADMIN]:"Administrátor",[e.TYPE_API_USER]:"Api uživatel",[e.TYPE_CUSTOMER]:"Zákazník"}),getCurrentUserType:()=>r.Type}};export{u};
+//# sourceMappingURL=build-useUser-B8b9f4YW.js.map

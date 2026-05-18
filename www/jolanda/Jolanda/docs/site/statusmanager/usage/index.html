@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Použití - Jolanda</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Pou\u017eit\u00ed";
+        var mkdocs_page_input_path = "statusmanager/usage.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Jolanda
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/install/">Instalace</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy-ide/">Integrace Tracy s IDE</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy/">Instalace Tracy panelů</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PHP</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Grid</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/grid/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/columns/">Sloupce</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Formuláře</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/form/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/inputs/">Formulářové prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/input-options/">Možnosti prvků</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/validation/">Validace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Editor</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/editor/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/fields/">Prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/js/">JavaScript API</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/quickeditor/">QuickEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Status Manager</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Použití</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#pristup-ke-status-manageru">Přístup ke status manageru</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pridavani-notifikacistatusu">Přidávání notifikací/statusů</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#adderror">addError</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addsuccess">addSuccess</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addinfo">addInfo</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vypis-notifikacistatusu">Výpis notifikací/statusů</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#__tostring">__toString</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#funkce-po-vypisu">Funkce po výpisu</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setafternotifyfunction">setAfterNotifyFunction</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prace-se-statusy">Práce se statusy</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../statusmanager/">Třída StatusManager</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../status/">Třída Status</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Import</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/uvod/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/import/">Třída Import</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/importBase/">Třída ImportBase</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">JsLogger</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../jslogger/usage/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">FileManager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../filemanager/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Šablony (Latte)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/common/">Obecné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/filters/">Filtry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/macros/">Makra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/migration/">Migrace 2 -> 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/typehints/">Typehints</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">JavaScript</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/dialog/">Dialog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/panel/">Panel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/cookie/">Cookie</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/alerts/">Alerts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/helpers/">Pomocníci</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Jolanda</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">PHP</li>
+          <li class="breadcrumb-item">Status Manager</li>
+      <li class="breadcrumb-item active">Použití</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="statusmanager">StatusManager</h1>
+<p>Pomocí status manageru můžeme vypisovat uživateli notifikace, které si definujeme kdykoliv a kdekoliv během vytváření/editace entity pomoci entityEditoru.</p>
+<p>! Pro správny výpis manageru je potřeba upravit library/Clevis/Zend/Controller/DataAction.php</p>
+<pre><code class="language-php">//[řádek 153]
+$this-&gt;renderData($data['data'], $data['identifier'], ['statuses' =&gt; \Jolanda\Controls\Editor\StatusManager::getInstance()-&gt;toArray()]);
+</code></pre>
+<pre><code class="language-php">//[řádek 205]
+$this-&gt;renderData($data['data'], $data['identifier'], ['statuses' =&gt; \Jolanda\Controls\Editor\StatusManager::getInstance()-&gt;toArray()]);
+</code></pre>
+<pre><code class="language-php">//[řádek 233]
+$this-&gt;renderData([], null, ['statuses' =&gt; \Jolanda\Controls\Editor\StatusManager::getInstance()-&gt;toArray()]);
+</code></pre>
+<h2 id="pristup-ke-status-manageru">Přístup ke status manageru</h2>
+<pre><code class="language-php">use Jolanda\Controls\Editor\StatusManager;
+...
+$statusManager = StatusManager::getInstance();
+</code></pre>
+<p>Protože budeme chtít dávat info uživateli hlavně z managerů a nebo přímo z tříd (jako například Admin_Model_Blog), je lepší si přidat do 
+library/Clevis/data/ManagerRaw a do library/Doctrine/record metodu pro lepší přístup.</p>
+<pre><code class="language-php">public function getStatusManager(): StatusManager
+{
+    return StatusManager::getInstance();
+}
+</code></pre>
+<p>Ve třídě Admin_Model_Blog, nebo v manageru si pak jen zavoláme </p>
+<pre><code class="language-php">$statusManager = $this-&gt;getStatusManager();
+</code></pre>
+<h2 id="pridavani-notifikacistatusu">Přidávání notifikací/statusů</h2>
+<ul>
+<li>msg [string] - zprává pro zobrazení uživateli</li>
+<li>confirmAfterNotify [bool] - zdali se má po zobrazení notifikace zavřít okno a vyvolat confirm v js</li>
+</ul>
+<h3 id="adderror">addError</h3>
+<p><code>addError(string $msg, bool $confirmAfterNotify = false): Status</code></p>
+<p>Přidá error hlášku (červené okno)</p>
+<pre><code class="language-php">$statusManager-&gt;addError('Nejde přidat záznam');
+</code></pre>
+<h3 id="addsuccess">addSuccess</h3>
+<p><code>addSuccess(string $msg, bool $confirmAfterNotify = true): Status</code></p>
+<p>Přidá success hlášku (zenelé okno)</p>
+<pre><code class="language-php">$statusManager-&gt;addSuccess('Záznam úspěšné přidán');
+</code></pre>
+<h3 id="addinfo">addInfo</h3>
+<p><code>addInfo(string $msg, bool $confirmAfterNotify = true): Status</code></p>
+<p>Přidá info hlášku (šedé okno)</p>
+<pre><code class="language-php">$statusManager-&gt;addInfo('Materiál je na skladě');
+</code></pre>
+<h2 id="vypis-notifikacistatusu">Výpis notifikací/statusů</h2>
+<p>Notifikace se vypíší automaticky po dokončení scriptu. </p>
+<p>! Je potřeba upravit clevis DataAction, více v prvním odstavci této sekce</p>
+<h3 id="__tostring">__toString</h3>
+<p><code>__toString(): string</code></p>
+<p>Je možné je vypsat i samostatně jako json.</p>
+<pre><code class="language-php">echo $statusManager;
+</code></pre>
+<p>Vypíše {statuses: [pole statusů]}</p>
+<h2 id="funkce-po-vypisu">Funkce po výpisu</h2>
+<p>Lze každému statusu nastavit javascriptouvou funkci která se vykoná po vypsání dané notifikace</p>
+<h3 id="setafternotifyfunction">setAfterNotifyFunction</h3>
+<p><code>setAfterNotifyFunction(string $function): Status</code></p>
+<pre><code class="language-php">$statusManager-&gt;addError('Počet je vetší jak 5')-&gt;setAfterNotifyFunction('resetForm');
+</code></pre>
+<h2 id="prace-se-statusy">Práce se statusy</h2>
+<p>Status je pouze upozornění pro uživatele. Nijak nemodifikuje kód pro ukládání entity.</p>
+<p>Logiku ohledně práci se statusama si musíme pohlídat v kódu sami. </p>
+<p>Příklad</p>
+<pre><code class="language-php">if($count &gt; 5)
+    $statusManager-&gt;addError('Počet je vetší jak 5');
+
+if($statusManager-&gt;hasErrors()){
+    $statusManager-&gt;addInfo('Entita neuložena', false)-&gt;setAfterNotifyFunction('resetForm');
+}else{
+    $statusManager-&gt;addInfo('Entita uložena')-&gt;setAfterNotifyFunction('afterSuccess');
+    $entity-&gt;save();
+}
+
+if(!$statusManager-&gt;hasErrors())
+    $statusManager-&gt;addSuccess('Hotovo');
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../editor/quickeditor/" class="btn btn-neutral float-left" title="QuickEditor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../statusmanager/" class="btn btn-neutral float-right" title="Třída StatusManager">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../editor/quickeditor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../statusmanager/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

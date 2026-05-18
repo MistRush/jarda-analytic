@@ -1,0 +1,30 @@
+{block|strip}
+    <!doctype html>
+    <html class="prefer-light">
+    <head>
+        {import "head.latte"}
+        {include head}
+    </head>
+    <body id="loginPage">
+    {include 'loader.latte'}
+    <div class="container">
+        <main>
+            {block content}
+            {/block}
+        </main>
+    </div>
+
+    {if $jolandaConfig['alerts']['vueAlerts']}
+        <div id="__alert-manager"></div>
+    {/if}
+
+
+    <div id="vue_teleport" class="tailwind">
+    </div>
+
+    {include 'bottom.latte'}
+    {block scripts}
+    {/block}
+    </body>
+    </html>
+{/block}

@@ -1,0 +1,84 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="category">
+        {if $category['Active'] == false}
+            {$breadcrumb|noescape}
+            <h1>{$category['Name']}</h1>
+            <p>{_('Tato kategorie je momentálně neaktivní.')}</p>
+        {else}
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left-side">
+                        {$filter|noescape}
+                        {$shopYear|noescape}
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    {$breadcrumb|noescape}
+                    <h1 data-current-slug="{$category['slug']}">{$category['H1Name'] ?? $category['Name']}</h1>
+                    {$activeFilter|noescape}
+                    <p>{$category['ShortDescription']|noescape}</p>
+
+                    {if sizeof($subCategories) > 1}
+                        {include 'components/sub-categories.latte'}
+                    {/if}
+
+                    {if (sizeof($products) > 0)}
+                        <div id="category-products">
+                            {include 'components/list-settings.latte'}
+
+                            {if $grid == \common\logic\Front\ProductList::GRID_LINE}
+                                <div class="product-list">
+                                    {foreach $products as $product}
+                                        {include '../components/product/item-line.latte', product => $product}
+                                    {/foreach}
+                                </div>
+                            {else}
+                                <div class="product-list row">
+                                    <div n:foreach="$products as $product" class="col-12 col-xl-4 col-lg-6 col-md-6">
+                                        {include '../components/product/item-classic.latte', product => $product}
+                                    </div>
+                                </div>
+                            {/if}
+
+                            <div data-current-page="{$page}" data-category-slug="{$category['slug']}" data-current-filter="{$filterParams}" id="ajax-load"></div>
+                            <div class="text-center display-more-wrapper">
+                                <a class="btn btn-primary" href="javascript:void()" id="ajax-display-more">{_('Načíst další')}</a>
+                            </div>
+
+                            <div class="list-pagination mt-4" id="pagination">
+                                <div class="row">
+                                    <div class="col-6 pe-0 align-self-center">
+                                        <div class="showing">
+                                            <div data-remaining-to-display="{$totalProducts-(($page - 1) * $offset + sizeof($products))}" class="showing pagination-{$page}">
+                                                {_('Zobrazuji')} <span>{(($page - 1) * $offset) + 1} - {($page - 1) * $offset + sizeof($products)} z {$totalProducts}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 ps-0 align-self-center">
+                                        <div n:if="$totalPages > 1" class="pages">
+                                            <a n:if="$page != 1" rel="prev" href="{$currentUrl}/page/{$page - 1}{$filterUrl}{$priceRangeParamsUrl}"><</a>
+                                            <a href="{$currentUrl}/page/1{$filterUrl}{$priceRangeParamsUrl}" n:class="$page == 1?active">1</a>
+                                            <span n:if="$page != 1 && $page != 2 && $page != 3"> ... </span>
+                                            {for $i = 2; $i < $totalPages; $i++}
+                                                {continueIf $page != $i && $i != ($page - 1)  && $i != ($page + 1)}
+                                                <a href="{$currentUrl}/page/{$i}{$filterUrl}{$priceRangeParamsUrl}" n:class="$page == $i?active">{$i}</a>
+                                            {/for}
+                                            <span n:if="$page != $totalPages && $page != $totalPages-1 && $page != $totalPages-2"> ... </span>
+                                            <a href="{$currentUrl}/page/{$totalPages}{$filterUrl}{$priceRangeParamsUrl}" n:class="$page == $totalPages?active">{$totalPages}</a>
+                                            <a n:if="$page != $totalPages" rel="next" href="{$currentUrl}/page/{$page + 1}{$filterUrl}{$priceRangeParamsUrl}">></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {else}
+                        <p>{_('V této kategorii momentálně nenabízíme žádné zboží.')}</p><br><br>
+                    {/if}
+                </div>
+            </div>
+        {/if}
+    </div>
+{/block}

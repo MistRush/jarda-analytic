@@ -1,0 +1,46 @@
+@import "page/contact";
+@import "page/complaint";
+
+#page {
+    #contact {
+        .contact-info, .address-info {
+            .item {
+                margin: 1rem 0;
+                padding-left: 40px;
+                font-size: 20px;
+
+                a {
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                &.phone {
+                    background: url('/img/front/icons/contact-page-phone.svg') left center no-repeat;
+                    background-size: 30px;
+                }
+
+                &.email {
+                    background: url('/img/front/icons/contact-page-email.svg') left center no-repeat;
+                    background-size: 30px;
+                }
+            }
+        }
+
+        .contact-form {
+            background: #FFFFFF 0 0 no-repeat padding-box;
+            box-shadow: 0px 6px 46px 0px rgba(39, 42, 52, 0.10);
+            border-radius: 16px;
+            padding: 25px 25px 35px 25px;
+            margin-bottom: 50px;
+            margin-top: -50px;
+        }
+    }
+
+    ul {
+        list-style:disc;
+        padding-left: 22px;
+    }
+}

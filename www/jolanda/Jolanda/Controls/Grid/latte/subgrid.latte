@@ -1,0 +1,8 @@
+{layout 'grid.latte'}
+<div
+{block childData}
+        data-parent-element="{$grid->getParentEntity()}"
+        data-parent-editor="{$grid->getParentEditor()}"
+        data-quickeditor="{$grid->getQuickEditor()}"
+{/block}>
+</div>

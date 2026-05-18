@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<skipper version="3.2.36.1775" mvc="Without MVC" orm="Doctrine">
+  <module name="\Module Common" local-name="Module Common" namespace="\" export-format="DoctrineYml" export-path="../../configs/schema/common.yml" uuid="0197fe49-8276-4331-881a-89099d3430de">
+    <entity name="\Settings" local-name="Settings" namespace="\" uuid="6ec0c1b8-454f-4d4c-96a5-be261ca268ee">
+      <field name="ID" description="identifikator" type="integer" required="true" primary="true" auto-increment="true" uuid="94e7a01d-5533-4101-a5f1-b6401619d920"/>
+      <field name="ContactFax" type="string" size="64" uuid="cfa2c4d6-919b-4719-a631-b976ca2227cb"/>
+      <field name="ContactEmail" type="string" size="64" uuid="200d4959-983b-4592-95bd-e6b86234a310"/>
+      <field name="ContactName" description="type" type="string" size="64" uuid="13b8ba97-bd17-4e9e-bc47-c13a6dd10d34"/>
+      <field name="ContactPhone" description="n&#xE1;zev" type="string" size="64" uuid="e4ff7c95-889c-4cba-b081-12a5b1e4abc9"/>
+      <field name="ContactPerson" type="string" size="128" uuid="41781ee3-e8d3-4c50-acbb-36e8d5851876"/>
+      <field name="ProjectURL" type="string" size="64" uuid="b638d796-d63b-4915-a6ad-8f5614f52174"/>
+      <field name="AnalyticsCode" type="string" size="64" uuid="472c0f2f-7abb-40fa-a7dd-2220935a93e1"/>
+      <field name="FacebookURL" type="string" size="128" uuid="b0a62033-5477-411b-af44-f2cf61697f98"/>
+      <field name="FacebookName" type="string" size="128" uuid="dc4d3a68-360a-4696-b985-508b21827cb5"/>
+      <field name="ProjectName" type="string" size="128" uuid="c279c206-2b02-46df-9e95-69b06e4f7377"/>
+      <field name="AddressCity" type="string" size="64" uuid="3d733c30-15dc-4e7a-9860-7c5f21ab12de"/>
+      <field name="AddressZipCode" type="string" size="8" uuid="ef9b9931-918a-4d73-b286-10c22ed96acc"/>
+      <field name="AddressStreet" type="string" size="64" uuid="4b68628f-0518-4b19-b8ea-680d9a062a2b"/>
+      <field name="AddressDescriptionNumber" type="string" size="16" uuid="5e871302-2904-4a04-9fb5-ee159ba1ba88"/>
+      <field name="RegistrationNumber" type="string" size="16" uuid="3aad5409-6eee-4cc2-9e70-5ef8a4decfee"/>
+      <field name="VATNumber" type="string" size="16" uuid="b567d5be-2754-4abe-8357-147a75102232"/>
+      <field name="OpeningHours" type="string" size="128" uuid="4f024c30-dad7-4471-be3a-6738533cae53"/>
+      <field name="ProjectShortURL" type="string" size="64" uuid="9c5e5850-838e-45e1-be25-1d9aa804d8e4"/>
+      <field name="PriceDecimalPlaces" type="integer" uuid="5f034902-fc4e-4fa0-aef7-c4ed1c9ef4bb"/>
+      <field name="EnableRegistration" type="boolean" uuid="3e1a6c51-6f22-40ab-a8a2-ba04bae1133d"/>
+      <field name="PriceVisibleOnlyForLogged" type="boolean" uuid="e4931f95-ec49-464a-aba1-28697aeb48d4"/>
+      <field name="SenderName" type="string" size="64" uuid="5317c22e-c273-41c6-b52f-460798ebb3db"/>
+      <field name="SenderEmail" type="string" size="64" uuid="da318dcd-53ae-4ec5-946d-dad8b0e297f4"/>
+      <field name="NotifyEmail" type="string" size="64" uuid="05c78f04-2363-4fdb-ba40-8934631f0afd"/>
+      <field name="HeurekaOverenoZakazniky" type="boolean" uuid="77f4b3d8-5f0d-4134-9b47-44949dc6b020"/>
+      <field name="HeurekaSecretKey" type="string" size="64" uuid="0f0cff42-7c74-4235-b74b-3ce48df6e94f"/>
+      <field name="HeurekaMereniKonverzi" type="boolean" uuid="80184bab-0221-4d5d-8656-96b7c3e0a0cb"/>
+      <field name="HeurekaPublicKey" type="string" size="64" uuid="53df1557-1baa-4a29-8f74-9c2294d1fad1"/>
+      <field name="InstagramURL" type="string" size="128" uuid="47fb2d76-99ae-4139-8870-377d452e943f"/>
+      <field name="InstagramName" type="string" size="128" uuid="76b01d43-851d-424a-84fc-5e067b204a43"/>
+      <field name="ProductionMode" type="boolean" uuid="0b028975-5edb-4fc7-b9c4-6cf63cc0fd1c"/>
+    </entity>
+    <entity name="\File" local-name="File" namespace="\" description="Popis souboru a jejich obsah" uuid="d32e417f-aa42-4e49-bd18-ed581a83dd3f">
+      <field name="ID" description="Identifikator" type="integer" required="true" primary="true" auto-increment="true" uuid="0d79cb79-4238-43c6-a99e-93f9abbcc439"/>
+      <field name="Data" description="Obsah souboru" type="blob" uuid="77c02dff-1b31-49ac-b253-ebf5c4641b22"/>
+      <field name="Type" description="MIME typ souboru " type="string" size="32" uuid="99033c55-d032-44e8-9fcf-a65a488e44de"/>
+      <field name="Name" description="Nazev souboru" type="string" size="256" uuid="8299bdce-365c-411b-8043-4d4028c7533a"/>
+      <field name="Extension" description="Pripona souboru" type="string" size="16" uuid="381c03f6-a6f9-4fb2-ae5a-3cf213ef88ae"/>
+    </entity>
+    <entity name="\Language" local-name="Language" namespace="\" uuid="ecb09e55-5f3f-4d6a-b833-f06faf5aeb0e">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="eaa9acd7-b1c3-478f-ac96-64106455666a"/>
+      <field name="Name" type="string" size="64" uuid="133cad83-0c60-4aaa-a227-1a0ea4c49515"/>
+      <field name="Code" type="string" size="32" uuid="1ce87c22-2119-424a-acde-66d1c1b347c6"/>
+      <field name="IsDefault" type="boolean" uuid="25f6ef92-4e44-475c-96a2-c28ff7eb3a1d"/>
+      <field name="Active" type="boolean" uuid="a968faaf-457e-4975-885d-69983fd9d055"/>
+    </entity>
+    <entity name="\Country" local-name="Country" namespace="\" uuid="f4114788-6548-4e5c-8cd8-8a2df15089b4">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="27f37497-fd4e-40e3-aa29-b7386ac7c214"/>
+      <field name="Code" type="string" size="8" uuid="061eebcf-7c2d-4d11-ad7f-495dfb9f9270"/>
+      <field name="Code2" type="string" size="8" uuid="7b0f21a4-8c57-40f9-a4a7-a526cffb444e"/>
+      <field name="Code3" type="string" size="8" uuid="ec325a54-542f-4d88-8757-ab42b3f0f7a5"/>
+    </entity>
+    <entity name="\CountryLang" local-name="CountryLang" namespace="\" uuid="dd83e694-cc8b-426b-935d-fe09fbe25fef">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="8f9fe77b-00e6-48f1-b580-2db4b26dd88e"/>
+      <field name="Country_ID" type="integer" uuid="fd10c1f2-0ebf-4c85-bd51-a8b866838beb"/>
+      <field name="Language_ID" type="integer" uuid="4feb3fed-e118-429a-be17-810a271e3315"/>
+      <field name="Name" type="string" size="128" uuid="dd29e294-53e3-4bd7-83d9-602b2a22e796"/>
+    </entity>
+    <association from="\CountryLang" to="\Country" caption="CountryLang" owner-alias="countryLangs" inverse-alias="country" many-owner="true" many-inverse="false" uuid="7a35064a-4b9c-4c59-9f05-1e725749d0ac">
+      <association-field from="Country_ID" to="ID" uuid="16cb3101-fbb3-4097-9d99-7c1a9eaf2064"/>
+    </association>
+    <association from="\CountryLang" to="\Language" caption="CountryLang" owner-alias="countryLangs" inverse-alias="language" many-owner="true" many-inverse="false" uuid="b3cf4358-92ba-4958-ac93-97c668d0685a">
+      <association-field from="Language_ID" to="ID" uuid="65509f49-1c2e-4d87-9f23-cf9f2e4dab7f"/>
+    </association>
+    <entity name="\Eshop" local-name="Eshop" namespace="\" uuid="44002028-c518-4d81-8379-d35323126215">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="cb8a9f1b-1d95-4e31-a701-43634ad4fc61"/>
+      <field name="Currency_ID" type="integer" uuid="16fa1e8f-e97d-4dd5-984a-4bce0625b25d"/>
+      <field name="Language_ID" type="integer" uuid="684c0287-e870-47b5-9d7d-29232994140e"/>
+      <field name="Settings_ID" type="integer" uuid="2359c93e-0778-4ba8-8a62-77a31d36b43d"/>
+      <field name="Vat_ID" type="integer" uuid="6f56e373-aad7-415a-a8a2-94001edf2ed3"/>
+      <field name="FileLogo_ID" type="integer" uuid="243eaa1c-284a-439b-a50c-ee14d5959866"/>
+      <field name="Name" type="string" size="64" uuid="d0ed0133-0a5a-4165-a7f6-6424123d42a8"/>
+      <field name="URL" type="string" size="64" uuid="c11a5b3e-b2df-4d0d-aca0-f657c334d476"/>
+      <field name="Active" type="boolean" uuid="09fb7e1c-6dc4-45a4-b1ca-2614cfadb765"/>
+    </entity>
+    <association from="\Eshop" to="\Language" caption="Language Eshop" owner-alias="eshops" inverse-alias="language" many-owner="true" many-inverse="false" uuid="31de9b11-0d49-494d-9437-72dc6e38158f">
+      <association-field from="Language_ID" to="ID" uuid="9f23a6af-87d3-48cf-8c67-2ce207d68e86"/>
+    </association>
+    <association from="\Eshop" to="\Admin_Model_Currency" caption="Eshop Currency" owner-alias="eshops" inverse-alias="currency" many-owner="true" many-inverse="false" uuid="de90380a-cea9-43ec-97cf-495a4302981f">
+      <association-field from="Currency_ID" to="ID" uuid="ad788b5e-a3e3-4742-9b63-f602db9bde2c"/>
+    </association>
+    <association from="\Eshop" to="\Admin_Model_Vat" caption="Eshop Vat" owner-alias="eshops" inverse-alias="vat" many-owner="true" many-inverse="false" uuid="9cf6f807-1fbf-4448-879e-1fc43339b90f">
+      <association-field from="Vat_ID" to="ID" uuid="777ad9ad-5de6-4ca0-a84e-fcfe3e0ff912"/>
+    </association>
+    <association from="\Eshop" to="\Settings" caption="Settings Eshop" owner-alias="eshop" inverse-alias="settings" many-owner="true" many-inverse="false" uuid="660a0da0-842c-4682-baf8-8d7fd652d366">
+      <association-field from="Settings_ID" to="ID" uuid="664da335-7c76-495f-bdf7-c3ba8654a6f2"/>
+    </association>
+    <association from="\Eshop" to="\File" caption="File Eshop" owner-alias="eshops" inverse-alias="file" many-owner="true" many-inverse="false" uuid="0bec9445-81a5-4a37-96c8-86b75d72ead3">
+      <association-field from="FileLogo_ID" to="ID" uuid="05134385-3323-4bd6-b083-29167c8fce26"/>
+    </association>
+    <entity name="\Cron" local-name="Cron" namespace="\" uuid="b1fbc4ed-fce1-4041-9b76-aae0dbd07e5e">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="996d880e-bf86-4463-b87d-1677fac9e292"/>
+      <field name="Name" type="string" size="256" uuid="7ca52d3e-393a-4585-ad93-e7194b4a2122"/>
+      <field name="Active" type="boolean" uuid="4f051be6-b641-4c93-9e2c-bc8e1ca00030"/>
+      <field name="CronExpression" type="string" size="128" uuid="bb628e65-f60d-4eda-a786-4cba0f402586"/>
+      <field name="Minute" type="string" size="16" uuid="0cb965a0-0bf7-41f5-a973-5c1b5adee64a"/>
+      <field name="Hour" type="string" size="16" uuid="b97e25f0-c50f-4f1b-8a32-9d0e444f9642"/>
+      <field name="Day" type="string" size="16" uuid="372afc59-5d4f-4041-966f-737c2a5019b6"/>
+      <field name="Month" type="string" size="16" uuid="223d2c20-250c-4dd8-8c81-e151082468d7"/>
+      <field name="Week" type="string" size="16" uuid="64f101ad-6a4d-4d6d-b14c-ce6b9c31e5c7"/>
+      <field name="Script" type="string" size="64" uuid="1b513977-027d-4f4d-84fd-e6e1763a50c7"/>
+      <field name="Note" type="string" size="1024" uuid="27050cae-5a1f-4ca7-81e9-4121904c55e7"/>
+      <field name="NextRun" type="timestamp" uuid="44c2f6b3-a817-4f8b-aa0f-a1e27a25ae7d"/>
+      <field name="LastRun" type="timestamp" uuid="95b177ff-5dee-40c4-8ac8-53fe2d15f38b"/>
+      <field name="LastFinish" type="timestamp" uuid="d94d76f1-9437-4608-a90f-11f7c3ed198d"/>
+      <field name="LastStatus" type="string" size="64" uuid="4cffd137-3e40-43a0-b976-13286686da89"/>
+      <field name="DateCreated" type="date" uuid="a370270e-cfc8-4589-b079-f82d55176c24"/>
+    </entity>
+    <entity name="\CronLog" local-name="CronLog" namespace="\" uuid="2faa72c6-71f5-4864-96b2-8e00bb575616">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="f352a8a1-320d-4a8c-8699-27966619a9ed"/>
+      <field name="Cron_ID" type="integer" uuid="794f9de1-b0db-4df7-ae64-71b14aff3738"/>
+      <field name="DateTimeStart" type="timestamp" uuid="78126c7e-edbd-4a47-8200-3c7514836daa"/>
+      <field name="DateTimeStop" type="timestamp" uuid="1369e743-0c56-4c90-8609-72f05dfaba21"/>
+      <field name="Status" type="string" size="32" uuid="4536d533-0102-44c9-82c6-19abb79cb281"/>
+      <field name="Message" type="string" uuid="3e6f8fa2-e38e-44ab-8386-60f653992013"/>
+    </entity>
+    <association from="\CronLog" to="\Cron" caption="Cron CronLogs" owner-alias="cronLogs" inverse-alias="cron" many-owner="true" many-inverse="false" uuid="f7502187-4422-4241-8ad5-3516ccf82747">
+      <association-field from="Cron_ID" to="ID" uuid="5af977c1-f1e5-4212-a6c9-f33a8ed41705"/>
+    </association>
+    <entity name="\CronUser" local-name="CronUser" namespace="\" uuid="401b90bf-667a-4dae-9f92-200f74e75ff8">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="7bfe41bd-b4cb-43bf-b961-a5254ed02805"/>
+      <field name="Cron_ID" type="integer" uuid="1ba0413c-7feb-47b6-bb1f-25faf045ee17"/>
+      <field name="User_ID" type="integer" uuid="2ea00a58-cc80-4d00-a7e8-e3583971448c"/>
+    </entity>
+    <association from="\CronUser" to="\Cron" caption="Cron CronUsers" owner-alias="cronUsers" inverse-alias="cron" many-owner="true" many-inverse="false" uuid="30dfd311-783a-4651-9725-71d14031d57d">
+      <association-field from="Cron_ID" to="ID" uuid="6555de4d-f2ab-4296-8844-e9d4b7221e3b"/>
+    </association>
+    <association from="\CronUser" to="\User_Model_User" owner-alias="cronUsers" inverse-alias="user" many-owner="true" many-inverse="false" uuid="6b311984-673d-4e6b-aa04-44c0cd7d7f90">
+      <association-field from="User_ID" to="ID" uuid="86ec0fe5-66ed-41e2-8edf-3691b45c38c0"/>
+    </association>
+    <orm-attributes>
+      <attribute name="entity_prefix">Common_Model_</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="2faa72c6-71f5-4864-96b2-8e00bb575616" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="723" position-y="382" size-x="0" size-x2="138" size-y="0" size-y2="101"/>
+    <entity uuid="401b90bf-667a-4dae-9f92-200f74e75ff8" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="972" position-y="386" size-x="0" size-x2="72" size-y="0" size-y2="31"/>
+    <entity uuid="44002028-c518-4d81-8379-d35323126215" bg-color="4294967295" hdr-color="4292006610" position-x="120" position-y="49" size-x="0" size-x2="117" size-y="0" size-y2="129"/>
+    <entity uuid="6ec0c1b8-454f-4d4c-96a5-be261ca268ee" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="-245" position-y="38" size-x="0" size-x2="187" size-y="0" size-y2="451"/>
+    <entity uuid="b1fbc4ed-fce1-4041-9b76-aae0dbd07e5e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="844" position-y="37" size-x="0" size-x2="144" size-y="0" size-y2="241"/>
+    <entity uuid="d32e417f-aa42-4e49-bd18-ed581a83dd3f" bg-color="4294967295" hdr-color="4292006610" position-x="555" position-y="50" size-x="0" size-x2="114" size-y="0" size-y2="87"/>
+    <entity uuid="dd83e694-cc8b-426b-935d-fe09fbe25fef" bg-color="4294967295" hdr-color="4292006610" position-x="491" position-y="389" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
+    <entity uuid="ecb09e55-5f3f-4d6a-b833-f06faf5aeb0e" bg-color="4294967295" hdr-color="4292006610" position-x="140" position-y="305" size-x="0" size-x2="105" size-y="0" size-y2="87"/>
+    <entity uuid="f4114788-6548-4e5c-8cd8-8a2df15089b4" bg-color="4294967295" hdr-color="4292006610" position-x="597" position-y="239" size-x="0" size-x2="95" size-y="0" size-y2="73"/>
+    <module uuid="0197fe49-8276-4331-881a-89099d3430de" bg-color="4294900984" size-x="276" size-x2="1140" size-y="0" size-y2="525"/>
+  </visual-data>
+</skipper>

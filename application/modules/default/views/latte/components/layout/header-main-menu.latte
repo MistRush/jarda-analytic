@@ -1,0 +1,85 @@
+<style>
+    a.app-click {
+        display: flex;
+        align-items: stretch;
+        color: rgb(30, 166, 56) !important;
+    }
+
+    @media (max-width: 991px) {
+        a.app-click {
+            display: block;
+        }
+    }
+</style>
+<div class="header-main-menu-container">
+    <div class="menu-container">
+        <div class="main-menu">
+            <div class="standard-menu">
+                <div class="standard-menu-wrapper gradient-border">
+                    <a n:foreach="$menuItems as $menuItem"
+                            href="{$menuItem['Url']}"
+       {if $menuItem['InNewWindow']}target="_blank"{/if}>
+                        <div class="menu-item">
+                            <span>{$menuItem['Name']}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .a-btn{
+        color:white !important;
+    }
+    .a-btn:hover{
+        color: white !important;
+    }
+</style>
+<script>
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    menuItems.forEach(item => {
+        if (item.textContent.includes('GreenBox')) {
+            item.innerHTML = item.innerHTML.replace(/(Green)/, '<span style="color: rgb(30, 166, 56);">$1</span>');
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.standard-menu-wrapper a');
+
+        function setActive() {
+            const currentHash = window.location.hash;
+            const currentPath = window.location.pathname;
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+
+                link.classList.remove('active');
+
+                if (currentHash && href.includes(currentHash)) {
+                    link.classList.add('active');
+                } else if (!currentHash && (href === '/' || href === currentPath)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        setActive();
+
+        window.addEventListener('hashchange', setActive);
+    });
+
+    // function toggleContainerClass() {
+    //     const container = document.querySelector('.container');
+    //     if (window.innerWidth <= 991) {
+    //         container.classList.remove('container');
+    //     } else {
+    //         container.classList.add('container');
+    //     }
+    // }
+    //
+    // window.addEventListener('load', toggleContainerClass);
+    // window.addEventListener('resize', toggleContainerClass);
+</script>

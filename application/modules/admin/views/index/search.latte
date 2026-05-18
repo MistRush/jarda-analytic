@@ -1,0 +1,39 @@
+<div class="row">
+    <div n:if="$products" class="col-lg-3">
+        <h2>Nalezené produkty ({$productsCount})</h2>
+        {foreach $products as $product}
+        <a href="/admin/product/edit-product?entity_ID={$product['ID']}">{$product['productLangs'][0]['Name']}</a><br>
+        {/foreach}<br>
+
+        <b><a href="/admin/product/list?search={$searchString}">Zobrazit v seznamu produktů ({$productsCount})</a></b>
+    </div>
+
+    <div n:if="$categories" class="col-lg-3">
+        <h2>Nalezené kategorie ({$categoriesCount})</h2>
+        {foreach $categories as $category}
+            <a href="/admin/category/edit-category?entity_ID={$category['ID']}">{$category['Name']}</a><br>
+        {/foreach}<br>
+
+        <b><a href="/admin/category/list?search={$searchString}">Zobrazit v seznamu kategorií ({$categoriesCount})</a></b>
+    </div>
+
+    <div n:if="$orders" class="col-lg-3">
+        <h2>Nalezené objednávky ({$ordersCount})</h2>
+        {foreach $orders as $order}
+            <a href="/admin/order/edit-product?entity_ID={$order['ID']}">{$order['OrderNumber']}</a><br>
+        {/foreach}<br>
+
+        <b><a href="/admin/order/list?search={$searchString}">Zobrazit v seznamu objednávek ({$ordersCount})</a></b>
+    </div>
+
+    <div n:if="$customers" class="col-lg-3">
+        <h2>Nalezení zákazníci ({$customersCount})</h2>
+        {foreach $customers as $customer}
+            <a href="/admin/customer/edit-product?entity_ID={$customer['ID']}">{$customer['Name']}</a><br>
+        {/foreach}<br>
+
+        <b><a href="/admin/customer/list?search={$searchString}">Zobrazit v seznamu zákazníků ({$customersCount})</a></b>
+    </div>
+
+    <div n:if="!$products && !$categories && !$orders && !$customers" class="col-lg-12">Nenalezen žádný záznam.</div>
+</div>

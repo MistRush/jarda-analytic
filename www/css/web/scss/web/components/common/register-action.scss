@@ -1,0 +1,56 @@
+.register-action {
+  padding: 120px 0;
+
+    .register-action-holder {
+      background-image: url("/img/front/register-action-bg.webp");
+      padding: 50px;
+      border-radius: 50px;
+      background-position: right center;
+      background-size: cover;
+    }
+
+    .text {
+      font-family: Urbanist;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 16px;
+      leading-trim: NONE;
+      line-height: 26px;
+      letter-spacing: 0px;
+      margin: 20px 0;
+      color: #576583;
+    }
+
+  .img-holder {
+    position: relative;
+
+    .phone {
+      position: absolute;
+      top: -127px;
+      height: 530px;
+      right: -15px;
+    }
+
+    .phone-bg {
+      position: absolute;
+      right: 103px;
+      bottom: -364px;
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .register-action {
+    padding: 30px 0 90px 0;
+    .register-action-holder {
+      background-position: center center;
+      border-radius: 33px;
+    }
+    .img-holder {
+      .phone {
+        display: none;
+      }
+    }
+  }
+
+}

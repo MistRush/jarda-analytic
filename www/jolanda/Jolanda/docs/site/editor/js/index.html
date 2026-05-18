@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>JavaScript API - Jolanda</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "JavaScript API";
+        var mkdocs_page_input_path = "editor/js.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Jolanda
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/install/">Instalace</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy-ide/">Integrace Tracy s IDE</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy/">Instalace Tracy panelů</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PHP</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Grid</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/grid/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/columns/">Sloupce</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Formuláře</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/form/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/inputs/">Formulářové prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/input-options/">Možnosti prvků</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/validation/">Validace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Editor</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../editor/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fields/">Prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">JavaScript API</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#metody">Metody</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#confirmbool-close_panel">confirm(bool close_panel)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isediting">isEditing()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#loaddata">loadData()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eventy">Eventy</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#onafterconfirm">onAfterConfirm()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#onafterload">onAfterLoad()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#onaftershow">onAfterShow()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#onbeforeconfirm">onBeforeConfirm()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#onbeforeload">onBeforeLoad()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#clenove">Členové</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data">data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#editor">editor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#entity_id">entity_id</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data_1">data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#form">form</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hidetabid">hideTab(id)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#showtabid">showTab(id)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isedited">isEdited</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../quickeditor/">QuickEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Status Manager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/usage/">Použití</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/statusmanager/">Třída StatusManager</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/status/">Třída Status</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Import</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/uvod/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/import/">Třída Import</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/importBase/">Třída ImportBase</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">JsLogger</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../jslogger/usage/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">FileManager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../filemanager/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Šablony (Latte)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/common/">Obecné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/filters/">Filtry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/macros/">Makra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/migration/">Migrace 2 -> 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/typehints/">Typehints</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">JavaScript</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/dialog/">Dialog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/panel/">Panel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/cookie/">Cookie</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/alerts/">Alerts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/helpers/">Pomocníci</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Jolanda</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">PHP</li>
+          <li class="breadcrumb-item">Editor</li>
+      <li class="breadcrumb-item active">JavaScript API</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="javascript-api">JavaScript API</h1>
+<h2 id="metody">Metody</h2>
+<h3 id="confirmbool-close_panel">confirm(bool close_panel)</h3>
+<p>Potvrdí a odešle data z editoru. Parametrem určujeme, zda má být aktivní panel zavřen.</p>
+<h3 id="isediting">isEditing()</h3>
+<p>Vrací true pokud je editor v režimu úpravy entity, false pokud se entita vytváří.</p>
+<h3 id="loaddata">loadData()</h3>
+<p>Znovu načte veškeré data do formulářů (reset všech polí na původní hodnoty)</p>
+<h2 id="eventy">Eventy</h2>
+<h3 id="onafterconfirm">onAfterConfirm()</h3>
+<p>Vyvolán po odeslání (uložení) dat z editoru 
+první parametr data
+druhý parametr closePanel (true, pokud se editor zavře, false pokud se pokračuje dál)</p>
+<h3 id="onafterload">onAfterLoad()</h3>
+<p>Vyvolán po načtení dat do editoru</p>
+<h3 id="onaftershow">onAfterShow()</h3>
+<p>Vyvolán po zobrazení editoru.</p>
+<h3 id="onbeforeconfirm">onBeforeConfirm()</h3>
+<p>Vyvolán před odesláním (uložením) dat z editoru</p>
+<h3 id="onbeforeload">onBeforeLoad()</h3>
+<p>Vyvolán před načtením dat do editoru</p>
+<h2 id="clenove">Členové</h2>
+<h3 id="data">data</h3>
+<p>(object) Objekt s načtenými daty z manageru do editoru</p>
+<h3 id="editor">editor</h3>
+<p>(DOM element) Element editoru</p>
+<h3 id="entity_id">entity_id</h3>
+<p>(integer|null) ID právě upravované entity. Null pokud se vytváří</p>
+<h3 id="data_1">data</h3>
+<p>(object) Všechna data Entity načtená do editoru</p>
+<h3 id="form">form</h3>
+<p>(<a href="/form/js">Form</a>) Formulář</p>
+<h3 id="hidetabid">hideTab(id)</h3>
+<h3 id="showtabid">showTab(id)</h3>
+<h3 id="isedited">isEdited</h3>
+<p>Funkce isEdited vrací true/false podle toho jestli byla nějaká hodnota editoru upravena</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../options/" class="btn btn-neutral float-left" title="Možnosti"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../quickeditor/" class="btn btn-neutral float-right" title="QuickEditor">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../options/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../quickeditor/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

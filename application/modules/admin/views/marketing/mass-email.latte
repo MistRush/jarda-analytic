@@ -1,0 +1,9 @@
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+   if(urlParams.has('email-send')){
+       $('form').hide();
+       $('.panel-content').html('<p class="pt-5 pb-2">Hromadný e-mail byl odeslán. Na Váš notifikační e-mail by měla dorazit zpráva, na které e-mailové adresy Váš hromadný e-mail dorazil.</p>')
+       $('.btn.btn-icon').attr("href", "/admin/menu/index?id=marketing");
+   }
+
+</script>

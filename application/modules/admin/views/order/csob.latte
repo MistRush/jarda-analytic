@@ -1,0 +1,8 @@
+{layout "../layout.latte"}
+{block content}
+    <div class="row">
+        <div class="col-md-4">{$orderGrid->render()}</div>
+        <div class="col-md-4">{$csobPaymentGrid->render()}</div>
+        <div class="col-md-4">{$csobPaymentStateGrid->render()}</div>
+    </div>
+{/block}

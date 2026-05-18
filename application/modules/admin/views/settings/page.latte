@@ -1,0 +1,22 @@
+{layout "../layout.latte"}
+{block content}
+    {$pageGrid->render()}
+{/block}
+{block scripts}
+    <script>
+        /**
+         * @namespace { Grid } pageGrid
+         */
+        var pageGrid;
+        var tree;
+
+        $(function () {
+            pageGrid = {$pageGrid|noescape};
+        });
+
+        var previewPage = function (eshopURL, languageCode) {
+            let slugProperty = 'slug' + languageCode;
+            window.open(eshopURL + '/{URL::PAGE|noescape}/' + pageGrid.getCurrentItem()[slugProperty]);
+        }
+    </script>
+{/block}

@@ -1,0 +1,27 @@
+.btn {
+  &.btn-green, &.btn-success {
+    color: #fff;
+    @include button-gradient($color-primary-default-left, $color-primary-default-right);
+
+    &:before {
+      @include button-gradient($color-primary-hover-left, $color-primary-hover-right);
+    }
+
+    &.glowing {
+      box-shadow: 0 10px 25px #32BE004F;
+    }
+  }
+
+  &.btn-primary{
+    color: #fff;
+    @include button-gradient($color-primary-default-left, $color-primary-default-right);
+
+    &:before {
+      @include button-gradient($color-primary-hover-left, $color-primary-hover-right);
+    }
+
+    &.glowing {
+      box-shadow: 0 10px 25px #32BE004F;
+    }
+  }
+}

@@ -1,0 +1,353 @@
+{varType \User_Model_User $user}
+{var $favourites = isset($_COOKIE['favourites']) && is_string($_COOKIE['favourites'])
+? array_map(function($v) { return trim($v, "\""); }, array_filter(explode(',', $_COOKIE['favourites'])))
+: []}
+
+
+
+{block|strip}
+    <!doctype html>
+    <html n:class="$_COOKIE['color-mode']??''">
+    <head>
+        {import "head.latte"}
+        {include head}
+    </head>
+    <style>
+        .favourite-toggle {
+            margin-left: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #ccc;
+            transition: color 0.3s;
+            vertical-align: middle;
+        }
+        .favourite-toggle:hover {
+            color: gold;
+        }
+
+        .menu-item-name {
+            display: inline-flex;
+            align-items: center;
+        }
+        .favourite-toggle.favourited {
+            color: gold;
+        }
+        .section-header {
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 13px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+    </style>
+    <body class="menu-open">
+    {include 'loader.latte'}
+    <div id="toggleMenu">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+    <div class="mobile-header">
+        <div class="logo">
+            <a n:href="index">
+                {ifset logo_path}
+                    <img src="{include logo_path|stripHtml}" alt="{include appTitle|strip}" class="svg logo-img">
+                {elseifset logo_image}
+                    {include logo_image}
+                {else}
+                    {include appTitle|strip}
+                {/ifset}
+            </a>
+        </div>
+    </div>
+    <header>
+        <div class="left">
+            <div class="toggleMenu-space"></div>
+            <div class="logo">
+                <a n:href="index">
+                    {ifset logo_path}
+                        <img src="{include logo_path|stripHtml}" alt="{include appTitle|strip}" class="svg logo-img">
+                    {elseifset logo_image}
+                        {include logo_image}
+                    {else}
+                        {include appTitle|strip}
+                    {/ifset}
+                </a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="dark-mode-switcher" onclick="layout.toggleDarkMode()">
+                <div class="ball"></div>
+            </div>
+            {block headRight}
+            {/block}
+
+            {if $jolandaConfig['alerts']['vueAlerts'] && $jolandaConfig['alerts']['historyBar']}
+                <div>
+                    <div class="" style="color: lightgrey; font-size: 16px; cursor: pointer; padding: 3px; border: 2px solid lightgrey; border-radius: 5px; transition: background-color 0.3s, color 0.3s; margin-right: 6px" onclick="alerts.showHistoryBar(true)" onmouseover="this.style.backgroundColor='lightgrey'; this.style.color='white';" onmouseout="this.style.backgroundColor=''; this.style.color='lightgrey';">
+                        <i class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+            {/if}
+
+            <a n:href="login:logout" class="logout">
+                <i class="ci ci-logout"></i>
+            </a>
+        </div>
+    </header>
+    <nav id="mainMenu">
+        <div class="items">
+            <div class="top">
+                <div class="main-search" n:if="$menuSearchVisible">
+                    <i class="ci ci-search"></i>
+                    <input type="text" id="menuSearch" name="q" autocomplete="off" placeholder="{_("Vyhledávání")}">
+                </div>
+                <div class="item" n:if="$menuHomepageVisible">
+                    <a class="icon" n:href="index">
+                        <i class="ci ci-home"></i>
+                    </a>
+                    <div class="right-part">
+                        <a class="name menu-item-name" n:href="index" data-description="" data-level="1">{_("Homepage")}</a>
+                    </div>
+                </div>
+                {var $menuMap = []}
+                {foreach $menu as $lvl1}
+                    {php $menuMap[(string) $lvl1->getId()] = $lvl1}
+                    {foreach $lvl1->getChildren(true) as $lvl2}
+                        {php $menuMap[(string) $lvl2->getId()] = $lvl2}
+                        {foreach $lvl2->getChildren(true) as $lvl3}
+                            {php $menuMap[(string) $lvl3->getId()] = $lvl3}
+                        {/foreach}
+                    {/foreach}
+                {/foreach}
+                {var $favouriteItems = []}
+                {foreach $favourites as $favId}
+                    {ifset $menuMap[$favId]}
+                        {php $favouriteItems[] = $menuMap[$favId]}
+                    {/ifset}
+                {/foreach}
+                <div class="item">
+                    <a class="icon">
+                        <i class="ci ci-star"></i>
+                    </a>
+                    <div class="right-part">
+                        <a class="name menu-item-name" href="javascript:void(0);" data-description="" data-level="1">
+                            {jlang "FAVOURITES"}
+                        </a>
+                        <span class="expander collapsed" data-toggle="collapse" data-target="#menuFavourites"
+                              aria-expanded="false">
+                            <span class="plus ci ci-angle-down"></span>
+                        </span>
+                        <div class="first-submenu collapse" id="menuFavourites">
+                            {if count($favouriteItems)}
+                                {foreach $favouriteItems as $item}
+                                    <div class="subitem">
+                                        <a class="menu-item-name" href="{$basePath}/{$item->getUrl()}"
+                                           data-description="{$item->getDescription()}">
+                                            {$item->getName()}
+                                            <i class="ci ci-star favourite-toggle favourited"
+                                               data-id="{$item->getId()}"
+                                               onclick="toggleFavourite('{$item->getId()}')"
+                                               title={_'Odebrat do oblíbených'}></i>
+                                        </a>
+                                    </div>
+                                    {if $item->getBadge() != null}
+                                        <div class="badge">{$item->getBadge()}</div>
+                                    {/if}
+                                {/foreach}
+                            {else}
+                                <div class="item disabled">
+                                    <div class="right-part" style="padding: 6px 12px; color: #999; font-style: italic;">
+                                        {jlang "FAVOURITES_TO_REMOVE"}
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                {foreach $menu as $item}
+                    {if $item->isVisible()}
+                        <div class="item {if (isset($path[0]) && $item->getId() == $path[0]->getId()) or (isset($menuitem) && $menuitem->getId() == $item->getId())}active{/if}">
+                            <a class="icon" href="{$basePath}/{$item->getUrl()}">
+                                <i class="ci ci-{$item->getIcon()}"></i>
+                            </a>
+                            <div class="right-part">
+                                <a class="name menu-item-name" href="{$basePath}/{$item->getUrl()}"
+                                   data-description="{$item->getDescription()}" data-level="1">{$item->getName()}</a>
+                                {if $item->getBadge() != null}
+                                    <div class="badge">{$item->getBadge()}</div>
+                                {/if}
+                                {if !empty($item->getChildren(true))}
+                                    {var $id = rand(1000,9999)}
+                                    <span class="expander collapsed" data-toggle="collapse" data-target="#menu{$id}"
+                                          aria-expanded="false"> <span class="plus ci ci-angle-down"></span></span>
+                                    <div class="first-submenu collapse" id="menu{$id}">
+                                        {foreach $item->getChildren(true) as $second}
+                                            <div class="subitem {if (isset($path[1]) && $second->getId() == $path[1]->getId()) or (isset($menuitem) && $menuitem->getId() == $second->getId())}active{/if}">
+                                                <a href="{$basePath}/{$second->getUrl()}" class="menu-item-name"
+                                                   data-description="{$second->getDescription()}"
+                                                   data-level="2">{$second->getName()}</a>
+                                                {var $isFavourite = in_array($second->getId(), $favourites)}
+                                                <i class="ci ci-star favourite-toggle{if $isFavourite} favourited{/if}"
+                                                   data-id="{$second->getId()}"
+                                                   onclick="toggleFavourite('{$second->getId()}')"
+                                                   title="{if $isFavourite}{_'Odebrat z oblíbených'}{else}{_'Přidat do oblíbených'}{/if}"></i>
+                                                {if !empty($second->getChildren(true))}
+                                                    {var $id = rand(1000,9999)}
+                                                    <span class="expander collapsed" data-toggle="collapse"
+                                                          data-target="#menu{$id}" aria-expanded="false"> <span
+                                                                class="plus ci ci-angle-down"></span></span>
+                                                    <div class="second-submenu collapse" id="menu{$id}">
+                                                        {foreach $second->getChildren(true) as $third}
+                                                            <div class="subsubitem {if (isset($path[2]) && $third->getId() == $path[2]->getId()) or (isset($menuitem) && $menuitem->getId() == $third->getId())}active{/if}">
+                                                                <a href="{$basePath}/{$third->getUrl()}"
+                                                                   class="menu-item-name"
+                                                                   data-description="{$third->getDescription()}"
+                                                                   data-level="3">{$third->getName()}</a>
+                                                                {var $isFavourite = in_array($third->getId(), $favourites)}
+                                                                <i class="ci ci-star favourite-toggle{if $isFavourite} favourited{/if}"
+                                                                   data-id="{$third->getId()}"
+                                                                   onclick="toggleFavourite('{$third->getId()}')"
+                                                                   title="{if $isFavourite}{_'Odebrat z oblíbených'}{else}{_'Přidat do oblíbených'}{/if}"></i>
+                                                            </div>
+                                                        {/foreach}
+                                                    </div>
+                                                {/if}
+                                            </div>
+                                        {/foreach}
+                                    </div>
+                                {/if}
+                            </div>
+                        </div>
+                    {/if}
+                {/foreach}
+            </div>
+            <div class="bottom">
+                {block menuBottom}
+                {/block}
+            </div>
+            {if !empty($git_version['hash'])}
+                <div id="jolanda_git_version">
+                    <a tabindex="0" data-boundary="window" data-toggle="bspopover" data-trigger="focus" data-placement="top" title="{$git_version['date']}" data-content="<b>Branch:</b><br> {$git_version['branch']}<br><br><b>HASH:</b><br>{$git_version['hash']}">
+                        <div id="jolanda_version_date">JOLANDA ver.: {$git_version['date']}</div>
+                        <div id="jolanda_version_hash">{$git_version['hash']}{if $git_version['branch'] !== 'master'} [{$git_version['branch']}]{/if}</div>
+                    </a>
+                </div>
+            {/if}
+        </div>
+    </nav>
+    <main>
+        <div class="breadcrumb d-flex align-items-center">
+            <div class="breadcrumb-items d-flex flex-grow-1"></div>
+            <div class="breadcrumb-right-side">
+                {block breadcrumbRightSide}
+                {/block}
+            </div>
+        </div>
+        <div id="content">
+            <div id="main">
+                {block content}
+                {/block}
+            </div>
+        </div>
+    </main>
+
+    {if $jolandaConfig['alerts']['vueAlerts']}
+        <div id="__alert-manager" class="tailwind"></div>
+    {/if}
+
+    <div id="vue_teleport" class="tailwind">
+    </div>
+
+    {if !isset($__auth) || (isset($__auth) && !$__auth)}
+    {import 'bottom.latte'}
+        {include bottom}
+    {/if}
+    <script>
+        plugins.tiniMceCustomParams = {ifset $tiniMceCustomParams}{$tiniMceCustomParams}{else}{ }{/ifset};
+        let favourites = document.cookie
+                        .split('; ')
+                        .find(row => row.startsWith('favourites='))
+                        ?.split('=')[1]
+                        ?.split(',')
+                        .map(x => decodeURIComponent(x).replace(/^"(.*)"$/, '$1'))
+                ?? [];
+        $(function () {
+            setTimeout(plugins.initPlugins());
+            const cookieMatch = document.cookie.match(/(?:^|; )favourites=([^;]*)/);
+            const cookieFavourites = cookieMatch
+                    ? decodeURIComponent(cookieMatch[1]).split(',').map(id => id.replace(/^"(.*)"$/, '$1'))
+                    : [];
+        })
+
+        {ifset $OAuths}
+            {foreach $OAuths as $OAuth => $data}
+                {ifset $data['loginLocalUrl']}
+                    new AuthWindow({$OAuth}, {$basePath . $data['loginLocalUrl']});
+                {/ifset}
+            {/foreach}
+        {/ifset}
+
+        var DISABLE_GRID_SETTINGS = true;
+        let breadcrumb = new Breadcrumb([
+            {foreach $path as $item}
+            {
+                'url': {$basePath}+'/' +{$item->getURL()},
+                'type': 'page',
+                'name': {$item->getName()}
+            },
+            {/foreach}
+        ], basePath + '/default/homepage', '{include appTitle|strip|noescape}');
+
+
+
+        function toggleFavourite(id) {
+            const cookieMatch = document.cookie.match(/(?:^|; )favourites=([^;]*)/);
+            let currentFavourites = cookieMatch
+                    ? decodeURIComponent(cookieMatch[1]).split(',').filter(Boolean)
+                    : [];
+
+            const index = currentFavourites.indexOf(id);
+            if (index !== -1) {
+                currentFavourites.splice(index, 1); // remove
+            } else {
+                currentFavourites.push(id); // add
+            }
+
+            // Deduplicate
+            currentFavourites = [...new Set(currentFavourites)];
+
+            // Save updated cookie
+            const date = new Date();
+            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+            document.cookie = "favourites=" + encodeURIComponent(currentFavourites.join(",")) + "; path=/; expires=" + date.toUTCString();
+
+            favourites = currentFavourites; // update global
+            updateFavouriteIcons();
+        }
+
+
+        function updateFavouriteIcons() {
+            document.querySelectorAll(".favourite-toggle").forEach(el => {
+                const id = el.dataset.id;
+
+                if (favourites.includes(id)) {
+                    el.classList.add("favourited");
+                    el.title = "Remove from favourites";
+                } else {
+                    el.classList.remove("favourited");
+                    el.title = "Add to favourites";
+                }
+            });
+            window.location.reload();
+        }
+
+    </script>
+    {block layoutScripts}
+    {/block}
+    {block scripts}
+    {/block}
+    </body>
+    </html>
+{/block}

@@ -1,0 +1,59 @@
+{define component}
+    <li>
+        <strong style="color: green">{$component['name'] ?? null}</strong>
+
+        <ul>
+            {if !empty($component['attrs'])}
+                <li>
+                    <strong>Atributy:</strong>
+                    <ul>
+                        {foreach $component['attrs'] as $key => $value}
+                            <li>{$key}: {if is_array($value)}{json_encode($value)}{else}{$value}{/if}</li>
+                        {/foreach}
+                    </ul>
+                </li>
+            {/if}
+
+            {if !empty($component['props'])}
+                <li>
+                    <strong>Propy:</strong>
+                    <ul>
+                        {foreach $component['props'] as $key => $value}
+                            <li>{$key}: {if is_array($value)}{json_encode($value)}{else}{$value}{/if}</li>
+                        {/foreach}
+                    </ul>
+                </li>
+            {/if}
+        </ul>
+    </li>
+
+    {if !empty($component['parentComponent'])}
+        {include component, component => $component['parentComponent']}
+    {/if}
+{/define}
+
+<h1>Na stránce se vyskytla Vue chyba</h1>
+<strong>Popis chyby:</strong>
+<p style="color: red;">{$error['message'] ?? 'Unknown error'}</p>
+<strong>Systémové údaje:</strong>
+<p>
+    Datum: {date('j. n. Y H:i:s')}<br>
+    Host: {$error['host'] ?? null}<br>
+    Cesta: {$error['path'] ?? null}<br>
+    User: {$user}<br>
+</p>
+{if !empty($error['component'])}
+    <strong>Strom komponent:</strong>
+    <ol>
+        {include component, component => $error['component']}
+    </ol>
+{/if}
+{if !empty($error['ajax'])}
+    <strong>Axios požadavek:</strong>
+    <ul>
+        <li>URL: {$error['ajax']['url'] ?? null}</li>
+        <li>Metoda: {$error['ajax']['method'] ?? null}</li>
+        <li>Status: {$error['ajax']['status'] ?? null}</li>
+        <li>Odpověď: {json_encode($error['ajax']['response'] ?? [], JSON_PRETTY_PRINT)|noescape}</li>
+    </ul>
+{/if}

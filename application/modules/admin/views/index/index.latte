@@ -1,0 +1,239 @@
+{layout "../layout.latte"}
+{block content}
+<div id="homepage">
+    <div class="main-content">
+        <div class="row">
+            {include "homepage/search.latte"}
+        </div>
+        <div class="row">
+            {include "homepage/activity.latte"}
+{*            {include "homepage/orders.latte"}*}
+        </div>
+        <div class="row">
+            {include "homepage/orders-chart.latte"}
+            <div class="col-xl-3" id="otherInfo" data-icon="ci ci-newspaper">
+                {include "homepage/active-orders.latte"}
+                {include "homepage/help-contact.latte"}
+            </div>
+        </div>
+        <div class="row">
+            {include "homepage/evidsoft.latte"}
+        </div>
+    </div>
+    <div id="navigation">
+        <ul class="wrapper">
+            <li><a class="search" href="#" data-id="search">Search</a></li>
+        </ul>
+    </div>
+</div>
+{/block}
+
+{block scripts}
+    <script>
+        /* CORE */
+        $(function () {
+            evidsoft.modules.homepage.init();
+
+            /* NAVIGATION */
+            $('#navigation li a').click(function (e) {
+                layout.scrollTo(e, 300, function () {
+                    $e = $('#' + $(e.target).data('id') + ' .panel');
+                    $e.addClass('hover');
+                    setTimeout(function (){
+                        $e.removeClass('hover');
+                    }, 300);
+                });
+            });
+        });
+
+        var customTooltips = function(tooltip) {
+            // Tooltip Element
+            var tooltipEl = document.getElementById('chartjs-tooltip');
+
+            if (!tooltipEl) {
+                tooltipEl = document.createElement('div');
+                tooltipEl.id = 'chartjs-tooltip';
+                tooltipEl.innerHTML = '<table style="color: #ffffff"></table>';
+                document.body.appendChild(tooltipEl);
+            }
+
+            // Hide if no tooltip
+            if (tooltip.opacity === 0) {
+                tooltipEl.style.opacity = 0;
+                return;
+            }
+
+            // Set caret Position
+            tooltipEl.classList.remove('above', 'below', 'no-transform');
+            if (tooltip.yAlign) {
+                tooltipEl.classList.add(tooltip.yAlign);
+            } else {
+                tooltipEl.classList.add('no-transform');
+            }
+
+            function getBody(bodyItem) {
+                return bodyItem.lines;
+            }
+
+            // Set Text
+            if (tooltip.body) {
+                var titleLines = tooltip.title || [];
+                var bodyLines = tooltip.body.map(getBody);
+
+                var innerHtml = '<thead>';
+
+                titleLines.forEach(function(title) {
+                    innerHtml += '<tr><th>' + title + '</th></tr>';
+                });
+                innerHtml += '</thead><tbody>';
+
+                bodyLines.forEach(function(body, i) {
+                    var colors = tooltip.labelColors[i];
+                    var style = 'background:' + colors.backgroundColor;
+                    style += '; border-color:' + colors.borderColor;
+                    style += '; border-width: 2px';
+                    var span = '<span class="chartjs-tooltip-key" style="' + style + '"></span>';
+                    innerHtml += '<tr><td>' + span + body + '</td></tr>';
+                });
+                innerHtml += '</tbody>';
+
+                var tableRoot = tooltipEl.querySelector('table');
+                tableRoot.innerHTML = innerHtml;
+            }
+
+            var position = this._chart.canvas.getBoundingClientRect();
+
+            // Display, position, and set styles for font
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.position = 'absolute';
+            tooltipEl.style.left = position.left + window.pageXOffset + tooltip.caretX + 'px';
+            tooltipEl.style.top = position.top + position.height + window.pageYOffset + 'px';
+            tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+            tooltipEl.style.pointerEvents = 'none';
+        };
+
+        function createOrdersChart() {
+            var ctx = document.getElementById('orders-chart');
+            //ctx.height = 150;
+            ctx = ctx.getContext('2d');
+
+            var gradientBlue = ctx.createLinearGradient(0, 0, 0, $('#orders-chart').parent().height());
+            gradientBlue.addColorStop(0, "rgba(84,216,255,0.7)");
+            gradientBlue.addColorStop(1, "rgba(84,216,255,0)");
+
+            var gradientRed = ctx.createLinearGradient(0, 0, 0, $('#orders-chart').parent().height());
+            gradientRed.addColorStop(0, "rgb(255,232,84)");
+            gradientRed.addColorStop(1, "rgba(255,232,84,0)");
+
+            window.ordersChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {json_encode(array_keys($ordersChart))|noescape},
+                    datasets: [{
+                        label: 'Objednávky',
+                        backgroundColor: gradientBlue,
+                        yAxisID: 'A',
+                        data: {json_encode(array_column($ordersChart, 'TotalPrice'))|noescape},
+                        fill: true,
+                        borderColor: '#54D8FF',
+                        borderWidth: 2
+                    },{
+                        label: 'Počet objednávek',
+                        backgroundColor: gradientRed,
+                        yAxisID: 'B',
+
+                        data: {json_encode(array_column($ordersChart, 'TotalCount'))|noescape},
+                        fill: true,
+                        borderColor: '#FFE854',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    hover: {
+                        mode: 'nearest',
+                        intersect:false
+                    },
+                    tooltips: {
+                        enabled: false,
+                        mode: 'index',
+                        intersect: false,
+                        position: 'nearest',
+                        callbacks: {
+                            label: (item, data) => {
+                                return data.datasets[item.datasetIndex].label + ': ' + Helpers.formatPrice(item.yLabel) + ((item.datasetIndex == 0) ? ' Kč' : '');
+                            }
+                        },
+                        custom: customTooltips
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: 'Měsíc'
+                            }
+                        }],
+                        yAxes: [{
+                            id: 'A',
+                            label: 'Celková cena',
+                            type: 'linear',
+                            position: 'left',
+                            scalePositionLeft: true,
+                            ticks: {
+                                min: 0,
+                                beginAtZero: true,
+                                callback: function (value, index, values) {
+                                    return Helpers.formatPrice(value);
+                                }
+                            }
+                        },{
+                            id: 'B',
+                            label: 'Celkem objednávek',
+                            type: 'linear',
+                            position: 'right',
+                            scalePositionLeft: true,
+                            ticks: {
+                                min: 0,
+                                stepSize: 5,
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        $(function () {
+            try {
+                createOrdersChart();
+            } catch(ex) {
+            }
+
+            $('#ordersChartRange').on('change', function () {
+                $.ajax({
+                    url: basePath + '/admin/index/get-chart-data',
+                    data: {
+                        type: $(this).children("option:selected").val(),
+                        back: $(this).children("option:selected").data('back'),
+                        chart: 'orders'
+                    },
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        ordersChart.data.labels = Object.keys(data);
+                        var TotalPrice = [];
+                        var TotalCount = [];
+                        for (var i in data){
+                            TotalPrice.push(data[i]['TotalPrice']);
+                            TotalCount.push(data[i]['TotalCount']);
+                        }
+                        ordersChart.data.datasets[0].data = TotalPrice;
+                        ordersChart.data.datasets[1].data = TotalCount;
+                        ordersChart.update();
+                    }
+                })
+            });
+        })
+    </script>
+{/block}

@@ -1,0 +1,101 @@
+<div class="order-recapitulation">
+    <div class="headline">{_('Shrnutí objednávky')}</div>
+    <div class="products">
+        {foreach $productItems as $productItem}
+            {var $imageUrl = isset($productItem['product']['productImages'][0]) ? fu($productItem['product']['productImages'][0], 'product/50') : '/img/no_image.svg'}
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <div class="info">
+                        <div class="image"><img src="{$imageUrl}" alt="{$productItem['ProductName']|cleanEntities}"></div>
+                        <div class="name">
+                            {$productItem['Quantity']} x
+                            <a href="/{URL::PRODUCT}/{$productItem['slug']}">{$productItem['ProductName']|cleanEntities}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="price">{price($productItem['PriceWithVat'] * $productItem['Quantity'], $currency['Label'])}</div>
+                </div>
+            </div>
+        {/foreach}
+    </div>
+
+    <div n:if="$coupon && $coupon->ID" class="recap-row">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                {$coupon->Quantity}x
+                {$coupon->getName()}
+            </div>
+            <div class="col-lg-4">
+                <div class="product-price text-end">{$coupon->getDiscount()}</div>
+            </div>
+        </div>
+    </div>
+
+    <div n:if="$shippingName" class="shipping">
+        <div class="headline">{_('Doprava')}</div>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <div class="info">
+                    <div class="image" n:if="$shippingImage"><img id="recap-shipping-image" src="{$shippingImage}" alt="{$shippingName}"></div>
+                    <div id="recap-shipping-name" class="name">{$shippingName}</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div id="recap-shipping-price" class="price">{$shippingPriceWithVat ? price($shippingPriceWithVat, $currency['Label']) : 'Zdarma'}</div>
+            </div>
+        </div>
+    </div>
+
+    <div n:if="$paymentName" class="payment">
+        <div class="headline">{_('Platba')}</div>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <div class="info">
+                    <div class="image" n:if="$paymentImage" ><img id="recap-payment-image" src="{$paymentImage}" alt="{$paymentName}"></div>
+                    <div id="recap-payment-name" class="name">{$paymentName}</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div id="recap-payment-price" class="price">{$paymentPriceWithVat ? price($paymentPriceWithVat, $currency['Label']) : 'Zdarma'}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="total">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <span class="total-price-label">{_('Cena celkem')}:</span>
+            </div>
+            <div class="col-6 text-end">
+                <span class="total-price-with-vat"
+                      data-total-produts-price-without-vat="{$productsPriceWithoutVat}"
+                      data-total-produts-price-with-vat="{$productsPriceWithVat}">
+                    {price($totalPriceWithVat, $currency['Label'])}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {if $step === 2 }
+        <div class="terms mb-4">
+            <label class="with-checkbox">
+                <input type="checkbox" name="terms" id="terms">
+                <span class="checkmark"></span>Souhlasím s <a href="/page/vseobecne-obchodni-podminky" target="_blank">{_('obchodními podmínkami')}</a> a beru na vědomí podmínky zpracování osobních údajů, které jsou tam uvedeny.
+            </label>
+        </div>
+    {/if}
+
+    <div class="d-flex justify-content-between">
+        {if $step === 1 }
+            <a href="/cart" class="btn btn-transparent">&larr; {_('Zpět')}</a>
+            <button type="submit" class="btn btn-primary continue-shopping">{_('Pokračovat')} &#8594</button>
+        {/if}
+
+        {if $step === 2 }
+            <a href="/order/step-1" class="btn btn-transparent">&larr; {_('Zpět')}</a>
+            <button class="btn btn-primary complete-order">{_('Potvrdit nákup')} &#8594</button>
+        {/if}
+        <a href="/" n:if="$step === 3" class="btn btn-transparent">&larr; {_('Zpět na hlavní stránku')}</a>
+    </div>
+</div>

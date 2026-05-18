@@ -1,0 +1,93 @@
+#my-account {
+  .address-list {
+    margin-top: 30px;
+
+    .addresses-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .address-heading {
+      font-size: 16px;
+      color: black;
+      font-weight: 600;
+      text-align: center;
+      padding: 5px 0;
+      background: #ebf1fb;
+      border-radius: 8px;
+    }
+
+    .address-content {
+      padding: 1rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      font-size: 16px;
+      color: #1B1C29;
+
+      .value-name {
+        font-weight: 500;
+        width: 58px;
+      }
+      .value {
+        font-weight: normal;
+      }
+      .basic-info {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+
+    .address-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .create-address-item {
+      cursor: pointer;
+      border: 2px dashed #CEDBF0;
+      border-radius: 12px;
+      min-height: 190px;
+      max-height: 279px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border 0.3s;
+      &:hover {
+        border: 2px dashed #FF1717;
+      }
+
+      .address-content {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1B1C29;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        &::before {
+          content: url('/img/front/icons/plus-white.svg');
+          display: flex;
+          align-items: center;
+          background: red;
+          padding: 5px 5px 0px;
+          border-radius: 100%;
+        }
+      }
+    }
+
+
+    .item {
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid $border-primary-item;
+      @include animation();
+
+      &:hover {
+        border: 1px solid $border-primary-item-hover;
+      }
+    }
+  }
+}

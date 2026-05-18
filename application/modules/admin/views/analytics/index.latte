@@ -1,0 +1,37 @@
+{layout $layout_path}
+
+{block appTitle}
+    JARDA Analytics
+{/block}
+
+{block content}
+{*
+    Varianta A: PHP injektuje všechna data přímo do stránky.
+    Vue je přečte z window.__DATA__ – žádný AJAX, žádná závislost na CDN.
+    Vue + Chart.js jsou servovány lokálně z /public/admin/js/vendor/.
+*}
+
+{* PHP data → JS objekt (json_encode zajistí správné escapování) *}
+<script>
+window.__DATA__ = {$analyticsJson|noescape};
+</script>
+
+{* Mount bod Vue aplikace *}
+<div id="analytics-app"></div>
+
+<style>
+    .analytics-dashboard .x-small    { font-size: 0.7rem; letter-spacing: 0.05rem; }
+    .analytics-dashboard .card       { transition: transform 0.2s, box-shadow 0.2s; border-radius: 12px; }
+    .analytics-dashboard .card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; }
+    .analytics-dashboard .btn-primary       { background: #24c586; border-color: #24c586; border-radius: 8px; }
+    .analytics-dashboard .btn-primary:hover { background: #1eb077; border-color: #1eb077; }
+    .analytics-dashboard table td    { vertical-align: middle; }
+    .analytics-dashboard code        { background: #f8f9fa; padding: 2px 4px; border-radius: 4px; color: #e83e8c; white-space: nowrap; }
+    #analytics-app [v-cloak]         { display: none; }
+</style>
+
+{* Lokálně stažené knihovny Vue + Chart.js (bez CDN, z www/assets/analytics/) *}
+<script src="/assets/analytics/vue.global.prod.js"></script>
+<script src="/assets/analytics/chart.min.js"></script>
+<script src="/assets/analytics/analytics-app.js"></script>
+{/block}

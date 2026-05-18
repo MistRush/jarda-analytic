@@ -1,0 +1,114 @@
+.access {
+  padding-top: 120px;
+  .access-holder {
+    background-image: url("/img/front/access-bg.webp");
+    padding: 50px;
+    border-radius: 50px;
+    background-position: right center;
+    background-size: cover;
+
+    .items-holder {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+
+      .item-holder {
+        position: relative;
+        display: inline-block;
+        padding: 3px;
+        width: 32%;
+
+        &:before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          padding: 2px;
+          background: linear-gradient(135deg, transparent, white, transparent, white);
+          -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          z-index: 1;
+          border-radius: 15px;
+        }
+
+        .item {
+          position: relative;
+          z-index: 2;
+          padding: 15px 30px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-direction: column;
+          min-height: 320px;
+          justify-content: center;
+
+          img {
+            width: 80px;
+            height: 80px;
+          }
+
+          .text-holder {
+            text-align: center;
+
+            .title {
+              font-family: Playfair Display;
+              font-weight: 600;
+              font-style: SemiBold;
+              font-size: 24px;
+              leading-trim: NONE;
+              line-height: 32px;
+              letter-spacing: 0px;
+              text-align: center;
+              color: #013B53;
+              margin-bottom: 15px;
+            }
+
+            .text {
+              font-family: Urbanist;
+              font-weight: 400;
+              font-style: Regular;
+              font-size: 16px;
+              leading-trim: NONE;
+              line-height: 26px;
+              letter-spacing: 0px;
+              text-align: center;
+              color: #576583;
+
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .access {
+    .access-holder {
+      border-radius: 33px;
+      h2 {
+        margin-left: 20px;
+        margin-top: 15px;
+      }
+      padding: 25px;
+      .items-holder {
+        flex-direction: column;
+        gap: 15px;
+
+        .item-holder {
+          width: 100%;
+
+        }
+
+      }
+    }
+  }
+
+}

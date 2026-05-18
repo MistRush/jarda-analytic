@@ -1,0 +1,36 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="my-account">
+        <div class="row align-items-center mb-4">
+            <div class="col-12">
+                <h1>{_('Převedení účtu z původního hadex e-shopu na nový')}</h1>
+            </div>
+            <div class="col-12 text-right">
+
+            </div>
+        </div>
+
+        <div class="layout">
+            <div class="container">
+            <h3>Vítejte v novém systému!</h3> <br>
+                Z důvodu přechodu na <strong>nový e‑shop</strong> je potřeba, abyste si zkontrolovali a případně
+                doplnili své osobní údaje.</h3>
+            <p> ➡️ <strong>Nově je nutné používat e‑mail jako přihlašovací jméno.</strong> <br>
+                Pokud jste se dříve přihlašovali pod přezdívkou nebo jiným uživatelským jménem, prosíme, doplňte si
+                svůj e‑mail do profilu. Vaše údaje jsme předvyplnili, ale prosíme o jejich kontrolu a případnou
+                úpravu.</p>
+                <p> <strong>Prosíme Vás taktéž o aktualizaci hesla (můžete nechat stejné jako u původního e-shopu).</strong>
+            <br>
+            Po uložení budou vaše údaje připraveny pro pohodlné používání nového e‑shopu.</p>
+            Děkujeme za spolupráci! <br><br>
+            Tým Hadex</p>
+{*            {include 'my-account/navigation.latte'}*}
+{*            {include 'my-account/content.latte'}*}
+            <hr>
+            </div>
+
+            {include 'old-account/old-user-details.latte'}
+
+        </div>
+    </div>
+{/block}

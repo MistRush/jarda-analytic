@@ -1,0 +1,32 @@
+{if empty($vue)}
+    <form  id="{$editor->getId()}" {if isset($editor->dataSaveType) && $editor->dataSaveType && $editor->dataSaveType === 'local'}data-local-tmp-id="{$editor->local_tmp_id}"
+        data-for-grid="{$editor->forGrid}"
+        data-data-save-type="{$editor->dataSaveType}"{/if}
+        data-datalist-url="{$editor->getDatalistUrl()}"
+        data-datacreate-url="{$editor->getDatacreateUrl()}"
+        data-dataupdate-url="{$editor->getDataupdateUrl()}"
+        data-custom-data="{$editor->getCustomDataJson()}"
+    >
+        {$form|noescape}
+    </form>
+    <button class="btn btn-success float-right" onclick="window[{$editor->getId()}].confirm()">
+        {jlang 'SAVE_CLOSE'}
+    </button>
+
+    <script>
+        var {$editor->getId()|noescape};
+        $(function () {
+            {$editor->getId()|noescape} = new QuickEditor({$editor->getId()}, {$editor->getEntityId()});
+            {$editor->getId()|noescape}.setSendOnEnter({$editor->getSendOnEnter()});
+            {$editor->getId()|noescape}.setDialog({$editor->getDialog()});
+            {if empty($editor->getEntityId()) && isset($editor->create_default_values)}
+                {$editor->getId()|noescape}.setCreateDefaultValues({$editor->create_default_values});
+            {/if}
+            plugins.initPlugins();
+        });
+    </script>
+
+    {$custom_code|noescape}
+{else}
+    <QuickEditorVue json={$editor->toJson()}></QuickEditorVue>
+{/if}

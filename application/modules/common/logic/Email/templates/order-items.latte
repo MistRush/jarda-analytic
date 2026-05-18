@@ -1,0 +1,37 @@
+{var $langID = $orderState->order->eshop->Language_ID}
+{var $currencyLabel = $orderState->order->currency->Label}
+
+<br><div style="font-size: 16px"><b>Souhrn objednávky</b></div>
+<table border="0" cellpadding="2" cellspacing="2" style="font-size: 14px; width: 100%">
+    <tr>
+        <td style="border-bottom: 1px solid #ddd; font-size: 14px;"><b>Název produktu</b></td>
+        <td style="border-bottom: 1px solid #ddd; font-size: 14px; width: 75px; text-align: right"><b>Cena za kus</b></td>
+        <td style="border-bottom: 1px solid #ddd; font-size: 14px; width: 75px; text-align: center"><b>Množství</b></td>
+        <td style="border-bottom: 1px solid #ddd; font-size: 14px; width: 75px; text-align: right"><b>Cena celkem</b></td>
+    </tr>
+    <tr n:foreach="$orderState->order->orderItems as $orderItem">
+        <td style="font-size: 14px;">
+            <a href="{$eshop->settings->ProjectShortURL}/{URL::PRODUCT}/{$orderItem->product->getLang($langID)->slug}" style="color: #E82121">{$orderItem->product->getLang($langID)->Name}</a>
+        </td>
+        <td style="font-size: 14px; text-align: right">{price($orderItem->PriceWithoutVat, $currencyLabel)}</td>
+        <td style="font-size: 14px; text-align: center">{$orderItem->Quantity}</td>
+        <td style="font-size: 14px; text-align: right">{price($orderItem->PriceWithoutVat * $orderItem->Quantity, $currencyLabel)}</td>
+    </tr>
+
+    <tr>
+        <td style="font-size: 14px;">{_('Doprava')}: {$orderState->order->shipping->Name}</td>F7925A
+        <td style="font-size: 14px; text-align: right;">{price($orderState->order->PriceShippingWithoutVat, $currencyLabel)}</td>
+        <td style="font-size: 14px; text-align: right;"></td>
+        <td style="font-size: 14px; text-align: right;">{price($orderState->order->PriceShippingWithVat, $currencyLabel)}</td>
+    </tr>
+    <tr>
+        <td style="font-size: 14px;">{_('Platba')}: {$orderState->order->payment->Name}</td>
+        <td style="font-size: 14px; text-align: right">{price($orderState->order->PricePaymentWithoutVat, $currencyLabel)}</td>
+        <td style="font-size: 14px; text-align: right"></td>
+        <td style="font-size: 14px; text-align: right">{price($orderState->order->PricePaymentWithVat, $currencyLabel)}</td>
+    </tr>
+    <tr>
+        <td style="border-top: 1px solid #ddd; font-size: 14px;" colspan="3"><b>Cena celkem</b></td>
+        <td style="border-top: 1px solid #ddd; font-size: 14px; text-align: right"><b>{price($orderState->order->PriceTotalWithVat, $currencyLabel)}</b></td>
+    </tr>
+</table><br>

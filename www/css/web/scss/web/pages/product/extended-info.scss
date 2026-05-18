@@ -1,0 +1,36 @@
+#product {
+    .extended-info-container {
+        padding: 10px 0;
+
+        .params-block {
+            .item {
+                font-size: 14px;
+                font-weight: 400;
+                padding: 7px 9px;
+                border-radius: 4px;
+                color: $font-primary-darklight;
+
+                &:nth-child(even) {
+                    background: $background-primary-light;
+                }
+
+                .value {
+                    font-weight: 500;
+                    color: $font-primary-dark;
+                }
+            }
+        }
+
+        .documments-block {
+            .item {
+                background: $background-primary-light url('/img/front/icons/pages/product/document.svg') left 10px center no-repeat;
+                border: 1px solid $border-primary-light;
+                border-radius: 8px;
+                display: block;
+                margin-bottom: 12px;
+                font-weight: 500;
+                padding: 15px 20px 15px 50px;
+            }
+        }
+    }
+}

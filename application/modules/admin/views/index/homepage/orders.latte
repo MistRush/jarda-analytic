@@ -1,0 +1,42 @@
+<div class="col-xl-8" id="orders" data-icon="ci ci-adjust">
+    <div class="panel">
+        <div class="show-all" style="float:right;">
+            {*<a href="{$basePath}/admin/customer/cart">Vytvořit novou objednávku<i class="fas fa-caret-right"></i></a>&nbsp;&nbsp;&nbsp;*}
+            <a href="{$basePath}/admin/order/list">Zobrazit vše<i class="fas fa-caret-right"></i></a>
+        </div>
+        <div class="title">Poslední objednávky</div>
+        <div class="wrapper">
+            {if count($orders) > 0}
+                <table class="orders">
+                    <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Eshop</th>
+                        <th>Produktů</th>
+                        <th>Stav</th>
+                        <th>Cena</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr n:foreach="$orders as $order" n:class="($order->orderStateType->ID == 4)?'finished'">
+                        <td>{$order->Date|date:'j.n.Y'}</td>
+                        <td>{$order->eshop->Name}</td>
+                        <td>{count($order->orderItems)}</td>
+                        <td>{$order->orderStateType->getLang($lang_id)->Name}</td>
+                        <td><span class="price">{price($order->PriceTotalWithVat, $order->currency->Label)}</span></td>
+                        <td>
+                            <a href="javascript:window.open(basePath + '/files/orders/{$order->Folder}/{$order->OrderNumber}.pdf');"><i class="ci ci-file-pdf"></i></a>
+                            <a href="{$basePath}/admin/order/edit-order?entity_ID={$order->ID}"><i class="ci ci-search"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            {else}
+                <div class="nothing">
+                    <p>Žádné objednávky.</p>
+                </div>
+            {/if}
+        </div>
+    </div>
+</div>

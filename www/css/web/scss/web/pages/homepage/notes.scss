@@ -1,0 +1,83 @@
+.notes {
+
+  .text-holder {
+    .text {
+      font-family: Urbanist;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 18px;
+      leading-trim: NONE;
+      line-height: 28px;
+      letter-spacing: 0px;
+      color: #576583;
+      max-width: 90%;
+      margin: 20px 0;
+    }
+
+    .subline {
+      font-family: Playfair Display;
+      font-weight: 600;
+      font-style: SemiBold;
+      font-size: 24px;
+      leading-trim: NONE;
+      line-height: 32px;
+      letter-spacing: 0px;
+      color: #013B53;
+    }
+  }
+
+  .list {
+    position: relative;
+    z-index: 10;
+    font-family: Sour Gummy;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 19px;
+    leading-trim: NONE;
+    line-height: 47px;
+    letter-spacing: 0%;
+    color: #013B53;
+
+    ul {
+      list-style: disc;
+      position: relative;
+      z-index: 10;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 9;
+      background-image: url(/img/front/list-bg.webp);
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 135%;
+      height: 125%;
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .notes {
+    padding: 30px 0;
+
+    .text-holder {
+      padding: 0 20px;
+    }
+
+    .list {
+      margin-top: 75px;
+      padding-left: 30px;
+
+      &:before {
+        left: -40px;
+        width: 113%;
+      }
+    }
+
+
+  }
+}

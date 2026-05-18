@@ -1,0 +1,180 @@
+.login-wrapper {
+    padding-bottom: 150px;
+    .login-title {
+        padding: 120px 0 125px 0;
+        background-image: url('/img/front/login-bg.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right bottom;
+        text-align: center;
+
+
+
+        .login-title-holder {
+            h2 {
+                text-align: center;
+            }
+
+            .subtitle {
+                font-family: Urbanist;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 16px;
+                leading-trim: NONE;
+                line-height: 26px;
+                letter-spacing: 0px;
+                text-align: center;
+                color: #013B53;
+
+            }
+        }
+    }
+
+    .login-holder {
+        width: 40%;
+        margin: 0 auto;
+        box-shadow: 0px 8px 26.5px -5px #37395C29;
+        background: #ffffff;
+        padding: 20px;
+        margin-top: -105px;
+        border-radius: 20px;
+
+        .google-holder {
+            border: 1px solid #EFF0F6;
+            border-radius: 10px;
+            padding: 15px;
+
+            .google-login {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-family: Urbanist;
+                font-weight: 600;
+                font-style: SemiBold;
+                font-size: 14px;
+                leading-trim: NONE;
+                letter-spacing: 0px;
+                text-align: center;
+                color: #0E1B36;
+            }
+        }
+
+        .separator {
+            font-family: Urbanist;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 14px;
+            leading-trim: NONE;
+            line-height: 18px;
+            letter-spacing: 0px;
+            text-align: center;
+            color: #6C7278;
+            text-align: center;
+            position: relative;
+            margin: 20px 0;
+
+            &:before {
+                position: absolute;
+                left: 0;
+                top: 9px;
+                content: "";
+                display: inline-block;
+                width: 35%;
+                height: 1px;
+                background-color: #EFF0F6;
+                vertical-align: middle;
+            }
+
+            &:after {
+                position: absolute;
+                right: 0;
+                top: 9px;
+                content: "";
+                display: inline-block;
+                width: 35%;
+                height: 1px;
+                background-color: #EFF0F6;
+                vertical-align: middle;
+            }
+        }
+
+        form {
+            input {
+                font-family: Urbanist;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 14px;
+                leading-trim: NONE;
+                line-height: 18px;
+                letter-spacing: 0px;
+                border: 1px solid #EFF0F6;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .link-next-to-button {
+                font-family: Urbanist;
+                font-weight: 600;
+                font-style: SemiBold;
+                font-size: 14px;
+                leading-trim: NONE;
+                line-height: 18px;
+                letter-spacing: 0px;
+                text-align: right;
+                vertical-align: middle;
+                color: #4D81E7;
+                text-decoration: none;
+            }
+
+            .btn-green {
+                width: 100%;
+                font-family: Urbanist;
+                font-weight: 600;
+                font-style: SemiBold;
+                font-size: 18px;
+                leading-trim: NONE;
+                line-height: 100%;
+                letter-spacing: 0%;
+                color: #013B53;
+            }
+        }
+
+        .no-account {
+            font-family: Urbanist;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 14px;
+            leading-trim: NONE;
+            line-height: 18px;
+            letter-spacing: 0px;
+            vertical-align: middle;
+            color: #576583;
+            text-align: center;
+
+            a {
+                font-family: Urbanist;
+                font-weight: 600;
+                font-style: SemiBold;
+                font-size: 14px;
+                leading-trim: NONE;
+                line-height: 18px;
+                letter-spacing: 0px;
+                vertical-align: middle;
+                color: #4D81E7;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@media(max-width: 678px) {
+    .login-wrapper {
+        background-position: bottom center;
+        .login-holder {
+            width: 100%;
+        }
+    }
+
+}

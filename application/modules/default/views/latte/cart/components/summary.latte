@@ -1,0 +1,30 @@
+<div class="summary-container">
+    <div class="row align-items-center">
+        <div class="col-md-5">
+            <div class="coupon-block">
+                <form id="coupon-form">
+                    <label for="coupon-code">{_('Slevový kupón')}</label>
+                    <input type="text" size="20" name="couponCode" maxlength="" placeholder="{_('Vložte slevový kupón')}" {if !empty($coupon)}value="{$coupon->Code}"{/if}>
+                    <button class="btn btn-primary" type="submit">{_('Uplatnit')}</button>
+                    <button type="reset" style="display:none;">{_('Odebrat')}</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-7 summary-block">
+            <div class="row text-end mt-3 mt-md-0">
+                <div class="col-8">{_('Cena bez DPH')}</div>
+                <div class="col-4"><b class="total-without-vat">{price($totalPriceWithoutVat,$currency['Label'])}</b></div>
+            </div>
+            <div class="row text-end mt-0 mt-md-2">
+                <div class="col-8">{_('DPH')}</div>
+                <div class="col-4"><b class="total-vat">{price($totalVat,$currency['Label'])}</b></div>
+            </div>
+            <div class="row text-end mt-0 mt-md-2">
+                <div class="col-8">{_('Celkem cena s DPH')}</div>
+                <div class="col-4">
+                    <div class="total-with-vat">{price($totalPriceWithVat,$currency['Label'])}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

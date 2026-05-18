@@ -1,0 +1,13 @@
+{layout $useLayout ? $_SERVER['DOCUMENT_ROOT']._bu().'/../application/modules/'.$module.'/views/layout.latte' : ''}
+
+{if $useLayout}
+    {block content}
+        <EntityEditorVue json="{$editor->toJson()}"></EntityEditorVue>
+
+        {$custom_code|noescape}
+    {/block}
+{else}
+    <EntityEditorVue json="{$editor->toJson()}"></EntityEditorVue>
+
+    {$custom_code|noescape}
+{/if}

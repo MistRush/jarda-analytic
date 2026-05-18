@@ -1,0 +1,160 @@
+body:not(#loginPage) {
+  background: $dark-color-main;
+  color: $dark-color-font;
+
+  &::-webkit-scrollbar {
+    background: $dark-color-main-lighter;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary;
+  }
+
+  .mobile-header {
+    background: $dark-color-main-lighter;
+    box-shadow: 0 3px 25px rgba(92, 92, 92, 0.24);
+
+    .logo {
+      svg {
+        #black path {
+          fill: #fff;
+        }
+      }
+    }
+  }
+
+  #toggleMenu {
+    div[class^='bar'] {
+      background-color: #fff;
+    }
+  }
+
+  header {
+    background: $dark-color-main-lighter;
+
+    .left {
+      .logo {
+        svg {
+          #black path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    .right {
+      .dark-mode-switcher {
+        background-color: $dark-color-main;
+        display: block;
+
+        .ball {
+          left: calc(100% - 23px);
+          box-shadow: -1px 1px 3px 0px #8a8a8a8f;
+        }
+      }
+
+      .logout {
+        background-color: lighten($dark-color-main, 10);
+
+        svg path {
+          fill: $dark-color-font;
+        }
+      }
+
+      .language-selector {
+        background-color: transparent;
+
+        .languagepicker {
+          background-color: transparent;
+
+          .dropdown-toggle {
+            background: $dark-color-main;
+            color: $dark-color-font;
+            border-color: darken($dark-color-font, 35);
+
+            &:before {
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 32px;
+              border-top-left-radius: 4px;
+              border-bottom-left-radius: 4px;
+              content: " ";
+              display: block;
+              position: absolute;
+              opacity: 0;
+              @include button-gradient(darken($dark-color-main, 5), rgba($dark-color-main-lighter, 0));
+              z-index: 0;
+              @include animation(all .3s ease-in-out);
+            }
+
+            &:hover {
+              box-shadow: 0 0 2px rgba($dark-color-font, 0.3);
+
+              &::before {
+                opacity: 1;
+              }
+            }
+
+            .arrow {
+              background: transparent linear-gradient(180deg, $dark-color-main 0, $dark-color-main 100%) 0 0 no-repeat padding-box;
+              color: $dark-color-font;
+            }
+          }
+        }
+
+        .dropdown-menu {
+          background-color: $dark-color-main-lighter;
+
+          .dropdown-item {
+            &:hover {
+              color: #fff;
+              background-color: lighten($dark-color-main-lighter, 5);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nav#mainMenu {
+    background: $dark-color-main-lighter;
+
+    #menuSearch {
+      border: none !important;
+      background: transparent !important;
+    }
+
+    .items {
+      .item {
+        &:after {
+          background: $dark-color-main-lighter;
+        }
+      }
+    }
+  }
+
+  main {
+    .breadcrumb {
+      background: $dark-color-main;
+
+      a {
+        color: $dark-color-font;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    &:not(.menu-open) {
+      nav#mainMenu {
+        .items {
+          .item:hover {
+            .right-part {
+              background: $dark-color-main-lighter;
+            }
+          }
+        }
+      }
+    }
+  }
+}

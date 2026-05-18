@@ -1,0 +1,14 @@
+{layout 'layout.latte'}
+
+{block content}
+<div style="">
+    {capture $title}{_('Dotaz k objednávce č')} {$OrderNumber}{/capture}
+    {include 'components/header.latte' 'title' => ($title . ' ' . ($eshop->settings->ProjectShortURL|formatUrl))}
+    <p style="margin:25px 0 34px;font-size:16px;">
+        <b>{_('Jméno/E-mail')}:</b> {$User}<br>
+        <b>{_('Číslo objednávky')}:</b> {$OrderNumber}<br>
+        <b>{_('ID objednávky')}:</b> {$OrderID}<br>
+        <b>{_('Obsah sdělení')}:</b> {$Message}<br>
+    </p>
+</div>
+{/block}

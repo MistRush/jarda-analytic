@@ -1,0 +1,52 @@
+#footer {
+    .contact-container {
+        padding: 20px 0 45px;
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .logo-block {
+            position: relative;
+            left: -22px;
+        }
+
+        .item {
+            font-size: 16px;
+            padding: 10px 0 10px 40px;
+            background: left center no-repeat;
+
+            &.opening-hours {
+                background-image: url('/img/front/icons/layout/footer/opening-hours.svg');
+            }
+
+            &.phone {
+                background-image: url('/img/front/icons/layout/footer/phone.svg');
+            }
+
+            &.email {
+                background-image: url('/img/front/icons/layout/footer/email.svg');
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    #footer {
+        .contact-container {
+            padding: 20px 0;
+
+            .logo-block {
+                margin-bottom: 10px;
+            }
+
+            .item {
+                display: inline-block;
+            }
+        }
+    }
+}

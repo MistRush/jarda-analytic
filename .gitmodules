@@ -1,0 +1,3 @@
+[submodule "www/jolanda"]
+	path = www/jolanda
+	url = git@bitbucket.org:itremante/jolanda.git

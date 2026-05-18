@@ -1,0 +1,33 @@
+{layout "../layout.latte"}
+{block content}
+    <div class="row">
+        <div class="col-md-10">
+            {$manufacturerGrid->render()}
+        </div>
+        <div class="col-md-2">
+            <div><img src="" id="image-preview"></div>
+        </div>
+    </div>
+{/block}
+
+{block scripts}
+    <script>
+        /**
+         * @namespace { Grid } manufacturerGrid
+         */
+        var manufacturerGrid;
+        var tree;
+
+        $(function () {
+            manufacturerGrid = {$manufacturerGrid|noescape};
+            manufacturerGrid.onSelect = function (e) {
+                let data = manufacturerGrid.getCurrentItem();
+                if (data.File_ID) {
+                    $('#image-preview').attr('src', '/common/file/download?ID=' + data.File_ID);
+                } else {
+                    $('#image-preview').attr('src', '');
+                }
+            };
+        });
+    </script>
+{/block}

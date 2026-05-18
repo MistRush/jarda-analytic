@@ -1,0 +1,13 @@
+{layout '../layout.latte'}
+{block content}
+<div>
+    <h2>'Upravit překlad'</h2>
+    {$langEditSelectForm->render()}
+    <hr>
+    <h2>'Stáhnout soubor s překlady'</h2>
+    {$langDownloadSelectForm->render()}
+    <hr>
+    <h2>'Doplnit překlady ze souboru'</h2>
+    {$langUploadForm->render()}
+</div>
+{/block}

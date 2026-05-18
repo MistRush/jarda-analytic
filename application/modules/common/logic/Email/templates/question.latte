@@ -1,0 +1,17 @@
+{layout 'layout.latte'}
+
+{block content}
+<div style="">
+    {capture $title}{_('Dotaz na serveru')}{/capture}
+    {include 'components/header.latte' 'title' => ($title . ' ' . ($eshop->settings->ProjectShortURL|formatUrl))}
+    <p style="margin:25px 0 34px;font-size:16px;">
+        <b>{_('Telefon')}:</b> {$question->Phone}<br>
+        <b>{_('Email')}:</b> {$question->Email}<br>
+
+        {if $question->Product_ID}
+            <b>{_('Produkt')}:</b> <a href="{$eshop->settings->ProjectURL}/p/{$productSlug}" style="color: #F49536">  {$productName}  </a><br>
+        {/if}
+        <b>{_('Obsah sdělení')}:</b> {$question->Description}<br>
+    </p>
+</div>
+{/block}

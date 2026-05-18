@@ -1,0 +1,223 @@
+label {
+    font-size: 12px;
+    display: block;
+    color: $font-primary-dark;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+input[type=submit]:focus, input[type=button]:focus, button:focus, input[type=submit]:active, input[type=button]:active, button:active {
+    outline: none;
+}
+
+input[type=password], input[type=text], input[type=number], input[type=date], textarea, select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: $font-primary-dark;
+    background: #ffffff;
+    border: 1px solid $border-primary-item;
+    border-radius: 8px;
+    @include animation();
+}
+
+input[type=password]:focus, input[type=text]:focus, input[type=number]:focus, input[type=date]:focus, textarea:focus, select:focus,
+input[type=password]:active, input[type=text]:active, input[type=number]:active, input[type=date]:active, textarea:active, select:active {
+    border: 1px solid $border-primary-item-hover;
+    outline: none;
+}
+
+input[readonly] {
+    background-color: #eee;
+}
+
+label.radio {
+    display: inline;
+    margin-right: 10px;
+}
+
+input.radio {
+    width: auto;
+    margin: 0 5px;
+}
+
+.error {
+    font-weight: 600;
+    color: #e20613;
+    padding: 4px 8px;
+    font-size: 11px;
+    display: none;
+    border-radius: 9px;
+    position: absolute;
+    top: -3px !important;
+    right: 9px !important;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        left: -10px;
+        background-image: url(/img/front/icons/input-error.svg);
+        background-size: contain;
+    }
+}
+
+.error-box {
+    color: #ffffff;
+    font-weight: 600;
+    background: #e20613;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.info-box {
+    color: #ffffff;
+    font-weight: 600;
+    background: #0935e1;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.input-error {
+    border-color: #e20613 !important;
+
+    & ~ .error {
+        display: block;
+    }
+}
+
+.with-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+    padding-top: 0;
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 400;
+
+    a {
+        font-weight: 500;
+        color: $font-primary-red;
+    }
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        display: none;
+
+        &:checked ~ .checkmark {
+            background: $background-primary-red;
+            border-color: $border-primary-red !important;
+
+            &:after {
+                display: block;
+            }
+        }
+    }
+
+    &:hover input ~ .checkmark {
+        border-color: $border-primary-item-hover;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 16px;
+        width: 16px;
+        border: 1px solid $border-primary-item;
+        border-radius: 4px;
+        margin-right: 5px;
+        background-color: #ffffff;
+        @include animation();
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 4px;
+        top: 1px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+}
+
+.form-block {
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 15px;
+    margin-bottom: 20px;
+
+    h2 {
+        &.with-icon {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 20px;
+            padding-left: 36px;
+
+            &:before {
+                width: 29px;
+                height: 28px;
+            }
+
+            &:after {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        &.with-toggler {
+            cursor: pointer;
+            margin: 0 0 5px;
+        }
+
+        .toggler {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 22px;
+            height: 22px;
+            border-radius: 11px;
+            background: $background-primary-light;
+            @include animation();
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 6px;
+                left: 7px;
+                width: 7px;
+                height: 7px;
+                border: 2px solid $border-dark;
+                border-top: 0;
+                border-right: 0;
+                transform: rotate(315deg);
+            }
+        }
+
+        &.active {
+            .toggler {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .company-block, .delivery-address-block, .register-block {
+        display: none;
+    }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Prvky - Jolanda</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Prvky";
+        var mkdocs_page_input_path = "editor/fields.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Jolanda
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/install/">Instalace</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy-ide/">Integrace Tracy s IDE</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy/">Instalace Tracy panelů</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PHP</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Grid</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/grid/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/columns/">Sloupce</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Formuláře</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/form/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/inputs/">Formulářové prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/input-options/">Možnosti prvků</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/validation/">Validace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Editor</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../editor/">Úvod</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Prvky</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#tab">Tab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group">Group</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#form">Form</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#dataattribute">DataAttribute</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#html">HTML</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grid-subgrid">Grid (SubGrid)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nastaveni-gridu">Nastavení gridu</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#quickeditor">QuickEditor</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#relationswitcher">RelationSwitcher</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../js/">JavaScript API</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../quickeditor/">QuickEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Status Manager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/usage/">Použití</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/statusmanager/">Třída StatusManager</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/status/">Třída Status</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Import</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/uvod/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/import/">Třída Import</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/importBase/">Třída ImportBase</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">JsLogger</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../jslogger/usage/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">FileManager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../filemanager/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Šablony (Latte)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/common/">Obecné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/filters/">Filtry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/macros/">Makra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/migration/">Migrace 2 -> 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/typehints/">Typehints</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">JavaScript</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/dialog/">Dialog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/panel/">Panel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/cookie/">Cookie</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/alerts/">Alerts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/helpers/">Pomocníci</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Jolanda</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">PHP</li>
+          <li class="breadcrumb-item">Editor</li>
+      <li class="breadcrumb-item active">Prvky</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="prvky-editoru">Prvky editoru</h1>
+<p>Pro správné vkládání prvků editoru je potřeba zachovat patřičné pořadí. Nelze tedy například vložit input přímo do editoru.</p>
+<h2 id="tab">Tab</h2>
+<p>Pro vložení tabu do editoru vyvoláme </p>
+<pre><code class="language-php">$tab = $editor-&gt;addTab('Název tabu', 'ID tabu');
+</code></pre>
+<p>Checeme-li tab zneaktivnit při vyváření entity</p>
+<pre><code class="language-php">$tab-&gt;setHiddenOnCreate();
+</code></pre>
+<p>ℹ Taby které obsahují Grid, Relation Swithcer nebo Category Switcher jsou implicitně skryté jelikož jsou závislé na ID entity, která ještě není vytvořena.</p>
+<h2 id="group">Group</h2>
+<p>Pro vložení skupiny do tabu vyvoláme</p>
+<pre><code class="language-php">$group = $tab-&gt;addGroup('Název skupiny');
+</code></pre>
+<p>Do skupiny poté můžeme vkládat formuláře, gridy, relation switcher nebo čísté HTML.</p>
+<p>Skupině lze také nastavovat potřebné HTML atributy.</p>
+<pre><code class="language-php">$group-&gt;setElementAttribute('class', 'vlastni-trida');
+</code></pre>
+<h2 id="form">Form</h2>
+<p>Pro vložení formuláře do skupiny vyvoláme</p>
+<pre><code class="language-php">$form = $group-&gt;addForm();
+</code></pre>
+<p>Formuláře editoru jsou instancí třídy Jolanda\Controls\Form\Controls\FormGroup. Lze tedy využívat stejné prvky jako při tvorbě běžných formulářů.</p>
+<h3 id="dataattribute">DataAttribute</h3>
+<p>Pro formuláře lze nastavit tzv. DataAttribut, který určuje, ze které vazby na hlavní tabulku mají být data brána. Například tabulka User má na sebe vazbu UserSetting. Tímto můžeme nastavit, že data pro tento formulář mají být brána z Doctrine relace <code>userSettings</code>.</p>
+<pre><code class="language-php">$form-&gt;setDataAttribute('userInfo');
+</code></pre>
+<h2 id="html">HTML</h2>
+<p>Pro vložení vlastního bloku HTML kódu do skupiny zavoláme</p>
+<pre><code class="language-php">$code = $group-&gt;addHtml('&lt;div&gt;Vlastni html kod&lt;/div&gt;');
+</code></pre>
+<h2 id="grid-subgrid">Grid (SubGrid)</h2>
+<p>Do editoru lze také přidat Grid s daty, které jsou s upravovanou entitou v relaci 1:N. Například uživatel má několik doručovacích adres.</p>
+<pre><code class="language-php">$grid = $group-&gt;addGrid('deliveryaddress', 'Doručovací adresy');
+</code></pre>
+<p>Až na několik rozdílů v základním nastavení lze využívat stejné metody jako u běžného Gridu.</p>
+<p>⚠ Grid není v editoru nikdy zobrazen v případě vytváření entity.</p>
+<h3 id="nastaveni-gridu">Nastavení gridu</h3>
+<p>Pro provázání gridu s entitou je nutné nastavit sloupec s cizím klíčem. Např. máme-li grid s doručovací adresou, cizím klíčem je zde User_ID.</p>
+<pre><code class="language-php">$grid-&gt;setParentEntity('User_ID');
+</code></pre>
+<h3 id="quickeditor">QuickEditor</h3>
+<p>Pro editaci či přidávání záznámů se zde využívá tzv. Quick Editor. V gridu musíme jen nastavit akci s QuickEditorem.</p>
+<pre><code class="language-php">$grid-&gt;setUrl('user/delivery-address');
+</code></pre>
+<p><a href="/editor/quickeditor">Více informací o QuickEditoru poté v jeho sekci</a>.</p>
+<h2 id="relationswitcher">RelationSwitcher</h2>
+<p>RelationSwithcer lze také použít přímo při úpravě entity. Nastavení je stejné jako u běžného RelationSwitcheru.</p>
+<pre><code class="language-php">$relationSwitcher = $group-&gt;addRelationSwitcher('Řešitelé','admin/employee', 'admin/feedback-employee', 'Feedback_ID', 'Employee_ID', 'Name', ['Active'=&gt;1]);
+</code></pre>
+<p>⚠ Relation Switcher není v editoru nikdy zobrazen v případě vytváření entity.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../editor/" class="btn btn-neutral float-left" title="Úvod"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../options/" class="btn btn-neutral float-right" title="Možnosti">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../editor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+#manufacturers {
+    .manufacturer-list {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin: 5rem 0;
+
+        .item {
+            width: 250px;
+            height: 116px;
+            border-radius: 8px;
+            border: 1px solid $border-primary-item;
+            @include animation();
+
+            &:hover {
+                border: 1px solid $border-primary-item-hover;
+                color: white;
+            }
+
+            a {
+                text-decoration: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+            }
+
+            img {
+                max-width: 85%;
+                max-height: 90px;
+            }
+        }
+    }
+}

@@ -1,0 +1,175 @@
+// MIXINS
+@use "sass:color";
+
+@mixin animation($string: all 0.3s) {
+    -webkit-transition: $string;
+    -moz-transition: $string;
+    -ms-transition: $string;
+    -o-transition: $string;
+    transition: $string;
+}
+
+@mixin gradient($gradientType,$properties, $safeColor) {
+    background: $safeColor;
+    background: -moz-#{$gradientType}-gradient($properties);
+    background: -webkit-#{$gradientType}-gradient($properties);
+    background: #{$gradientType}-gradient($properties);
+}
+
+@mixin gradient-red($withHover: true) {
+    background-color: $button-primary;
+    background-image: linear-gradient(90deg, $button-primary 0%, $button-secondary 50%, $button-primary 100%);
+    background-size: 300% 100%;
+    background-position: left center;
+    @include animation();
+
+    @if ($withHover) {
+        &:hover {
+            background-position: right center;
+        }
+    }
+}
+
+@mixin gradient-dark() {
+    background-color: #190427;
+    background: linear-gradient(90deg, #190427 0%, #172050 100%);
+}
+
+@mixin animation-key($animation, $duration: 0.3s, $iterations: infinite, $timing: ease-in, $direction: forward) {
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    -ms-animation: $animation;
+    -o-animation: $animation;
+    animation: $animation;
+
+    -webkit-animation-timing-function: $timing;
+    -moz-animation-timing-function: $timing;
+    -ms-animation-timing-function: $timing;
+    -o-animation-timing-function: $timing;
+    animation-timing-function: $timing;
+
+    -webkit-animation-duration: $duration;
+    -moz-animation-duration: $duration;
+    -ms-animation-duration: $duration;
+    -o-animation-duration: $duration;
+    animation-duration: $duration;
+
+    -webkit-animation-iteration-count: $iterations;
+    -moz-animation-iteration-count: $iterations;
+    -ms-animation-iteration-count: $iterations;
+    -o-animation-iteration-count: $iterations;
+    animation-iteration-count: $iterations;
+
+    -webkit-animation-direction: $direction;
+    -moz-animation-direction: $direction;
+    -ms-animation-direction: $direction;
+    -o-animation-direction: $direction;
+    animation-direction: $direction;
+}
+
+@mixin box-shadow($string) {
+    -moz-box-shadow: $string;
+    -webkit-box-shadow: $string;
+    box-shadow: $string;
+}
+
+@mixin linear-gradient($start, $end, $sperc: 0%, $eperc: 100%, $deg: 0deg) {
+    background-color: $start; /* Old browsers */
+    background: -moz-linear-gradient($deg, $start $sperc, $end $eperc); /* FF3.6-15 */
+    background: -webkit-linear-gradient($deg, $start $sperc, $end $eperc); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient($deg, $start $sperc, $end $eperc); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$start}, endColorstr=#{$end},GradientType=0 ); /* IE6-9 */
+}
+
+@mixin scrollbar($thumb: $background-primary-light, $hover: $background-primary-dark, $track: transparent) {
+    &::-webkit-scrollbar {
+        height: 14px;
+        width: 14px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+        background: rgba($thumb, 0.65);
+        border-radius: 7px;
+
+        &:hover {
+            background: $hover;
+        }
+
+        &:active {
+            background: darken($hover,5);
+        }
+    }
+  
+    &::-webkit-scrollbar-track {
+        background: $track;
+    }
+}
+
+@mixin scrollbar-wider($thumb: $background-primary-light, $hover: $background-primary-dark, $track: transparent) {
+    @include scrollbar($thumb, $hover, $track);
+
+    &::-webkit-scrollbar {
+        height: 7px;
+        width: 7px;
+    }
+}
+
+@mixin scrollbar-thinner($thumb: $background-primary-light, $hover: $background-primary-dark, $track: transparent) {
+    @include scrollbar($thumb, $hover, $track);
+
+    &::-webkit-scrollbar {
+        height: 7px;
+        width: 7px;
+    }
+}
+
+@mixin none-drag() {
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+// BREAKPOINTS
+$breakpoint-xs: 0;
+$breakpoint-sm: 575px;
+$breakpoint-md: 767px;
+$breakpoint-lg: 991px;
+$breakpoint-xl: 1199px;
+
+// Extra Small devices
+@mixin xs($width: min) {
+    @media (#{$width}-width: #{$breakpoint-sm}) {
+        @content;
+    }
+}
+ 
+ // Small devices
+@mixin sm($width: min) {
+    @media (#{$width}-width: #{$breakpoint-md}) {
+        @content;
+    }
+}
+ 
+// Medium devices
+@mixin md($width: min) {
+    @media (#{$width}-width: #{$breakpoint-lg}) {
+        @content;
+    }
+}
+ 
+// Large devices
+@mixin lg($width: min) {
+    @media (#{$width}-width: #{$breakpoint-xl}) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin xl($width: min) {
+    @media (#{$width}-width: #{$breakpoint-xl}) {
+        @content;
+    }
+}

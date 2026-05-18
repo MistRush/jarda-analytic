@@ -1,0 +1,42 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+
+<script>
+    /**
+     * @namespace { EntityEditor } editor
+     */
+    var editor;
+
+    $(() => {
+        editor = {$editor->getId()|noescape};
+
+        if (editor.isEditing()){
+            editor.form.setDisabled('Name',true);
+        }
+
+        editor.form.getInput('Name').keyup(function() {
+            editor.form.setValue('Email', $(this).val());
+        });
+
+        editor.onBeforeConfirm = function () {
+            let valid = true;
+
+            $.ajax({
+                url: basePath + '/admin/user/check-user-exist/',
+                async: false,
+                data: {
+                    User_ID: editor.data.ID,
+                    Eshop_ID: editor.data.Eshop_ID,
+                    UserName: editor.form.getValue('Name'),
+                },
+                success: function (data) {
+                    if (data === 'exists') {
+                        alerts.alert('Chyba', 'error', 'Uživatel s tímto emailem již existuje.');
+                        valid = false;
+                    }
+                }
+            });
+
+            return valid;
+        };
+    });
+</script>

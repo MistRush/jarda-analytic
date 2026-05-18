@@ -1,0 +1,34 @@
+{$form->render()}
+
+<script>
+
+    /** @namespace { Form } */
+    var form;
+
+    $(function () {
+        form = {$form|noescape};
+
+        form.onSuccess = function () {
+            {$dialog|noescape}.close();
+            orderGrid.refresh();
+        }
+    });
+
+    var setStateFinal = function () {
+        var items = orderGrid.getCurrentItem();
+
+        if (!items) {
+            alerts.error({_('Vyberte alespoň jednu objednávku')});
+            return;
+        }
+
+        var IDs = [];
+        for (var item in items) {
+            IDs.push(items[item].ID);
+        }
+
+        form.setValue('Order_IDs', IDs);
+
+        $(form.getForm()).trigger('submit');
+    }
+</script>

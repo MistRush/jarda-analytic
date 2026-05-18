@@ -1,0 +1,18 @@
+.cart-clear-confirmation {
+  max-width: 360px;
+  .modal-content {
+    .modal-header {
+      .close {
+        right:0;
+      }
+    }
+  }
+
+  .modal-title {
+    text-align: center;
+    width: 100%;
+  }
+  .content {
+    text-align: center;
+  }
+}

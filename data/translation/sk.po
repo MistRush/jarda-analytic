@@ -1,0 +1,1853 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-07-28T13:07:00+02:00\n"
+"PO-Revision-Date: 2020-08-23 15:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:116
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:116
+msgid "Hledat"
+msgstr "Hľadať"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:112
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:112
+msgid "Zadejte hledaný výraz"
+msgstr "Zadajte hľadaný výraz"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:37
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:41
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:42
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:43
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:66
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:68
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:69
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:70
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:4
+msgid "Registrace"
+msgstr "Registracia"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:7
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:35
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:35
+msgid "Objednávka"
+msgstr "Objednáuka"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:2
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:2
+msgid "Provozovatel"
+msgstr "Prevádzkovateľ"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:8
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:8
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:15
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:15
+msgid "Informace o objednávce"
+msgstr "Informace o objednávke"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:11
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:111
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:111
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\news\item.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\news\item.latte:5
+msgid "Datum"
+msgstr "Dátum"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:13
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:13
+msgid "Č. objednávky"
+msgstr "Č. objednávky"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:18
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:18
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:23
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:23
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:20
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:20
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:57
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:57
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:9
+msgid "Fakturační adresa"
+msgstr "Fakturačná adresa"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:21
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:21
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:57
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:57
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:27
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:27
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:78
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:78
+msgid "Společnost"
+msgstr "Spoločnosť"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:25
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:25
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:61
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:61
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:21
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:21
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:60
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:60
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:96
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:96
+msgid "Jméno a příjmení"
+msgstr "Meno a priezvisko"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:29
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:29
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:65
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:65
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:22
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:22
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:64
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:64
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:100
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:100
+msgid "Adresa"
+msgstr "Adresa"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:33
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:33
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:10
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:10
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:18
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:18
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:23
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:60
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:60
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:8
+msgid "Email"
+msgstr "Email"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:37
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:37
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:69
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:69
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:9
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:9
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:24
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:24
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:72
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:72
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:90
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:90
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:69
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:69
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:14
+msgid "Telefon"
+msgstr "Telefón"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:41
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:41
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:40
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:40
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:28
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:28
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:31
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:31
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:95
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:95
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:82
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:82
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:117
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:117
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:98
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:98
+msgid "IČ"
+msgstr "IČ"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:43
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:43
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:41
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:41
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:103
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:103
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:86
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:86
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:125
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:125
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:107
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:107
+msgid "DIČ"
+msgstr "DIČ"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:47
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:47
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:113
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:113
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:209
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:209
+msgid "Poznámka"
+msgstr "Poznámka"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:54
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:54
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:30
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:30
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:93
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:93
+msgid "Doručovací adresa"
+msgstr "doručovacia adresa"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:75
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:75
+msgid "Seznam zboží"
+msgstr "Zoznam tovaru"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:78
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:78
+msgid "Název zboží"
+msgstr "Názov tovaru"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:79
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:79
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:87
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:87
+msgid "Cena za kus bez DPH"
+msgstr "Cena za kus bez DPH"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:80
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:80
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:14
+msgid "Cena za kus s DPH"
+msgstr "Cena za kus s DPH"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:81
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:81
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:15
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:15
+msgid "Počet"
+msgstr "Počet"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:82
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:82
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\cart.latte:25
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\cart.latte:25
+msgid "Cena celkem"
+msgstr "Cena celkom"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:86
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:86
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:10
+msgid "Kód produktu"
+msgstr "Kód produktu"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:93
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:93
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:101
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:101
+msgid "Doprava bez DPH"
+msgstr "Doprava bez DPH"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:97
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:97
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:105
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:105
+msgid "Platba bez DPH"
+msgstr "Platba bez DPH"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:101
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:101
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:109
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:109
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:41
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:41
+msgid "Celkem s DPH"
+msgstr "Celkom s DPH"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:105
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:105
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:113
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:113
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:45
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:45
+msgid "Celkem DPH"
+msgstr "Celkom DPH"
+
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:109
+#: D:\Projects\vamot\application/modules/admin/logic/Order\templates\custom-sheet.latte:109
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:117
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:117
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:50
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:50
+msgid "Celkem bez DPH"
+msgstr "Celkom bez DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-line-box.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-line-box.latte:4
+msgid "Zeptejte se"
+msgstr "Spýtajte sa"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-line-box.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-line-box.latte:5
+msgid "na cokoliv"
+msgstr "na čokoľvek"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-line-box.latte:25
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-line-box.latte:25
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:161
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:161
+msgid "Odpovídáme do 24 hodin"
+msgstr "Odpovedáme do 24 hodín"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:3
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:3
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:5
+msgid "Vyberte značku vozidla"
+msgstr "Vyberte značku vozidla"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:12
+msgid "Zobrazit výsledky"
+msgstr "Zobraziť výsledky"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\slider.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\slider.latte:10
+msgid "Zjistit více"
+msgstr "Zistiť viac"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-main-menu.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-main-menu.latte:14
+msgid "Registrace montážního střediska"
+msgstr "Registrácia montážneho strediska"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:105
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:105
+msgid "Potřebujete poradit?"
+msgstr "Potrebujete poradiť?"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:205
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:205
+msgid "všechna práva vyhrazena."
+msgstr "všetky práva vyhradené."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:208
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:208
+msgid "Vytvořeno společností"
+msgstr "Vytvorené spoločnosťou"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:219
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:219
+msgid ""
+"Tento web používá k poskytování služeb soubory cookie. Používáním "
+"tohoto webu s tím souhlasíte."
+msgstr ""
+"Tento web používa na poskytovanie služieb súbory cookie. Používaním tohto "
+"webu s tým súhlasíte."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:219
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:219
+msgid "Zavřít"
+msgstr "Zavrieť"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:226
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:226
+msgid "Potvrdit"
+msgstr "Potvrdiť"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:227
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:227
+msgid "Zrušit"
+msgstr "Zrušiť"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:108
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:108
+msgid "Dotaz na produkt"
+msgstr "Otázka na produkt"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:197
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:197
+msgid "Váš dotaz jsme zaregistrovali. <br>Co nejdříve Vám na něj odpovíme"
+msgstr "Váš dotaz sme zaregistrovali. <br> Čo najskôr Vám na neho odpovieme"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:198
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:198
+msgid "Zpráva odeslána"
+msgstr "Správa odoslaná"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:206
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:206
+msgid "Dotaz na prodejce"
+msgstr "Otázka na predajcu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:4
+msgid "Pole označená jako"
+msgstr "Polia označené ako"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:4
+msgid "musí být vyplněná."
+msgstr "musí byť vyplnená."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:20
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:20
+msgid "Zpráva"
+msgstr "Správa"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:31
+#: D:\Projects\vamot\application/modules/default\views\latte\product\question.latte:31
+msgid "Formulář již byl odeslán"
+msgstr "Formulár už bol odoslaný"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:178
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:178
+msgid "Informace"
+msgstr "Informácie"
+
+#: D:\Projects\vamot\application/modules/common/logic\Front\CartStep\CartSteps.php:38
+#: D:\Projects\vamot\application/modules/default\controllers\CartController.php:30
+#: D:\Projects\vamot\application/modules/default\controllers\CartController.php:31
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\empty.latte:3
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\empty.latte:3
+msgid "Nákupní košík"
+msgstr "Nákupný košík"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\empty.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\empty.latte:4
+msgid ""
+"Nákupní košík je prázdný. Pro pokračování v objednávce musíte vložit "
+"zboží do košíku."
+msgstr ""
+"Nákupný košík je prázdny. Pre pokračovanie v objednávke musíte vložiť "
+"tovar do košíka."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:9
+msgid "Produkty v košíku"
+msgstr "Produkty v košíku"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:38
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:38
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:102
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:102
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:88
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:88
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:10
+msgid "Množství"
+msgstr "Množstvo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:16
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:16
+msgid "Cena celkem s DPH"
+msgstr "Cena celkom s DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:62
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:62
+msgid "Cena bez DPH"
+msgstr "Cena bez DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:66
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:66
+msgid "DPH"
+msgstr "DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:70
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:70
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:76
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:76
+msgid "Cena s DPH"
+msgstr "Cena s DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:77
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:77
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\cart.latte:29
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\cart.latte:29
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:64
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:64
+msgid "Pokračovat v objednávce"
+msgstr "Pokračovať v objednávke"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:12
+msgid "Tato kategorie je momentálně neaktivní."
+msgstr "Táto kategória je momentálne neaktívna."
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:36
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:36
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:74
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:74
+msgid "Kód"
+msgstr "Kód"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:8
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:8
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:35
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:35
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:75
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:75
+msgid "Název"
+msgstr "Názov"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:154
+#: D:\Projects\vamot\application/modules/default\views\latte\category\index.latte:154
+msgid "V této kategorii momentálně nenabízíme žádné zboží."
+msgstr "V tejto kategórii momentálne neponúkame žiadne tovar."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:2
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:2
+msgid "Shrnutí objednávky"
+msgstr "Zhrnutie objednávky"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:23
+msgid "Cena za zboží s DPH"
+msgstr "Cena za tovar s DPH"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:76
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:76
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:81
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:81
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:34
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:34
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:32
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:32
+msgid "Doprava"
+msgstr "Doprava"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:46
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:46
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:53
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:53
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:45
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:45
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:36
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:36
+msgid "Platba"
+msgstr "Platba"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:6
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:6
+msgid "Prvotřídní kvalita"
+msgstr "Prvotriedna kvalita"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:7
+msgid "Kvalitní a rychlá výroba za příznivé ceny"
+msgstr "Kvalitná a rýchla výroba za priaznivé ceny"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:12
+msgid "Lákavá cena"
+msgstr "Lákavá cena"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:13
+msgid "Kontaktujte nás ohledně cenové nabídky na míru"
+msgstr "Kontaktujte nás ohľadom cenovej ponuky na mieru"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:18
+msgid "Množstevní slevy"
+msgstr "Množstevné zľavy"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:19
+msgid "Množstevní slevy na krabice"
+msgstr "Množstevné zľavy na krabice"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:24
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:24
+msgid "Rychlost realizace"
+msgstr "Rýchlosť realizácie"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:25
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\benefits.latte:25
+msgid "Bezkonkurenční časová realizace zakázek"
+msgstr "Bezkonkurenčná časová realizácia zákaziek"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-box.latte:2
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-box.latte:2
+msgid "Poradíme Vám!"
+msgstr "Poradíme Vám!"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-box.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\contact-box.latte:18
+msgid "Položit dotaz"
+msgstr "Položiť dotaz"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:25
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:27
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:28
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:29
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:134
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:157
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:174
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:193
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:250
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:267
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:3
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:3
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:4
+msgid "Můj účet"
+msgstr "Môj účet"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:119
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:122
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:123
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:124
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\logout.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\logout.latte:4
+msgid "Odhlášení"
+msgstr "Odhlásenie"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:104
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:108
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:109
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:110
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\header-login.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:4
+msgid "Přihlášení"
+msgstr "Prihlásenie"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\newsletter.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\newsletter.latte:5
+msgid "Přihlašte se k odběru newsletteru"
+msgstr "Prihláste sa k odberu newslettera"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\newsletter.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\components\layout\newsletter.latte:10
+msgid "Odebírat"
+msgstr "Odoberať"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\news\news-item.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\components\news\news-item.latte:14
+msgid "Celý článek"
+msgstr "Celý článok"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\active-filter.latte:2
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\active-filter.latte:2
+msgid "Aktivní filtry"
+msgstr "Aktívne filtry"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\active-filter.latte:16
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\active-filter.latte:16
+msgid "Odebrat všechny filtry"
+msgstr "Odobrať všetky filtry"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:41
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:41
+msgid "Novinka"
+msgstr "Novinka"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:44
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:44
+msgid "Výprodej"
+msgstr "Výpredaj"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:32
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:32
+msgid "Detail"
+msgstr "Detail"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:36
+#: D:\Projects\vamot\application/modules/default\views\latte\components\product\product-item.latte:36
+msgid "bez DPH"
+msgstr "bez DPH"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:175
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:194
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:251
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:268
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:113
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:113
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:14
+msgid "Upravit adresu"
+msgstr "Upraviť adresu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:38
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:38
+msgid "Fakturační údaje"
+msgstr "Fakturačné údaje"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:12
+msgid "Uživatelský účet"
+msgstr "Užívateľský účet"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:8
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:41
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:41
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:127
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:127
+msgid "Jméno"
+msgstr "Meno"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:22
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:22
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:44
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:44
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:15
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:15
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:130
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:130
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:19
+msgid "Vyplňte prosím Vaše jméno."
+msgstr "Vyplňte prosím Vaše meno."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:27
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:27
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:49
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:49
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:20
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:20
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:135
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:135
+msgid "Příjmení"
+msgstr "Priezvisko"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:35
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:35
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:57
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:57
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:143
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:143
+msgid "Ulice"
+msgstr "Ulica"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:43
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:43
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:65
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:65
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:36
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:36
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:151
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:151
+msgid "Č.p."
+msgstr "Č.p."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:51
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:51
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:73
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:73
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:44
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:44
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:160
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:160
+msgid "Město"
+msgstr "Mesto"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:59
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:59
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:81
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:81
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:52
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:52
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:168
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:168
+msgid "PSČ"
+msgstr "PSČ"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:79
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:79
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:101
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:101
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:81
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:81
+msgid "Chci doplnit firemní údaje (IČ, DIČ, ...)"
+msgstr "Chcem doplniť firemné údaje (IČO, DIČ, ...)"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:87
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:87
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:109
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:109
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:89
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:89
+msgid "Název firmy"
+msgstr "Názov firmy"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:112
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:112
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:25
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:25
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:34
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:34
+msgid "Zpět na můj účet"
+msgstr "Späť na môj účet"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address-done.latte:5
+msgid "Úprava adresy proběhla úspěšně."
+msgstr "Úprava adresy prebehla úspešne."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password-done.latte:5
+msgid "Vrátit se zpět na můj účet"
+msgstr "Vrátiť sa späť na môj účet"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:30
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:30
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:52
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:52
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:138
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:138
+msgid "Vyplňte prosím Vaše příjmení."
+msgstr "Vyplňte prosím Vaše priezvisko."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:38
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:38
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:60
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:60
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:31
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:31
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:146
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:146
+msgid "Vyplňte prosím Vaší ulici."
+msgstr "Vyplňte prosím Vašej ulici."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:46
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:46
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:39
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:39
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:155
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:155
+msgid "Vyplňte prosím Vaše číslo popisné."
+msgstr "Vyplňte prosím Vaše číslo popisné."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:54
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:54
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:76
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:76
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:47
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:47
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:163
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:163
+msgid "Vyplňte prosím Vaše město."
+msgstr "Vyplňte prosím Vaše mesto."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:62
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:62
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:84
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:84
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:55
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:55
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:171
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:171
+msgid "Vyplňte prosím Vaše PSČ."
+msgstr "Vyplňte prosím Vaše PSČ."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:71
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:71
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:93
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:93
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:72
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:72
+msgid "Vyplňte prosím Vaš telefon."
+msgstr "Vyplňte prosím Vaš telefón."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:90
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:90
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:112
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:112
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:93
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:93
+msgid "Vyplňte název Vaší firmy."
+msgstr "Vyplňte názov Vašej firmy."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:98
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\address.latte:98
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:120
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:120
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:102
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:102
+msgid "Vyplňte IČ Vaší firmy."
+msgstr "Vyplňte IČO Vašej firmy."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:5
+msgid ""
+"Vítejte v systému pro administraci Vašeho uživatelského účtu. Zde "
+"můžete sledovat stav Vaších právě vyřizovaných objednávek, sledovat "
+"historii objednávek, měnit informace o adrese, nebo změnit heslo k Vašemu "
+"uživatelskému účtu."
+msgstr ""
+"Vitajte v systéme pre administráciu Vášho používateľského účtu. Tu "
+"môžete sledovať stav Vašich práve vybavovaných objednávok, sledovať "
+"históriu objednávok, meniť informácie o adrese, alebo zmeniť heslo k "
+"Vášmu užívateľskému účtu."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:8
+msgid "Zákaznická sleva"
+msgstr "Zákaznícka zľava"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:135
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:139
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:140
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:141
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:4
+msgid "Seznam objednávek"
+msgstr "Zoznam objednávok"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:20
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:20
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:42
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:42
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:15
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:15
+msgid "Změnit heslo"
+msgstr "Zmeniť heslo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\index.latte:19
+msgid "Odhlásit"
+msgstr "Odhlásiť"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:15
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:15
+msgid "Email (název účtu)"
+msgstr "Email (názov konta)"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:188
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:188
+msgid "Heslo"
+msgstr "Heslo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:23
+msgid "Zadejte heslo."
+msgstr "Zadajte heslo."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:27
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:27
+msgid "Zapoměli jste heslo?"
+msgstr "Zabudli ste heslo?"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:16
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:16
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:38
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:38
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\login.latte:28
+msgid "Přihlásit se"
+msgstr "Prihlásiť sa"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\logout.latte:6
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\logout.latte:6
+msgid "Odhlášení proběhlo úspěšně."
+msgstr "Odhlásenie prebehlo úspešne."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:305
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:310
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:311
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:312
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:319
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:322
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:323
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:324
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:4
+msgid "Zapomenuté heslo"
+msgstr "Zabudnuté heslo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password-done.latte:5
+msgid "Vaše nové heslo bylo odesláno na Váš kontaktní email."
+msgstr "Vaše nové heslo bolo odoslané na Váš kontaktný email."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:17
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\lost-password.latte:17
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:47
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:47
+msgid "Odeslat"
+msgstr "Odoslať"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:7
+msgid "Objednávka č."
+msgstr "Objednávka č."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:10
+msgid "Informace o zboží"
+msgstr "Informácie o tovare"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:86
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:86
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:13
+msgid "Název produktu"
+msgstr "Názov produktu"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:89
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:89
+msgid "Cena celkem bez DPH"
+msgstr "Cena celkom bez DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:28
+msgid "Celkem za zboží"
+msgstr "Celkom za tovar"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:108
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:108
+msgid "Stavy objednávky"
+msgstr "stavy objednávky"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:112
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:112
+msgid "Stav"
+msgstr "Stav"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:123
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:123
+msgid "Zpět na seznam objednávek"
+msgstr "Späť na zoznam objednávok"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:7
+msgid "Žádné objednávky."
+msgstr "Žiadne objednávky."
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:16
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:16
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:12
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:12
+msgid "Číslo objednávky"
+msgstr "Číslo objednávky"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:10
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:10
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:39
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:39
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:13
+msgid "Cena"
+msgstr "Cena"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\orders.latte:14
+msgid "Aktuální stav"
+msgstr "Aktuálny stav"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:35
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:35
+msgid "Upravit heslo"
+msgstr "Upraviť heslo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password-done.latte:5
+msgid "Změna hesla proběhla úspěšně"
+msgstr "Zmena hesla prebehla úspešne"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:11
+msgid "Zadejte současné heslo"
+msgstr "Zadajte súčasné heslo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:19
+msgid "Zadejte nové heslo"
+msgstr "Zadajte nové heslo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:27
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\password.latte:27
+msgid "Zadejte nové heslo znovu"
+msgstr "Zadajte nové heslo znovu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:10
+msgid ""
+"Registraci se nepodařilo dokončit. Uživatelský účet s tímto názvem již "
+"existuje. Zkuste to prosím ještě jednou."
+msgstr ""
+"Registráciu sa nepodarilo dokončiť. Užívateľský účet s týmto názvom "
+"už existuje. Skúste to prosím ešte raz."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:31
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:31
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:197
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:197
+msgid "Heslo znovu"
+msgstr "Heslo znova"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:138
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:138
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:228
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:228
+msgid "Souhlasím s"
+msgstr "Súhlasím s"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:139
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:139
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:229
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:229
+msgid "obchodními podmínkami"
+msgstr "obchodnými podmienkami"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:139
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:139
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:229
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:229
+msgid "a beru na vědomí zpracování osobních údajů"
+msgstr "a beriem na vedomie spracovanie osobných údajov"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:145
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:145
+msgid "Registrovat"
+msgstr "Registrovať"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:152
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:152
+msgid "Registrace není na tomto webu dostupná."
+msgstr "Registrácia nie je na tomto webe dostupná."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register-done.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register-done.latte:4
+msgid "Registrace dokončena"
+msgstr "Registrácia dokončená"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register-done.latte:5
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register-done.latte:5
+msgid ""
+"Registrace proběhla úspěšně. Nyní se můžete přihlásit ke svému účtu "
+"a začít nakupovat."
+msgstr ""
+"Registrácia prebehla úspešne. Teraz sa môžete prihlásiť k svojmu účtu a "
+"začať nakupovať."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:27
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:27
+msgid "Vyplňte email ve správném formátu."
+msgstr "Vyplňte email v správnom formáte."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:64
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:64
+msgid "Tento uživatel je již registrován."
+msgstr "Tento email je už registrovaný."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:26
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:26
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:192
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:192
+msgid "Heslo musí obsahovat alespoň 5 znaků."
+msgstr "Heslo musí obsahovať aspoň 5 znakov."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:26
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\register.latte:26
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:192
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:192
+msgid "Zadaná hesla se neshodují."
+msgstr "Zadané heslá sa nezhodujú."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\error\error-500.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\error\error-500.latte:4
+msgid ""
+"Na stránce se vyskytla chyba. Administrátor byl o chybě informován a bude se "
+"jí věnovat v nejbližší možné době."
+msgstr ""
+"Na stránke sa vyskytla chyba. Administrátor bol o chybe informovaný a bude sa "
+"jej venovať v najbližšej možnej dobe."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\error\no-access.latte:3
+#: D:\Projects\vamot\application/modules/default\views\latte\error\no-access.latte:3
+msgid "Nemáte oprávnění"
+msgstr "Nemáte oprávnenie"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\error\no-access.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\error\no-access.latte:4
+msgid "Pro přístup na tuto stránku nemáte dostatečné oprávnění."
+msgstr "Pre prístup na túto stránku nemáte dostatočné oprávnenie."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\error\not-found.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\error\not-found.latte:4
+msgid "Hledaná stránka se v systému nenachází"
+msgstr "Hľadaná stránka sa v systéme nenachádza"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:18
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:18
+msgid "Vybíráme z naší nabídky"
+msgstr "Vyberáme z našej ponuky"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:40
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:40
+msgid "Jsme specialisté na tažná zařízení"
+msgstr "Sme špecialisti na ťažné zariadenia"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:52
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:52
+msgid "Hledáte spolehlivého partnera a dodavatele?"
+msgstr "Hľadáte spoľahlivého partnera a dodávateľa?"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:53
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:53
+msgid ""
+"Máme více než 2 000 registrovaných a spokojených partnerů, kterým "
+"dodáváme naše tažná zařízení a elektroinstalace a nabízíme řadu "
+"výhod. Staňte se také našim montážním střediskem."
+msgstr ""
+"Máme viac ako 2 000 registrovaných a spokojných partnerov, ktorým dodávame "
+"naše ťažné zariadenia a elektroinštalácie a ponúkame rad výhod. Staňte "
+"sa aj našim montážnym strediskom."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:55
+#: D:\Projects\vamot\application/modules/default\views\latte\index\index.latte:55
+msgid "Stát se partnerem"
+msgstr "Stať sa partnerom"
+
+#: D:\Projects\vamot\application/modules/default\controllers\NewsController.php:17
+#: D:\Projects\vamot\application/modules/default\controllers\NewsController.php:18
+#: D:\Projects\vamot\application/modules/default\controllers\NewsController.php:19
+#: D:\Projects\vamot\application/modules/default\controllers\NewsController.php:33
+#: D:\Projects\vamot\application/modules/default\views\latte\news\index.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\news\index.latte:4
+msgid "Novinky"
+msgstr "Novinky"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:7
+msgid "Vyberte dopravu"
+msgstr "Vyberte dopravu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:23
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:47
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:47
+msgid "Zdarma"
+msgstr "Zadarmo"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:54
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:54
+msgid ""
+"Omlouváme se, pro tento typ dopravy nemáme v tuto chvíli aktivní žádnou "
+"platební metodu."
+msgstr ""
+"Ospravedlňujeme sa, pre tento typ dopravy nemáme v tejto chvíli aktívny "
+"žiadnu platobnú metódu."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:8
+msgid ""
+"Objednávku se nepodařilo dokončit. Uživatelský účet s tímto názvem již "
+"existuje. Zkuste to prosím ještě jednou."
+msgstr ""
+"Objednávku sa nepodarilo dokončiť. Užívateľský účet s týmto názvom "
+"už existuje. Skúste to prosím ešte raz."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:119
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:119
+msgid "Chci zboží doručit na jinou než fakturační adresu"
+msgstr "Chcem tovar doručiť na inú ako fakturačnú adresu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:181
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:181
+msgid "Chci se zaregistrovat"
+msgstr "Chcem sa zaregistrovať"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:72
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:72
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:206
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:206
+msgid "Poznámka k objednávce"
+msgstr "Poznámka k objednávke"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:234
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-2.latte:234
+msgid "Dokončit objednávku"
+msgstr "Dokončiť objednávku"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:28
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:28
+msgid "úspěšně dokončena"
+msgstr "úspešne dokončená"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:48
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:48
+msgid "Odeslali jsme potvrzující email na Vámi uvedenou adresu."
+msgstr "Odoslali sme potvrdzujúci email na Vami uvedenú adresu."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:49
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:49
+msgid ""
+"Vaše objednávka byla úspěšně odeslaná. Stav vyřízení objednávky "
+"můžete sledovat ve vašem účtu."
+msgstr ""
+"Vaša objednávka bola úspešne odoslaná. Stav vybavenie objednávky môžete "
+"sledovať vo vašom účte."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:51
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:51
+msgid "Děkujeme Vám za důvěru."
+msgstr "Ďakujeme Vám za dôveru."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:10
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:10
+msgid "Napište nám"
+msgstr "napíšte nám"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:11
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:13
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:40
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:40
+msgid "Obsah sdělení"
+msgstr "Obsah oznámenia"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:16
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:16
+msgid "Vaše jméno"
+msgstr "Vaše meno"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:24
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:24
+msgid "Váš email"
+msgstr "Váš email"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:32
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:32
+msgid "Váš telefon"
+msgstr "Váš telefón"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:43
+#: D:\Projects\vamot\application/modules/default\views\latte\page\index.latte:43
+msgid "Vyplňte prosím obsah sdělení."
+msgstr "Vyplňte prosím obsah komunikácie."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:38
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:38
+msgid "Sleva"
+msgstr "Zľava"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:64
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:64
+msgid "Náš kód"
+msgstr "Náš kód"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:68
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:68
+msgid "Výrobce"
+msgstr "Výrobca"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:74
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:74
+msgid "Číst více"
+msgstr "Čítať viac"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:93
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:93
+msgid "s DPH"
+msgstr "s DPH"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:114
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:114
+msgid "Přidat do košíku"
+msgstr "Pridať do košíka"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:150
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:150
+msgid "Parametry produktu"
+msgstr "Parametre produktu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:129
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:129
+msgid "Popis produktu"
+msgstr "Popis produktu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:179
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:179
+msgid "Mohlo by Vás zajímat"
+msgstr "Mohlo by vás zaujímať"
+
+#: D:\Projects\vamot\application/modules/default\controllers\SearchController.php:20
+#: D:\Projects\vamot\application/modules/default\controllers\SearchController.php:24
+#: D:\Projects\vamot\application/modules/default\controllers\SearchController.php:25
+#: D:\Projects\vamot\application/modules/default\controllers\SearchController.php:26
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:4
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:4
+msgid "Vyhledávání"
+msgstr "Vyhľadávanie"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:7
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:7
+msgid "Hledaný výraz"
+msgstr "Hľadaný výraz"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:8
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:8
+msgid "Počet nalezených záznamů"
+msgstr "Počet nájdených záznamov"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:11
+msgid "Nalezené produkty"
+msgstr "Nájdené produkty"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:17
+#: D:\Projects\vamot\application/modules/default\views\latte\search\index.latte:17
+msgid ""
+"Je nám líto, na hledaný výraz jsme nic nenalezli. Zkontrolujte vyhledávaný "
+"výraz kvůli chybám nebo zkuste použít obecnější termín."
+msgstr ""
+"Je nám ľúto, na hľadaný výraz sme nič nenašli. Skontrolujte "
+"vyhľadávaný výraz kvôli chybám alebo skúste použiť všeobecnejšie "
+"termín."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\search\quick.latte:14
+#: D:\Projects\vamot\application/modules/default\views\latte\search\quick.latte:14
+msgid "Nic nenalezeno"
+msgstr "Nič nenájdené"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\search\quick.latte:19
+#: D:\Projects\vamot\application/modules/default\views\latte\search\quick.latte:19
+msgid "Zobrazit všechny produkty"
+msgstr "Zobraziť všetky produkty"
+
+#: D:\Projects\vamot\application/modules/default\controllers\IndexController.php:50
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:9
+#: D:\Projects\vamot\application/modules/default\views\latte\components\content\car-select.latte:9
+msgid "Vyberte model vozidla"
+msgstr "Vyberte model vozidla"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\EmailFactory.php:15
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:5
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:5
+msgid "Registrace na serveru"
+msgstr "Registrácia na serveri"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:7
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:7
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:37
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:37
+msgid "Číslo dílu"
+msgstr "Číslo dielu"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:9
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:9
+msgid "Stav produktu"
+msgstr "Stav produktu"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:11
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:11
+msgid "Dostupnost"
+msgstr "Dostupnosť"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:40
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:40
+msgid "Kauce"
+msgstr "Kaucia"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:41
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:41
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:103
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:103
+msgid "Celková cena"
+msgstr "Celková cena"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:62
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:62
+msgid "Note"
+msgstr "Note"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:63
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:63
+msgid "Varování"
+msgstr "Varovanie"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:63
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:63
+msgid ""
+"Tento produkt je k dispozici pouze jako starý díl a bude repasován do 15 až "
+"30 dnů."
+msgstr ""
+"Tento produkt je k dispozícii len ako starý diel a bude repasované do 15 až "
+"30 dní."
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:70
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:70
+msgid "Celkem"
+msgstr "Celkom"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:76
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:76
+msgid "Doprava a pojištění"
+msgstr "Doprava a poistenie"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:81
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:81
+msgid "Vlastní doprava"
+msgstr "Vlastná doprava"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:87
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:87
+msgid "Celková cena včetně dopravy"
+msgstr "Celková cena vrátane dopravy"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:101
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\components\table.latte:101
+msgid "Produkt"
+msgstr "Produkt"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\EmailFactory.php:26
+msgid "Vaše nové heslo na serveru"
+msgstr "Vaše nové heslo na serveri"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\EmailFactory.php:36
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:5
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\question.latte:5
+msgid "Dotaz na serveru"
+msgstr "Otázka na serveri"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:12
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:12
+msgid "Dobrý den."
+msgstr "Dobrý deň."
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\layout.latte:17
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\layout.latte:17
+msgid "Zprávu vygeneroval systém společnosti evidsoft.cz."
+msgstr "Správu vygeneroval systém spoločnosti evidsoft.cz."
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:3
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:3
+msgid ""
+"* Nově vygenerované heslo doporučujeme po prvním přihlášení změnit, "
+"zabráníte tím případnému napadení Vašeho účtu."
+msgstr ""
+"* Novo vygenerované heslo odporúčame po prvom prihlásení zmeniť, "
+"zabránite tým prípadnému napadnutiu Vášho účtu."
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:7
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:7
+msgid "Obnovení hesla"
+msgstr "Obnovenie hesla"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:12
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\lost-password.latte:12
+msgid "* Vaše nově vygenerované heslo je"
+msgstr "Vaše novo vygenerované heslo je"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:7
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:7
+msgid "Objednávka na serveru"
+msgstr "Objednávka na serveri"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:17
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:17
+msgid "Číslo zákazníka"
+msgstr "Číslo zákazníka"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:19
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:19
+msgid "Číslo balíku"
+msgstr "Číslo balíka"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:20
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:20
+msgid "Kontaktní email"
+msgstr "15 / 5000 Výsledky překladu kontaktný email "
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:21
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:21
+msgid "Kontaktní telefon"
+msgstr "Kontaktný email"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:38
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:38
+msgid "Informace o společnosti"
+msgstr "Informácie o spoločnosti"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:77
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:77
+msgid "Zpráva zákazníkovi"
+msgstr "Správa zákazníkovi"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:83
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:83
+msgid "Souhrn objednávky"
+msgstr "Súhrn objednávky"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:13
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:13
+msgid "Vaše registrace na serveru"
+msgstr "Vaša registrácia na serveri"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:17
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\register.latte:17
+msgid "Informace o uživatelském účtu"
+msgstr "Informácie o užívateľskom účte"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:50
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:50
+msgid ""
+"Po přihlášení stačí kliknout na odkaz \"Moje objednávky\", který je v "
+"horní části eshopu."
+msgstr ""
+"Po prihlásení stačí kliknúť na odkaz \"Moje objednávky\", ktorý je v "
+"hornej časti eshopu."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CartController.php:56
+msgid "Zadaná hodnota musí být celé číslo."
+msgstr "Zadaná hodnota musí byť celé číslo."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CartController.php:67
+msgid "Košík byl úspěšně aktualizován."
+msgstr "Košík bol úspešne aktualizovaný."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:158
+msgid "Objednávka č. "
+msgstr "Objednávka č."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:162
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:163
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:164
+msgid "Detail objednávky"
+msgstr "Detail objednávky"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:179
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:180
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:181
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:198
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:199
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:200
+msgid "Úprava adresy"
+msgstr "Úprava adresy"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:221
+msgid "Vyplňte všechny položky formuláře"
+msgstr "Vyplňte všetky položky formulára"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:226
+msgid "Heslo musí mít min. 5 znaků"
+msgstr "Heslo musí mať min. 5 znakov"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:231
+msgid "Zadaná hesla se neshodují"
+msgstr "Zadané heslá sa nezhodujú"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:239
+msgid "Zadané heslo neodpovídá originálu"
+msgstr "Zadané heslo nezodpovedá originálu"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:255
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:256
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:257
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:271
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:272
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:273
+msgid "Úprava hesla"
+msgstr "Úprava hesla"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:285
+msgid "Vyplňte uživatelský účet."
+msgstr "Vyplňte užívateľský účet."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:290
+msgid "Zadaný uživatel neexistuje."
+msgstr "Zadaný užívateľ neexistuje."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:332
+msgid "Email je již v systému evidován."
+msgstr "Email je už v systéme evidovaný."
+
+#: D:\Projects\vamot\application/modules/common/logic\Front\CartStep\CartSteps.php:39
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:37
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:38
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:39
+msgid "Doprava a platba"
+msgstr "Doprava a platba"
+
+#: D:\Projects\vamot\application/modules/common/logic\Front\CartStep\CartSteps.php:40
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:76
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:77
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:78
+msgid "Informace o Vás"
+msgstr "Informácie o Vás"
+
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:108
+msgid "Registraci se nepodařilo provést zadaný email se již v systému nachází."
+msgstr "Registráciu sa nepodarilo vykonať zadaný email sa už v systéme nachádza."
+
+#: D:\Projects\vamot\application/modules/common/logic\Front\CartStep\CartSteps.php:41
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:212
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:213
+#: D:\Projects\vamot\application/modules/default\controllers\OrderController.php:214
+msgid "Objednávka dokončena"
+msgstr "Objednávka dokončená"
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:99
+msgid "Nejsou vyplněné všechny údaje."
+msgstr "Email bol úspešne pridaný do systému newslettera."
+
+#: D:\Projects\vamot\application/modules/default\controllers\CustomerController.php:335
+msgid "Email byl úspěšně přidán do systému newsletteru."
+msgstr "Email bol úspešne pridaný do systému newslettera."
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:30
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-1.latte:30
+msgid "Vyberte platbu"
+msgstr "Vyberte platbu"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:98
+#: D:\Projects\vamot\application/modules/default\views\latte\layout.latte:98
+msgid "Chci montáž"
+msgstr "Chcem montáž"
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:48
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:48
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:34
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:34
+msgid "Zaplatit"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:55
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:55
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:42
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:42
+msgid "IBAN"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:56
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:56
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:43
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:43
+msgid "BIC (SWIFT)"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:57
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:57
+msgid "Reference objednávky / Variabilní symbol"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:62
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:62
+msgid "QR platba"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:66
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:66
+msgid "Zaplaťte prosím objednávku do 5 dnů, jinak bude objednávka zrušena"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:94
+#: D:\Projects\vamot\application/modules/common/logic\Email\templates\order.latte:94
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\components\cart\recapitulation.latte:11
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:21
+#: D:\Projects\vamot\application/modules/default\views\latte\customer\order.latte:21
+msgid "Chci zajistit montáž"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:29
+#: D:\Projects\vamot\application/modules/default\views\latte\cart\index.latte:29
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:101
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:101
+msgid "Chci zajistit montáž tažného zařízení"
+msgstr "Chcem zabezpečiť montáž ťažného zariadenia"
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:37
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:37
+msgid "Platba proběhla úspěšně. Děkujeme."
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:44
+#: D:\Projects\vamot\application/modules/default\views\latte\order\step-3.latte:44
+msgid "Reference objednávky"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:88
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:88
+msgid "Dodání do"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:88
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:88
+msgid "při objednání do 10:00"
+msgstr ""
+
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:139
+#: D:\Projects\vamot\application/modules/default\views\latte\product\index.latte:139
+msgid "Dokumenty ke stažení"
+msgstr ""

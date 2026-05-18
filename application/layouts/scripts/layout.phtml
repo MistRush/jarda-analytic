@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <?php
+    // neměl by tu být ten view ... ale mělo by se to tahat třeba z nějaké statické proměnné
+    $view = $this->layout()->getView();
+    $title = @$view->title;
+    $metaDescription = @$view->metaDescription;
+    $metaKeywords = @$view->metaKeywords;
+    $image = @$view->image;
+    ?>
+
+    <meta charset="utf-8">   
+    <title><?= $title ? $title : 'Obaly a krabice různých druhů | balící materiály'; ?> | <?= str_replace('www.', '', $settings->getValue('ProjectShortURL')); ?></title>
+
+    <meta name="author" content="Evidsoft s.r.o.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<?= $metaKeywords ? $metaKeywords : 'obaly,balící materiály,krabice,složky,výroba,prodej'; ?>" />
+    <meta name="description" content="<?= $metaDescription ? $metaDescription : 'V našem internetovém obchodu můžete zakoupit např. obaly pro zásilky (poštovní krabice, lepenkové obálky, obaly na knihy a kalendáře), skládací tvarové krabice (obaly na potraviny, krabice odnosné, krabice dárkové), kancelářské a archivní obaly.'; ?>">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:site_name" content="">
+    <meta property="og:title" content="<?= $title ? $title : 'Obaly a krabice různých druhů | balící materiály'; ?> | <?= str_replace('www.', '', $settings->getValue('ProjectShortURL')); ?>">
+    <meta property="og:url" content="<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
+    <meta property="og:description" content="<?= $metaDescription ? $metaDescription : 'V našem internetovém obchodu můžete zakoupit např. obaly pro zásilky (poštovní krabice, lepenkové obálky, obaly na knihy a kalendáře), skládací tvarové krabice (obaly na potraviny, krabice odnosné, krabice dárkové), kancelářské a archivní obaly.'; ?>">
+    <?php if ( $image ) { ?>
+        <meta property="og:image" content="<?= $image ?>">
+    <?php } ?>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="<?= _bu(); ?>/js/shop.js"></script>
+
+    <?php if ( Zend_Controller_Front::getInstance()->getRequest()->getControllerName() == 'product' ) { ?>
+        <link rel="stylesheet" type="text/css" href="<?= _bu(); ?>/js/iprompt/jquery-impromptu.css">
+        <script src="<?= _bu(); ?>/js/iprompt/jquery-impromptu.js"></script>
+        <script src="<?= _bu(); ?>/js/product.js"></script>
+    <?php } ?>
+
+    <link rel="stylesheet" type="text/css" href="<?= _bu(); ?>/js/fancybox/jquery.fancybox.css">
+    <script src="<?= _bu(); ?>/js/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="<?= _bu(); ?>/js/fancybox/jquery.fancybox.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?= _bu(); ?>/js/responsiveslides/responsiveslides.css">
+    <script src="<?= _bu(); ?>/js/responsiveslides/responsiveslides.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="<?= _bu(); ?>/css/web/web.css">
+    <?php echo $this->headLink()?>
+
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>            
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-135564580-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <div id="header">
+        <div class="header-panel-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-6 offset-md-2">
+                        <span class="contact">
+                            <span class="phone"><a href="tel:<?= $settings->getValue('ContactPhone'); ?>"><?= $settings->getValue('ContactPhone'); ?></a></span>
+                            <span class="opening-hours"><?= $settings->getValue('OpeningHours'); ?></span>
+                        </span>
+                    </div>
+                    <div class="col-6 col-md-4 align-self-center text-right">
+                        <?= $this->action('header-login', 'layout', 'default'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-separator-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-2">
+                        <div class="separator-link"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-main-container">
+            <div class="container">
+                <div class="row main-row-holder">
+                    <div class="col-6 col-md-2 align-self-center">
+                        <div class="header-logo">
+                            <a href="/"><img src="<?= _bu(); ?>/img/front/logo.png" alt="<?= $settings->getValue('ProjectName'); ?>"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-6 order-6 col-md-3 order-md-7 align-self-center">
+                        <div class="header-cart">
+                            <a href="<?= _bu(); ?>/cart/" rel="nofollow">
+                                <?= $this->action('cart', 'layout', 'default'); ?>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 order-6 col-md-7 order-md-3 align-self-center">
+                        <div class="header-search">
+                            <form action="<?= _bu(); ?>/search/" method="get">
+                                <input type="text" name="searchTerm" placeholder="hledej ..."  />
+                                <input type="submit" name="sendSearch" value="Hledat">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-menu-container">
+            <?= $this->action('header-menu', 'layout', 'default'); ?>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="main-content">
+                <?= $this->layout()->content ?>
+            </div>
+
+            <?= $this->action('advantages', 'layout', 'default'); ?>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="newsletter-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <div class="headline">Přihlašte se k odběru newsletteru</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form">
+                            <input type="text" name="newsletter-email" placeholder="Zadejte Váš email" class="newsletter-email">
+                            <input type="button" value="Odebírat" class="newsletter-subscribe">
+                        </div>
+
+                        <div class="message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <?= $this->action('footer-menu', 'layout', 'default'); ?>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="headline">Kontakt</div>
+                        <div class="contact-box house">
+                            <b><?= $settings->getValue('ProjectName'); ?></b><br>
+                            <?= $settings->getValue('AddressStreet'); ?> <?= $settings->getValue('AddressDescriptionNumber'); ?><br>
+                            <?= $settings->getValue('AddressZipCode'); ?> <?= $settings->getValue('AddressCity'); ?>
+                        </div>
+                        <div class="contact-box user">
+                            <b>IČ:</b> <?= $settings->getValue('RegistrationNumber'); ?><br>
+                            <b>DIČ:</b> <?= $settings->getValue('VATNumber'); ?>
+                        </div>
+                        <div class="contact-box phone">
+                            <b>Telefon:</b> <a href="tel:<?= $settings->getValue('ContactPhone'); ?>"><?= $settings->getValue('ContactPhone'); ?></a><br>
+                        </div>
+                        <div class="contact-box email">
+                            <b>Email:</b> <a href="mailto:<?= $settings->getValue('ContactEmail'); ?>"><?= $settings->getValue('ContactEmail'); ?></a>
+                            <a href="mailto:<?= $settings->getValue('ContactEmail2'); ?>"><br><?= $settings->getValue('ContactEmail2'); ?></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6">
+                        <div id="map" class="map"  data-lat="49.9650744" data-lng="17.866352"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="info">© <?= date('Y'); ?> MIKES karton s.r.o., všechna práva vyhrazena.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="evidsoft">Vytvořeno společností <a href="https://www.evidsoft.cz" target="_blank">evidsoft.cz</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="back-to-top-holder">
+        <div class="back-to-top">↑</div>
+    </div>
+    <?= $this->headScript() ?>
+</body>
+</html>

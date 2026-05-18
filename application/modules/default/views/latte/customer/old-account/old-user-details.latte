@@ -1,0 +1,133 @@
+<form method="post" id="main-form" action="/customer/transfer-old-user">
+    <div class="form-block">
+        <h2 class="with-icon user">{_('Uživatelský účet')}</h2>
+        <div n:if="$msg" class="error" style="display: block">{_('Registraci se nepodařilo dokončit. Uživatelský účet s tímto názvem již existuje. Zkuste to prosím ještě jednou.')}</div>
+
+        <div class="row">
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="Email">{_('Přihlašovací e-mail')}:</label>
+                <input id="Email" type="text" name="Email" value="{$user->LoginName}" data-validator='[{ "v":":email","m":"{_('Vyplňte e-mail ve správném formátu.')}","p":null}, { "v":"oldAccountForm.validateEmail","m":"{_('Tento uživatel je již registrován.')}","p":null}]'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="Password">{_('Heslo')}:</label>
+                <input id="Password" type="password" name="Password" value="" data-validator='[{ "v":":min_length","m":"{_('Heslo musí obsahovat alespoň 5 znaků.')}","p":5}, { "v":"oldAccountForm.validatePassword","m":"{_('Zadaná hesla se neshodují.')}","p":null}]'>
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="PasswordAgain">{_('Heslo znovu')}:</label>
+                <input id="PasswordAgain" type="password" name="PasswordAgain">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-block">
+        <h2 class="with-icon delivery-address">{_('Fakturační adresa')}</h2>
+        <div class="row">
+            <div class="col-lg-6 mt-2">
+                <label for="CompanyName">{_('Název společnosti')}:</label>
+                <input id="CompanyName" type="text" name="CompanyName" value="{$user->CompanyName}">
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="FirstName">{_('Jméno')}:</label>
+                <input id="FirstName" type="text" name="FirstName" autocomplete="off" value="{$firstName}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím jméno.')}","p":null}]'>
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="LastName">{_('Příjmení')}:</label>
+                <input id="LastName" type="text" name="LastName" value="{$lastName}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím příjmení.')}","p":null}]'>
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="Street">{_('Ulice')}:</label>
+                <input id="Street" type="text" name="Street" value="{$user->CompanyStreet}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím ulici.')}","p":null}]'>
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="City">{_('Město')}:</label>
+                <input id="City" type="text" name="City" value="{$user->CompanyCity}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše město.')}","p":null}]'>
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="ZipCode">{_('PSČ')}:</label>
+                <input id="ZipCode" type="text" name="ZipCode" value="{$user->CompanyZipCode}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše PSČ.')}","p":null}]'>
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="Phone">{_('Telefon')}:</label>
+                <input id="Phone" type="text" name="Phone" value="{$user->ContactPhone}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaš telefon.')}","p":null}]'>
+            </div>
+
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="Country">{_('Stát')}:</label>
+                <select id="Country" type="text" name="Country">
+                    <option value="" selected disabled>Vyberte zemi</option>
+                    <option {if isset($invoiceCountry_ID) && $invoiceCountry_ID == $country['Country_ID']} selected  {else}{if $country['Country_ID'] == 50}selected{/if}{/if} n:foreach="$countries as $country"
+                            value="{$country['Country_ID']}">{$country['Name']}</option>
+                </select>
+            </div>
+            <div class="col-lg-6 mt-2">
+                <label for="IC">{_('IČO')}:</label>
+                <input id="IC" type="text" name="IC" value="{$user->CompanyID}">
+            </div>
+            <div class="col-lg-6 mt-2 position-relative">
+                <label for="DIC">{_('DIČ')}:</label>
+                <input id="DIC" type="text" name="VatID" value="{$user->CompanyVatID}">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-block">
+        <h2 class="with-icon with-toggler delivery-address">{_('Doručovací údaje')} <span class="toggler"></span><em>(kliknutím otevřete)</em></h2>
+        <div class="delivery-address-block" {if $deliveryAddress}style="display: block"{/if} pt-2">
+            <input type="hidden" name="IsDeliveryAddress" value="0">
+            <p>{_('Vyplňte v případě, že se liší od fakturačních')}</p>
+
+            <div class="row">
+                <div class="col-lg-6 mt-2">
+                    <label for="DeliveryName">{_('Název společnosti')}:</label>
+                    <input id="DeliveryName" type="text" name="DeliveryName" value="{$user->DeliveryName}">
+                </div>
+                <div class="col-lg-6 mt-2 position-relative">
+                    <label for="DFirstName">{_('Jméno')}:</label>
+                    <input id="DFirstName" type="text" name="DFirstName" value="{$firstName}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše jméno.')}","p":null,"d":".delivery-address-block"}]'>
+                </div>
+                <div class="col-lg-6 mt-2 position-relative">
+                    <label for="DLastName">{_('Příjmení')}:</label>
+                    <input id="DLastName" type="text" name="DLastName" value="{$lastName}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše příjmení.')}","p":null,"d":".delivery-address-block"}]'>
+                </div>
+                <div class="col-lg-6 mt-2 position-relative">
+                    <label for="DStreet">{_('Ulice')}:</label>
+                    <input id="DStreet" type="text" name="DStreet" value="{$user->DeliveryStreet}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaší ulici.')}","p":null,"d":".delivery-address-block"}]'>
+                </div>
+                <div class="col-lg-6 mt-2 position-relative">
+                    <label for="DCity">{_('Město')}:</label>
+                    <input id="DCity" type="text" name="DCity" value="{$user->DeliveryCity}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše město.')}","p":null,"d":".delivery-address-block"}]'>
+                </div>
+                <div class="col-lg-6 mt-2">
+                    <label for="DZipCode">{_('PSČ')}:</label>
+                    <input id="DZipCode" type="text" name="DZipCode" value="{$user->DeliveryZipCode}" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše PSČ.')}","p":null,"d":".delivery-address-block"}]'>
+                </div>
+
+                <div class="col-lg-6 mt-2">
+                    <label for="Country">{_('Stát')}:</label>
+                    <select id="Country" type="text" name="Country">
+                        <option value="" selected disabled>Vyberte zemi</option>
+                        <option {if isset($deliveryCountry_ID) && $deliveryCountry_ID == $country['Country_ID']} selected  {else}{if $country['Country_ID'] == 50}selected{/if}{/if} n:foreach="$countries as $country"
+                                value="{$country['Country_ID']}">{$country['Name']}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    <div class="gdpr-holder mt-3">
+        <label class="with-checkbox">
+            <input type="checkbox" name="gdpr" id="gdpr"><span class="checkmark"></span>Souhlasím se zpracováním svých osobních údajů uvedených výše pro účely zřízení a správy uživatelského účtu a seznámil/a jsem se s <a href="/page/ochrana-osobnich-udaju" target="_blank">podmínkami zpracování osobních údajů</a>.
+        </label>
+    </div>
+    <div class="text-right">
+        <input class="g-recaptcha btn btn-primary" type="button" name="register" value="{_('Potvrdit údaje')}" id="confirm-registration" />
+    </div>
+    <input type="hidden" name="Hash" value="">
+{*    <div class="terms-holder mt-0">*}
+{*        <label class="with-checkbox mb-1">*}
+{*            <input type="checkbox" name="terms" id="terms"><span class="checkmark"></span>Souhlasím s <a href="/page/vseobecne-obchodni-podminky" target="_blank">{_('obchodními podmínkami')}</a>.*}
+{*        </label>*}
+{*    </div>*}
+
+</form>

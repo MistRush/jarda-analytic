@@ -1,0 +1,11 @@
+{layout "../layout.latte"}
+{block content}
+    <h1>Aktualizace produktů</h1>
+    <div n:if="$msg" style="padding: 10px; background: #eee; border: 1px solid #bbb">{$msg}</div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <br>
+        <input type="file" name="file">
+        <input type="submit" value="Odeslat">
+    </form>
+{/block}

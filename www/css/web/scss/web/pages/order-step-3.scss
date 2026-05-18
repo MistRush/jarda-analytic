@@ -1,0 +1,21 @@
+@import "order-step-3/address";
+
+#order-step-3 {
+    .redirection-box {
+        padding: 15px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        box-shadow: 0 11px 33px 0 rgba(191, 211, 225, 0.45);
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 0;
+
+        span {
+            color: $font-primary-red;
+        }
+    }
+}

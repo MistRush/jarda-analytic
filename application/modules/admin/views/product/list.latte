@@ -1,0 +1,140 @@
+{layout "../layout.latte"}
+{block content}
+
+    <div class="row productList">
+        <div class="product-filter mb-4 mb-md-0">
+            <div id="productList-filter">
+                <div class="header open">
+                    <span>Filtr dle kategorie</span>
+                    <i class="ci ci-angle-down"></i>
+                </div>
+                <div class="content">
+                    <div id="category-tree" style="max-height: 320px; overflow:auto;"></div>
+                </div>
+            </div>
+            <div class="mt-5" id="productList-filter-2">
+                <div class="header open">
+                    <span>Filtr dle výrobce</span>
+                </div>
+                <div class="content">
+                    <div id="manufacturer-tree" style="max-height: 320px; overflow:auto;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="productList-dataGrid">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Aktivní produkty</a>
+                    <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Neaktivní produkty</a>
+                </div>
+            </nav><br>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> {$productGrid->render()}</div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">{$inactiveProductGrid->render()}</div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block scripts}
+    <script>
+        /**
+         * @namespace { Grid } productGrid
+         */
+        var productGrid;
+        var inactiveProductGrid;
+        var tree;
+
+        $(function () {
+            productGrid = {$productGrid|noescape};
+            inactiveProductGrid = {$inactiveProductGrid|noescape};
+
+            tree = new TreeView('category-tree', {$tree}, true);
+            tree.onChange = function () {
+                let selected = tree.getSelected();
+
+                productGrid.setUrlParameter('Category_IDs', selected);
+                productGrid.refresh();
+                inactiveProductGrid.setUrlParameter('Category_IDs', selected);
+                inactiveProductGrid.refresh();
+            }
+
+            manufacturerTree = new TreeView('manufacturer-tree', {$manufacturerTree}, true);
+            manufacturerTree.onChange = function () {
+                let selected = manufacturerTree.getSelected();
+
+                productGrid.setUrlParameter('Manufacturer_IDs', selected);
+                productGrid.refresh();
+                inactiveProductGrid.setUrlParameter('Manufacturer_IDs', selected);
+                inactiveProductGrid.refresh();
+            }
+        });
+
+        var previewProduct = function (eshopURL, languageCode) {
+            let slugProperty = 'slug' + languageCode;
+            window.open('/{URL::PRODUCT|noescape}/' + productGrid.getCurrentItem()[slugProperty]);
+        }
+    </script>
+
+    <script>
+        $(function() {
+            if ($(window).width() < 769) {
+                toggleFilter($('#productList-filter .header'), 0);
+            }
+            $('#productList-filter .header').on('click', (e) => {
+                var target = $(e.target).is('.header')?$(e.target):$(e.target).closest('.header');
+                toggleFilter(target);
+            });
+        });
+
+        function copyFunction(selector) {
+            // Get the text field
+            var copyText = document.getElementById(selector);
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+
+            // Alert the copied text
+            alert("URL zkopírována: " + copyText.value);
+        }
+
+
+        var toggleFilter = function(target, time = 300) {
+            target.toggleClass('open');
+            if (target.hasClass('open')) {
+                target.parents('.product-filter').toggleClass('open', false);
+                target.parents('.product-filter').next('.productList-dataGrid').toggleClass('open', false);
+                setTimeout(() =>{
+                    target.parent().find('.content').slideDown(time);
+                }, ($(window).width() > 768)?300:0);
+            } else {
+                target.parents('.product-filter').toggleClass('open', true);
+                target.parents('.product-filter').next('.productList-dataGrid').toggleClass('open', true);
+                if ($(window).width() > 768) {
+                    target.parent().find('.content').hide(0);
+                } else {
+                    target.parent().find('.content').slideUp(time);
+                }
+            }
+        }
+
+        var copyProduct = function (specify = false) {
+            if ( productGrid.getCurrentItem() ) {
+                $.post(basePath + '/admin/product/copy-product/', {
+                    Product_ID: productGrid.getCurrentItem()['ID'],
+                }).done(function(data) {
+                    alerts.alert({_('Upozornění')}, 'info', data);
+                    productGrid.refresh();
+                });
+            } else {
+                alerts.alert({_('Upozornění')}, 'error', 'Musíte vybrat produkt, který chcete zkopírovat.');
+            }
+        };
+
+
+    </script>
+{/block}

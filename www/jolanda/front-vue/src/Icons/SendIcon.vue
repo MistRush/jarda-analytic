@@ -1,0 +1,13 @@
+<script setup>
+import {IconProps, useIcon} from './useIcon.js'
+
+const props = defineProps(IconProps(19,19));
+
+const { color } = useIcon(props);
+</script>
+
+<template>
+    <svg xmlns="http://www.w3.org/2000/svg" :width="props.width" :height="props.width" viewBox="0 0 19 19" fill="none" :style="{color: color}">
+        <path d="M12.9438 13.0625L11.9344 12.0531L15.0813 8.90625L11.9344 5.75937L12.9438 4.75L17.1 8.90625L12.9438 13.0625ZM2.85001 14.8438V11.9938C2.85001 10.9382 3.21945 10.041 3.95834 9.30208C4.69723 8.56319 5.59445 8.19375 6.65001 8.19375H10.5688L8.13438 5.75937L9.14376 4.75L13.3 8.90625L9.14376 13.0625L8.13438 12.0531L10.5688 9.61875H6.65001C5.99028 9.61875 5.42952 9.84965 4.96771 10.3115C4.50591 10.7733 4.27501 11.334 4.27501 11.9938V14.8438H2.85001Z" fill="currentColor"/>
+    </svg>
+</template>

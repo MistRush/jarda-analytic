@@ -1,0 +1,248 @@
+{layout "../layout.latte"}
+{block content}
+    <h1 class="text-center">{_('Filtr')}</h1>
+    <form id="filter">
+        <div class="row justify-content-center">
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label for="Eshop_ID">{_('Eshop')}</label>
+                    <select name="Eshop_ID" id="Eshop_ID" class="noselect form-control">
+                        <option n:foreach="$eshop->getEshops() as $shop" value="{$shop->ID}" {$eshop->getEshopID() == $shop->ID?'selected'}>{$shop->Name}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label for="DateFrom">{_('Datum od')}</label>
+                    <input type="text" name="DateFrom" id="DateFrom" value="{$from}" class="form-control datepicker">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label for="DateTo">{_('Datum do')}</label>
+                    <input type="text" name="DateTo" id="DateTo"  value="{$to}" class="form-control datepicker">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label for="DateRange">{_('Časové období')}</label>
+                    <select name="DateRange" id="DateRange" class="noselect form-control">
+                        <option value="">{_('Vlastní')}</option>
+                        <option value="today">{_('Dnes')}</option>
+                        <option value="lastday">{_('Včera')}</option>
+                        <option value="week">{_('Posledních 7 dní')}</option>
+                        <option value="month">{_('Posledních 30 dní')}</option>
+                        <option value="quarter">{_('Poslední 3 měsíce')}</option>
+                        <option value="half">{_('Posledních 6 měsíců')}</option>
+                        <option value="year">{_('Posledních 12 měsíců')}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label for="Range">Rozsah</label>
+                    <select name="Range" id="Range" class="noselect form-control">
+                        <option value="">{_('Automaticky')}</option>
+                        <option value="DAY">{_('Den')}</option>
+                        <option value="WEEK">{_('Týden')}</option>
+                        <option value="MONTH">{_('Měsíce')}</option>
+                        <option value="QUARTER">{_('Kvartál')}</option>
+                        <option value="HALF">{_('Půlrok')}</option>
+                        <option value="YEAR">{_('Rok')}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label for="OrderStateType">{_('Stavy objednávek')}</label>
+                    <select name="OrderStateType" id="OrderStateType" class="noselect form-control">
+                        <option value="">{_('Vše')}</option>
+                        <option n:foreach="$orderStates as $orderState" value="{$orderState->ID}">{$orderState->getLang($lang_id)->Name}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-input-group">
+                    <label>&nbsp;</label>
+                    <div>
+                        <button type="submit" class="btn btn-green">{_('Filtrovat')}</button>
+                        <button type="reset" class="btn btn-primary" style="width:36px;"><i class="ci ci-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr class="my-5">
+    <h1 class="text-center">{_('Objednávky')}</h1>
+    <div id="orderStats">
+        {include 'modules/orders.latte'}
+    </div>
+{/block}
+
+{block scripts}
+    <script>
+        $(function() {
+            $('#DateRange').change(function(e) {
+                if ($(this).val() != "")
+                    $('#DateTo').val({date('d. m. Y', $now)});
+
+                switch($(this).val()) {
+                    case "today":
+                        $('#DateFrom').val({date('d. m. Y', $now)});
+                        break;
+                    case "lastday":
+                        $('#DateFrom').val({date('d. m. Y', strtotime('-1 day', $now))});
+                        $('#DateTo').val({date('d. m. Y', strtotime('-1 day', $now))});
+                        break;
+                    case "week":
+                        $('#DateFrom').val({date('d. m. Y', strtotime('-7 day', $now))});
+                        break;
+                    case "month":
+                        $('#DateFrom').val({date('d. m. Y', strtotime('-1 month', $now))});
+                        break;
+                    case "quarter":
+                        $('#DateFrom').val({date('d. m. Y', strtotime('-3 month', $now))});
+                        break;
+                    case "half":
+                        $('#DateFrom').val({date('d. m. Y', strtotime('-6 month', $now))});
+                        break;
+                    case "year":
+                        $('#DateFrom').val({date('d. m. Y', strtotime('-12 month', $now))});
+                        break;
+                }
+            });
+
+            $('#filter').submit(function(e) {
+                e.preventDefault();
+
+                var from = moment($('#DateFrom').val(), "DD. MM. YYYY").format('X');
+                var to = moment($('#DateTo').val(), "DD. MM. YYYY").format('X');
+                if (to - from < 0)
+                    $('#DateFrom').val($('#DateTo').val());
+
+                performFilter();
+            });
+
+            $('#filter [type="reset"]').on('click', function(e) {
+                e.preventDefault();
+                $(this).closest('form').get(0).reset();
+                performFilter();
+            });
+
+            createOrdersChart();
+            $('#DateFrom').data("DateTimePicker").minDate(new Date('2020-01-01')).maxDate(new Date());
+            $('#DateTo').data("DateTimePicker").minDate(new Date('2020-01-01')).maxDate(new Date());
+        });
+
+        var performFilter = function () {
+            var from =$('#DateFrom').val();
+            var to = $('#DateTo').val();
+            $.ajax({
+                url: basePath + '/admin/marketing/get-order-stats-ajax',
+                data: {
+                    dateFrom: from,
+                    dateTo: to,
+                    orderStateType: $('#OrderStateType').val(),
+                    range: $('#Range').val(),
+                    Eshop_ID: $('#Eshop_ID').val(),
+                },
+                success: function(data) {
+                    $('#orderStats').html(data);
+                    createOrdersChart();
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function createOrdersChart() {
+            var ctx = document.getElementById('orderStatsChart');
+            //ctx.height = 150;
+            ctx = ctx.getContext('2d');
+
+            var gradientBlue = ctx.createLinearGradient(0, 0, 0, $('#orderStatsChart').parent().height());
+            gradientBlue.addColorStop(0, "rgba(84,216,255,0.7)");
+            gradientBlue.addColorStop(1, "rgba(84,216,255,0)");
+
+            var gradientRed = ctx.createLinearGradient(0, 0, 0, $('#orderStatsChart').parent().height());
+            gradientRed.addColorStop(0, "rgb(255,50,84)");
+            gradientRed.addColorStop(1, "rgba(255,50,84,0)");
+
+            var gradientYellow = ctx.createLinearGradient(0, 0, 0, $('#orderStatsChart').parent().height());
+            gradientYellow.addColorStop(0, "rgb(255,232,84)");
+            gradientYellow.addColorStop(1, "rgba(255,232,84,0)");
+
+            window.ordersChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: OrderLabels,
+                    datasets: [{
+                        label: {_('Obrat')},
+                        backgroundColor: gradientBlue,
+                        yAxisID: 'A',
+                        data: Turnover,
+                        fill: true,
+                        borderColor: '#54D8FF',
+                        borderWidth: 2
+                    },{
+                        hidden: true,
+                        label: {_('Obrat bez DPH')},
+                        backgroundColor: gradientRed,
+                        yAxisID: 'A',
+                        data: TurnoverWithoutVat,
+                        fill: true,
+                        borderColor: '#ff6464',
+                        borderWidth: 2
+                    },{
+                        label: {_('Počet objednávek')},
+                        backgroundColor: gradientYellow,
+                        yAxisID: 'B',
+
+                        data: OrderCount,
+                        fill: true,
+                        borderColor: '#FFE854',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [
+                            {
+                                display: true,
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                id: 'A',
+                                label: {_('Celková cena')},
+                                type: 'linear',
+                                position: 'left',
+                                scalePositionLeft: true,
+                                ticks: {
+                                    min: 0,
+                                    beginAtZero: true,
+                                    callback: function (value, index, values) {
+                                        return Helpers.formatPrice(value);
+                                    }
+                                }
+                            }, {
+                                id: 'B',
+                                label: {_('Celkem objednávek')},
+                                type: 'linear',
+                                position: 'right',
+                                scalePositionLeft: true,
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 5,
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        }
+    </script>
+{/block}

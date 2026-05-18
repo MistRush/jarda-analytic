@@ -1,0 +1,293 @@
+#page {
+    .contact-page {
+        .headline {
+            margin-bottom: 20px;
+
+            h1 {
+                margin-bottom: 10px;
+            }
+        }
+
+        .contact-info {
+            background-color: #F3F7FF;
+            border: 1px solid #D8E4F7;
+            border-radius: 8px;
+            padding: 20px 20px;
+
+            .contact-item {
+                padding: 5px 0 5px 45px;
+
+                a {
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 100%;
+                    color: #002541;
+                }
+
+                &.phone {
+                    background: url('/img/front/icons/contact-phone.png') left center no-repeat;
+                    background-size: 30px;
+                }
+
+                &.email {
+                    background: url('/img/front/icons/contact-email.png') left center no-repeat;
+                    background-size: 30px;
+                }
+            }
+        }
+
+        .adress-info {
+            h3 {
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 100%;
+                color: #002541;
+                margin-top: 35px;
+
+                &.with-icon {
+                    padding-top: 8px;
+                    padding-left: 44px;
+                    position: relative;
+                    margin-bottom: 20px;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 6px;
+                        @include gradient-dark();
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 5px;
+                        left: 5px;
+                        z-index: 0;
+                        width: 22px;
+                        height: 22px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+
+                    &.payment::after {
+                        background-image: url('/img/front/icons/base/h2-payment.svg');
+                    }
+
+                    &.company::after {
+                        background-image: url('/img/front/icons/base/h2-company.svg');
+                    }
+                }
+            }
+        }
+
+        .shop-location-holder {
+            background: linear-gradient(90deg, #190427 0%, #172050 100%);
+            padding: 10px 20px 5px 20px;
+            border-radius: 10px;
+
+            .shop-location-header {
+                padding: 10px 0 15px 0;
+
+                h3 {
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 100%;
+                    color: #FFFFFF;
+                    margin: 0;
+                }
+            }
+
+            .shop-location-item {
+                padding: 20px 0;
+                border-top: 1px solid rgb(206 219 240 / 23%);
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+                .img-holder {
+                    width: 30%;
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                    }
+
+                    &:before {
+                        content: url(/img/front/location-pin.png);
+                        position: absolute;
+                        top: 10px;
+                        left: -10px;
+                    }
+                }
+
+                .shop-info-holder {
+                    p {
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: #B4BDDB;
+                        margin: 0;
+                    }
+
+                    strong {
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: #FFFFFF;
+                    }
+
+                    a {
+                        color: #E82121;
+                        font-size: 14px;
+
+                        &.text-grey {
+                            color: #B4BDDB;
+                            text-decoration: none;
+                            transition: 200ms ease;
+                            font-size: 14px;
+
+                            &:hover {
+                                color: #E82121;
+                            }
+                        }
+
+                        &.phone {
+                            padding-left: 25px;
+                            background: url('/img/front/shop-phone.png') left center no-repeat;
+                            background-size: 17px;
+                        }
+
+                        &.email {
+                            padding-left: 25px;
+                            background: url('/img/front/shop-email.png') left center no-repeat;
+                            background-size: 17px;
+                        }
+                    }
+
+                    span {
+                        color: #B4BDDB;
+                        font-size: 14px;
+                        padding-left: 25px;
+
+                        &.opening-hours {
+                            background: url('/img/front/shop-opening.png') left center no-repeat;
+                            background-size: 17px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .contacts {
+            margin-top: 50px;
+            padding: 20px  0;
+            border-top: 1px solid rgba(46, 82, 153, 0.2);
+
+            h2 {
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 32.6px;
+                color: #002541;
+                margin: 0;
+            }
+
+            .contacts-holder {
+                background-color: #F3F7FF;
+                border: 1px solid #D8E4F7;
+                border-radius: 8px;
+                padding: 20px 15px 5px 15px;
+                margin-top: 25px;
+
+                h3 {
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 100%;
+                    color: #002541;
+                    margin: 0;
+                }
+
+                .contacts-item {
+                    border-top: solid 1px rgba(46, 82, 153, 0.24);
+                    padding: 10px 0;
+
+                    &:first-child {
+                        border-top: none;
+                        padding-top: 0;
+                    }
+
+                    .name {
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 31px;
+                        color: #002541;
+                    }
+
+                    .position {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: #E82121;
+                    }
+
+                    .phone {
+                        padding-left: 25px;
+                        background: url('/img/front/shop-phone.png') left top 9px no-repeat;
+                        background-size: 17px;
+                    }
+
+                    .email {
+                        padding-left: 25px;
+                        background: url('/img/front/shop-email.png') left top 9px no-repeat;
+                        background-size: 17px;
+                    }
+
+                    a {
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 31px;
+                        color: #002541;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media(max-width: 768px) {
+    #page {
+        .contact-page {
+            .contacts {
+                .contacts-holder {
+                    .contacts-item {
+                        &:first-child {
+                            border-top: solid 1px rgba(46, 82, 153, 0.24);
+                            padding: 10px 0;
+                            margin-top: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    #page {
+        .contact-page {
+            .shop-location-holder {
+                .shop-location-item {
+                    flex-wrap: wrap;
+                    padding-top: 20px;
+
+                    .img-holder {
+                        width: 100% ;
+                    }
+                }
+            }
+        }
+    }
+}

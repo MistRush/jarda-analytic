@@ -1,0 +1,629 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-07-28T13:07:00+02:00\n"
+"PO-Revision-Date: 2025-06-16 14:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+msgid "ADD"
+msgstr "Add"
+
+msgid "EDIT"
+msgstr "Edit"
+
+msgid "REMOVE"
+msgstr "Remove"
+
+msgid "CLOSE"
+msgstr "Close"
+
+msgid "ACTION"
+msgstr "Action"
+
+msgid "FILTER"
+msgstr "Filter"
+
+msgid "YES"
+msgstr "Yes"
+
+msgid "NO"
+msgstr "No"
+
+msgid "NONE"
+msgstr "None"
+
+msgid "EDIT_DONE"
+msgstr "Entity was edited successfully"
+
+msgid "SELECT_ROW"
+msgstr "No item selected"
+
+msgid "SELECT_ROW_TEXT"
+msgstr "Please select the desired item"
+
+msgid "ITEMS_DELETED"
+msgstr "Items has been deleted"
+
+msgid "SELECT_FILE"
+msgstr "Select file"
+
+msgid "SAVE"
+msgstr "Save"
+
+msgid "SHOW_HIDE_COLUMNS"
+msgstr "Show / hide columns"
+
+msgid "CONFIRM"
+msgstr "Confirm"
+
+msgid "REMOVE_QUESTION"
+msgstr "Do you really want to remove"
+
+msgid "REMOVE_ITEM"
+msgstr "item"
+
+msgid "REMOVE_ITEMS"
+msgstr "items"
+
+msgid "SELECT_ONLY_ONE"
+msgstr "You can edit only one row at the time."
+
+msgid "VALIDATION_ERR"
+msgstr "Validation error"
+
+msgid "VALIDATION_ERR_TEXT"
+msgstr "Some of the form elements are not filled properly."
+
+msgid "FORM_VALIDATION_FLOAT"
+msgstr "Number must be in decimal point format."
+
+msgid "FIELD_REQUIRED"
+msgstr "This field is required"
+
+msgid "CURRENT_FILE"
+msgstr "Current file"
+
+msgid "UPLOADED"
+msgstr "Uploaded"
+
+msgid "FROM"
+msgstr "from"
+
+msgid "TO"
+msgstr "to"
+
+msgid "COPY_FILTER_URL"
+msgstr "Copy URL with prefilter"
+
+msgid "COPY_FILTER_URL_TEXT"
+msgstr "URL with prefiltered grid was copied to clipboard."
+
+msgid "RESET_FILTER"
+msgstr "Reset filter"
+
+msgid "ERROR"
+msgstr "Error"
+
+msgid "SAVE_CLOSE"
+msgstr "Save & close"
+
+msgid "COLUMN_SETTINGS"
+msgstr "Column settings"
+
+msgid "REFRESH"
+msgstr "Refresh data"
+
+msgid "EDITOR_NEW"
+msgstr "new"
+
+msgid "EDITOR_EDIT"
+msgstr "edit"
+
+msgid "PREVIEW"
+msgstr "Preview"
+
+msgid "SAVE_CONTINUE"
+msgstr "Save & continue"
+
+msgid "SAVE_TO_EDIT"
+msgstr "Some items will be available only after save"
+
+msgid "ACTIVE_FILTERS"
+msgstr "Active filters"
+
+msgid "CLIPBOARD_IS_EMPTY"
+msgstr "Clipboard is empty"
+
+msgid "COPY_TO_CLIPBOARD"
+msgstr "Copied to clipboard"
+
+msgid "BLOCKEDITOR_PASTE_CONFIRM"
+msgstr ""
+"Do you really want to paste a page from the clipboard? (overwrites existing "
+"content!)"
+
+msgid "BLOCKEDITOR_CLIPBOARD_COPY"
+msgstr "Copy whole page"
+
+msgid "BLOCKEDITOR_CLIPBOARD_PASTE"
+msgstr "Insert page from clipboard"
+
+msgid "PRESETS"
+msgstr "Presets"
+
+msgid "PRESET_DEFAULT"
+msgstr "Default preset"
+
+msgid "NAME"
+msgstr "Name"
+
+msgid "NAME_ALREADY_EXIST"
+msgstr "This name already exists"
+
+msgid "PRESET_ADD_CONFIRM"
+msgstr "Do you really want to update the preset"
+
+msgid "PRESET"
+msgstr "preset"
+
+msgid "UPDATE"
+msgstr "Update"
+
+msgid "RENAME"
+msgstr "Rename"
+
+msgid "SELECTED"
+msgstr "Selected"
+
+msgid "RECORDS"
+msgstr "Records"
+
+msgid "NEXT"
+msgstr "Next"
+
+msgid "PREV"
+msgstr "Previous"
+
+msgid "EXPORT"
+msgstr "Export"
+
+msgid "EXPORT_CSV_ALL"
+msgstr "All to CSV"
+
+msgid "EXPORT_CSV_FILTER"
+msgstr "Filtered to CSV"
+
+msgid "EXPORT_PDF_ALL"
+msgstr "All to PDF"
+
+msgid "EXPORT_PDF_FILTER"
+msgstr "Filtered to PDF"
+
+msgid "UPLOAD_FILE"
+msgstr "Upload file"
+
+msgid "FILE_HISTORY"
+msgstr "Uploaded files"
+
+msgid "SELECT_FROM_HISTORY"
+msgstr "Select uploaded file"
+
+msgid "FILE"
+msgstr "File"
+
+msgid "SIZE"
+msgstr "Size"
+
+msgid "DATE_CREATE"
+msgstr "Creation Date"
+
+msgid "DATE_MODIFIED"
+msgstr "Modification Date"
+
+msgid "CHANGE"
+msgstr "Change"
+
+msgid "SELECT"
+msgstr "Select"
+
+msgid "NO_RECORDS"
+msgstr "No Records"
+
+msgid "FILE_NOT_ACCEPTED"
+msgstr "File is not accepted"
+
+msgid "FILE_NOT_FOUND"
+msgstr "File not found"
+
+msgid "DOWNLOAD"
+msgstr "Download"
+
+msgid "CONTAINS_HEADER"
+msgstr "Contains header"
+
+msgid "IMPORT"
+msgstr "Import"
+
+msgid "DOWNLOAD_OUTPUT"
+msgstr "Download result"
+
+msgid "IMPORT_ERROR"
+msgstr "Import error"
+
+msgid "ADD_TEMPLATE"
+msgstr "Add template"
+
+msgid "REMOVE_TEMPLATE"
+msgstr "Remove template"
+
+msgid "TEMPLATE_LOAD_ERROR"
+msgstr "Template load error"
+
+msgid "TEMPLATE_REMOVE_ERROR"
+msgstr "Template remove error"
+
+msgid "TEMPLATE_REMOVED"
+msgstr "Template removed"
+
+msgid "SELECT_TEMPLATE"
+msgstr "Select template"
+
+msgid "TEMPLATE_ADD_ERROR"
+msgstr "Template add error"
+
+msgid "TEMPLATE_ADDED"
+msgstr "Template added"
+
+msgid "IMPORT_TEMPLATE"
+msgstr "Template"
+
+msgid "SELECT_ALL"
+msgstr ""
+
+msgid "UNSELECT_ALL"
+msgstr ""
+
+msgid "DATE_UPDATED"
+msgstr "Date updated"
+
+msgid "DATE_CREATED"
+msgstr "Date created"
+
+msgid "DATE_START"
+msgstr "Expected begin date"
+
+msgid "DATE_DEADLINE"
+msgstr "Deadline"
+
+msgid "TITLE"
+msgstr "Title"
+
+msgid "STATE"
+msgstr "State"
+
+msgid "TASK_CONTENT"
+msgstr "Task"
+
+msgid "SEND_REPLY"
+msgstr "Send reply"
+
+msgid "EXPECTED_HOURS_FROM"
+msgstr "Hours from"
+
+msgid "EXPECTED_HOURS_TO"
+msgstr "Hours to"
+
+msgid "EXPECTED_RETURN_FINANCE_FROM"
+msgstr "Return from"
+
+msgid "EXPECTED_RETURN_FINANCE_TO"
+msgstr "Return to"
+
+msgid "SEND_EMAIL"
+msgstr "Send email"
+
+msgid "NEW_TASK"
+msgstr "New task"
+
+msgid "SHOW_PROGRESS_BAR"
+msgstr "Show progress"
+
+msgid "ON_HOLD_REASON"
+msgstr "Holding reason"
+
+msgid "WAITING_FOR"
+msgstr "Waiting for"
+
+msgid "SOLVERS"
+msgstr "Solvers"
+
+msgid "AUTHORS"
+msgstr "Authors"
+
+msgid "PROJECTS"
+msgstr "Projects"
+
+msgid "PANELS"
+msgstr "Panels"
+
+msgid "WAITING_FOR_AUTHOR"
+msgstr "Author"
+
+msgid "WAITING_FOR_SOLVER"
+msgstr "Solver"
+
+msgid "PERCENT_PROGRESS"
+msgstr "Progress"
+
+msgid "SOLVER"
+msgstr "Solver"
+
+msgid "OTHER_SOLVERS"
+msgstr "Other solvers"
+
+msgid "AUTHOR"
+msgstr "Author"
+
+msgid "PRIORITY"
+msgstr "Priority"
+
+msgid "LINKS"
+msgstr "Links"
+
+msgid "ATTACHMENTS"
+msgstr "Attachments"
+
+msgid "CHOOSE_FILES"
+msgstr "Choose file/s"
+
+msgid "CONFIRM_DELETE_SOLVER"
+msgstr "Confirm delete solver"
+
+msgid "CONFIRM_DELETE_TASK"
+msgstr "Confirm delete task"
+
+msgid "SEARCH"
+msgstr "Search"
+
+msgid "DEPARTMENT"
+msgstr "Department"
+
+msgid "PROJECT"
+msgstr "Project"
+
+msgid "USER"
+msgstr "User"
+
+msgid "CATEGORY"
+msgstr "Category"
+
+msgid "CREATE_TASK"
+msgstr "Create task"
+
+msgid "MARK_DELETE"
+msgstr "Delete task"
+
+msgid "MARK_COMPLETE"
+msgstr "Complete task"
+
+msgid "MARK_AWAITING_APPROVAL"
+msgstr "Mark as awaiting approval"
+
+msgid "MARK_PRIORITY"
+msgstr "Mark as priority"
+
+msgid "MARK_DEFERRED"
+msgstr "Defer task"
+
+msgid "ERROR_REPORTING"
+msgstr "Error reporting"
+
+msgid "TO_DO_HELP"
+msgstr "New tasks and tasks that have not been worked on yet"
+
+msgid "ON_HOLD_HELP"
+msgstr "Tasks that are currently not being solved/waiting for additions/on hold"
+
+msgid "AMENDED_HELP"
+msgstr "Task with added/changed assignment"
+
+msgid "CURRENTLY_SOLVING_HELP"
+msgstr "Tasks that are currently being solved"
+
+msgid "AWAITING_APPROVAL_HELP"
+msgstr "Tasks that are awaiting approval from solver or author"
+
+msgid "EXPECTED_HOURS"
+msgstr "Expected hours"
+
+msgid "EXPECTED_RETURN"
+msgstr "Expected return/profit"
+
+msgid "EXPECTED_RETURN_HELP"
+msgstr ""
+"Oddůvodnění očekávaného finančního návratu\nNapř.: Ušetří čas 2 hodiny denně pro "
+"dva pracovníky, zhruba 1 000 hodin ročně = 250 000 Kč"
+
+msgid "EXPECTED_RETURN_FINANCE"
+msgstr "Expected financial return"
+
+msgid "EXPECTED_RETURN_FINANCE_HELP"
+msgstr "CZK per year"
+
+msgid "DOWNLOAD_FILE_ERROR"
+msgstr "Failed to download file"
+
+msgid "DELETE_FILE_ERROR"
+msgstr "Failed to delete file"
+
+msgid "FILE_DELETED"
+msgstr "File deleted"
+
+msgid "GET_DATA_ERROR"
+msgstr "Failed to load data"
+
+msgid "UPDATE_TASK_ERROR"
+msgstr "Failed to edit task"
+
+msgid "TASK_UPDATED"
+msgstr "Task edited"
+
+msgid "CREATE_TASK_ERROR"
+msgstr "Failed to create task"
+
+msgid "TASK_CREATED"
+msgstr "Task created"
+
+msgid "DELETE_TASK_ERROR"
+msgstr "Failed to delete task"
+
+msgid "TASK_DELETED"
+msgstr "Task deleted"
+
+msgid "DELETING_RECORD"
+msgstr ""
+
+msgid "DELETE_ERROR"
+msgstr ""
+
+msgid "OF"
+msgstr ""
+
+msgid "DISPLAYING"
+msgstr ""
+
+msgid "SAVING"
+msgstr ""
+
+msgid "DATA_SAVED"
+msgstr ""
+
+msgid "SAVING_ERROR"
+msgstr ""
+
+msgid "VALIDATION_MIXED_REQUIRED"
+msgstr ""
+
+msgid "VALIDATION_MIXED_ONEOF"
+msgstr ""
+
+msgid "VALIDATION_MIXED_NOTONEOF"
+msgstr ""
+
+msgid "VALIDATION_MIXED_DEFINED"
+msgstr ""
+
+msgid "VALIDATION_STRING_EMAIL"
+msgstr ""
+
+msgid "VALIDATION_STRING_MIN"
+msgstr ""
+
+msgid "VALIDATION_STRING_MAX"
+msgstr ""
+
+msgid "VALIDATION_STRING_MATCHES"
+msgstr ""
+
+msgid "VALIDATION_STRING_URL"
+msgstr ""
+
+msgid "VALIDATION_STRING_LENGTH"
+msgstr ""
+
+msgid "VALIDATION_STRING_UUID"
+msgstr ""
+
+msgid "VALIDATION_STRING_TRIM"
+msgstr ""
+
+msgid "VALIDATION_STRING_LOWERCASE"
+msgstr ""
+
+msgid "VALIDATION_STRING_UPPERCASE"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_MIN"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_MAX"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_LESSTHAN"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_MORETHAN"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_POSITIVE"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_NEGATIVE"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_INTEGER"
+msgstr ""
+
+msgid "VALIDATION_DATE_MIN"
+msgstr ""
+
+msgid "VALIDATION_DATE_MAX"
+msgstr ""
+
+msgid "VALIDATION_ARRAY_MIN"
+msgstr ""
+
+msgid "VALIDATION_ARRAY_MAX"
+msgstr ""
+
+msgid "VALIDATION_ARRAY_LENGTH"
+msgstr ""
+
+msgid "VALIDATION_OBJECT_NOUNKNOWN"
+msgstr ""
+
+msgid "LOAD"
+msgstr "Načíst"
+
+msgid "NEW_VERSION"
+msgstr "A new version of the app is available"
+
+msgid "OTHER"
+msgstr "Other"
+
+msgid "PINNED"
+msgstr "Pinned"
+
+msgid "SETTINGS_MENU_FAVORITES"
+msgstr "Menu section settings"
+
+msgid "ROW_REORDER"
+msgstr "Row reorder"
+
+msgid "LOGOUT"
+msgstr "Logout"
+
+msgid "TABS"
+msgstr "Tabs"
+
+msgid "OPENED_TABS"
+msgstr "Open tabs"
+
+msgid "MENU"
+msgstr "Menu"
+
+msgid "ACCOUNT"
+msgstr "Account"
+
+msgid "FAVOURITES"
+msgstr "Favourites"
+
+msgid "FAVOIRITES_TO_REMOVE"
+msgstr "Remove from favourites"

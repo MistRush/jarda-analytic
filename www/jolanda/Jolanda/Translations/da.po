@@ -1,0 +1,826 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-07-28T13:07:00+02:00\n"
+"PO-Revision-Date: 2023-04-25 09:25+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+msgid "ADD"
+msgstr "Přidat"
+
+msgid "EDIT"
+msgstr "Upravit"
+
+msgid "REMOVE"
+msgstr "Odstranit"
+
+msgid "CLOSE"
+msgstr "Zavřít"
+
+msgid "ACTION"
+msgstr "Akce"
+
+msgid "FILTER"
+msgstr "Filtr"
+
+msgid "YES"
+msgstr "Ano"
+
+msgid "NO"
+msgstr "Ne"
+
+msgid "NONE"
+msgstr "Žádný"
+
+msgid "EDIT_DONE"
+msgstr "Entita byla úspěšně upravena"
+
+msgid "SELECT_ROW"
+msgstr "Výběr položky"
+
+msgid "SELECT_ROW_TEXT"
+msgstr "Vyberte prosím požadovaný řádek"
+
+msgid "ITEMS_DELETED"
+msgstr "Položky odstraněny"
+
+msgid "SELECT_FILE"
+msgstr "Vyberte soubor"
+
+msgid "SAVE"
+msgstr "Uložit"
+
+msgid "SHOW_HIDE_COLUMNS"
+msgstr "Zobrazení / skrytí sloupců"
+
+msgid "CONFIRM"
+msgstr "Potvrdit"
+
+msgid "REMOVE_QUESTION"
+msgstr "Opravdu chcete odstranit"
+
+msgid "REMOVE_ITEM"
+msgstr "položku"
+
+msgid "REMOVE_ITEMS"
+msgstr "položek"
+
+msgid "SELECT_ONLY_ONE"
+msgstr "Vyberte prosím pouze jeden řádek pro úpravu."
+
+msgid "VALIDATION_ERR"
+msgstr "Chyba validace"
+
+msgid "VALIDATION_ERR_TEXT"
+msgstr "Některé položky formuláře jsou vyplněny chybně. Opravte prosím."
+
+msgid "FORM_VALIDATION_FLOAT"
+msgstr "Zadejte prosím ve formátu desetinného čísla"
+
+msgid "FIELD_REQUIRED"
+msgstr "Toto pole je vyžadováno"
+
+msgid "CURRENT_FILE"
+msgstr "Aktuální soubor"
+
+msgid "UPLOADED"
+msgstr "Nahráno"
+
+msgid "FROM"
+msgstr "od"
+
+msgid "TO"
+msgstr "do"
+
+msgid "COPY_FILTER_URL"
+msgstr "Kopírovat URL s filtrem"
+
+msgid "COPY_FILTER_URL_TEXT"
+msgstr "URL s předfiltrovaným gridem byla zkopírována do schránky."
+
+msgid "RESET_FILTER"
+msgstr "Resetovat filtr"
+
+msgid "ERROR"
+msgstr "Chyba"
+
+msgid "SAVE_CLOSE"
+msgstr "Uložit a zavřit"
+
+msgid "COLUMN_SETTINGS"
+msgstr "Nastavení sloupců"
+
+msgid "REFRESH"
+msgstr "Obnovit data"
+
+msgid "EDITOR_NEW"
+msgstr "nový"
+
+msgid "EDITOR_EDIT"
+msgstr "úprava"
+
+msgid "PREVIEW"
+msgstr "Náhled"
+
+msgid "SAVE_CONTINUE"
+msgstr "Uložit a pokračovat"
+
+msgid "SAVE_TO_EDIT"
+msgstr "Některé položky budou k dispozici až po uložení"
+
+msgid "CLIPBOARD_IS_EMPTY"
+msgstr "Schránka je prázdná"
+
+msgid "COPY_TO_CLIPBOARD"
+msgstr "Zkopírováno do schránky"
+
+msgid "BLOCKEDITOR_PASTE_CONFIRM"
+msgstr "Opravdu chcete vložit stránku ze schránky? (přepíše se stávající obsah!)"
+
+msgid "BLOCKEDITOR_CLIPBOARD_COPY"
+msgstr "Kopírovat celou stránku"
+
+msgid "BLOCKEDITOR_CLIPBOARD_PASTE"
+msgstr "Vložit stránku ze schránky"
+
+msgid "PRESETS"
+msgstr "Presety"
+
+msgid "PRESET"
+msgstr "preset"
+
+msgid "PRESET_DEFAULT"
+msgstr "Výchozí nastavení"
+
+msgid "PRESET_ADD_CONFIRM"
+msgstr "Opravdu chcete aktualizovat preset"
+
+msgid "NAME"
+msgstr "Název"
+
+msgid "NAME_ALREADY_EXIST"
+msgstr "Tento název již existuje"
+
+msgid "UPDATE"
+msgstr "Aktualizovat"
+
+msgid "RENAME"
+msgstr "Přejmenovat"
+
+msgid "SELECTED"
+msgstr "Vybráno"
+
+msgid "RECORDS"
+msgstr "záznamů"
+
+msgid "NEXT"
+msgstr "další"
+
+msgid "PREV"
+msgstr "předchozí"
+
+msgid "EXPORT"
+msgstr "Exportovat"
+
+msgid "EXPORT_CSV_ALL"
+msgstr "Vše do csv"
+
+msgid "EXPORT_CSV_FILTER"
+msgstr "Fitrované do csv"
+
+msgid "EXPORT_PDF_ALL"
+msgstr "Vše do PDF"
+
+msgid "EXPORT_PDF_FILTER"
+msgstr "Filtrované do PDF"
+
+msgid "ACTIVE_FILTERS"
+msgstr "Aktivní filtry"
+
+msgid "UPLOAD_FILE"
+msgstr "Nahrát soubor"
+
+msgid "FILE_HISTORY"
+msgstr "Nahrané soubory"
+
+msgid "SELECT_FROM_HISTORY"
+msgstr "Vybrat z nahraných souborů"
+
+msgid "FILE"
+msgstr "Soubor"
+
+msgid "SIZE"
+msgstr "Velikost"
+
+msgid "DATE_CREATE"
+msgstr "Datum vytvoření"
+
+msgid "DATE_MODIFIED"
+msgstr "Datum změny"
+
+msgid "CHANGE"
+msgstr "Změnit"
+
+msgid "SELECT"
+msgstr "Vybrat"
+
+msgid "NO_RECORDS"
+msgstr "Žádné záznamy"
+
+msgid "FILE_NOT_ACCEPTED"
+msgstr "Nepřijatelný soubor"
+
+msgid "FILE_NOT_FOUND"
+msgstr "Soubor nenalezen"
+
+msgid "DOWNLOAD"
+msgstr "Stáhnout"
+
+msgid "CONTAINS_HEADER"
+msgstr "Obsahuje záhlaví"
+
+msgid "IMPORT"
+msgstr "Importovat"
+
+msgid "DOWNLOAD_OUTPUT"
+msgstr "Stáhnout výstup"
+
+msgid "IMPORT_ERROR"
+msgstr "Chyba importu"
+
+msgid "ADD_TEMPLATE"
+msgstr "Uložit šablonu"
+
+msgid "REMOVE_TEMPLATE"
+msgstr "Smazat šablonu"
+
+msgid "TEMPLATE_LOAD_ERROR"
+msgstr "Chyba načítání šablony"
+
+msgid "TEMPLATE_REMOVE_ERROR"
+msgstr "Chyba mazání šablony"
+
+msgid "TEMPLATE_REMOVED"
+msgstr "Šablona smazána"
+
+msgid "SELECT_TEMPLATE"
+msgstr "Vyberte šablonu"
+
+msgid "TEMPLATE_ADD_ERROR"
+msgstr "Chyba uložení šablony"
+
+msgid "TEMPLATE_ADDED"
+msgstr "Šablona uložena"
+
+msgid "IMPORT_TEMPLATE"
+msgstr "Šablona"
+
+msgid "SELECT_ALL"
+msgstr "Vybrat vše"
+
+msgid "UNSELECT_ALL"
+msgstr "Zrušit vše"
+
+msgid "DEPARTMENT"
+msgstr "Oddělení"
+
+msgid "SHOW_AS"
+msgstr "Zobrazit jako"
+
+msgid "SHOW_CREATED_BY_ME"
+msgstr "Zobrazit mnou vytvořené"
+
+msgid "SHOW_COMPLETED"
+msgstr "Zobrazit dokončené"
+
+msgid "SHOW_CANCELED"
+msgstr "Zobrazit zrušené"
+
+msgid "SHOW_DEFERRED"
+msgstr "Zobrazit odložené"
+
+msgid "SEARCH"
+msgstr "Vyhledat"
+
+msgid "NEW_TASK"
+msgstr "Nový úkol"
+
+msgid "NOT_COMPLETED_TASKS"
+msgstr "Nedokončené"
+
+msgid "PRIORITY_TASKS"
+msgstr "Prioritní"
+
+msgid "WAITING_APPROVAL_TASKS"
+msgstr "Čekající na schválení"
+
+msgid "COMPLETED_TASKS"
+msgstr "Dokončené"
+
+msgid "TASKS"
+msgstr "Úkoly"
+
+msgid "TASK"
+msgstr "Zadání"
+
+msgid "NUMBER"
+msgstr "Číslo feedbacku"
+
+msgid "AUTHOR"
+msgstr "Zadavatel"
+
+msgid "SOLVER"
+msgstr "Řešitel"
+
+msgid "OTHER_SOLVERS"
+msgstr "Další řešitelé"
+
+msgid "STATE"
+msgstr "Stav"
+
+msgid "PRIORITY"
+msgstr "Priorita"
+
+msgid "DATE_CREATED"
+msgstr "Datum vytvoření"
+
+msgid "DATE_EXPECTED_SOLVING"
+msgstr "Deadline"
+
+msgid "ATTACHMENTS"
+msgstr "Přílohy"
+
+msgid "SEND_EMAIL"
+msgstr "Odeslat mail"
+
+msgid "CHOOSE_FILE"
+msgstr "Vybrat soubor"
+
+msgid "CREATE_REPLY"
+msgstr "Přidat novou odpověď"
+
+msgid "SEND_REPLY"
+msgstr "Odeslat odpověď"
+
+msgid "CREATE_TASK"
+msgstr "Vytvořit nový úkol"
+
+msgid "TITLE"
+msgstr "Název"
+
+msgid "ERROR_REPORTING"
+msgstr "Hlášení chyby"
+
+msgid "MARK_COMPLETE"
+msgstr "Dokončit"
+
+msgid "MARK_PRIORITY"
+msgstr "Označit jako prioritní"
+
+msgid "MARK_WAITING_APPROVAL"
+msgstr "Označit jako čekající na schválení"
+
+msgid "MARK_DELETE"
+msgstr "Smazat"
+
+msgid "GET_PANELS_ERROR"
+msgstr "Nepodařilo se načíst panely"
+
+msgid "GET_TASK_ERROR"
+msgstr "Nepodařilo se načíst úkol"
+
+msgid "SET_TASK_SOLVER_ERROR"
+msgstr "Nepodařilo se nastavit nového řešitele"
+
+msgid "SET_TASK_STATE_ERROR"
+msgstr "Nepodařilo se nastavit stav úkolu"
+
+msgid "SET_TASK_VIEWED_ERROR"
+msgstr "Nepodařilo se od/nastavit úkol jako zobrazený"
+
+msgid "SET_TASK_PRIORITY_ERROR"
+msgstr "Nepodařilo se od/nastavit úkol jako prioritní"
+
+msgid "SET_TASK_ORDER_ERROR"
+msgstr "Nepodařilo se nastavit pořadí úkolů"
+
+msgid "DOWNLOAD_FILE_ERROR"
+msgstr "Nepodařilo se stáhnout soubor"
+
+msgid "CREATE_TASK_REPLY_ERROR"
+msgstr "Nepodařilo se odeslat odpověď"
+
+msgid "CREATE_TASK_ERROR"
+msgstr "Nepodařilo se vytvořit úkol"
+
+msgid "DELETE_TASK_ERROR"
+msgstr "Nepodařilo se smazat úkol"
+
+msgid "TASK_REPLY_SENT"
+msgstr "Odpověď odeslána"
+
+msgid "TASK_CREATED"
+msgstr "Úkol vytvořen"
+
+msgid "TASK_DELETED"
+msgstr "Úkol smazán"
+
+msgid "STATE_NEW"
+msgstr "Nový"
+
+msgid "STATE_DEFERRED"
+msgstr "Odložený"
+
+msgid "STATE_SOLUTION_RUNS"
+msgstr "V řešení"
+
+msgid "STATE_WAITING_APPROVAL"
+msgstr "Čeká na schválení"
+
+msgid "STATE_NOT_APPROVED"
+msgstr "Neschválený"
+
+msgid "STATE_COMPLETED"
+msgstr "Vyřešený"
+
+msgid "STATE_CANCELED"
+msgstr "Zrušený"
+
+msgid "STATE_NOTICED"
+msgstr "Vzán na vědomí"
+
+msgid "PRIORITY_LOW"
+msgstr "Nízká"
+
+msgid "PRIORITY_MEDIUM"
+msgstr "Střední"
+
+msgid "PRIORITY_HIGH"
+msgstr "Vysoká"
+
+msgid "TASK_STATE_SET"
+msgstr "Stav úkolu byl změněn"
+
+msgid "TASK_SOLVER_SET"
+msgstr "Řešitel úkolu byl změněn"
+
+msgid "TASK_PRIORITY_SET"
+msgstr "Priorita úkolu byla změněna"
+
+msgid "CANCELED_TASKS"
+msgstr "Zrušené"
+
+msgid "DEFERRED_TASKS"
+msgstr "Odložené"
+
+msgid "TASK_DEFERRED_SET"
+msgstr "Úkol byl od/nastaven jako odložený"
+
+msgid "MARK_DEFERRED"
+msgstr "Odložit"
+
+msgid "SET_TASK_DEFERRED_ERROR"
+msgstr "Nepodařilo se od/nastavit úkol jako odložený"
+
+msgid "TASK_UPDATED"
+msgstr "Úkol upraven"
+
+msgid "UPDATE_TASK_DATA_ERROR"
+msgstr "Nepodařilo se upravit úkol"
+
+msgid "SECTION"
+msgstr "Sekce"
+
+msgid "EXPECTED_HOURS"
+msgstr "Očekávaný počet hodin"
+
+msgid "EXPECTED_RETURN"
+msgstr "Očekávaný návrat"
+
+msgid "EXPECTED_RETURN_HELP"
+msgstr "Stručný slovní popis očekávaného přínosu"
+
+msgid "EXPECTED_RETURN_FINANCE"
+msgstr "Očekávaný peněžní návrat"
+
+msgid "EXPECTED_RETURN_FINANCE_HELP"
+msgstr "Kč za rok"
+
+msgid "DATE_UPDATED"
+msgstr "Datum aktualizace"
+
+msgid "GET_KANBAN_ERROR"
+msgstr "Nepodařilo se načíst kanban"
+
+msgid "STATE_IN_PROGRESS"
+msgstr ""
+
+msgid "EXPECTED HOURS HELP"
+msgstr ""
+
+msgid "SHOW_AS_AUTHOR"
+msgstr ""
+
+msgid "EXPECTED_HOURS_HELP"
+msgstr ""
+
+msgid "TO_DO_HELP"
+msgstr ""
+
+msgid "IN_PROGRESS_HELP"
+msgstr ""
+
+msgid "CURRENTLY_SOLVING_HELP"
+msgstr ""
+
+msgid "AWAITING_APPROVAL_HELP"
+msgstr ""
+
+msgid "DONE"
+msgstr ""
+
+msgid "DONE_HELP"
+msgstr ""
+
+msgid "STATE_ON_HOLD"
+msgstr ""
+
+msgid "ON_HOLD_HELP"
+msgstr ""
+
+msgid "SHOW_ONLY_ABOVE_20_HOURS"
+msgstr ""
+
+msgid "EXPECTED_HOURS_FROM"
+msgstr ""
+
+msgid "EXPECTED_HOURS_TO"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FROM"
+msgstr ""
+
+msgid "EXPECTED_RETURN_TO"
+msgstr ""
+
+msgid "PERCENT_PROGRESS"
+msgstr ""
+
+msgid "SHOW_PROGRESS_BAR"
+msgstr ""
+
+msgid "PROJECT"
+msgstr ""
+
+msgid "FILES_UPLOADED"
+msgstr ""
+
+msgid "FILES_UPLOAD_ERROR"
+msgstr ""
+
+msgid "ADD_REPLY"
+msgstr ""
+
+msgid "FILE_DELETED"
+msgstr ""
+
+msgid "DELETE_FILE_ERROR"
+msgstr ""
+
+msgid "STATE_AMENDED"
+msgstr ""
+
+msgid "AMENDED_HELP"
+msgstr ""
+
+msgid "ONLY_WAITING_FOR_SOLVER"
+msgstr ""
+
+msgid "ONLY_WAITING_FOR_AUTHOR"
+msgstr ""
+
+msgid "CREATE_FOLLOW_UP_TASK"
+msgstr ""
+
+msgid "WAITING_FOR"
+msgstr ""
+
+msgid "WAITING_FOR_AUTHOR"
+msgstr ""
+
+msgid "WAITING_FOR_SOLVER"
+msgstr ""
+
+msgid "ON_HOLD_REASON"
+msgstr ""
+
+msgid "MISSING_ASSIGNMENT"
+msgstr ""
+
+msgid "OTHER_PRIORITIES"
+msgstr ""
+
+msgid "DATE_START"
+msgstr ""
+
+msgid "DATE_DEADLINE"
+msgstr ""
+
+msgid "TASK_CONTENT"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FINANCE_FROM"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FINANCE_TO"
+msgstr ""
+
+msgid "SOLVERS"
+msgstr ""
+
+msgid "AUTHORS"
+msgstr ""
+
+msgid "PROJECTS"
+msgstr ""
+
+msgid "PANELS"
+msgstr ""
+
+msgid "LINKS"
+msgstr ""
+
+msgid "CHOOSE_FILES"
+msgstr ""
+
+msgid "CONFIRM_DELETE_SOLVER"
+msgstr ""
+
+msgid "CONFIRM_DELETE_TASK"
+msgstr ""
+
+msgid "USER"
+msgstr ""
+
+msgid "CATEGORY"
+msgstr ""
+
+msgid "MARK_AWAITING_APPROVAL"
+msgstr ""
+
+msgid "GET_DATA_ERROR"
+msgstr ""
+
+msgid "UPDATE_TASK_ERROR"
+msgstr ""
+
+msgid "DELETING_RECORD"
+msgstr ""
+
+msgid "DELETE_ERROR"
+msgstr ""
+
+msgid "OF"
+msgstr ""
+
+msgid "SHOW"
+msgstr ""
+
+msgid "DISPLAYING"
+msgstr ""
+
+msgid "SAVING"
+msgstr ""
+
+msgid "DATA_SAVED"
+msgstr ""
+
+msgid "SAVING_ERROR"
+msgstr ""
+
+msgid "VALIDATION_MIXED_REQUIRED"
+msgstr "This field is required"
+
+msgid "VALIDATION_MIXED_ONEOF"
+msgstr "Must be one of the following values: ${values}"
+
+msgid "VALIDATION_MIXED_NOTONEOF"
+msgstr "Must not be one of the following values: ${values}"
+
+msgid "VALIDATION_MIXED_DEFINED"
+msgstr "This field must be defined"
+
+msgid "VALIDATION_STRING_EMAIL"
+msgstr "Invalid email address"
+
+msgid "VALIDATION_STRING_MIN"
+msgstr "Must be at least ${min} characters"
+
+msgid "VALIDATION_STRING_MAX"
+msgstr "Must be at most ${max} characters"
+
+msgid "VALIDATION_STRING_MATCHES"
+msgstr "Does not match the required format"
+
+msgid "VALIDATION_STRING_URL"
+msgstr "Invalid URL address"
+
+msgid "VALIDATION_STRING_LENGTH"
+msgstr "Must be exactly ${length} characters"
+
+msgid "VALIDATION_STRING_UUID"
+msgstr "Invalid UUID"
+
+msgid "VALIDATION_STRING_TRIM"
+msgstr "Must not have leading or trailing spaces"
+
+msgid "VALIDATION_STRING_LOWERCASE"
+msgstr "Must be lowercase"
+
+msgid "VALIDATION_STRING_UPPERCASE"
+msgstr "Must be uppercase"
+
+msgid "VALIDATION_NUMBER_MIN"
+msgstr "Must be greater than or equal to ${min}"
+
+msgid "VALIDATION_NUMBER_MAX"
+msgstr "Must be less than or equal to ${max}"
+
+msgid "VALIDATION_NUMBER_LESSTHAN"
+msgstr "Must be less than ${less}"
+
+msgid "VALIDATION_NUMBER_MORETHAN"
+msgstr "Must be greater than ${more}"
+
+msgid "VALIDATION_NUMBER_POSITIVE"
+msgstr "Must be a positive number"
+
+msgid "VALIDATION_NUMBER_NEGATIVE"
+msgstr "Must be a negative number"
+
+msgid "VALIDATION_NUMBER_INTEGER"
+msgstr "Must be an integer"
+
+msgid "VALIDATION_DATE_MIN"
+msgstr "Date must be after ${min}"
+
+msgid "VALIDATION_DATE_MAX"
+msgstr "Date must be before ${max}"
+
+msgid "VALIDATION_ARRAY_MIN"
+msgstr "Must contain at least ${min} items"
+
+msgid "VALIDATION_ARRAY_MAX"
+msgstr "Must contain at most ${max} items"
+
+msgid "VALIDATION_ARRAY_LENGTH"
+msgstr "Must contain exactly ${length} items"
+
+msgid "VALIDATION_OBJECT_NOUNKNOWN"
+msgstr "Contains unknown keys: ${unknown}"
+
+msgid "LOAD"
+msgstr "Načíst"
+
+msgid "NEW_VERSION"
+msgstr "A new version of the app is available"
+
+msgid "OTHER"
+msgstr "Other"
+
+msgid "PINNED"
+msgstr "Pinned"
+
+msgid "SETTINGS_MENU_FAVORITES"
+msgstr "Menu section settings"
+
+msgid "ROW_REORDER"
+msgstr "Row reorder"
+
+msgid "LOGOUT"
+msgstr "Logout"
+
+msgid "TABS"
+msgstr "Tabs"
+
+msgid "OPENED_TABS"
+msgstr "Open tabs"
+
+msgid "MENU"
+msgstr "Menu"
+
+msgid "ACCOUNT"
+msgstr "Account"
+
+msgid "FAVOURITES"
+msgstr "Favourites"
+
+msgid "FAVOIRITES_TO_REMOVE"
+msgstr "Remove from favourites"

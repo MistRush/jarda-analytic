@@ -1,0 +1,35 @@
+{layout "../layout.latte"}
+
+{block content}
+    <div id="order-step-1">
+        <div class="text-center">
+            <h1 class="d-inline-block">{_('Doprava a platba')}</h1>
+        </div>
+
+        {$cartSteps|noescape}
+
+        <div class="row">
+            <div class="col-lg-8">
+                {include 'components/shippings.latte'}
+                {include 'components/payments.latte'}
+            </div>
+            <div class="col-lg-4">
+                {$orderRecapitulation|noescape}
+            </div>
+
+            <form method="post" id="main-form" action="/order/step-2-process/">
+                <input type="hidden" id="Shipping_ID" name="Shipping_ID" value="{$shippingID}">
+                <input type="hidden" id="Payment_ID" name="Payment_ID" value="{$paymentID}">
+                {foreach $userInfo as $key=>$userItemValue}
+                    <input type="hidden" id="{$key}" name="{$key}" value="{$userItemValue}">
+                {/foreach}
+                {if isset($pickupPointID)}
+                    <input type="hidden" id="PickupPoint_ID" name="PickupPoint_ID" value="{$pickupPointID}">
+                    <input type="hidden" id="PickupPoint_Name" name="PickupPoint_Name" value="{$pickupPointName}">
+                    <input type="hidden" id="PickupPoint_Address" name="PickupPoint_Address" value="{$pickupPointAddress}">
+                    <input type="hidden" id="PickupPoint_Code" name="PickupPoint_Code" value="{$pickupPointCode}">
+                {/if}
+            </form>
+        </div>
+    </div>
+{/block}

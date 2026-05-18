@@ -1,0 +1,18 @@
+{layout 'layout.latte'}
+
+{block content}
+    <div style="">
+        {_('Registrace na serveru')}
+        <a href="{$eshop->settings->ProjectURL}">{$eshop->settings->ProjectShortURL}</a><br><br>
+        <div style="background-color:#F5F5F9;padding:15px;font-size:16px;">
+            <p style="text-align:center;margin:2px 0;font-weight:600;color:#3cc7cc;">{$user->Name}</p>
+        </div>
+
+        <p style="margin:25px 0 10px;font-size:16px;">
+            {_('Dobrý den.')}<br />
+            {_('Vaši registraci na serveru')} {$eshop->settings->ProjectShortURL} {_('je nutné potvrdit kliknutím na tento odkaz')}:
+            <a href="{$eshop->settings->ProjectURL}/customer/confirm-registration/{$token}">Potvrdit registraci</a>
+        </p>
+
+    </div>
+{/block}

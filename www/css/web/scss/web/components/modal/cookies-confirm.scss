@@ -1,0 +1,119 @@
+.modal-dialog.cookies-confirm {
+    .modal-content {
+        padding: 5px 20px 15px;
+        background-color: #351931;
+
+        .modal-title {
+            font-size: 26px;
+            font-weight: 500;
+            background: url('/img/front/icons/components/modal/cookies.svg') left center no-repeat;
+            background-size: 36px;
+            padding-left: 48px;
+            color: #ffffff;
+        }
+
+        .modal-body {
+            padding: 5px 0 0 0;
+
+          .cookie-content {
+            p {
+              color: #ffffff;
+            }
+          }
+
+          .btn {
+            cursor: pointer;
+            &:hover {
+              color: #ffffff !important;
+            }
+          }
+
+            .block {
+                margin: 10px 0;
+                border: 0;
+                padding: 6px;
+                box-shadow: none;
+                border-radius: 8px !important;
+                background: $background-primary-light;
+
+                .block-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-right: 15px;
+
+                    .active {
+                        color: #097D1C;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+                }
+
+                .block-content {
+                    padding: 5px 15px;
+                }
+
+                .toggler {
+                    display: inline-block;
+                    width: auto;
+                    padding: 10px 0 10px 55px;
+                    font-size: 14px;
+                    border: none;
+                    position: relative;
+
+                    &:focus {
+                        box-shadow: none;
+                        text-decoration: none;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 10px;
+                        top: 4px;
+                        background: #ffffff url('/img/front/icons/components/modal/arrow-down.svg') center center no-repeat;
+                        width: 33px;
+                        height: 33px;
+                        border-radius: 20px;
+                        -webkit-transition: all 0.5s;
+                        transition: all 0.5s;
+                        transform: rotate(180deg);
+                    }
+
+                    &.collapsed:after {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+
+            .custom-control-label {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.cookies-agreement {
+    color: $font-primary-red;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 767px) {
+  .cookies-setings {
+    margin-bottom: 15px;
+  }
+
+  .modal-content .modal-header .close {
+    top: 25px !important;
+    right: 19px !important;
+  }
+}

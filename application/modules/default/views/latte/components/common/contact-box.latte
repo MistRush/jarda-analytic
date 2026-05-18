@@ -1,0 +1,17 @@
+<div class="contact-box">
+    <div class="headline">{_('Kontaktujte nás')}</div>
+    <div class="photo">
+        <img src="/img/front/contact-person.png" alt="contact photo">
+    </div>
+    <div class="subline">{_('Zákaznická péče Hadex')}</div>
+
+    <div class="contact phone">
+        <a href="tel:{$eshop->getSettings('ContactPhone')|replaceRE:"/ /"}">{$eshop->getSettings('ContactPhone')}</a>
+        <div>{$eshop->getSettings('OpeningHours')}</div>
+    </div>
+
+    <div class="contact email">
+        <a href="mailto:{$eshop->getSettings('ContactEmail')|replaceRE:"/ /"}">{$eshop->getSettings('ContactEmail')}</a>
+        <div>{_('Odpovíme do 24 hodin')}</div>
+    </div>
+</div>

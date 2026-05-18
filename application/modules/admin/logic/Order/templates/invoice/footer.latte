@@ -1,0 +1,34 @@
+{varType \Admin_Model_Order $order}
+<div class="footer">
+    <div class="col-6">
+        <br><br><br>
+        <div class="vat-recapitulation">
+            <div class="col-12">
+                <table>
+                    <thead>
+                    <tr><th colspan="4">Rekapitulace DPH v {$currency}</th></tr>
+                    <tr>
+                        <th>Základ</th>
+                        <th>Sazba</th>
+                        <th>DPH</th>
+                        <th>Celkem s DPH</th>
+                    </tr>
+                    <tbody>
+                    {foreach $vatData as $key=>$vatItem}
+                        <tr>
+                            <td>{number_format($vatItem['PriceTotalWithoutVat'], 2, ',', ' ')}</td>
+                            <td>{$key}</td>
+                            <td>{number_format($vatItem['PriceTotalWithVat'] - $vatItem['PriceTotalWithoutVat'], 2, ',', ' ')}</td>
+                            <td>{number_format($vatItem['PriceTotalWithVat'], 2, ',', ' ')}</td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div style="width: 70%;padding: 7px;text-align: center; vertical-align: bottom;">
+            {* <img src="/img/front/signature.jpg"> *}
+        </div>
+    </div>
+</div>

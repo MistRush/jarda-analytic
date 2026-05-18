@@ -1,0 +1,101 @@
+<?php
+
+use Tracy\Dumper;
+use Tracy\Helpers;
+?>
+    <style class="tracy-debug">
+        #tracy-debug .RequestPanel td {
+            white-space: nowrap;
+        }
+
+        #tracy-debug .RequestPanel-php, #tracy-debug .RequestPanel-get , #tracy-debug .RequestPanel-post {
+            border-radius: 79px;
+            padding: 3px 4px;
+            font-size: 75%;
+            font-style: italic;
+            font-weight: bold;
+            vertical-align: text-top;
+            opacity: .5;
+            margin-left: 2ex;
+        }
+
+        #tracy-debug .RequestPanel-get {
+            background: #ffb800;
+            color: white;
+        }
+
+        #tracy-debug .RequestPanel-post {
+            background: #ec0007;
+            color: white;
+        }
+
+        #tracy-debug .RequestPanel-php {
+            background: #8993be;
+            color: white;
+            padding: 1px 4px 3px 4px;
+        }
+    </style>
+
+<?php if ($this->getUrl()) { ?>
+    <h1>Request</h1>
+
+    <div class="tracy-inner RequestPanel">
+        <div class="tracy-inner-container">
+            <?= $this->getFile()?Helpers::editorLink($this->getFile(), $this->getLine()):null?>
+            <table>
+                <tbody>
+                <?php if ($this->getManager()) { ?>
+                    <tr>
+                        <th>Manager</th>
+                        <td><?= $this->getManager()::class ?></td>
+                    </tr>
+                <?php } else { ?>
+                    <tr>
+                        <th>URL</th>
+                        <td><?= $this->getUrl() ?></td>
+                    </tr>
+                <?php } ?>
+                <tr>
+                    <th>Module</th>
+                    <td><?= $this->getModule() ?></td>
+                </tr>
+                <tr>
+                    <th>Controller</th>
+                    <td><?= $this->getController() ?></td>
+                </tr>
+                <tr>
+                    <th>Action</th>
+                    <td><?= $this->getAction() ?></td>
+                </tr>
+                <?php foreach ($this->getData() as $k => $v) { ?>
+                    <tr>
+                        <th><?= $k ?></th>
+                        <td><?= $v ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <?php if ($this->getParams()): ?>
+        <h2>Parameters</h2>
+
+        <div class="tracy-inner">
+            <?= Dumper::toHtml($this->getParams(), [Dumper::LIVE => true]); ?>
+        </div>
+    <?php endif ?>
+
+    <?php if (!empty($this->getManagerData())): ?>
+        <h2>
+            Manager Output
+            <?php if (!empty($this->getManagerData()['numResults'])): ?>
+                (<?= number_format($this->getManagerData()['numResults'], 0, '.', ' ') ?>)
+            <?php endif ?>
+        </h2>
+
+        <div class="tracy-inner">
+            <?= Dumper::toHtml($this->getManagerData()['data'], [Dumper::LIVE => true]); ?>
+        </div>
+    <?php endif ?>
+<?php } ?>

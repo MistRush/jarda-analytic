@@ -1,0 +1,7 @@
+<span id="choose-parcel-shop" class="btn btn-transparent mt-2">{_('Vyberte výdejní místo')}</span>
+
+{if $sps->PickupPoint_ID && $sps->Shipping_ID == \Admin_Model_PPL::PPL_PARCEL_ID}
+	<div id="m1-ppl" class="ppl-selected-pickup-point d-block" data-point-chosen="true" data-point-id="{$sps->PickupPoint_ID}" data-point-name="{$sps->PickupPoint_Name}" data-point-address="{$sps->PickupPoint_Address}">Vybrané místo: {$sps->PickupPoint_Name}</div>
+{else}
+	<div id="m1-ppl" class="ppl-selected-pickup-point"></div>
+{/if}

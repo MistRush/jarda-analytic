@@ -1,0 +1,153 @@
+@media (min-width: 768px) and (max-width: 1400px) {
+  body.menu-open{
+    #homepage{
+      #navigation{
+        display: none;
+      }
+      .main-content{
+        width: 100%;
+      }
+    }
+  }
+}
+
+.hidden-md {
+  display: none!important;
+}
+
+#homepage {
+  @media only screen and (max-width: 1199px) {
+    #orders {
+      margin-bottom: 25px;
+    }
+
+    #ordersChart {
+      margin-bottom: 25px;
+
+      #ordersChartRange {
+        padding: 4px 15px 4px 4px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    #ordersChart {
+      margin-bottom: 25px;
+
+      .panel {
+        .chart {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    #navigation {
+      display: none;
+    }
+
+    #search {
+      .search-results {
+        display: none!important;
+      }
+    }
+
+    .main-content {
+      width: 100%;
+
+      &>.row {
+        &>div {
+          &:not(:last-child) {
+            margin-bottom: 25px;
+          }
+        }
+      }
+    }
+
+    #otherInfo {
+      .news {
+        height: 230px;
+      }
+    }
+
+    #ordersChart {
+      .panel {
+        .charts-wrap {
+          .charts {
+            @media (orientation: landscape) {
+            max-height: 50vh; 
+            }
+
+            @media (orientation: portrait) {
+            max-height: 30vh; 
+            }
+
+            .wrapper {
+              .chart {
+                height: calc(100% - 20px);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #evidsoft {
+      .panel {
+        text-align: center;
+
+        span {
+          display: block;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 767px) {
+    .main-content{
+      width: 70%;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1200px) {
+    .main-content{
+      width: 80%;
+    }
+    #navigation{
+      padding-right: 0;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .main-content{
+      width: 82%;
+    }
+  }
+
+  @media (max-width: 575px) {
+    #ordersChart {
+      .panel {
+        .title, .chooser {
+          width: 100%;
+          flex: 1 0 100%;
+          text-align: left;
+        }
+
+        .charts-wrap {
+          .charts {
+
+            .wrapper {
+              .chart {
+                margin-top: 0;
+                height: calc(100% - 40px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

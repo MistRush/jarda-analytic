@@ -1,0 +1,78 @@
+.modal-dialog.add-to-cart {
+    &.modal-lg {
+        max-width: 650px;
+    }
+
+    .modal-content {
+        padding: 5px 15px 15px;
+
+        .modal-header {
+            background: url('/img/front/icons/components/modal/check-ok.svg') left center no-repeat;
+            padding-left: 40px;
+        }
+
+        .modal-body {
+            padding: 15px 0 0 0;
+
+            .name {
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .code {
+                font-size: 12px;
+
+                span {
+                    font-weight: 600;
+                }
+            }
+
+            .price {
+                text-align: right;
+                color: $font-primary-red;
+                font-weight: 700;
+                font-size: 14px;
+            }
+
+            .free-shipping {
+                color: $font-primary-orange;
+                background: #fdf1e9;
+                border-radius: 6px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 20px 15px;
+                margin: 15px 0 25px;
+
+                span {
+                    display: inline-block;
+                    background: url('/img/front/icons/components/modal/free-shipping.svg') left center no-repeat;
+                    padding-left: 32px;
+                }
+            }
+
+            .back-to-shop {
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 500;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 576px) {
+    .modal-dialog.add-to-cart {
+        .modal-content {
+            .modal-body {
+                .free-shipping {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

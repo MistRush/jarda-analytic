@@ -1,0 +1,320 @@
+{layout "../layout.latte"}
+{block content}
+<div id="page" class="mb-5">
+    {$breadcrumb|noescape}
+
+    {if $page["Name"] != "Kontakt"}
+        <h1>{$page['Name']}</h1>
+    {/if}
+    {$page['Content']|noescape}
+
+    {if $page['slug'] == 'kontakt'}
+        <script src="https://www.google.com/recaptcha/api.js?render=6LdSvYUsAAAAAMEc4A38re5VImJbJI1Jz04BF2PX"></script>
+        <div class="contact-page">
+            <div class="headline">
+                <h1>{$page['Name']}</h1>
+                <p>Máte dotaz nebo potřebujete poradit? Neváhejte nás kontaktovat – jsme tu pro vás!</p>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="contact-info">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="contact-item phone">
+                                    <a href="tel:{$eshop->getSettings('ContactPhone')|replaceRE:"/ /"}">
+                                        +420 {$eshop->getSettings('ContactPhone')|replace:'+420', ''}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mt-3 mt-sm-0">
+                                <div class="contact-item email">
+                                    {$eshop->getSettings('ContactEmail')|cryptedmail|noescape}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="adress-info">
+                        <h3 class="with-icon company">Fakturační adresa</h3>
+                        <p>
+                            <strong>Hadex, spol. sr.o.</strong><br>
+                            {$eshop->getSettings('AddressStreet')},
+                            {$eshop->getSettings('AddressZipCode')} {$eshop->getSettings('AddressCity')}<br>
+                            IČO: {$eshop->getSettings('RegistrationNumber')} <br>
+                            DIČ: {$eshop->getSettings('VATNumber')}<br>
+                            vedená u Krajského soudu v Ostravě, oddíl C, vložka 221<br>
+                        </p>
+                        <h3 class="with-icon payment">Bankovní spojení</h3>
+                        <p>
+                            <b>Česká Republika:</b> ČSOB Ostrava č.ú.: 9491803/0300<br>
+                            <b>Slovensko:</b> ČSOB Čadca č.ú.: 4001394492/7500
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="shop-location-holder mt-4 mt-md-0">
+                        <div class="shop-location-header">
+                            <h3>Prodejny:</h3>
+                        </div>
+                        <div class="shop-location-item">
+                            <div class="img-holder">
+                                <img src="/img/front/kosmova.png" alt="Prodejna Kosmova">
+                            </div>
+                            <div class="shop-info-holder">
+                                <p>
+                                    <strong>Kosmova 1090/11, 70200 Ostrava - Přívoz</strong><br>
+                                    <a href="https://mapy.cz/zakladni?q=Kosmova%201090%2F11&source=addr&id=9075372&x=18.2754623&y=49.8555738&z=16" target="_blank">Zobrazit na mapě</a><br>
+                                    <a class="text-grey phone" href="tel:608415864">+420 608 415 864</a><br>
+                                    <a class="text-grey email" href="mailto:prodejna.privoz@hadex.cz">prodejna.privoz@hadex.cz</a><br>
+                                    <span class="opening-hours">Po - Pá: od 8:00 do 16:00</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="shop-location-item">
+                            <div class="img-holder">
+                                <img src="/img/front/francouzska.png" alt="Prodejna Francouzska">
+                            </div>
+                            <div class="shop-info-holder">
+                                <p>
+                                    <strong>Francouzská 6021/55, Ostrava - Poruba</strong><br>
+                                    <a href="https://mapy.cz/zakladni?q=hadex%20Francouzsk%C3%A1%206021%2F55%2C%20Ostrava%2C%20Poruba&source=firm&id=1681425&ds=1&x=18.1843209&y=49.8239491&z=17" target="_blank">Zobrazit na mapě</a><br>
+                                    <a class="text-grey phone" href="tel:596962669">+420 596 962 669</a><br>
+                                    <a class="text-grey email" href="mailto:prodejna.poruba@hadex.cz">prodejna.poruba@hadex.cz</a><br>
+                                    <span class="opening-hours">Po - Pá: od 9:00 do 17:00</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts">
+                <h2>Další kontakty:</h2>
+                <div class="contacts-holder">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <h3>Zásilková služba: příjem objednávek, sklad</h3>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Monika Gottlieb</div>
+                                        <div class="position">Objednávky</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596136917">+420 <b>596 136 917–18</b></a>
+                                        </div>
+                                        <div class="email">
+                                            <a href="mailto:objednavky@hadex.cz">objednavky@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Josef Adamčík</div>
+                                        <div class="position">Reklamace</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596136917">+420 <b>596 136 917–18</b></a>
+                                        </div>
+                                        <div class="email">
+                                            <a href="mailto:reklamace@hadex.cz">reklamace@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Ing. Pavel Režný</div>
+                                        <div class="position">Vedoucí</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="email mt-3">
+                                            <a href="mailto:pavel.rezny@hadex.cz">pavel.rezny@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-holder">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <h3>Obchodní oddělení:</h3>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Petr Lembard</div>
+                                        <div class="position">Velkoobchod</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596133488">+420 <b>596 133 488</b></a>
+                                        </div>
+                                        <div class="phone">
+                                            <a href="tel:603496567">+420 <b>603 496 567</b></a>
+                                        </div>
+                                        <div class="email">
+                                            <a href="mailto:plembard@hadex.cz">plembard@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Zbyněk Urbanczyk</div>
+                                        <div class="position">Obchodní zástupce</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596136917">+420 <b>596 136 917–18, kl.24</b></a>
+                                        </div>
+                                        <div class="phone">
+                                            <a href="tel:721506506">+420 <b>721 506 506</b></a>
+                                        </div>
+                                        <div class="email">
+                                            <a href="mailto:zurbanczyk@hadex.cz">zurbanczyk@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Rostislav Bařina</div>
+                                        <div class="position">Obchodní zástupce</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:603286666">+420 <b>603 286 666</b></a>
+                                        </div>
+                                        <div class="email">
+                                            <a href="mailto:rbarina@hadex.cz">rbarina@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-holder">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <h3>Poradna:</h3>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Jiří Huf</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:603802026">+420 <b>603 802 026</b></a>
+                                        </div>
+
+                                        <div class="email">
+                                            <a href="mailto:poradna@hadex.cz">poradna@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-holder">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <h3>Správa budov, údržba:</h3>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Tomáš Vavruša</div>
+                                        <div class="position">Vedoucí</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596136917">+420 <b>596 136 917–18</b></a>
+                                        </div>
+                                        <div class="phone">
+                                            <a href="tel:777160874">+420 <b>777 160 874</b></a>
+                                        </div>
+
+                                        <div class="email">
+                                            <a href="mailto:tvavrusa@hadex.cz">tvavrusa@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-holder">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <h3>Ekonomické oddělení:</h3>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Ing. Bianka Vraníková</div>
+                                        <div class="position">Vedoucí</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596133489">+420 <b>596 133 489</b></a>
+                                        </div>
+                                        <div class="phone">
+                                            <a href="tel:608829282">+420 <b>608 829 282</b></a>
+                                        </div>
+
+                                        <div class="email">
+                                            <a href="mailto:bvranikova@hadex.cz">bvranikova@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-holder">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <h3>Vedení společnosti:</h3>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="contacts-item">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="name">Ing. Tomáš Lukasík</div>
+                                        <div class="position">Vedení společnosti</div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="phone">
+                                            <a href="tel:596136917">+420 <b>596 136 917–18</b></a>
+                                        </div>
+                                        <div class="email">
+                                            <a href="mailto:tlukasik@hadex.cz">tlukasik@hadex.cz</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/if}
+</div>

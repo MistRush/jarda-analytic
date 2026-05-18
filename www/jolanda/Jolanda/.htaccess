@@ -1,0 +1,10 @@
+order deny,allow
+deny from all
+allow from 172.0.0.1
+allow from localhost
+allow from ::1
+allow from 213.155.225.158
+allow from 213.155.247.178
+
+# docker container phpenv
+allow from 172.17.0.1

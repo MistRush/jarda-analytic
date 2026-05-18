@@ -1,0 +1,28 @@
+<div class="content">{$content}</div>
+<div class="confirmation-buttons text-center mt-3">
+    <a id="confirmButton"><span class="btn btn-primary">Odstranit adresu</span></a>
+    <a id="cancelButton"><span class="btn btn-transparent">Zrušit</span></a>
+</div>
+<script>
+    $('#confirmButton').click(function () {
+        $.ajax({
+            url: '/default/customer/remove-address',
+            type: 'POST',
+            data: {
+                addressId: {$addressID}
+            },
+            success: function (data) {
+                const response = JSON.parse(data);
+                if (response.status === 'success') {
+                    {$dialog_id|noescape}.close();
+                    window.location.reload();
+                } else {
+                    alerts.alert({_('Upozornění')}, 'error', response.msg);
+                }
+            }
+        });
+    });
+    $('#cancelButton').click(function () {
+        {$dialog_id|noescape}.close();
+    });
+</script>

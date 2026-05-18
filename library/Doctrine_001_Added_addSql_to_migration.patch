@@ -1,0 +1,58 @@
+From 86924a8affef5d5ee5a3f997afd779fe4e3160bb Mon Sep 17 00:00:00 2001
+From: Martin Srom <cheater@seznam.cz>
+Date: Wed, 30 Nov 2011 10:08:07 +0100
+Subject: [PATCH] Added migration routine addSql to docrine library
+
+---
+ source/web/library/Doctrine/Migration/Base.php     |   13 ++++++++++++
+ source/web/library/Doctrine/Migration/Process.php  |   11 ++++++++++
+ 2 files changed, 24 insertions(+), 0 deletions(-)
+
+diff --git a/source/web/library/Doctrine/Migration/Base.php b/source/web/library/Doctrine/Migration/Base.php
+index a2bcfb2..f080153 100644
+--- a/source/web/library/Doctrine/Migration/Base.php
++++ b/source/web/library/Doctrine/Migration/Base.php
+@@ -487,6 +487,19 @@ abstract class Doctrine_Migration_Base
+         $this->index('down', $tableName, $indexName);
+     }
+ 
++    /**
++     * Add a sql
++     *
++     * @param string $sql
++     * @return void
++     */
++    public function addSql($sql)
++    {
++        $options = get_defined_vars();
++
++        $this->_addChange('sql', $options);
++    }
++
+     public function preUp()
+     {
+     }
+diff --git a/source/web/library/Doctrine/Migration/Process.php b/source/web/library/Doctrine/Migration/Process.php
+index d2e53ef..1a4ef57 100644
+--- a/source/web/library/Doctrine/Migration/Process.php
++++ b/source/web/library/Doctrine/Migration/Process.php
+@@ -194,4 +194,15 @@ class Doctrine_Migration_Process
+     {
+         $this->getConnection()->export->dropForeignKey($foreignKey['tableName'], $foreignKey['definition']['name']);
+     }
++
++    /**
++     * Process a sql
++     *
++     * @param array $foreignKey
++     * @return void
++     */
++    public function processSql(array $sql)
++    {
++        $this->getConnection()->execute($sql['sql']);
++    }
+ }
+\ No newline at end of file
+-- 
+1.7.2.5
+

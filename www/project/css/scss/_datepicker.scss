@@ -1,0 +1,97 @@
+.bootstrap-datetimepicker-widget{
+  box-shadow: 0 0 7px #c2c9d0;
+  padding: 10px 2px 2px;
+  margin-bottom: -1px;
+  margin-top: 0;
+  .collapse.in{
+    display: block !important;
+  }
+
+  .list-unstyled {
+    margin-bottom: 0;
+  }
+
+  .table-condensed{
+    width: 230px !important;
+    display: table;
+  }
+
+  .datepicker {
+    width: 230px;
+    table {
+      text-align: center;
+      .month, .year, .decade {
+        border-radius: 2px;
+      }
+
+      tbody {
+        font-size: 12px;
+      }
+    }
+    .table-condensed{
+
+      thead th{
+        padding-bottom: 10px;
+        font-size: 12px;
+
+        &.next, &.prev, &.picker-switch {
+          cursor: pointer;
+
+          &:not(.picker-switch):hover {
+            color: $color-primary-light;
+          }
+        }
+      }
+      span{
+        display: inline-block;
+      }
+      .month{
+        width: calc(100% / 4);
+      }
+      .year{
+        width: calc(100% / 4);
+      }
+      .decade{
+        width: calc(100% / 2);
+      }
+    }
+  }
+  li.picker-switch {
+    display: none;
+  }
+
+  .timepicker{
+    text-align: center;
+    .timepicker-picker{
+      table{
+        width: 100%;
+      }
+    }
+  }
+
+  .timepicker,.datepicker {
+    .day, .month, .year, .decade, .hour, .minute, .second {
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 7px;
+      transition: all 0.3s ease;
+
+      &.old, &.new {
+        color: #aaaaaa;
+      }
+
+      &.today {
+        background-color: rgba($color-primary, 0.1);
+      }
+
+      &:hover {
+        background-color: rgba($color-primary, 0.2);
+      }
+
+      &.active {
+        background-color: rgba($color-primary, 1);
+        color: #ffffff;
+      }
+    }
+  }
+}

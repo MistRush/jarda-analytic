@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+  nav#mainMenu {
+    .bottom{
+      .seller-contact{
+        position: relative !important;
+        background-color: rgba(255, 255, 255, 0.09) !important;
+        width: calc(100% - 20px) !important;
+        left: 0 !important;
+        margin-top: 122px !important;
+      }
+    }
+  }
+}
+

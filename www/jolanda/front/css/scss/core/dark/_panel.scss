@@ -1,0 +1,17 @@
+.panel-content {
+  background-color: $dark-color-main;
+}
+
+.panel-heading{
+  &.locked{
+    background-color: rgba($dark-color-main,.95);
+  }
+  .dropdown{
+    .dropdown-menu{
+      background-color: $dark-color-main;
+      .dropdown-item{
+        color: $dark-color-font;
+      }
+    }
+  }
+}

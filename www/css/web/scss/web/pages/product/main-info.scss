@@ -1,0 +1,212 @@
+#product {
+    .main-info {
+        margin: 25px 0;
+        position: relative;
+        border-radius: 8px;
+        border: 1px solid #D8E4F7;
+        background: #FFFFFF;
+        box-shadow: 0 17px 14px -10px rgba(191, 211, 225, 0.45);
+
+        .availability-block {
+            padding: 10px 10px 5px;
+            border-bottom: 1px solid $border-primary-light;
+            font-weight: 500;
+            font-size: 14px;
+
+            .availability {
+                padding-left: 24px;
+                background: url('/img/front/icons/pages/product/on-stock.svg') left center no-repeat;
+                margin-left: 5px;
+            }
+
+            .quantity {
+                text-align: right;
+                font-weight: 700;
+                padding-right: 10px;
+            }
+
+            .branches {
+                margin: 5px 0 0;
+
+                .item {
+                    border-radius: 4px;
+                    padding: 5px 10px;
+                    font-size: 12px;
+
+                    .name {
+                        font-weight: 600;
+                    }
+
+                    .quantity {
+                        padding-right: 0;
+                    }
+
+                    .opening-hours {
+                        color: $font-primary-darklight;
+                    }
+
+                    &:nth-child(odd) {
+                         background-color: #F8FAFF;
+                    }
+                }
+            }
+
+            .on-stock {
+                color: $font-primary-green;
+            }
+
+            .out-stock {
+                color: $font-primary-red;
+                &.availability {
+                    background: url('/img/front/icons/pages/product/out-stock.png') left center no-repeat;
+                }
+            }
+        }
+
+        .delivery-block {
+            padding: 10px 20px;
+            border-bottom: 1px solid $border-primary-light;
+            font-weight: 500;
+            font-size: 14px;
+
+            span {
+                font-weight: 400;
+                color: $font-primary-darklight;
+            }
+        }
+
+        .price-block {
+            padding: 10px 20px;
+
+            .with-vat {
+                font-weight: 700;
+                font-size: 18px;
+                color: $font-primary-red;
+                display: inline-block;
+            }
+
+            .without-vat {
+                font-weight: 600;
+                font-size: 12px;
+            }
+
+            .original-with-vat {
+                color: $font-primary-darklight;
+                text-decoration: line-through;
+                display: inline-block;
+                font-size: 12px;
+            }
+
+            .cart-block {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+
+                .input-block {
+                    border-radius: 8px;
+                    background: $background-primary-light;
+                    box-shadow: 0 2px 7px 0 rgba(67, 71, 103, 0.10) inset;
+                    justify-content: center;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    width: 120px;
+                    height: 46px;
+                    margin-right: 20px;
+
+                    .quantity {
+                        font-weight: 500;
+                        width: 38px;
+                        border: none;
+                        margin: 0 4px;
+                        padding: 5px 0;
+                        text-align: center;
+                        background: $background-primary-light;
+                    }
+
+                    .quantity::-webkit-inner-spin-button,
+                    .quantity::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    .quantity[type=number] {
+                        -moz-appearance: textfield; /* Pro Firefox */
+                    }
+
+                    .quantity-change {
+                        display: block;
+                        width: 32px;
+                        height: 32px;
+                        background-color: #FFFFFF;
+                        border-radius: 3px;
+                        font-weight: 500;
+                        font-size: 22px;
+                        text-align: center;
+                        line-height: 27px;
+                        cursor: pointer;
+                        @include animation();
+
+                        &:hover {
+                            background-color: #F8FAFD;
+                        }
+                    }
+                }
+            }
+        }
+
+        .price-per-piece-block {
+            border-radius: 6px;
+            background: #fff6f0 url("/img/front/icons/pages/product/price-per-piece.svg") left 13px center no-repeat;
+            padding: 15px 15px 15px 40px;
+            margin: 0 8px 8px 8px;
+            color: $font-primary-orange;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 17px;
+
+            .pieces {
+                font-size: 11px;
+                font-weight: 400;
+                color: $font-primary-black;
+            }
+        }
+
+        #cart-msg {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #product {
+        .main-info {
+            .availability-block {
+                .branches {
+                    .item {
+                        .opening-hours {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    #product {
+        .main-info {
+            .price-block {
+                .with-vat, .without-vat, .original-with-vat {
+                    display: block;
+                    text-align: right;
+                }
+
+                .without-vat {
+                    margin: -5px 0 10px;
+                }
+            }
+        }
+    }
+}

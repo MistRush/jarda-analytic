@@ -1,0 +1,9 @@
+<div class="content">{$content}</div>
+<div class="confirmation-buttons text-center mt-3">
+    <a id="cancelButton"><span class="btn btn-transparent">Zavřít</span></a>
+</div>
+<script>
+    $('#cancelButton').click(function () {
+        {$dialog_id|noescape}.close();
+    });
+</script>

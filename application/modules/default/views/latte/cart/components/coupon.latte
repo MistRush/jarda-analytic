@@ -1,0 +1,20 @@
+<div n:if="!empty($coupon)"  id="item-coupon">
+    <div class="cart-row pt-0 item-coupon">
+        <div class="row align-items-center">
+            <div class="offset-4 offset-md-0 col-4 col-md-1 align-self-center text-center pt-3 pt-md-0">
+                {if $coupon->Type == 'item'}
+                    {var $img = isset($coupon->product->productImages[0]) ? fu($coupon->product->productImages[0], 'product/50') : '/files/no_image.png'}
+                    <a href="{$img}" class="fancybox"><img class="coupon-image" src="{$img}"></a>
+                {else}
+                    <i n:class="'fa', ($coupon->Type == Admin_Model_Coupon::TYPE_DISCOUNT?'fa-tag':'fa-percentage'), 'coupon-icon'"></i>
+                {/if}
+            </div>
+            <div n:class="'col-12 align-self-center text-center text-md-left col-md-9'">
+                <span class="coupon-code d-block d-md-inline-block">{$coupon->Code}</span>{$coupon->getName()}
+            </div>
+            <div class="col-12 col-md-1 align-self-center text-center text-md-end">
+                <span class="product-price">{$coupon->getDiscount()}</span>
+            </div>
+        </div>
+    </div>
+</div>

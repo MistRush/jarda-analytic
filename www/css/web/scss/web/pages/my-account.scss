@@ -1,0 +1,49 @@
+@import "my-account/content";
+@import "my-account/address-edit";
+@import "my-account/address-list";
+@import "my-account/order-detail";
+@import "my-account/order-list";
+@import "my-account/navigation";
+
+#my-account {
+    h1 {
+        margin: 0;
+    }
+
+    .logout-button {
+        font-weight: 500;
+        padding-left: 28px;
+        background: url('/img/front/icons/pages/my-account/logout.svg') left center no-repeat;
+    }
+
+    .layout {
+        border-radius: 8px;
+        border: 1px solid #D8E4F7;
+        background: #FFFFFF;
+        box-shadow: 0 17px 14px -10px rgba(191, 211, 225, 0.45);
+        min-height: 600px;
+    }
+
+    .order-state {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 4px;
+        color: white;
+    }
+
+
+    .order-headline {
+        font-size: 18px;
+        line-height: 36px;
+        font-weight: 500;
+        color: $font-primary-dark;
+        text-decoration: none;
+    }
+
+    h2.with-icon.with-toggler.delivery-address {
+        display: inline-block;
+        .toggler {
+            right: -26px;
+        }
+    }
+}

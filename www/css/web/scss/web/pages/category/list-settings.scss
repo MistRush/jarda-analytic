@@ -1,0 +1,93 @@
+#category {
+    .list-settings {
+        margin: 20px 0 30px 0;
+
+        .sorting {
+            a {
+                display: inline-block;
+                position: relative;
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: none;
+                color: $font-primary-dark;
+                border-radius: 6px;
+                padding: 8px 15px;
+                @include animation();
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: -2px;
+                    width: 1px;
+                    height: 100%;
+                    background: #CEDBF0;
+                }
+
+                &:hover {
+                    color: $font-primary-white;
+                    @include gradient-red(false);
+
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                &.active {
+                    color: $font-primary-white;
+                    @include gradient-red(false);
+
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                &:last-child:after {
+                    display: none
+                }
+            }
+        }
+
+        .grid {
+            text-align: right;
+
+            a {
+                text-decoration: none;
+            }
+
+            .item {
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                background: center center no-repeat;
+                opacity: .2;
+                @include animation();
+
+                &.classic {
+                    background-image: url('/img/front/icons/pages/category/grid-classic.svg');
+                }
+
+                &.line {
+                    background-image: url('/img/front/icons/pages/category/grid-line.svg');
+                }
+
+                &:hover, &.active {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 576px) {
+    #category {
+        .list-settings {
+            .sorting  {
+                a {
+                    padding: 4px 8px;
+                }
+            }
+        }
+    }
+}

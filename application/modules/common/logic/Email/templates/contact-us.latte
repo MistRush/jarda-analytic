@@ -1,0 +1,15 @@
+{layout 'layout.latte'}
+
+{block content}
+    <div style="">
+        {capture $title}{_('Zpráva z kontaktního formuláře')}{/capture}
+    {include 'components/header.latte' 'title' => ($title . ' ' . ($eshop->settings->ProjectShortURL|formatUrl))}
+        <p style="margin:25px 0 34px;font-size:16px;">
+            <b>{_('Jméno a příjmení')}:</b> {$name}<br>
+        <b>{_('Email')}:</b> {$email}<br>
+        <b>{_('Zpráva')}:</b> {$message}<br>
+        </p>
+    </div>
+{/block}
+
+

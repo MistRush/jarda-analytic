@@ -1,0 +1,31 @@
+<!-- application/layouts/scripts/layout.phtml -->
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo Clevis_Layout::renderTitle($this); ?></title>
+        <?php echo Clevis_Layout::renderHeader($this); ?>
+    </head>
+    <body class="claro">
+        <div class="site-package">
+            <div class="site-header-login" style="font-size: 3em">
+                <?php echo Clevis_Layout::getApplicationShortName(); ?>
+                <div style="font-size: 16px;font-family: arial;font-weight: bold;"><?php echo Clevis_Layout::getApplicationName(); ?></div>
+            </div>                        
+            <div class="site-content-border shadow-box" style="width: 500px; margin-top: 30px;">
+                <div class="site-content">
+                  <?php echo $this->layout()->content; ?>
+               </div>
+            </div>
+
+            <?php echo Clevis_Layout::renderFooter($this); ?>
+
+<?php
+Clevis_Layout::setEnd(
+'           <div class="site-bottom"></div>' . PHP_EOL .
+'       </div>' . PHP_EOL .
+'   </body>' . PHP_EOL .
+'</html>' . PHP_EOL
+);
+?>
+

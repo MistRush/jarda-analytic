@@ -1,0 +1,39 @@
+<script>
+	function closeDialog() {
+        window.confirmDialog.close();
+	}
+</script>
+
+<div class="row align-items-center">
+	<div class="col-md-2 text-center">
+		<img src="{fu($mainImage, 'product/200')}" alt="{$product['ProductName']|cleanEntities}">
+	</div>
+	<div class="col-md-7">
+		<div class="name">{$product['ProductName']|cleanEntities}</div>
+		<div class="code">{_('Kód zboží')}: <span>{$product['Code']}</span></div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="price">{price($product['PriceWithVat'], $currency['Label'])}</div>
+	</div>
+</div>
+
+<div class="free-shipping" n:if="$freeShipping">
+	{if isset($freeShipping['Rest']) && $freeShipping['Rest'] <= 0}
+	<span class="free-shipping-text">{_('Doprava zdarma!')}</span>
+	{else}
+	<span>{_('Nakupte ještě za')} {price($freeShipping['Rest'])} {_(' a dopravu máte zdarma!')}</span>
+	{/if}
+</div>
+
+<div class="row align-items-center">
+	<div class="col-sm-6 text-center text-sm-start mb-2">
+		<a href="javascript:closeDialog()" class="back-to-shop">&#8592 {_('Zpět do obchodu')}</a>
+	</div>
+
+	<div class="col-sm-6 text-center text-sm-end mb-2">
+		<a href="/cart" class="no-underline">
+			<span class="btn btn-primary d-inline-block">{_('Pokračovat do košíku')} &#8594</span>
+		</a>
+	</div>
+</div>

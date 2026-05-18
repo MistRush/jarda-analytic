@@ -1,0 +1,153 @@
+<style>
+    table {
+        width:100%;
+        border: 1px solid gray;
+        border-collapse:collapse;
+        margin-bottom: 50px;
+    }
+
+    th {
+        background: rgba(128, 128, 128, 0.14);
+        border: 1px solid gray;
+        text-align: left;
+    }
+
+
+    td {
+        border: 1px solid gray;
+    }
+</style>
+<h2 style="text-align: center">Seznam všech zásilek</h2>
+<p style="font-weight:bold"> Vytištěno: {date('d.m.Y H:i:s')}  &nbsp; &nbsp; &nbsp; Firma: {$eshop->getSettings('ProjectName')} {$eshop->getSettings('AddressStreet')}, {$eshop->getSettings('AddressZipCode')} {$eshop->getSettings('AddressCity')}</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Č. zásilky
+        </th>
+        <th>
+            Dobírka
+        </th>
+        <th>
+            Připojištění
+        </th>
+        <th>
+            Zak. ref
+        </th>
+        <th>
+            Adresa
+        </th>
+        <th>
+            PSČ
+        </th>
+        <th>
+            Kontakt
+        </th>
+        <th>
+            Tel.
+        </th>
+        <th>
+            Var.symbol
+        </th>
+        <th>
+            Z.
+        </th>
+        <th>
+            Poznámka
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr n:foreach="$orders as $order">
+        {var $pickupAddressArray = $order->PPL_ID? explode(' ',$order->PPL->PickupPlaceAddress)}
+        {var $pickupZipCode =  $order->PPL_ID?array_pop($pickupAddressArray)}
+        {var $deliveryAddress = !$order->deliveryAddress ? $order->invoiceAddress:$order->deliveryAddress}
+        {var $pickupAddress = $order->PPL_ID? implode(' ', $pickupAddressArray): null}
+        <td>{$order->ParcelNumber}</td>
+        <td>{if $order->payment->Type === 'cod'}{$order->PriceTotalWithVat} {$order->currency->Mark}{/if}</td>
+        <td></td>
+        <td></td>
+        <td>{$pickupAddress ? $pickupAddress: $deliveryAddress->Street . ', ' . $deliveryAddress->City}</td>
+        <td>{$order->PPL_ID?$pickupZipCode:$deliveryAddress->ZipCode}</td>
+        <td>{$deliveryAddress->FirstName} {$deliveryAddress->LastName}</td>
+        <td>{$deliveryAddress->Phone}</td>
+        <td>{$order->OrderNumber}</td>
+        <td>{$deliveryAddress->country->Code2}</td>
+        <td>{$note}</td>
+    </tr>
+    </tbody>
+</table>
+
+<p><strong>Podpis řidiče: ............................   &nbsp; &nbsp; &nbsp; Podpis předávajícího: ............................</strong> </p>
+
+<p style="margin-top:3rem"><strong>Celkem za COD:</strong> {$summary['TotalCODSummaryCZ']} CZK; {$summary['TotalCODSummarySK']} EUR;
+    &nbsp; &nbsp; &nbsp;<strong>Celkový počet všech balíků:</strong> {$summary['TotalPackages']} <strong>z toho dobírkových</strong> {$summary['TotalCODPackages']}</p>
+
+
+<pagebreak>
+    <h2 style="text-align: center">Seznam dobírkových balíků</h2>
+    <p style="font-weight:bold"> Vytištěno: {date('d.m.Y H:i:s')}  &nbsp; &nbsp; &nbsp; Firma: {$eshop->getSettings('ProjectName')} {$eshop->getSettings('AddressStreet')}, {$eshop->getSettings('AddressZipCode')} {$eshop->getSettings('AddressCity')}  </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Č. zásilky
+            </th>
+            <th>
+                Dobírka
+            </th>
+            <th>
+                Připojištění
+            </th>
+            <th>
+                Zak. ref
+            </th>
+            <th>
+                PSČ
+            </th>
+            <th>
+                Adresa
+            </th>
+            <th>
+                Kontakt
+            </th>
+            <th>
+                Tel.
+            </th>
+            <th>
+                Var.symbol
+            </th>
+            <th>
+                Z.
+            </th>
+            <th>
+                Poznámka
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $orders as $order}
+            {continueIf $order->payment->Type !== 'cod'}
+        <tr>
+            {var $pickupAddressArray = $order->PPL_ID? explode(' ',$order->PPL->PickupPlaceAddress)}
+        {var $pickupZipCode =  $order->PPL_ID?array_pop($pickupAddressArray)}
+        {var $deliveryAddress = !$order->deliveryAddress ? $order->invoiceAddress:$order->deliveryAddress}
+        {var $pickupAddress = $order->PPL_ID? implode(' ', $pickupAddressArray): null}
+            <td>{$order->ParcelNumber}</td>
+            <td>{if $order->payment->Type === 'cod'}{$order->PriceTotalWithVat} {$order->currency->Mark}{/if}</td>
+            <td></td>
+            <td></td>
+            <td>{$order->PPL_ID?$pickupZipCode:$deliveryAddress->ZipCode}</td>
+            <td>{$pickupAddress?$pickupAddress: $deliveryAddress->Street . ', '.$deliveryAddress->City}</td>
+            <td>{$deliveryAddress->FirstName} {$deliveryAddress->LastName}</td>
+            <td>{$deliveryAddress->Phone}</td>
+            <td>{$order->OrderNumber}</td>
+            <td>{$deliveryAddress->country->Code2}</td>
+            <td>{$note}</td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    <p><strong>Podpis řidiče: ............................   &nbsp; &nbsp; &nbsp; Podpis předávajícího: ............................</strong> </p>
+
+    <p style="margin-top:3rem"><strong>Celková cena všech balíků:</strong> {$summary['TotalCODSummaryCZ']} CZK; {$summary['TotalCODSummarySK']} EUR; &nbsp; &nbsp; &nbsp;<strong>Celkový počet všech balíků:</strong> {$summary['TotalCODPackages']}</p>

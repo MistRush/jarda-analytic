@@ -1,0 +1,267 @@
+Common_Model_Settings:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    ContactFax:
+      type: string(64)
+    ContactEmail:
+      type: string(64)
+    ContactName:
+      type: string(64)
+    ContactPhone:
+      type: string(64)
+    ContactPerson:
+      type: string(128)
+    ProjectURL:
+      type: string(64)
+    AnalyticsCode:
+      type: string(64)
+    FacebookURL:
+      type: string(128)
+    FacebookName:
+      type: string(128)
+    ProjectName:
+      type: string(128)
+    AddressCity:
+      type: string(64)
+    AddressZipCode:
+      type: string(8)
+    AddressStreet:
+      type: string(64)
+    AddressDescriptionNumber:
+      type: string(16)
+    RegistrationNumber:
+      type: string(16)
+    VATNumber:
+      type: string(16)
+    OpeningHours:
+      type: string(128)
+    ProjectShortURL:
+      type: string(64)
+    PriceDecimalPlaces:
+      type: integer
+    EnableRegistration:
+      type: boolean
+    PriceVisibleOnlyForLogged:
+      type: boolean
+    SenderName:
+      type: string(64)
+    SenderEmail:
+      type: string(64)
+    NotifyEmail:
+      type: string(64)
+    HeurekaOverenoZakazniky:
+      type: boolean
+    HeurekaSecretKey:
+      type: string(64)
+    HeurekaMereniKonverzi:
+      type: boolean
+    HeurekaPublicKey:
+      type: string(64)
+    InstagramURL:
+      type: string(128)
+    InstagramName:
+      type: string(128)
+    ProductionMode:
+      type: boolean
+Common_Model_File:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Data:
+      type: blob
+    Type:
+      type: string(32)
+    Name:
+      type: string(256)
+    Extension:
+      type: string(16)
+Common_Model_Language:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(64)
+    Code:
+      type: string(32)
+    IsDefault:
+      type: boolean
+    Active:
+      type: boolean
+Common_Model_Country:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Code:
+      type: string(8)
+    Code2:
+      type: string(8)
+    Code3:
+      type: string(8)
+Common_Model_CountryLang:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Country_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Name:
+      type: string(128)
+  relations:
+    country:
+      class: Common_Model_Country
+      foreignAlias: countryLangs
+      local: Country_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: countryLangs
+      local: Language_ID
+      foreign: ID
+Common_Model_Eshop:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Currency_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Settings_ID:
+      type: integer
+    Vat_ID:
+      type: integer
+    FileLogo_ID:
+      type: integer
+    Name:
+      type: string(64)
+    URL:
+      type: string(64)
+    Active:
+      type: boolean
+  relations:
+    language:
+      class: Common_Model_Language
+      foreignAlias: eshops
+      local: Language_ID
+      foreign: ID
+    currency:
+      class: Admin_Model_Currency
+      foreignAlias: eshops
+      local: Currency_ID
+      foreign: ID
+    vat:
+      class: Admin_Model_Vat
+      foreignAlias: eshops
+      local: Vat_ID
+      foreign: ID
+    settings:
+      class: Common_Model_Settings
+      foreignAlias: eshop
+      local: Settings_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: eshops
+      local: FileLogo_ID
+      foreign: ID
+Common_Model_Cron:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(256)
+    Active:
+      type: boolean
+    CronExpression:
+      type: string(128)
+    Minute:
+      type: string(16)
+    Hour:
+      type: string(16)
+    Day:
+      type: string(16)
+    Month:
+      type: string(16)
+    Week:
+      type: string(16)
+    Script:
+      type: string(64)
+    Note:
+      type: string(1024)
+    NextRun:
+      type: timestamp
+    LastRun:
+      type: timestamp
+    LastFinish:
+      type: timestamp
+    LastStatus:
+      type: string(64)
+    DateCreated:
+      type: date
+Common_Model_CronLog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Cron_ID:
+      type: integer
+    DateTimeStart:
+      type: timestamp
+    DateTimeStop:
+      type: timestamp
+    Status:
+      type: string(32)
+    Message:
+      type: string
+  relations:
+    cron:
+      class: Common_Model_Cron
+      foreignAlias: cronLogs
+      local: Cron_ID
+      foreign: ID
+Common_Model_CronUser:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Cron_ID:
+      type: integer
+    User_ID:
+      type: integer
+  relations:
+    cron:
+      class: Common_Model_Cron
+      foreignAlias: cronUsers
+      local: Cron_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: cronUsers
+      local: User_ID
+      foreign: ID

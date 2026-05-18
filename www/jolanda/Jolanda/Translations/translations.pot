@@ -1,0 +1,829 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-07-28T13:07:00+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "ADD"
+msgstr ""
+
+msgid "EDIT"
+msgstr ""
+
+msgid "REMOVE"
+msgstr ""
+
+msgid "CLOSE"
+msgstr ""
+
+msgid "ACTION"
+msgstr ""
+
+msgid "FILTER"
+msgstr ""
+
+msgid "YES"
+msgstr ""
+
+msgid "NO"
+msgstr ""
+
+msgid "NONE"
+msgstr ""
+
+msgid "EDIT_DONE"
+msgstr ""
+
+msgid "SELECT_ROW"
+msgstr ""
+
+msgid "SELECT_ROW_TEXT"
+msgstr ""
+
+msgid "ITEMS_DELETED"
+msgstr ""
+
+msgid "SELECT_FILE"
+msgstr ""
+
+msgid "SAVE"
+msgstr ""
+
+msgid "SHOW_HIDE_COLUMNS"
+msgstr ""
+
+msgid "CONFIRM"
+msgstr ""
+
+msgid "REMOVE_QUESTION"
+msgstr ""
+
+msgid "REMOVE_ITEM"
+msgstr ""
+
+msgid "REMOVE_ITEMS"
+msgstr ""
+
+msgid "SELECT_ONLY_ONE"
+msgstr ""
+
+msgid "VALIDATION_ERR"
+msgstr ""
+
+msgid "VALIDATION_ERR_TEXT"
+msgstr ""
+
+msgid "FORM_VALIDATION_FLOAT"
+msgstr ""
+
+msgid "FIELD_REQUIRED"
+msgstr ""
+
+msgid "CURRENT_FILE"
+msgstr ""
+
+msgid "UPLOADED"
+msgstr ""
+
+msgid "FROM"
+msgstr ""
+
+msgid "TO"
+msgstr ""
+
+msgid "COPY_FILTER_URL"
+msgstr ""
+
+msgid "COPY_FILTER_URL_TEXT"
+msgstr ""
+
+msgid "RESET_FILTER"
+msgstr ""
+
+msgid "ERROR"
+msgstr ""
+
+msgid "SAVE_CLOSE"
+msgstr ""
+
+msgid "COLUMN_SETTINGS"
+msgstr ""
+
+msgid "REFRESH"
+msgstr ""
+
+msgid "EDITOR_NEW"
+msgstr ""
+
+msgid "EDITOR_EDIT"
+msgstr ""
+
+msgid "PREVIEW"
+msgstr ""
+
+msgid "SAVE_CONTINUE"
+msgstr ""
+
+msgid "SAVE_TO_EDIT"
+msgstr ""
+
+msgid "CLIPBOARD_IS_EMPTY"
+msgstr ""
+
+msgid "COPY_TO_CLIPBOARD"
+msgstr ""
+
+msgid "BLOCKEDITOR_PASTE_CONFIRM"
+msgstr ""
+
+msgid "BLOCKEDITOR_CLIPBOARD_COPY"
+msgstr ""
+
+msgid "BLOCKEDITOR_CLIPBOARD_PASTE"
+msgstr ""
+
+msgid "PRESETS"
+msgstr ""
+
+msgid "PRESET_DEFAULT"
+msgstr ""
+
+msgid "PRESET_ADD_CONFIRM"
+msgstr ""
+
+msgid "NAME"
+msgstr ""
+
+msgid "NAME_ALREADY_EXIST"
+msgstr ""
+
+msgid "PRESET"
+msgstr ""
+
+msgid "UPDATE"
+msgstr ""
+
+msgid "RENAME"
+msgstr ""
+
+msgid "SELECTED"
+msgstr ""
+
+msgid "RECORDS"
+msgstr ""
+
+msgid "NEXT"
+msgstr ""
+
+msgid "PREV"
+msgstr ""
+
+msgid "EXPORT"
+msgstr ""
+
+msgid "EXPORT_CSV_ALL"
+msgstr ""
+
+msgid "EXPORT_CSV_FILTER"
+msgstr ""
+
+msgid "EXPORT_PDF_ALL"
+msgstr ""
+
+msgid "EXPORT_PDF_FILTER"
+msgstr ""
+
+msgid "ACTIVE_FILTERS"
+msgstr ""
+
+msgid "UPLOAD_FILE"
+msgstr ""
+
+msgid "FILE_HISTORY"
+msgstr ""
+
+msgid "SELECT_FROM_HISTORY"
+msgstr ""
+
+msgid "FILE"
+msgstr ""
+
+msgid "SIZE"
+msgstr ""
+
+msgid "DATE_CREATE"
+msgstr ""
+
+msgid "DATE_MODIFIED"
+msgstr ""
+
+msgid "CHANGE"
+msgstr ""
+
+msgid "SELECT"
+msgstr ""
+
+msgid "NO_RECORDS"
+msgstr ""
+
+msgid "FILE_NOT_ACCEPTED"
+msgstr ""
+
+msgid "FILE_NOT_FOUND"
+msgstr ""
+
+msgid "DOWNLOAD"
+msgstr ""
+
+msgid "CONTAINS_HEADER"
+msgstr ""
+
+msgid "IMPORT"
+msgstr ""
+
+msgid "DOWNLOAD_OUTPUT"
+msgstr ""
+
+msgid "IMPORT_ERROR"
+msgstr ""
+
+msgid "ADD_TEMPLATE"
+msgstr ""
+
+msgid "REMOVE_TEMPLATE"
+msgstr ""
+
+msgid "TEMPLATE_LOAD_ERROR"
+msgstr ""
+
+msgid "TEMPLATE_REMOVE_ERROR"
+msgstr ""
+
+msgid "TEMPLATE_REMOVED"
+msgstr ""
+
+msgid "SELECT_TEMPLATE"
+msgstr ""
+
+msgid "TEMPLATE_ADD_ERROR"
+msgstr ""
+
+msgid "TEMPLATE_ADDED"
+msgstr ""
+
+msgid "IMPORT_TEMPLATE"
+msgstr ""
+
+msgid "SELECT_ALL"
+msgstr ""
+
+msgid "UNSELECT_ALL"
+msgstr ""
+
+msgid "DEPARTMENT"
+msgstr ""
+
+msgid "SHOW_AS"
+msgstr ""
+
+msgid "SHOW_CREATED_BY_ME"
+msgstr ""
+
+msgid "SHOW_COMPLETED"
+msgstr ""
+
+msgid "SHOW_ONLY_PRIORITY"
+msgstr ""
+
+msgid "SHOW_ONLY_WAITING_APPROVAL"
+msgstr ""
+
+msgid "SHOW_ONLY_MY_PANELS"
+msgstr ""
+
+msgid "SEARCH"
+msgstr ""
+
+msgid "NEW_TASK"
+msgstr ""
+
+msgid "NOT_COMPLETED_TASKS"
+msgstr ""
+
+msgid "PRIORITY_TASKS"
+msgstr ""
+
+msgid "WAITING_APPROVAL_TASKS"
+msgstr ""
+
+msgid "COMPLETED_TASKS"
+msgstr ""
+
+msgid "TASKS"
+msgstr ""
+
+msgid "TASK"
+msgstr ""
+
+msgid "NUMBER"
+msgstr ""
+
+msgid "AUTHOR"
+msgstr ""
+
+msgid "SOLVER"
+msgstr ""
+
+msgid "OTHER_SOLVERS"
+msgstr ""
+
+msgid "STATE"
+msgstr ""
+
+msgid "PRIORITY"
+msgstr ""
+
+msgid "DATE_CREATED"
+msgstr ""
+
+msgid "DATE_EXPECTED_SOLVING"
+msgstr ""
+
+msgid "ATTACHMENTS"
+msgstr ""
+
+msgid "SEND_EMAIL"
+msgstr ""
+
+msgid "CHOOSE_FILE"
+msgstr ""
+
+msgid "CREATE_REPLY"
+msgstr ""
+
+msgid "SEND_REPLY"
+msgstr ""
+
+msgid "CREATE_TASK"
+msgstr ""
+
+msgid "TITLE"
+msgstr ""
+
+msgid "ERROR_REPORTING"
+msgstr ""
+
+msgid "MARK_COMPLETE"
+msgstr ""
+
+msgid "MARK_PRIORITY"
+msgstr ""
+
+msgid "MARK_WAITING_APPROVAL"
+msgstr ""
+
+msgid "MARK_DELETE"
+msgstr ""
+
+msgid "GET_PANELS_ERROR"
+msgstr ""
+
+msgid "GET_TASK_ERROR"
+msgstr ""
+
+msgid "SET_TASK_SOLVER_ERROR"
+msgstr ""
+
+msgid "SET_TASK_STATE_ERROR"
+msgstr ""
+
+msgid "SET_TASK_VIEWED_ERROR"
+msgstr ""
+
+msgid "SET_TASK_PRIORITY_ERROR"
+msgstr ""
+
+msgid "SET_TASK_ORDER_ERROR"
+msgstr ""
+
+msgid "DOWNLOAD_FILE_ERROR"
+msgstr ""
+
+msgid "CREATE_TASK_REPLY_ERROR"
+msgstr ""
+
+msgid "CREATE_TASK_ERROR"
+msgstr ""
+
+msgid "DELETE_TASK_ERROR"
+msgstr ""
+
+msgid "TASK_REPLY_SENT"
+msgstr ""
+
+msgid "TASK_CREATED"
+msgstr ""
+
+msgid "TASK_DELETED"
+msgstr ""
+
+msgid "STATE_NEW"
+msgstr ""
+
+msgid "STATE_DEFERRED"
+msgstr ""
+
+msgid "STATE_SOLUTION_RUNS"
+msgstr ""
+
+msgid "STATE_WAITING_APPROVAL"
+msgstr ""
+
+msgid "STATE_NOT_APPROVED"
+msgstr ""
+
+msgid "STATE_COMPLETED"
+msgstr ""
+
+msgid "STATE_CANCELED"
+msgstr ""
+
+msgid "STATE_NOTICED"
+msgstr ""
+
+msgid "PRIORITY_LOW"
+msgstr ""
+
+msgid "PRIORITY_MEDIUM"
+msgstr ""
+
+msgid "PRIORITY_HIGH"
+msgstr ""
+
+msgid "TASK_STATE_SET"
+msgstr ""
+
+msgid "TASK_SOLVER_SET"
+msgstr ""
+
+msgid "TASK_PRIORITY_SET"
+msgstr ""
+
+msgid "CANCELED_TASKS"
+msgstr ""
+
+msgid "DEFERRED_TASKS"
+msgstr ""
+
+msgid "MARK_DEFERRED"
+msgstr ""
+
+msgid "TASK_DEFERRED_SET"
+msgstr ""
+
+msgid "SET_TASK_DEFERRED_ERROR"
+msgstr ""
+
+msgid "SHOW_CANCELED"
+msgstr ""
+
+msgid "SHOW_DEFERRED"
+msgstr ""
+
+msgid "TASK_UPDATED"
+msgstr ""
+
+msgid "UPDATE_TASK_DATA_ERROR"
+msgstr ""
+
+msgid "SECTION"
+msgstr ""
+
+msgid "EXPECTED_HOURS"
+msgstr ""
+
+msgid "EXPECTED_RETURN"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FINANCE"
+msgstr ""
+
+msgid "EXPECTED_RETURN_HELP"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FINANCE_HELP"
+msgstr ""
+
+msgid "DATE_UPDATED"
+msgstr ""
+
+msgid "GET_KANBAN_ERROR"
+msgstr ""
+
+msgid "STATE_IN_PROGRESS"
+msgstr ""
+
+msgid "EXPECTED HOURS HELP"
+msgstr ""
+
+msgid "SHOW_AS_AUTHOR"
+msgstr ""
+
+msgid "EXPECTED_HOURS_HELP"
+msgstr ""
+
+msgid "TO_DO_HELP"
+msgstr ""
+
+msgid "IN_PROGRESS_HELP"
+msgstr ""
+
+msgid "CURRENTLY_SOLVING_HELP"
+msgstr ""
+
+msgid "AWAITING_APPROVAL_HELP"
+msgstr ""
+
+msgid "DONE"
+msgstr ""
+
+msgid "DONE_HELP"
+msgstr ""
+
+msgid "STATE_ON_HOLD"
+msgstr ""
+
+msgid "ON_HOLD_HELP"
+msgstr ""
+
+msgid "SHOW_ONLY_ABOVE_20_HOURS"
+msgstr ""
+
+msgid "EXPECTED_HOURS_FROM"
+msgstr ""
+
+msgid "EXPECTED_HOURS_TO"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FROM"
+msgstr ""
+
+msgid "EXPECTED_RETURN_TO"
+msgstr ""
+
+msgid "PERCENT_PROGRESS"
+msgstr ""
+
+msgid "SHOW_PROGRESS_BAR"
+msgstr ""
+
+msgid "PROJECT"
+msgstr ""
+
+msgid "FILES_UPLOADED"
+msgstr ""
+
+msgid "FILES_UPLOAD_ERROR"
+msgstr ""
+
+msgid "ADD_REPLY"
+msgstr ""
+
+msgid "FILE_DELETED"
+msgstr ""
+
+msgid "DELETE_FILE_ERROR"
+msgstr ""
+
+msgid "STATE_AMENDED"
+msgstr ""
+
+msgid "AMENDED_HELP"
+msgstr ""
+
+msgid "ONLY_WAITING_FOR_SOLVER"
+msgstr ""
+
+msgid "ONLY_WAITING_FOR_AUTHOR"
+msgstr ""
+
+msgid "CREATE_FOLLOW_UP_TASK"
+msgstr ""
+
+msgid "WAITING_FOR"
+msgstr ""
+
+msgid "WAITING_FOR_AUTHOR"
+msgstr ""
+
+msgid "WAITING_FOR_SOLVER"
+msgstr ""
+
+msgid "ON_HOLD_REASON"
+msgstr ""
+
+msgid "MISSING_ASSIGNMENT"
+msgstr ""
+
+msgid "OTHER_PRIORITIES"
+msgstr ""
+
+msgid "DATE_START"
+msgstr ""
+
+msgid "DATE_DEADLINE"
+msgstr ""
+
+msgid "TASK_CONTENT"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FINANCE_FROM"
+msgstr ""
+
+msgid "EXPECTED_RETURN_FINANCE_TO"
+msgstr ""
+
+msgid "SOLVERS"
+msgstr ""
+
+msgid "AUTHORS"
+msgstr ""
+
+msgid "PROJECTS"
+msgstr ""
+
+msgid "PANELS"
+msgstr ""
+
+msgid "LINKS"
+msgstr ""
+
+msgid "CHOOSE_FILES"
+msgstr ""
+
+msgid "CONFIRM_DELETE_SOLVER"
+msgstr ""
+
+msgid "CONFIRM_DELETE_TASK"
+msgstr ""
+
+msgid "USER"
+msgstr ""
+
+msgid "CATEGORY"
+msgstr ""
+
+msgid "MARK_AWAITING_APPROVAL"
+msgstr ""
+
+msgid "GET_DATA_ERROR"
+msgstr ""
+
+msgid "UPDATE_TASK_ERROR"
+msgstr ""
+
+msgid "DELETING_RECORD"
+msgstr ""
+
+msgid "DELETE_ERROR"
+msgstr ""
+
+msgid "OF"
+msgstr ""
+
+msgid "DISPLAYING"
+msgstr ""
+
+msgid "SAVING"
+msgstr ""
+
+msgid "DATA_SAVED"
+msgstr ""
+
+msgid "SAVING_ERROR"
+msgstr ""
+
+msgid "VALIDATION_MIXED_REQUIRED"
+msgstr ""
+
+msgid "VALIDATION_MIXED_ONEOF"
+msgstr ""
+
+msgid "VALIDATION_MIXED_NOTONEOF"
+msgstr ""
+
+msgid "VALIDATION_MIXED_DEFINED"
+msgstr ""
+
+msgid "VALIDATION_STRING_EMAIL"
+msgstr ""
+
+msgid "VALIDATION_STRING_MIN"
+msgstr ""
+
+msgid "VALIDATION_STRING_MAX"
+msgstr ""
+
+msgid "VALIDATION_STRING_MATCHES"
+msgstr ""
+
+msgid "VALIDATION_STRING_URL"
+msgstr ""
+
+msgid "VALIDATION_STRING_LENGTH"
+msgstr ""
+
+msgid "VALIDATION_STRING_UUID"
+msgstr ""
+
+msgid "VALIDATION_STRING_TRIM"
+msgstr ""
+
+msgid "VALIDATION_STRING_LOWERCASE"
+msgstr ""
+
+msgid "VALIDATION_STRING_UPPERCASE"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_MIN"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_MAX"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_LESSTHAN"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_MORETHAN"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_POSITIVE"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_NEGATIVE"
+msgstr ""
+
+msgid "VALIDATION_NUMBER_INTEGER"
+msgstr ""
+
+msgid "VALIDATION_DATE_MIN"
+msgstr ""
+
+msgid "VALIDATION_DATE_MAX"
+msgstr ""
+
+msgid "VALIDATION_ARRAY_MIN"
+msgstr ""
+
+msgid "VALIDATION_ARRAY_MAX"
+msgstr ""
+
+msgid "VALIDATION_ARRAY_LENGTH"
+msgstr ""
+
+msgid "VALIDATION_OBJECT_NOUNKNOWN"
+msgstr ""
+
+msgid "LOAD"
+msgstr ""
+
+msgid "NEW_VERSION"
+msgstr ""
+
+msgid "OTHER"
+msgstr ""
+
+msgid "PINNED"
+msgstr ""
+
+msgid "SETTINGS_MENU_FAVORITES"
+msgstr ""
+
+msgid "ROW_REORDER"
+msgstr ""
+
+msgid "LOGOUT"
+msgstr ""
+
+msgid "TABS"
+msgstr ""
+
+msgid "OPENED_TABS"
+msgstr ""
+
+msgid "MENU"
+msgstr ""
+
+msgid "ACCOUNT"
+msgstr ""
+
+msgid "FAVOURITES"
+msgstr ""
+
+msgid "FAVOIRITES_TO_REMOVE"
+msgstr ""

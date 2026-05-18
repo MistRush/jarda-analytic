@@ -1,0 +1,21 @@
+#my-account {
+    #address-edit-load {
+        height: 0;
+        display: none;
+        width: 0;
+        opacity: 0;
+        margin-bottom: 30px;
+        @include animation();
+
+        .progress-loader-wrap {
+            right: 0;
+            top: 0;
+        }
+
+        &.open {
+            width: 100%;
+            height: auto;
+            opacity: 1.0;
+        }
+    }
+}

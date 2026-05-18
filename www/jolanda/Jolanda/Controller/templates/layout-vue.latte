@@ -1,0 +1,244 @@
+{block|strip}
+    <!doctype html>
+    <html n:class="!empty($_COOKIE['color-mode']) && $_COOKIE['color-mode'] === 'prefer-dark' ? 'dark-theme' : ''">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+        {if !isset($__auth) || (isset($__auth) && !$__auth)}
+{*            <link rel="stylesheet" href="https://use.typekit.net/ftu1xtd.css" async="true">*}
+{*            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" async="true">*}
+{*            <link rel="stylesheet" href="{$basePath}/jolanda/front/css/style.static.min.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/css/style.static.min.css')}" async="true">*}
+{*            <link rel="stylesheet" href="{$basePath}/jolanda/front/css/style.dynamic.min.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/css/style.dynamic.min.css')}" async="true">*}
+{*            <link rel="stylesheet" href="{$basePath}/project/css/project.min.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/project/css/project.min.css')}" async="true">*}
+        {/if}
+
+        <title>{ifset title}{include title|stripTags} | {/ifset}{include appTitle|strip}</title>
+{*        {if !isset($__auth) || (isset($__auth) && !$__auth)}*}
+{*            <script src="{$basePath}/jolanda/front/js/jquery.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/jquery.js')}"></script>*}
+{*        {/if}*}
+        <script>
+            var initJolandaBuildTime = {$jolandaBuildTime};
+            var basePath = {$basePath};
+            var lang = {$lang};
+            var panels = [];
+            var request = {
+                'module': {$request['module']},
+                'controller': {$request['controller']},
+                'action': {$request['action']}
+            };
+            var settings = {
+                'filemanagerKey': {$filemanagerKey}
+            };
+            {if isset($JsLogger)}
+            var jsLogger = {
+                'ENABLED': {$JsLogger['ENABLED']},
+                'LOG_ACTION': {$JsLogger['LOG_ACTION']},
+                'LOG_ON_DEVELOPMENT': {$JsLogger['LOG_ON_DEVELOPMENT']},
+            };
+            {/if}
+            {ifset $user}
+            var userID = {$user->ID ?? $user['ID'] ?? null};
+            {/ifset}
+
+            var jolandaConfig = {$jolandaConfig};
+        </script>
+        {if isset($JsLogger) && !empty($JsLogger['ENABLED'])}
+            <script src="{$basePath}/jolanda/front/js/js-logger/dist/JsLogger.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/js-logger/dist/JsLogger.js')}"></script>
+        {/if}
+        {block headAfter}
+        {/block}
+
+        <script>
+            window._loadedColorMode = {if !empty($_COOKIE['color-mode'])}{if $_COOKIE['color-mode'] === 'prefer-dark'}'dark-theme'{else}'light-theme'{/if}{else}null{/if};
+            document.documentElement.classList.toggle(
+                    "dark-theme",
+                    window._loadedColorMode === 'dark-theme' || (!window._loadedColorMode && window.matchMedia("(prefers-color-scheme: dark)").matches)
+            );
+        </script>
+
+        <style>
+            body{
+                position: relative;
+            }
+
+            .app_loader{
+                background: white;
+                width: 100dvw;
+                height: 100dvh;
+                position : relative;
+                overflow: hidden;
+
+                .app_loader_wrapper{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .v-spinner{
+                    width: 57px;
+                    font-size: 0;
+                    line-height: 0;
+                }
+
+                .v-grid{
+                    background-color: #24c586;
+                    width: 15px;
+                    height: 15px;
+                    margin: 2px;
+                    border-radius: 100%;
+                    display: inline-block;
+                    animation-name: v-gridStretchDelay;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: ease;
+                    animation-fill-mode: both;
+                }
+
+                .text{
+                    font-weight: bold;
+                    margin-top: 20px;
+                    color: #152234;
+                }
+            }
+
+            .dark-theme{
+                .app_loader{
+                    background: #080e17;
+                }
+            }
+
+            body{
+                margin: 0;
+            }
+
+            @-webkit-keyframes v-gridStretchDelay {
+                0% {
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
+                50% {
+                    -webkit-transform: scale(0.5);
+                    transform: scale(0.5);
+                    -webkit-opacity: 0.7;
+                    opacity: 0.7;
+                }
+                100% {
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                    -webkit-opacity: 1;
+                    opacity: 1;
+                }
+            }
+
+            @keyframes v-gridStretchDelay {
+                0% {
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
+                50% {
+                    -webkit-transform: scale(0.5);
+                    transform: scale(0.5);
+                    -webkit-opacity: 0.7;
+                    opacity: 0.7;
+                }
+                100% {
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                    -webkit-opacity: 1;
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+{*    {include 'loader.latte'}*}
+    <JolandaApp settings="{$vueParams}">
+        <div class="app_loader">
+            <div class="app_loader_wrapper">
+                <div class="v-spinner">
+                    <div class="v-grid v-grid1" style="animation-delay: 0s; animation-duration: 0.8s;"></div>
+                    <div class="v-grid v-grid2" style="animation-delay: 0.1s; animation-duration: 0.9s;"></div>
+                    <div class="v-grid v-grid3" style="animation-delay: 0.2s; animation-duration: 1s;"></div>
+                    <div class="v-grid v-grid4" style="animation-delay: 0.3s; animation-duration: 1.1s;"></div>
+                    <div class="v-grid v-grid5" style="animation-delay: 0.4s; animation-duration: 1.2s;"></div>
+                    <div class="v-grid v-grid6" style="animation-delay: 0.5s; animation-duration: 1.3s;"></div>
+                    <div class="v-grid v-grid7" style="animation-delay: 0.6s; animation-duration: 1.4s;"></div>
+                    <div class="v-grid v-grid8" style="animation-delay: 0.7s; animation-duration: 1.5s;"></div>
+                    <div class="v-grid v-grid9" style="animation-delay: 0.8s; animation-duration: 1.6s;"></div>
+                </div>
+{*                <div class="text">{_('Načítání...')}</div>*}
+            </div>
+        </div>
+    </JolandaApp>
+
+    <div id="vue_teleport"></div>
+
+    {if !isset($__auth) || (isset($__auth) && !$__auth)}
+        <script src="{$basePath}/jolanda/front/js/assets/tinymce/tinymce.min.js"></script>
+
+        {if isset($jolandaConfig['vue']) && $jolandaConfig['vue']}
+            {if !empty($jolandaConfig['vue']['base']['development']) && !empty($jolandaConfig['vue']['base']['mainPath'])}
+                <script type="module" src="{$jolandaConfig['vue']['base']['mainPath']}"></script>
+            {else}
+                {foreach $jolandaConfig['vue'] as $key => $v}
+                    {continueIf $key === 'jolanda' || $key === 'front' || $key === 'vue'}
+                   
+                    {if !empty($v['buildPathJs'])}
+                        <script type="module" src="{$basePath}{$v['buildPathJs']}"></script>
+                    {/if}
+
+                    {if !empty($v['buildPathCss'])}
+                        {if is_array($v['buildPathCss'])}
+                            {foreach $v['buildPathCss'] as $cssFile}
+                                <link rel="stylesheet" href="{$basePath}{$cssFile}"/>
+                            {/foreach}
+                        {else}
+                            <link rel="stylesheet" href="{$basePath}{$v['buildPathCss']}"/>
+                        {/if}
+                    {/if}
+                {/foreach}
+            {/if}
+        {/if}
+
+        <script src="{$basePath}/jolanda/front/js/components/src/helpers/Formatters.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/components/src/helpers/Formatters.js')}"></script>
+
+        {block projectJs}
+        {/block}
+
+{*        <script src="{$basePath}/project/js/src/application.js"></script>*}
+{*        {import 'bottom.latte'}*}
+{*        {include bottom}*}
+    {/if}
+    <script>
+        window.formatters = new Formatters();
+
+        {*plugins.tiniMceCustomParams = {ifset $tiniMceCustomParams}{$tiniMceCustomParams}{else}{ }{/ifset};*}
+        {*$(function () {*}
+        {*    setTimeout(plugins.initPlugins());*}
+        {*})*}
+
+        {*var DISABLE_GRID_SETTINGS = true;*}
+        {*let breadcrumb = new Breadcrumb([*}
+        {*    {foreach $path as $item}*}
+        {*    {*}
+        {*        'url': {$basePath}+'/' +{$item->getURL()},*}
+        {*        'type': 'page',*}
+        {*        'name': {$item->getName()}*}
+        {*    },*}
+        {*    {/foreach}*}
+        {*], basePath + '/default/homepage', '{include appTitle|strip|noescape}');*}
+    </script>
+    {block layoutScripts}
+    {/block}
+    {block scripts}
+    {/block}
+    </body>
+    </html>
+{/block}

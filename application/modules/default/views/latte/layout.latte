@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{$title} | {$eshop->getSettings('ProjectShortURL')}</title>
+    <meta name="author" content="Evidsoft s.r.o.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{$metaKeywords ?? ''}">
+    <meta name="description" content="{$metaDescription ?? ''}">
+    <meta name="robots" content="index,follow">
+    {*    <meta name="facebook-domain-verification" content={$facebookDomainID} />*}
+    <meta name="google-site-verification" content=""/>
+    <meta property="og:site_name" content="{$eshop->getSettings('ProjectShortURL')}">
+    <meta property="og:title" content="{$title}">
+    <meta property="og:url" content="https://trym.cz/{$currentUrl}">
+    <meta property="og:description" content="{$metaDescription ?? ''}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Oxanium:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Oxanium:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+
+    <script src="{$bp}/js/assets/jquery/jquery-3.5.1.min.js"></script>
+    <script defer>
+        var page = JSON.parse({$currentPage});
+    </script>
+    <script src="{$bp}/js/app/app{if !$isDevelopment}.legacy{/if}.js?{filemtime($_SERVER['DOCUMENT_ROOT'] . $bp . '/js/app/app.legacy.js')}"></script>
+
+
+    <link href="{$bp}/js/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{$bp}/css/web/web.css?{filemtime($_SERVER['DOCUMENT_ROOT'] . $bp . '/css/web/web.css')}"
+          rel="stylesheet" type="text/css">
+
+    <style>
+            .grecaptcha-badge{
+                display: none;
+            }
+
+            .error {
+                position: absolute;
+                top: -3px !important;
+                right: 9px !important;
+                border-radius: 8px;
+                color: red;
+                font-family: 'Poppins';
+                padding: 5px 10px;
+            }
+    </style>
+    {$headLink|noescape}
+    {$headScript|noescape}
+
+</head>
+<body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9Q3TZRWRC"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-Y9Q3TZRWRC');
+</script>
+<div id="fb-root"></div>
+{*{$announcement|noescape}*}
+{*<div id="announcement" class="announcement">
+    <div class="container">{$block = 'eshop-in-development'|customBLock|noescape}</div>
+</div>*}
+
+<div id="header" class="fixed"  data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-in-out">
+    <div class="header-main-container">
+        <div class="main-row-holder">
+            <div class="header-logo">
+                <div class="row" style="flex-wrap: nowrap;justify-content: center; align-items: center;">
+                    <div>
+                        <a href="/" name="home">
+                            <div class="logo-holder">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {$headerMainMenu|noescape}
+    <div class="buttons">
+        <button class="btn-pink"><a class="a-btn " href="#footer">Get in touch</a></button>
+    </div>
+    <div class="mobile-menu">
+        {$mobileMenu|noescape}
+    </div>
+</div>
+<div id="content" {ifset $contentClass}class="{$contentClass}"{/ifset}>
+    <div n:tag-if="isset($mainContainer) && $mainContainer" class="container">
+        <div n:tag-if="isset($mainContainer) && $mainContainer" class="main-content">
+            {block content}{/block}
+        </div>
+    </div>
+</div>
+<div id="footer" >
+    <div class="menu-container" data-aos="fade-up" data-aos-easing="ease-in-out">
+        <div class="container">
+            <div class="contact-us-section">
+                <div class="info">
+                    <h2>Contact Us</h2>
+                    <div class="subline">
+                        Get in touch with our aviation experts
+                    </div>
+                    <div class="company-info">
+                        <div class="name">TRYMyengineering s.r.o.</div>
+                        <div class="info-item">
+                            <div class="icon-holder gradient-border">
+                                <img src="/img/front/location-pin.png" alt="phone">
+                            </div>
+                            <div class="info-text">
+                                <span>Location</span><br>
+                                Kozlovice 916, 739 47
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon-holder gradient-border">
+                                <img src="/img/front/suitcase.svg" alt="phone">
+                            </div>
+                            <div class="info-text">
+                                <span>COMPANY ID (IČO)</span><br>
+                                22270019
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon-holder gradient-border">
+                                <img src="/img/front/email.svg" alt="phone">
+                            </div>
+                            <div class="info-text">
+                                <span>EMAIL</span><br>
+                                <a href="mailto:info@trym.cz">info@trym.cz</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form">
+                    <script src="https://www.google.com/recaptcha/api.js?render=6LdSvYUsAAAAAMEc4A38re5VImJbJI1Jz04BF2PX"></script>
+                    <form class="contact-form contact-form-page" id="contact-us-form" method="post" action="#">
+                        <h3>Write to Us</h3>
+                        <p>Have a question or need our expertise? Send us a message.</p>
+                        <div class="row">
+                            <div class="col-lg-6 wrapper">
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <label for="name" class="formRow--input-wrapper js-inputWrapper">Full Name</label>
+                                            <input class="formRow--input js-input" id="name" type="text" name="name"
+                                                   data-validator='[{ "v":":required","m":"{_('Fill your Name')}","p":null}]'
+                                                   placeholder="Full Name*">
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6 wrapper">
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <label for="company" class="formRow--input-wrapper js-inputWrapper">Company</label>
+                                        <input class="formRow--input js-input" id="company" type="text" name="company"
+                                               data-validator='[{ "v":":required","m":"{_('Fill Company')}","p":null}]'
+                                               placeholder="Company*">
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6 wrapper">
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <label for="email" class="formRow--input-wrapper js-inputWrapper">E-mail Address</label>
+                                            <input class="formRow--input js-input" id="email" type="text"
+                                                   name="email"
+                                                   data-validator='[{ "v":":email","m":"{_('Fill email')}","p":null}]'
+                                                   placeholder="Email*">
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6 wrapper">
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <label for="subject" class="formRow--input-wrapper subject js-inputWrapper active">Subject</label>
+
+                                        <div class="custom-select-container">
+                                            <select class="formRow--input formRow-select d-none" id="subject" name="subject">
+                                                <option value="Technical Audits" selected>Technical Audits</option>
+                                                <option value="Aircraft Inspections">Aircraft Inspections</option>
+                                                <option value="Engineering Support">Engineering Support</option>
+                                                <option value="Asset Management">Asset Management</option>
+                                                <option value="Compliance Consulting">Compliance Consulting</option>
+                                            </select>
+
+                                            <div class="custom-select-trigger">
+                                                <span>Technical Audits</span>
+                                                <i class="arrow-icon"></i> </div>
+                                            <div class="custom-options">
+                                                <div class="custom-option selected" data-value="Technical Audits">Technical Audits</div>
+                                                <div class="custom-option" data-value="Aircraft Inspections">Aircraft Inspections</div>
+                                                <div class="custom-option" data-value="Engineering Support">Engineering Support</div>
+                                                <div class="custom-option" data-value="Asset Management">Asset Management</div>
+                                                <div class="custom-option" data-value="Compliance Consulting">Compliance Consulting</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12 wrapper">
+                                <fieldset class="formRow formRow-textarea">
+                                    <div class="formRow--item">
+                                        <label for="message" class="formRow--input-wrapper active">Message</label>
+                                        <textarea class="formRow--input js-input" id="message" name="message"
+                                                  placeholder="Zpráva" rows="4"></textarea>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="flex-wrapper row mt-3 contact-form-info">
+                            <div class="col-lg-6 flex-item"></div>
+                            <div class="col-lg-6 flex-item button-holder">
+                                <a class="btn-pink g-recaptcha" id="confirm-contact-form">Send Message</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-info">
+                <div class="basic">
+                    <div class="logo"><img alt="logo" src="/img/front/header-logo.svg"></div>
+                    <div class="text">
+                        Aviation experts providing specialized advice on<br>
+                        aircraft maintenance, compliance, and asset<br> management.
+                    </div>
+                    <a href="/" class="linkedin-holder gradient-border">
+                        <img src="/img/front/linkedin.svg" alt="linkedin">
+                    </a>
+                </div>
+                <div class="links">
+                    <div class="navigation">
+                        <div class="name">Navigation</div>
+                        <div class="navigation-items">
+                            <div class="holder">
+                                <a href="#about-us">About us</a>
+                                <a href="#services">Our services</a>
+                                <a href="#work">Gallery</a>
+                            </div>
+                            <div class="holder">
+                                <a href="#clients">Clients</a>
+                                <a href="#footer">Contacts</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navigation">
+                        <div class="name">Navigation</div>
+                        <div class="navigation-items">
+                            <div class="holder">
+                                <a href="#services">Technical Audits</a>
+                                <a href="#services">Aircraft Inspections</a>
+                                <a href="#services">Engineering Support</a>
+                            </div>
+                            <div class="holder">
+                                <a href="#services">Asset Management</a>
+                                <a href="#services">Compliance Consulting</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="credits">
+                <div class="rights">
+                    © 2025 TRYMyengineering s.r.o., všechna práva vyhrazena.
+                </div>
+                <div class="evidsoft">
+                    <span>Powered by:</span>
+                    <a href="https://www.evidsoft.cz" target="_blank" rel="nofollow noopener noreferrer">
+                        <img src="/img/front/evidsoft-logo.png" alt="Evidsoft s.r.o.">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{$cookiesConfirm|noescape}
+<script>
+    $(document).ready(function() {
+        $('.custom-select-trigger').click(function(e) {
+            $(this).parent().toggleClass('open');
+            e.stopPropagation();
+        });
+
+        $('.custom-option').click(function() {
+            const value = $(this).data('value');
+            const text = $(this).text();
+            const container = $(this).closest('.custom-select-container');
+
+            container.find('.custom-select-trigger span').text(text);
+            container.find('.custom-option').removeClass('selected');
+            $(this).addClass('selected');
+
+            const realSelect = container.find('select');
+            realSelect.val(value).trigger('change');
+
+            container.removeClass('open');
+        });
+
+        $(window).click(function() {
+            $('.custom-select-container').removeClass('open');
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script>
+    var header = $("#header");
+    var scrollChange = 1;
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= scrollChange) {
+            header.addClass('bg-purple');
+        } else {
+            header.removeClass("bg-purple");
+        }
+    });
+</script>
+<script>
+    window.projectVars = {
+        basePath: {$bp},
+        currencyLabel: {$currency['Label']},
+        priceDecimalPlaces: {$eshop->getEshop()->settings->PriceDecimalPlaces},
+        confirm: {_('Potvrdit')},
+        cancel: {_('Zrušit')},
+        currentURI: {$uri},
+        url: {
+            product: {URL::PRODUCT},
+            page: {URL::PAGE},
+            category: {URL::CATEGORY},
+        },
+    }
+</script>
+
+<script src="{$bp}/js/assets/popper/popper.min.js" defer></script>
+<script src="{$bp}/js/assets/bootstrap/js/bootstrap.min.js" defer></script>
+
+    {if isset($frontendConfig['vue']) && $frontendConfig['vue']}
+    {if isset($frontendConfig['vue']['development']) && $frontendConfig['vue']['development']}
+        <script type="module" src="{$frontendConfig['vue']['mainDevelopmentPath']}"></script>
+    {else}
+        <script type="module"
+                src="{$frontendConfig['vue']['buildPathJs']}?{filemtime($_SERVER['DOCUMENT_ROOT'] . _bu() . $frontendConfig['vue']['buildPathJs'])}"></script>
+        <link rel="stylesheet"
+              href="{$frontendConfig['vue']['buildPathCss']}?{filemtime($_SERVER['DOCUMENT_ROOT'] . _bu() . $frontendConfig['vue']['buildPathCss'])}"/>
+    {/if}
+    {/if}
+        {if isset($frontendConfig['vue']['development']) && $frontendConfig['vue']['development']}
+        <script type="module" src="http://localhost:5173/vue/dist/src/main.js"></script>
+    {/if}
+
+<link href="{$bp}/css/static/css/PNotify.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</body>
+</html>

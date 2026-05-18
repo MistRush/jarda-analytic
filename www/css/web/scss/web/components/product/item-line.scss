@@ -1,0 +1,187 @@
+.product-list {
+    .item-line {
+        position: relative;
+        margin-bottom: 15px;
+        border: 1px solid $border-primary-item;
+        border-radius: 10px;
+        padding: 5px;
+        width: 100%;
+        @include animation();
+
+        &:hover {
+            border: 1px solid $border-primary-item-hover;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .image-block {
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0;
+            height: 80px;
+
+            img {
+                max-width: 100%;
+                max-height: 80px;
+            }
+        }
+
+        .favorite-block {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: url('/img/front/icons/components/product/favorite.svg') left center no-repeat;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 10;
+            @include animation();
+
+            &:hover {
+                opacity: .7;
+            }
+        }
+
+        .name-block {
+            h3 {
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 19px;
+                margin: 0;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .code {
+                font-size: 13px;
+
+                span {
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .availability-block {
+            font-size: 12px;
+            font-weight: 600;
+
+            .availability {
+                &.on-stock {
+                    color: $font-primary-green;
+                    background: url('/img/front/icons/components/product/on-stock.svg') left center no-repeat;
+                    padding-left: 24px;
+                    font-size: 14px;
+                }
+
+                &.out-stock {
+                    color: $font-primary-red;
+                    background: url('/img/front/icons/components/product/out-stock.png') left center no-repeat;
+                    padding-left: 24px;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .price-block {
+            .original-with-vat {
+                display: inline-block;
+                font-size: 12px;
+                color: $font-primary-black;
+
+                span {
+                    text-decoration: line-through;
+                }
+            }
+
+            .with-vat {
+                font-size: 16px;
+                font-weight: 700;
+                color: $font-primary-red;
+                line-height: 16px;
+            }
+
+            .without-vat {
+                font-size: 12px;
+                font-weight: 600;
+                color: $font-primary-black
+            }
+        }
+
+        .cart-block {
+            display: flex;
+            align-items: center;
+            margin: 5px 10px;
+
+            .row {
+                margin: 0;
+                width: 100%;
+            }
+
+            .col-6 {
+                padding: 0;
+            }
+
+            .quantity {
+                font-weight: 500;
+                width: 30px;
+                border: none;
+                margin: 0 4px;
+                padding: 5px 0;
+                text-align: center;
+            }
+
+            .quantity::-webkit-inner-spin-button,
+            .quantity::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            .quantity[type=number] {
+                -moz-appearance: textfield; /* Pro Firefox */
+            }
+
+            .quantity-change {
+                display: block;
+                width: 32px;
+                height: 32px;
+                background-color: $background-primary-light;
+                border-radius: 3px;
+                font-weight: 500;
+                font-size: 22px;
+                text-align: center;
+                line-height: 27px;
+                cursor: pointer;
+                @include animation();
+
+                &:hover {
+                    background-color: darken($background-primary-light, 5%);
+                }
+            }
+        }
+
+        .price-per-piece-block {
+            margin-top: 5px;
+            border-radius: 6px;
+            background: #fff6f0 url("/img/front/icons/components/product/price-per-piece.svg") left 13px center no-repeat;
+            padding: 5px 15px 5px 40px;
+            color: $font-primary-orange;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 17px;
+
+            .pieces {
+                font-size: 11px;
+                font-weight: 400;
+                color: $font-primary-black;
+            }
+        }
+    }
+}

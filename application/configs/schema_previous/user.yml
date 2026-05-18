@@ -1,0 +1,324 @@
+User_Model_LoginLog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    User_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    Type:
+      type: string(32)
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: logs
+      type: one
+      foreignType: many
+      local: User_ID
+      foreign: ID
+User_Model_User:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    User_ID:
+      type: integer
+    UserSettings_ID:
+      type: integer
+    Name:
+      type: string(64)
+    Hash:
+      type: string(256)
+    Salt:
+      type: string(256)
+    Type:
+      type: string(64)
+    Active:
+      type: boolean
+    UserNumber:
+      type: string(32)
+    ContactPhone:
+      type: string(32)
+    ContactName:
+      type: string(64)
+    ContactDescription:
+      type: string(128)
+    RegistrationDate:
+      type: date
+    DateTimeUpdated:
+      type: timestamp
+    DateTimeCreated:
+      type: timestamp
+    ExternalID:
+      type: string(128)
+    Synced:
+      type: boolean
+    AllowInvoicePayment:
+      type: boolean
+    BasePriceTypeCode:
+      type: string(32)
+    Code:
+      type: string(64)
+    Discount:
+      type: decimal
+    DeactivateQuantityMin:
+      type: boolean
+    Newsletter:
+      type: boolean
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: userParent
+      local: User_ID
+      foreign: ID
+    userSettings:
+      class: User_Model_UserSettings
+      foreignAlias: users
+      local: UserSettings_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: users
+      local: Eshop_ID
+      foreign: ID
+    logs:
+      class: User_Model_LoginLog
+      foreignAlias: user
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: User_ID
+User_Model_UserSettings:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Currency_ID:
+      type: integer
+    Group_ID:
+      type: integer
+    Discount:
+      type: integer
+    HidePrices:
+      type: boolean
+    ShowOnMap:
+      type: boolean
+  relations:
+    currency:
+      class: Admin_Model_Currency
+      foreignAlias: userSettings
+      local: Currency_ID
+      foreign: ID
+    group:
+      class: User_Model_Group
+      foreignAlias: userSettings
+      local: Group_ID
+      foreign: ID
+User_Model_Permission:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(128)
+    Code:
+      type: string(32)
+User_Model_UserHasPermission:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Permission_ID:
+      type: integer
+    User_ID:
+      type: integer
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: userHasPermissions
+      local: User_ID
+      foreign: ID
+    permission:
+      class: User_Model_Permission
+      foreignAlias: userHasPermissions
+      local: Permission_ID
+      foreign: ID
+User_Model_UserEshop:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    User_ID:
+      type: integer
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: userEshops
+      local: User_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: userEshops
+      local: Eshop_ID
+      foreign: ID
+User_Model_Group:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(128)
+  relations:
+    groupDiscounts:
+      class: User_Model_GroupDiscount
+      foreignAlias: group
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Group_ID
+User_Model_GroupDiscount:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    Group_ID:
+      type: integer
+    Discount:
+      type: integer
+  relations:
+    group:
+      class: User_Model_Group
+      foreignAlias: groupDiscounts
+      type: one
+      foreignType: many
+      local: Group_ID
+      foreign: ID
+    category:
+      class: Admin_Model_Category
+      foreignAlias: groupDiscounts
+      local: Category_ID
+      foreign: ID
+User_Model_UserUtmParams:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    DateTime:
+      type: timestamp
+    Source:
+      type: string(64)
+    Medium:
+      type: string(128)
+    Name:
+      type: string(128)
+    Content:
+      type: string
+User_Model_UserMeta:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Code:
+      type: string(64)
+    Value:
+      type: string(32)
+    User_ID:
+      type: integer
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: userMetas
+      local: User_ID
+      foreign: ID
+User_Model_OldUser:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Code:
+      type: string(64)
+    IsAdmin:
+      type: blob
+    LoginName:
+      type: string(256)
+    Password:
+      type: string(2056)
+    Transfered:
+      type: boolean
+    ContactPerson:
+      type: string(128)
+    ContactPhone:
+      type: string(64)
+    ContactEmail:
+      type: string(256)
+    CompanyName:
+      type: string(256)
+    CompanyStreet:
+      type: string(256)
+    CompanyCity:
+      type: string(256)
+    CompanyZipCode:
+      type: string(16)
+    CompanyCountry:
+      type: string(64)
+    CompanyID:
+      type: string(32)
+    CompanyVatID:
+      type: string(32)
+    DeliveryName:
+      type: string(256)
+    DeliveryStreet:
+      type: string(256)
+    DeliveryCity:
+      type: string(128)
+    DeliveryZipCode:
+      type: string(16)
+    DeliveryCountry:
+      type: string(64)
+    Currency:
+      type: string(64)
+    Lang:
+      type: string(16)
+    PaymentAvailability:
+      type: string(32)
+    PriceType:
+      type: string(16)
+    Discount:
+      type: decimal
+    State:
+      type: boolean
+    Newsletter:
+      type: boolean

@@ -1,0 +1,20 @@
+@media (max-width: 768px) {
+    .modal {
+        .modal-content {
+            .modal-header {
+                .close {
+                    font-size: 16px;
+                    margin: 0;
+                    height: 18px;
+                    padding: 0;
+                    top: 5px;
+                }
+                
+                .modal-title {
+                    font-size: 18px;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+}

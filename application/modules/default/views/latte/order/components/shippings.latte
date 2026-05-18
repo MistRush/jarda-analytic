@@ -1,0 +1,58 @@
+<div class="shippings">
+    <h2 class="with-icon shipping">{_('Vyberte dopravu')}</h2>
+    <div n:foreach="$shippings as $shipping" n:class="item" data-shipping-id="{$shipping['ID']}" data-shipping-name="{$shipping['Name']}" data-shipping-price-without-vat="{$shipping['PriceWithoutVat']}" data-shipping-price-with-vat="{$shipping['PriceWithVat']}">
+        <div class="row align-items-center">
+            <div class="col-1 no-padding">
+                <div n:if="$shipping['File_ID']" class="image">
+                    <img src="{fu($shipping, 'logo')}" alt="{$shipping['Name']}">
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="headline">{$shipping['Name']}</div>
+                <div n:if="$shipping['Description']" class="subline">{$shipping['Description']}</div>
+                {if $shipping['ID'] == \Admin_Model_Zasilkovna::ZASILKOVNA_CZ_ID}
+                    <div class="row">
+                        <div class="col-12 align-self-center">
+                            {include 'shippings/zasilkovna-cz.latte'}
+                        </div>
+                    </div>
+                {/if}
+                 {if $shipping['ID'] == \Admin_Model_Zasilkovna::ZASILKOVNA_SK_ID}
+                    <div class="row">
+                        <div class="col-12 align-self-center">
+                            {include 'shippings/zasilkovna-sk.latte'}
+                        </div>
+                    </div>
+                {/if}
+                {if $shipping['ID'] == \Admin_Model_Balikovna::BALIKOVNA_ID}
+                    <div class="row">
+                        <div class="col-12 align-self-center">
+                            {include 'shippings/balikovna.latte'}
+                        </div>
+                    </div>
+                {/if}
+                {if $shipping['ID'] == \Admin_Model_Balikovna::BALIK_NA_POSTU_ID}
+                    <div class="row">
+                        <div class="col-12 align-self-center">
+                            {include 'shippings/balik-na-postu.latte'}
+                        </div>
+                    </div>
+                {/if}
+                {if $shipping['ID'] == \Admin_Model_PPL::PPL_PARCEL_ID}
+                    <div class="row">
+                        <div class="col-12 align-self-center">
+                            {include 'shippings/ppl.latte'}
+                        </div>
+                    </div>
+                {/if}
+            </div>
+            <div class="col-4 text-end">
+                {if $shipping['PriceWithVat']}
+                    <div class="price">+ {price($shipping['PriceWithVat'], $currency['Label'])}</div>
+                {else}
+                    <div class="price">{_('Zdarma')}</div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>

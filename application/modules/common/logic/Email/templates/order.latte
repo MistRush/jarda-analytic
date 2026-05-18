@@ -1,0 +1,104 @@
+{layout 'layout.latte'}
+
+{block content}
+    <div>
+    {var $langID = $orderState->order->eshop->Language_ID}
+    {var $currencyLabel = $orderState->order->currency->Label}
+
+    {if $orderState->order->OrderStateType_ID == '5'}
+        {capture $title}{_('')}{/capture}
+    {else}
+        {capture $title}{_('Děkujeme Vám za objednávku na')}{/capture}
+    {/if}
+    {include 'components/header.latte' 'title' => ($title . ' ' . ($eshop->settings->ProjectShortURL|formatUrl)) . '.'}
+
+    <p style="margin:25px 0 10px;font-size:16px;">
+        {$orderState->orderStateType->getLang($langID)->EmailContent|replaceVars|noescape}<br><br>
+        {if $orderState->order->ParcelNumber}
+            Zásilku můžete sledovat pod číslem <a href="{$orderState->order->TrackingUrl}" style="color: #F49536">{$orderState->order->ParcelNumber}</a>
+        {/if}
+    </p><br>
+
+    {if $orderState->OrderStateType_ID == 1 && in_array($orderState->order->payment->Type, [Admin_Model_Payment::TYPE_GOPAY, Admin_Model_Payment::TYPE_GOPAY_PAYPAL])}
+        <div style="margin:15px 0;font-size:16px;">
+            <b>Informace k platbě</b><br>
+            <p style="font-size:16px;">Zvolili jste platbu kartou. Pokud jste ještě nezaplatili, můžete to provést prostřednictvím tlačítka: „Zaplatit“.</p>
+            <a href="{$orderState->order->eshop->URL . '/common/gopay/payment/order/' . $orderState->order->Folder}" target="_blank" style="height:21px;vertical-align:middle;line-height:21px;display:inline-block;padding:3px 7px;border-radius:4px;background:#F49536;text-decoration:none;color:#ffffff;font-weight:400;">
+                {_('Zaplatit')}
+            </a>
+        </div>
+    {elseif $orderState->OrderStateType_ID == 1 && $orderState->order->payment->Type == Admin_Model_Payment::TYPE_BANK}
+        <div style="margin:15px 0;font-size:16px;">
+            <b>Informace k platbě</b><br>
+            Zvolili jste úhradu bankovním převodem. Prosíme o zaslání částky na níže uvedené platební údaje.<br>
+            <div style="display:inline-block;width:49.99%;vertical-align:middle;">
+                Číslo účtu: {$orderState->order->payment->BankAccount}<br>
+                {_('Variabilní symbol')}: {$orderState->order->OrderNumber}<br>
+                Částka: {price($orderState->order->PriceTotalWithVat, $currencyLabel)}<br>
+{*                {$qrPlatba|noescape}<br>*}
+            </div>
+        </div>
+    {/if}
+
+    {include 'order-items.latte'}
+
+    <div style="margin: 15px 0 5px; font-size:16px;">
+        <div><b>{_('Informace o objednávce')}</b></div>
+        {_('Číslo objednávky')}: {$orderState->order->OrderNumber}
+        <br>{_('Kontaktní e-mail')}: <a href="mailto:{$orderState->order->invoiceAddress->Email}" style="color: #E82121">{$orderState->order->invoiceAddress->Email}</a>
+        <br>{_('Kontaktní telefon')}: {$orderState->order->invoiceAddress->Phone}<br><br>
+
+        {if $orderState->order->zasilkovna->PickupPlace_ID }
+            <div style="margin-top: 25px;"><b>{_('Informace o výdejním místě Zásilkovny')}</b></div>
+            {_('ID výdejního místa')}: {$orderState->order->zasilkovna->PickupPlace_ID}
+            <br>{_('Název výdejního místa')}: {$orderState->order->zasilkovna->PickupPlaceName}
+            <br>{_('Adresa výdejního místa')}: {$orderState->order->zasilkovna->PickupPlaceAddress}<br>
+        {/if}
+
+        {if $orderState->order->balikovna->PickupPlace_ID }
+            <div style="margin-top: 25px;"><b>{_('Informace o výdejním místě Balíkovny')}</b></div>
+            {_('ID výdejního místa')}: {$orderState->order->balikovna->PickupPlace_ID}
+            <br>{_('Název výdejního místa')}: {$orderState->order->balikovna->PickupPlaceName}
+            <br>{_('Adresa výdejního místa')}: {$orderState->order->balikovna->PickupPlaceAddress}<br>
+        {/if}
+
+        {if $orderState->order->PPL->PickupPlace_ID }
+            <div style="margin-top: 20px;"><b>{_('Informace o výdejním místě PPL')}</b></div>
+            {_('ID výdejního místa')}</b>: {$orderState->order->PPL->PickupPlace_ID}
+            <br>{_('Název výdejního místa')}: {$orderState->order->PPL->PickupPlaceName}
+            <br>{_('Adresa výdejního místa')}: {$orderState->order->PPL->PickupPlaceAddress}<br>
+        {/if}
+
+        <br><br><div><b>{_('Fakturační adresa')}</b></div>
+        <span n:if="$orderState->order->invoiceAddress->CompanyName">{$orderState->order->invoiceAddress->CompanyName}<br></span>
+        {$orderState->order->invoiceAddress->FirstName} {$orderState->order->invoiceAddress->LastName}<br>
+        {$orderState->order->invoiceAddress->Street}<br>
+        {$orderState->order->invoiceAddress->ZipCode} {$orderState->order->invoiceAddress->City}<br><br>
+
+        {if $orderState->order->DeliveryAddress_ID}
+            <br><br><div><b>{_('Doručovací adresa')}</b></div>
+            <span n:if="$orderState->order->deliveryAddress->CompanyName">{$orderState->order->deliveryAddress->CompanyName}<br></span>
+        {$orderState->order->deliveryAddress->FirstName} {$orderState->order->deliveryAddress->LastName}<br>
+        {$orderState->order->deliveryAddress->Street}<br>
+        {$orderState->order->deliveryAddress->ZipCode} {$orderState->order->deliveryAddress->City}<br><br>
+        {/if}
+
+        {if $orderState->order->invoiceAddress->CompanyName}
+            <br><br><div><b>{_('Informace o společnosti')}</b></div>
+            {$orderState->order->invoiceAddress->CompanyName}<br>
+            {_('IČ')}: {$orderState->order->invoiceAddress->IC}<br>
+            <span n:if="$orderState->order->invoiceAddress->DIC">{_('DIČ')}: {$orderState->order->invoiceAddress->DIC}<br></span><br>
+            <br>
+        {/if}
+
+        {if $orderState->order->Description}
+            <br><div><b>{_('Poznámka k objednávce')}</b></div>
+            {$orderState->order->Description}<br><br>
+        {/if}
+
+        {if $orderState->DescriptionCustomer}
+            <div><b>{_('Zpráva zákazníkovi')}</b></div>
+            {$orderState->DescriptionCustomer}<br><br>
+        {/if}
+    </div>
+{/block}

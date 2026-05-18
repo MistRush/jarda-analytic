@@ -1,0 +1,15 @@
+{if $stockCheck['AllowedQuantity'] > 0 }
+<div class="content">Do košíku bylo přidáno pouze <strong>{$stockCheck['AllowedQuantity']} ks</strong>,
+    které je aktuálně pro produkt:<br><strong>{$stockCheck['ProductName']|cleanEntities}</strong> ({$stockCheck['ProductCode']}), skladem.
+</div>
+    {else}
+<div class="content">Produkt "<strong>{$stockCheck['ProductName']|cleanEntities}</strong> ({$stockCheck['ProductCode']})" není v takovém množství skladem.</div>
+{/if}
+<div class="confirmation-buttons text-center mt-3">
+    <a id="cancelButton"><span class="btn btn-transparent">Zavřít</span></a>
+</div>
+<script>
+    $('#cancelButton').click(function () {
+        {$dialog_id|noescape}.close();
+    });
+</script>

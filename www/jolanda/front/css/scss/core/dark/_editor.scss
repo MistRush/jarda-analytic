@@ -1,0 +1,36 @@
+.entity-editor {
+   .panel-content {
+     box-shadow: none;
+     background-color: $dark-color-main;
+     padding-top: 20px;
+
+
+     ul.nav {
+       background: none;
+       width: 100%;
+       margin-right: 0;
+       margin-left: 0;
+
+       &:after {
+         background-color: $dark-color-main-lighter;
+       }
+
+       .nav-item .nav-link {
+         color: $dark-color-font;
+         background: none !important;
+         border-color: $dark-color-main-lighter;
+
+         &.active {
+           background: $dark-color-main;
+         }
+       }
+     }
+
+
+     .form-group {
+       background-color: $dark-color-main-lighter;
+       border: none;
+       box-shadow: 1px 3px 3px 0 #000;
+     }
+   }
+ }

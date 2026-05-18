@@ -1,0 +1,59 @@
+{block content}
+    <p>{_('Při zadávání objednávky nastavte výchozí fakturační a dodací adresy. Vaše adresy jsou uvedeny níže. Ujistěte se, zda jsou vaše informace aktuální.')}</p>
+    <div class="address-list">
+        <div id="address-edit-load"></div>
+                <h2 class="with-icon invoice-address small">{_('Fakturační adresy')}</h2>
+        <div class="addresses-wrap">
+            <div n:foreach="$invoiceAddresses as $invoiceAddress" class="item">
+                <div class="address-heading">{$invoiceAddress->Label} (Hlavní adresa: {$invoiceAddress->Main?'Ano':'Ne'})</div>
+                <div class="address-content">
+                    <div class="basic-info"><div class="value-name"><strong>Jméno</strong></div> <div class="value">{$invoiceAddress->FirstName} {$invoiceAddress->LastName}</div></div>
+                    <div class="basic-info"><div class="value-name"><strong>Mobil</strong></div> <div class="value">{$invoiceAddress->Phone}</div></div>
+                    <div class="basic-info"><div class="value-name"><strong>Adresa</strong></div> <div class="value">{$invoiceAddress->Street}</div></div>
+                    <div class="basic-info"><div class="value-name"><strong>Město</strong></div> <div class="value">{$invoiceAddress->City}</div></div>
+                    <div class="basic-info"><div class="value-name"><strong>PSČ</strong></div> <div class="value">{$invoiceAddress->ZipCode}</div></div>
+                    <div n:if="$invoiceAddress->country->getLang(1)" class="basic-info"><div class="value-name"><strong>Stát</strong></div> <div class="value">{$invoiceAddress->country->getLang(1)->Name}</div></div>
+                    {if $invoiceAddress->CompanyName}
+                        <div class="basic-info"><div class="value-name"><strong>Firma</strong></div> <div class="value">{$invoiceAddress->CompanyName}</div></div>
+                        <div class="basic-info"><div class="value-name"><strong>IČO</strong></div> <div class="value">{$invoiceAddress->IC}</div></div>
+                        <div class="basic-info"><div class="value-name"><strong>DIČ</strong></div> <div class="value">{$invoiceAddress->DIC}</div></div>
+                    {/if}
+                </div>
+                <div class="address-buttons">
+                    <a class="btn btn-transparent edit-address" data-type="{\Admin_Model_Address::TYPE_INVOICE}" data-id="{$invoiceAddress->ID}">Upravit</a>
+                    <a class="btn btn-transparent remove-address" data-id="{$invoiceAddress->ID}" href="#">Odstranit</a>
+                </div>
+            </div>
+            <div data-type="{\Admin_Model_Address::TYPE_INVOICE}" class="create-address-item">
+                <div class="address-content">
+                    Přidat fakturační adresu
+                </div>
+            </div>
+        </div>
+            <div class="mt-5" n:if="$deliveryAddresses">
+                <h2 class="with-icon delivery-address small">{_('Doručovací adresy')}</h2>
+        <div class="addresses-wrap">
+                <div n:foreach="$deliveryAddresses as $deliveryAddress" class="item">
+                    <div class="address-heading">{$deliveryAddress->Label} (Hlavní adresa: {$deliveryAddress->Main?'Ano':'Ne'})</div>
+                    <div class="address-content">
+                        <div class="basic-info"><div class="value-name"><strong>Jméno</strong></div> <div class="value">{$deliveryAddress->FirstName} {$deliveryAddress->LastName}</div></div>
+{*                        <div class="basic-info"><div class="value-name"><strong>Mobil</strong></div> <div class="value">{$deliveryAddress->Phone}</div></div>*}
+                        <div class="basic-info"><div class="value-name"><strong>Adresa</strong></div> <div class="value">{$deliveryAddress->Street}</div></div>
+                        <div class="basic-info"><div class="value-name"><strong>Město</strong></div> <div class="value">{$deliveryAddress->City}</div></div>
+                        <div class="basic-info"><div class="value-name"><strong>PSČ</strong></div> <div class="value">{$deliveryAddress->ZipCode}</div></div>
+                        <div n:if="$deliveryAddress->country->getLang(1)" class="basic-info"><div class="value-name"><strong>Stát</strong></div> <div class="value">{$deliveryAddress->country->getLang(1)->Name}</div></div>
+                    </div>
+                    <div class="address-buttons">
+                        <a class="btn btn-transparent edit-address"  data-type="{\Admin_Model_Address::TYPE_DELIVERY}" data-id="{$deliveryAddress->ID}">Upravit</a>
+                        <a class="btn btn-transparent remove-address" data-id="{$deliveryAddress->ID}" href="#">Odstranit</a>
+                        {*                <a class="address-btn address-btn--delete" href="#">Odstranit</a>*}
+                    </div>
+                </div>
+            <div data-type="{\Admin_Model_Address::TYPE_DELIVERY}" class="create-address-item">
+                <div class="address-content">
+                    Přidat doručovací adresu
+                </div>
+            </div>
+            </div>
+            </div>
+{/block}

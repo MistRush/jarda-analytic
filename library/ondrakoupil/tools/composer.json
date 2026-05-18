@@ -1,0 +1,27 @@
+{
+    "name": "ondrakoupil/tools",
+    "description": "Just a bunch of tools for myself",
+    "require-dev": {
+        "nette/tester": "^2.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ondřej Koupil",
+            "email": "koupil@optimato.cz"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ext-openssl": "*",
+		"ext-mbstring": "*"
+	},
+    "autoload": {
+        "psr-4": {
+            "OndraKoupil\\Tools\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/tester tests/src/*.phpt"
+    }
+}

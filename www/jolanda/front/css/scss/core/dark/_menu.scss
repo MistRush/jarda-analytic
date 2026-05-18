@@ -1,0 +1,59 @@
+body:not(#loginPage) {
+  nav#mainMenu {
+    .bottom {
+      .seller-contact {
+        border-radius: 8px;
+        background-color: lighten($dark-color-main, 10);
+        .content {
+          box-shadow: 0 3px 25px #111418cc;
+          background-color: lighten($dark-color-main, 10);
+          color: $dark-color-font;
+
+          .icons {
+            color: $dark-color-font;
+            background-color: lighten($dark-color-main, 12);
+
+            &::after {
+              //border-top-color: lighten($dark-color-main, 12);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nav#mainMenu {
+    .bottom {
+      .seller-contact {
+        .content {
+          .icons {
+            &::after {
+              border-right-color: transparent;
+              border-top-color: lighten($dark-color-main, 12);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:not(.menu-open) {
+    nav#mainMenu {
+      .bottom {
+        .seller-contact {
+          border-radius: 10px;
+          background-color: lighten($dark-color-main, 10);
+
+          .content {
+            .icons {
+              &::after {
+                border-top-color: transparent;
+                border-right-color: lighten($dark-color-main, 12);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

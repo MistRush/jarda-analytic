@@ -1,0 +1,11 @@
+{varType Jolanda\Controls\Editor\CategoryTree $categoryTree}
+
+<div id="{$categoryTree->getId()}"></div>
+
+<script>
+    var {$categoryTree|noescape};
+
+    $(function () {
+        {$categoryTree|noescape} = new CategoryTree({$categoryTree->getId()}, {$categoryTree->getTree()}, {$categoryTree->editor->getEntityId()}, {$categoryTree->getSettings()});
+    })
+</script>

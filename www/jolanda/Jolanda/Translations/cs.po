@@ -1,0 +1,630 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-07-28T13:07:00+02:00\n"
+"PO-Revision-Date: 2023-04-25 09:25+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+msgid "ADD"
+msgstr "Přidat"
+
+msgid "EDIT"
+msgstr "Upravit"
+
+msgid "REMOVE"
+msgstr "Odstranit"
+
+msgid "CLOSE"
+msgstr "Zavřít"
+
+msgid "ACTION"
+msgstr "Akce"
+
+msgid "FILTER"
+msgstr "Filtr"
+
+msgid "YES"
+msgstr "Ano"
+
+msgid "NO"
+msgstr "Ne"
+
+msgid "NONE"
+msgstr "Žádný"
+
+msgid "EDIT_DONE"
+msgstr "Entita byla úspěšně upravena"
+
+msgid "SELECT_ROW"
+msgstr "Výběr položky"
+
+msgid "SELECT_ROW_TEXT"
+msgstr "Vyberte prosím požadovaný řádek"
+
+msgid "ITEMS_DELETED"
+msgstr "Položky odstraněny"
+
+msgid "SELECT_FILE"
+msgstr "Vyberte soubor"
+
+msgid "SAVE"
+msgstr "Uložit"
+
+msgid "SHOW_HIDE_COLUMNS"
+msgstr "Zobrazení / skrytí sloupců"
+
+msgid "CONFIRM"
+msgstr "Potvrdit"
+
+msgid "REMOVE_QUESTION"
+msgstr "Opravdu chcete odstranit"
+
+msgid "REMOVE_ITEM"
+msgstr "položku"
+
+msgid "REMOVE_ITEMS"
+msgstr "položek"
+
+msgid "SELECT_ONLY_ONE"
+msgstr "Vyberte prosím pouze jeden řádek pro úpravu."
+
+msgid "VALIDATION_ERR"
+msgstr "Chyba validace"
+
+msgid "VALIDATION_ERR_TEXT"
+msgstr "Některé položky formuláře jsou vyplněny chybně. Opravte prosím."
+
+msgid "FORM_VALIDATION_FLOAT"
+msgstr "Zadejte prosím ve formátu desetinného čísla"
+
+msgid "FIELD_REQUIRED"
+msgstr "Toto pole je vyžadováno"
+
+msgid "CURRENT_FILE"
+msgstr "Aktuální soubor"
+
+msgid "UPLOADED"
+msgstr "Nahráno"
+
+msgid "FROM"
+msgstr "od"
+
+msgid "TO"
+msgstr "do"
+
+msgid "COPY_FILTER_URL"
+msgstr "Kopírovat URL s filtrem"
+
+msgid "COPY_FILTER_URL_TEXT"
+msgstr "URL s předfiltrovaným gridem byla zkopírována do schránky."
+
+msgid "RESET_FILTER"
+msgstr "Resetovat filtr"
+
+msgid "ERROR"
+msgstr "Chyba"
+
+msgid "SAVE_CLOSE"
+msgstr "Uložit a zavřit"
+
+msgid "COLUMN_SETTINGS"
+msgstr "Nastavení sloupců"
+
+msgid "REFRESH"
+msgstr "Obnovit data"
+
+msgid "EDITOR_NEW"
+msgstr "nový"
+
+msgid "EDITOR_EDIT"
+msgstr "úprava"
+
+msgid "PREVIEW"
+msgstr "Náhled"
+
+msgid "SAVE_CONTINUE"
+msgstr "Uložit a pokračovat"
+
+msgid "SAVE_TO_EDIT"
+msgstr "Některé položky budou k dispozici až po uložení"
+
+msgid "CLIPBOARD_IS_EMPTY"
+msgstr "Schránka je prázdná"
+
+msgid "COPY_TO_CLIPBOARD"
+msgstr "Zkopírováno do schránky"
+
+msgid "BLOCKEDITOR_PASTE_CONFIRM"
+msgstr "Opravdu chcete vložit stránku ze schránky? (přepíše se stávající obsah!)"
+
+msgid "BLOCKEDITOR_CLIPBOARD_COPY"
+msgstr "Kopírovat celou stránku"
+
+msgid "BLOCKEDITOR_CLIPBOARD_PASTE"
+msgstr "Vložit stránku ze schránky"
+
+msgid "PRESETS"
+msgstr "Presety"
+
+msgid "PRESET"
+msgstr "preset"
+
+msgid "PRESET_DEFAULT"
+msgstr "Výchozí nastavení"
+
+msgid "PRESET_ADD_CONFIRM"
+msgstr "Opravdu chcete aktualizovat preset"
+
+msgid "NAME"
+msgstr "Název"
+
+msgid "NAME_ALREADY_EXIST"
+msgstr "Tento název již existuje"
+
+msgid "UPDATE"
+msgstr "Aktualizovat"
+
+msgid "RENAME"
+msgstr "Přejmenovat"
+
+msgid "SELECTED"
+msgstr "Vybráno"
+
+msgid "RECORDS"
+msgstr "záznamů"
+
+msgid "NEXT"
+msgstr "další"
+
+msgid "PREV"
+msgstr "předchozí"
+
+msgid "EXPORT"
+msgstr "Exportovat"
+
+msgid "EXPORT_CSV_ALL"
+msgstr "Vše do csv"
+
+msgid "EXPORT_CSV_FILTER"
+msgstr "Fitrované do csv"
+
+msgid "EXPORT_PDF_ALL"
+msgstr "Vše do PDF"
+
+msgid "EXPORT_PDF_FILTER"
+msgstr "Filtrované do PDF"
+
+msgid "ACTIVE_FILTERS"
+msgstr "Aktivní filtry"
+
+msgid "UPLOAD_FILE"
+msgstr "Nahrát soubor"
+
+msgid "FILE_HISTORY"
+msgstr "Nahrané soubory"
+
+msgid "SELECT_FROM_HISTORY"
+msgstr "Vybrat z nahraných souborů"
+
+msgid "FILE"
+msgstr "Soubor"
+
+msgid "SIZE"
+msgstr "Velikost"
+
+msgid "DATE_CREATE"
+msgstr "Datum vytvoření"
+
+msgid "DATE_MODIFIED"
+msgstr "Datum změny"
+
+msgid "CHANGE"
+msgstr "Změnit"
+
+msgid "SELECT"
+msgstr "Vybrat"
+
+msgid "NO_RECORDS"
+msgstr "Žádné záznamy"
+
+msgid "FILE_NOT_ACCEPTED"
+msgstr "Nepřijatelný soubor"
+
+msgid "FILE_NOT_FOUND"
+msgstr "Soubor nenalezen"
+
+msgid "DOWNLOAD"
+msgstr "Stáhnout"
+
+msgid "CONTAINS_HEADER"
+msgstr "Obsahuje záhlaví"
+
+msgid "IMPORT"
+msgstr "Importovat"
+
+msgid "DOWNLOAD_OUTPUT"
+msgstr "Stáhnout výstup"
+
+msgid "IMPORT_ERROR"
+msgstr "Chyba importu"
+
+msgid "ADD_TEMPLATE"
+msgstr "Uložit šablonu"
+
+msgid "REMOVE_TEMPLATE"
+msgstr "Smazat šablonu"
+
+msgid "TEMPLATE_LOAD_ERROR"
+msgstr "Chyba načítání šablony"
+
+msgid "TEMPLATE_REMOVE_ERROR"
+msgstr "Chyba mazání šablony"
+
+msgid "TEMPLATE_REMOVED"
+msgstr "Šablona smazána"
+
+msgid "SELECT_TEMPLATE"
+msgstr "Vyberte šablonu"
+
+msgid "TEMPLATE_ADD_ERROR"
+msgstr "Chyba uložení šablony"
+
+msgid "TEMPLATE_ADDED"
+msgstr "Šablona uložena"
+
+msgid "IMPORT_TEMPLATE"
+msgstr "Šablona"
+
+msgid "SELECT_ALL"
+msgstr "Vybrat vše"
+
+msgid "UNSELECT_ALL"
+msgstr "Zrušit vše"
+
+msgid "DATE_UPDATED"
+msgstr "Datum aktualizace"
+
+msgid "DATE_CREATED"
+msgstr "Datum vytvoření"
+
+msgid "DATE_START"
+msgstr "Očekávané datum začátku"
+
+msgid "DATE_DEADLINE"
+msgstr "Deadline"
+
+msgid "TITLE"
+msgstr "Název"
+
+msgid "STATE"
+msgstr "Stav"
+
+msgid "TASK_CONTENT"
+msgstr "Zadání"
+
+msgid "SEND_REPLY"
+msgstr "Odeslat odpověď"
+
+msgid "EXPECTED_HOURS_FROM"
+msgstr "Hodin od"
+
+msgid "EXPECTED_HOURS_TO"
+msgstr "Hodin do"
+
+msgid "EXPECTED_RETURN_FINANCE_FROM"
+msgstr "Návrat od"
+
+msgid "EXPECTED_RETURN_FINANCE_TO"
+msgstr "Návrat do"
+
+msgid "SEND_EMAIL"
+msgstr "Odeslat email"
+
+msgid "NEW_TASK"
+msgstr "Nový úkol"
+
+msgid "SHOW_PROGRESS_BAR"
+msgstr "Zobrazit plnění"
+
+msgid "ON_HOLD_REASON"
+msgstr "Důvod pozdržení"
+
+msgid "WAITING_FOR"
+msgstr "Čeká na"
+
+msgid "SOLVERS"
+msgstr "Řešitelé"
+
+msgid "AUTHORS"
+msgstr "Zadavatelé"
+
+msgid "PROJECTS"
+msgstr "Projekty"
+
+msgid "PANELS"
+msgstr "Panely"
+
+msgid "WAITING_FOR_AUTHOR"
+msgstr "Zadavatele"
+
+msgid "WAITING_FOR_SOLVER"
+msgstr "Řešitele"
+
+msgid "PERCENT_PROGRESS"
+msgstr "Procentuální plnění"
+
+msgid "SOLVER"
+msgstr "Řešitel"
+
+msgid "OTHER_SOLVERS"
+msgstr "Další řešitelé"
+
+msgid "AUTHOR"
+msgstr "Zadavatel"
+
+msgid "PRIORITY"
+msgstr "Priorita"
+
+msgid "LINKS"
+msgstr "Odkazy"
+
+msgid "ATTACHMENTS"
+msgstr "Přílohy"
+
+msgid "CHOOSE_FILES"
+msgstr "Vyberte soubor/y z počítače"
+
+msgid "CONFIRM_DELETE_SOLVER"
+msgstr "Opravdu chcete odstranit řešitele?"
+
+msgid "CONFIRM_DELETE_TASK"
+msgstr "Opravdu chcete smazat úkol?"
+
+msgid "SEARCH"
+msgstr "Vyhledat"
+
+msgid "DEPARTMENT"
+msgstr "Oddělení"
+
+msgid "PROJECT"
+msgstr "Projekt"
+
+msgid "USER"
+msgstr "Uživatel"
+
+msgid "CATEGORY"
+msgstr "Kategorie"
+
+msgid "CREATE_TASK"
+msgstr "Vytvořit nový úkol"
+
+msgid "MARK_DELETE"
+msgstr "Smazat úkol"
+
+msgid "MARK_COMPLETE"
+msgstr "Dokončit úkol"
+
+msgid "MARK_AWAITING_APPROVAL"
+msgstr "Označit jako čekající na schválení"
+
+msgid "MARK_PRIORITY"
+msgstr "Označit jako prioritní"
+
+msgid "MARK_DEFERRED"
+msgstr "Odložit úkol"
+
+msgid "ERROR_REPORTING"
+msgstr "Hlášení chyby"
+
+msgid "TO_DO_HELP"
+msgstr "Nové nebo nerozpracované úkoly"
+
+msgid "ON_HOLD_HELP"
+msgstr "Aktuálně neřešené/čekající na doplnění/pozastavené úkoly"
+
+msgid "AMENDED_HELP"
+msgstr "Úkoly s doplněným zadáním"
+
+msgid "CURRENTLY_SOLVING_HELP"
+msgstr "Aktuálně řešené úkoly"
+
+msgid "AWAITING_APPROVAL_HELP"
+msgstr "Úkoly čekající na schválení řešitelem nebo zadavatelem"
+
+msgid "EXPECTED_HOURS"
+msgstr "Očekávaný počet hodin"
+
+msgid "EXPECTED_RETURN"
+msgstr "Očekávaný návrat/zisk slovně"
+
+msgid "EXPECTED_RETURN_HELP"
+msgstr ""
+"Oddůvodnění očekávaného finančního návratu\nNapř.: Ušetří čas 2 hodiny denně pro "
+"dva pracovníky, zhruba 1 000 hodin ročně = 250 000 Kč"
+
+msgid "EXPECTED_RETURN_FINANCE"
+msgstr "Očekávaný finanční návrat"
+
+msgid "EXPECTED_RETURN_FINANCE_HELP"
+msgstr "Kč za rok"
+
+msgid "DOWNLOAD_FILE_ERROR"
+msgstr "Nepodařilo se stáhnout soubor"
+
+msgid "DELETE_FILE_ERROR"
+msgstr "Nepodařilo se smazat soubor"
+
+msgid "FILE_DELETED"
+msgstr "Soubor smazán"
+
+msgid "GET_DATA_ERROR"
+msgstr "Nepodařilo se načíst data"
+
+msgid "UPDATE_TASK_ERROR"
+msgstr "Nepodařilo se upravit úkol"
+
+msgid "TASK_UPDATED"
+msgstr "Úkol upraven"
+
+msgid "CREATE_TASK_ERROR"
+msgstr "Nepodařilo se vytvořit úkol"
+
+msgid "TASK_CREATED"
+msgstr "Úkol vytvořen"
+
+msgid "DELETE_TASK_ERROR"
+msgstr "Úkol se nepodařilo smazat"
+
+msgid "TASK_DELETED"
+msgstr "Úkol smazán"
+
+msgid "DELETING_RECORD"
+msgstr "Mažu záznam"
+
+msgid "DELETE_ERROR"
+msgstr "Chyba při mazání"
+
+msgid "OF"
+msgstr "z"
+
+msgid "SHOW"
+msgstr ""
+
+msgid "DISPLAYING"
+msgstr "Zobrazuji"
+
+msgid "SAVING"
+msgstr "Ukládám data"
+
+msgid "DATA_SAVED"
+msgstr "Data uložena"
+
+msgid "SAVING_ERROR"
+msgstr "Chyba při ukládání dat"
+
+msgid "VALIDATION_MIXED_REQUIRED"
+msgstr "Toto pole je povinné"
+
+msgid "VALIDATION_MIXED_ONEOF"
+msgstr "Musí být jedna z následujících hodnot: ${values}"
+
+msgid "VALIDATION_MIXED_NOTONEOF"
+msgstr "Nesmí být jedna z následujících hodnot: ${values}"
+
+msgid "VALIDATION_MIXED_DEFINED"
+msgstr "Toto pole musí být definováno"
+
+msgid "VALIDATION_STRING_EMAIL"
+msgstr "Neplatná e-mailová adresa"
+
+msgid "VALIDATION_STRING_MIN"
+msgstr "Musí mít alespoň ${min} znaků"
+
+msgid "VALIDATION_STRING_MAX"
+msgstr "Musí mít nejvýše ${max} znaků"
+
+msgid "VALIDATION_STRING_MATCHES"
+msgstr "Neodpovídá požadovanému formátu"
+
+msgid "VALIDATION_STRING_URL"
+msgstr "Neplatná URL adresa"
+
+msgid "VALIDATION_STRING_LENGTH"
+msgstr "Musí mít přesně ${length} znaků"
+
+msgid "VALIDATION_STRING_UUID"
+msgstr "Neplatné UUID"
+
+msgid "VALIDATION_STRING_TRIM"
+msgstr "Nesmí obsahovat mezery na začátku nebo na konci"
+
+msgid "VALIDATION_STRING_LOWERCASE"
+msgstr "Musí být malými písmeny"
+
+msgid "VALIDATION_STRING_UPPERCASE"
+msgstr "Musí být velkými písmeny"
+
+msgid "VALIDATION_NUMBER_MIN"
+msgstr "Musí být větší nebo rovno ${min}"
+
+msgid "VALIDATION_NUMBER_MAX"
+msgstr "Musí být menší nebo rovno ${max}"
+
+msgid "VALIDATION_NUMBER_LESSTHAN"
+msgstr "Musí být menší než ${less}"
+
+msgid "VALIDATION_NUMBER_MORETHAN"
+msgstr "Musí být větší než ${more}"
+
+msgid "VALIDATION_NUMBER_POSITIVE"
+msgstr "Musí být kladné číslo"
+
+msgid "VALIDATION_NUMBER_NEGATIVE"
+msgstr "Musí být záporné číslo"
+
+msgid "VALIDATION_NUMBER_INTEGER"
+msgstr "Musí být celé číslo"
+
+msgid "VALIDATION_DATE_MIN"
+msgstr "Datum musí být po ${min}"
+
+msgid "VALIDATION_DATE_MAX"
+msgstr "Datum musí být před ${max}"
+
+msgid "VALIDATION_ARRAY_MIN"
+msgstr "Musí mít alespoň ${min} položek"
+
+msgid "VALIDATION_ARRAY_MAX"
+msgstr "Musí mít nejvýše ${max} položek"
+
+msgid "VALIDATION_ARRAY_LENGTH"
+msgstr "Musí mít přesně ${length} položek"
+
+msgid "VALIDATION_OBJECT_NOUNKNOWN"
+msgstr "Obsahuje neznámé klíče: ${unknown}"
+
+msgid "LOAD"
+msgstr "Načíst"
+
+msgid "NEW_VERSION"
+msgstr "Je k dispozici nová verze aplikace"
+
+msgid "OTHER"
+msgstr "Ostatní"
+
+msgid "PINNED"
+msgstr "Připnuté"
+
+msgid "SETTINGS_MENU_FAVORITES"
+msgstr "Nastavení sekcí menu"
+
+msgid "ROW_REORDER"
+msgstr "Změna pořadí řádků"
+
+msgid "LOGOUT"
+msgstr "Odhlásit se"
+
+msgid "TABS"
+msgstr "Taby"
+
+msgid "OPENED_TABS"
+msgstr "Otevřené taby"
+
+msgid "MENU"
+msgstr "Menu"
+
+msgid "ACCOUNT"
+msgstr "Účet"
+
+msgid "FAVOURITES"
+msgstr "Oblíbené"
+
+msgid "FAVOIRITES_TO_REMOVE"
+msgstr "Odebrat z oblíbených"

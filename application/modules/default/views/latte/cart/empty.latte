@@ -1,0 +1,24 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="empty-cart">
+        <div class="text-center">
+            <h1 class="with-icon cart d-inline-block">{_('Nákupní košík')}</h1>
+        </div>
+
+        <div class="info-container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="headline">{_('Váš nákupní košík je prázdný...')}</div>
+                    <p>{_('Projděte si katalog a přijdete svůj první produkt, nebo využijte import položek ze souboru.')}</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <a href="/">
+                        <span class="btn btn-primary">{_('Zobrazit katalog')} &#8594</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {include 'components/import.latte'}
+    </div>
+{/block}

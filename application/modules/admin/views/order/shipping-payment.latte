@@ -1,0 +1,63 @@
+{varType \Admin_Model_Order $order}
+
+<style>
+    .tables td { border-bottom: 1px solid #ddd; }
+    .tables td:first-child { width: 120px; }
+    .tables .price { text-align: left; font-weight: bold; }
+    .tables table { min-width: 50%; }
+    .tables table:not(:last-child) { margin-bottom: 15px; }
+</style>
+
+{var $currencyLabel = $order->currency->Label}
+{var $coupon = $order->coupon}
+
+<div class="tables">
+    <table id="shipping">
+        <tr>
+            <td align="left"><b>{_('Doprava')}</b></td>
+            <td align="left">{$order->shipping->Name}</td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Cena bez DPH')}</b></td>
+            <td class="price">{price($order->PriceShippingWithoutVat, $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Cena s DPH')}</b></td>
+            <td class="price">{price($order->PriceShippingWithVat, $currencyLabel)}</td>
+        </tr>
+    </table>
+
+    <table id="payment">
+        <tr>
+            <td align="left"><b>{_('Platba')}</b></td>
+            <td align="left">{$order->payment->Name}</td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Cena bez DPH')}</b></td>
+            <td class="price">{price($order->PricePaymentWithoutVat, $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Cena s DPH')}</b></td>
+            <td class="price">{price($order->PricePaymentWithVat, $currencyLabel)}</td>
+        </tr>
+    </table>
+
+    <table id="total">
+        <tr n:if="$order->Coupon_ID && $coupon->Type !== \Admin_Model_Coupon::TYPE_ITEM">
+            <td style="text-align:left"><b>Slev. kupón ({$coupon->getLang($order->eshop->Language_ID)->Name})</b></td>
+            <td style="text-align:left"><b>{$coupon->getDiscount(false, true)}</b></td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Celkem bez DPH')}</b></td>
+            <td class="price">{price($order->PriceTotalWithoutVat, $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Celkem DPH')}</b></td>
+            <td class="price">{price($order->PriceTotalWithVat - $order->PriceTotalWithoutVat, $currencyLabel)}</td>
+        </tr>
+        <tr>
+            <td align="left"><b>{_('Celkem s DPH')}</b></td>
+            <td class="price">{price($order->PriceTotalWithVat, $currencyLabel)}</td>
+        </tr>
+    </table>
+</div>

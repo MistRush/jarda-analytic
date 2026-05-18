@@ -1,0 +1,130 @@
+$color-font: #1C293B;
+$color-font-secondary: #515C6F;
+$color-font-disabled: #c4cdd5;
+$font-family: 'realist', 'sans-serif';
+
+$color-green: #29c489;
+$color-red: #E42C27;
+$color-yellow: #FFA923;
+
+
+$color-svg-icon: #b7b9c7;
+
+$color-green-light: #24c586;
+
+$color-green-default-left: #24c586;
+$color-green-default-right: #24c586;
+$color-green-hover-left: #24c586;
+$color-green-hover-right: #24c586;
+
+
+$color-secondary-default-left: #FFFFFF;
+$color-secondary-default-right: #F5F5F9;
+$color-secondary-hover-left: #E4E4EB;
+$color-secondary-hover-right: #FFFFFF;
+
+$color-yellow-default-left: #FFA923;
+$color-yellow-default-right: #FFCC00;
+$color-yellow-hover-left: #FFA923;
+$color-yellow-hover-right: #FF8800;
+
+$color-red-default-left: #E42C27;
+$color-red-default-right: #C1181D;
+$color-red-hover-left: #C80E09;
+$color-red-hover-right: #720508;
+
+$color-dark-default-left: #1d293b;
+$color-dark-default-right: #2f3a4b;
+$color-dark-hover-left: lighten($color-dark-default-right,10);
+$color-dark-hover-right: lighten($color-dark-default-left,10);
+
+$color-gold: #DAA520;
+$color-gold-light: #D4AF37;
+$color-gold-alt: #D4AF37;
+
+$header-height: 50px;
+
+$menu-small-width:50px;
+$menu-big-width:260px;
+$menu-right-part-width: calc(#{$menu-big-width} - #{$menu-small-width} - 20px);
+
+$dark-color-font: #c8c8c8;
+$dark-color-font-light: #fff;
+$dark-color-main: #202124;
+$dark-color-main-lighter: #292a2d;
+
+
+@mixin button-gradient($color-left, $color-right, $deg: 143deg) {
+  background: $color-left;
+  background: -moz-linear-gradient($deg, $color-left 0%, $color-right 100%);
+  background: -webkit-linear-gradient($deg, $color-left 0%, $color-right 100%);
+  background: linear-gradient($deg, $color-left 0%, $color-right 100%);
+}
+
+
+@mixin linear-gradient($start ,$end, $sperc: 0%, $eperc: 100%, $deg: 180deg) {
+  background: $start; /* Old browsers */
+  background: -moz-linear-gradient($deg, $start $sperc, $end $eperc); /* FF3.6-15 */
+  background: -webkit-linear-gradient($deg, $start $sperc, $end $eperc); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient($deg, $start $sperc, $end $eperc); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$start}, endColorstr=#{$end},GradientType=0 ); /* IE6-9 */
+}
+
+@mixin animation($string: all .3s ease-in-out) {
+  -webkit-transition: $string;
+  -moz-transition: $string;
+  -ms-transition: $string;
+  -o-transition: $string;
+  transition: $string;
+}
+
+@mixin box-shadow($string) {
+    -moz-box-shadow: $string;
+    -webkit-box-shadow: $string;
+    box-shadow: $string;
+}
+
+@mixin scrollbar($thumb: rgba($color-svg-icon, .8), $hover: rgba($color-primary, .8), $track: transparent) {
+
+    &::-webkit-scrollbar {
+        height: 6px;
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $thumb;
+        border-radius: 3px;
+
+        &:hover {
+            background: $hover;
+        }
+    }
+  
+    &::-webkit-scrollbar-track {
+        background: $track;
+    }
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+  50% {
+    width: 30%;
+  }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@import '../../../../../project/css/scss/_variables.scss';

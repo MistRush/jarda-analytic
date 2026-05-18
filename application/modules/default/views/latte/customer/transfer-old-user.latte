@@ -1,0 +1,15 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="register">
+        <div class="text-center">
+            <h1>{_('Převedení Vašeho účtu bylo dokončeno')}</h1>
+            {if $isLoginEmailChanged}
+                <p>{_('Převedení proběhlo úspěšně. Pro dokončení registrace prosím potvrďte změnu emailové adresy kliknutím na odkaz, který jsme Vám zaslali na emailovou adresu.')}</p>
+                    <br><br><br>
+                    {else}
+                <p>{_('Převedení proběhlo úspěšně. Automaticky jsme Vás přihlásili ke svému účtu a můžete tak začít nakupovat.')}</p>
+                <br><br><br>
+            {/if}
+        </div>
+    </div>
+{/block}

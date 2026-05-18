@@ -1,0 +1,21 @@
+<div class="contact-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <span class="item opening-hours">{$eshop->getSettings('OpeningHours')}</span>
+{*                <a href="tel:{$eshop->getSettings('ContactPhone')|replaceRE:"/ /"}">*}
+{*                    <span class="item phone">{$eshop->getSettings('ContactPhone')}</span>*}
+{*                </a>*}
+                <a href="mailto:{$eshop->getSettings('ContactEmail')|replaceRE:"/ /"}">
+                    <span class="item email">{$eshop->getSettings('ContactEmail')|noescape}</span>
+                </a>
+            </div>
+            <div class="col-4 text-end">
+                <div class="client-links-block">
+                    <a href="javascript:layout.openLoginDialog();"><span class="login-link">{_('Přihlásit')}</span></a> /
+                    <a href="/customer/register">{_('Registrovat')}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{default $colorBlue = "#0076be"}
+{varType string $web_name}
+{varType string $web_url}
+{varType string $logo}
+{varType string $headerIcon}
+{varType string $footer_email}
+
+{import 'components/buttons.latte'}
+{import 'components/header.latte'}
+
+<style>
+    @media (prefers-color-scheme: dark ) {
+        /*TODO: Dark mode?*/
+    }
+</style>
+<body style='font-size:14px;font-weight:400;padding:20px 0;text-align:center;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'>
+    <div style="display:inline-block;width:auto;margin:auto;max-width:720px;">
+        <a href="{$web_url}" target="_blank"><img src="{$logo}" alt="{$web_name}" style="display:block;vertical-align:middle;max-width:250px;padding:10px;margin:auto auto 10px"></a>
+        <div style="padding:24px 12px;border-radius:6px;text-align:left;min-width:400px;">
+            {ifset headerText}
+                <h1 style="text-align:center;font-weight:400;margin:0 0 20px;font-size:18px;line-height:20px;color:#666;">
+                    {include headerText}
+                </h1>
+            {/ifset}
+            {include content}
+            {ifset panel}
+                <div style="background:#f6f6f6;margin:15px 0;padding: 10px 12px;">
+                    {include panel}
+                </div>
+            {/ifset}
+            {ifset subPanel}
+                <div style="background:#f6f6f6;margin:15px 0;padding: 10px 12px;" n:ifcontent>
+                    {include subPanel}
+                </div>
+            {/ifset}
+            {ifset footer}
+                <div style="text-align:center;margin-top:25px;">
+                    {include footer}
+                </div>
+            {/ifset}
+            {ifset hint}
+                <div style="margin:20px 0 -20px;color:#acacac;font-size:12px;font-style:italic;">
+                    {include hint}
+                </div>
+            {/ifset}
+        </div>
+        <footer style="width:max-content; margin: 25px auto 0;">
+            <div style="text-align:center;margin-top:10px;font-size:0;white-space: nowrap;">
+                V případě jakýchkoliv dotazů bez váhání pište na e-mail <a href="mailto:{$footer_email}" style="min-width:max-content;text-align:right;display:inline-block;text-decoration:none;color:#E82121;width:49%;font-size:14px;padding:0 5px;">{$footer_email}</a> nebo volejte na <a target="_blank" href="{$web_url}" style="min-width:max-content;text-align:left;display:inline-block;text-decoration:none;color:{$colorBlue|noescape};width:49%;font-size:14px;padding:0 5px;">{$web_name}</a>.
+            </div>
+        </footer>
+    </div>
+</body>

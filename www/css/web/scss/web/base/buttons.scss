@@ -1,0 +1,180 @@
+@mixin btn-full {
+    display: inline-flex;
+    padding: 12px 24px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #167E24, #18A638 51%, #167E24) var(--x, 0) / 200%;
+    color: #F9FAF9;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.9px;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+
+.btn-full {
+    @include btn-full;
+
+    &:hover {
+        --x: 100%;
+    }
+}
+
+
+@mixin btn-transparent {
+    display: inline-flex;
+    padding: 16px 45px 16px 24px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 50px;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-family: Onest;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: none;
+    position: relative;
+    transition: 300ms ease;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover {
+      border: 1px solid #FF4D9B;
+    }
+
+    a {
+        text-decoration: none;
+        color: #FFFFFF !important;
+    }
+
+  &:after {
+    content: url(/img/front/arrow-right.svg);
+    position: absolute;
+    top: 14px;
+    right: 15px;
+  }
+}
+
+@mixin btn-white {
+    display: inline-flex;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    color: #013B53 !important;
+    font-family: Urbanist;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: none;
+
+    a {
+        text-decoration: none;
+        color: #013B53 !important;
+    }
+
+
+
+}
+
+@mixin btn-pink {
+  display: inline-flex;
+  padding: 16px 45px 16px 24px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #FF4D9B, #f672ac 51%, #FF4D9B) var(--x, 0) / 200%;
+  border: 1px solid transparent;
+  color: #ffffff !important;
+  font-family: Onest;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: none;
+  position: relative;
+  transition: 300ms ease;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    --x: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: #ffffff !important;
+    font-family: Onest;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: none;
+  }
+
+  &:after {
+    content: url(/img/front/arrow-right.svg);
+    position: absolute;
+    top: 14px;
+    right: 15px;
+  }
+}
+
+@mixin btn-green{
+    display: inline-flex;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 10px;
+    background: #9CFFBD;
+    border: 1px solid #9CFFBD;
+    color: #013B53 !important;
+    font-family: Urbanist;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: none;
+
+    a {
+        text-decoration: none;
+        color: #013B53 !important;
+    }
+}
+
+
+
+.btn-transparent {
+    @include btn-transparent;
+
+    &:hover{
+        --x: 100%;
+    }
+}
+
+.btn-white {
+    @include btn-white;
+}
+
+.btn-pink {
+  @include btn-pink;
+}
+
+.btn-green {
+    @include btn-green;
+}

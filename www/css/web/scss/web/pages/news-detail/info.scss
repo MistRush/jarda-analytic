@@ -1,0 +1,25 @@
+#news-detail {
+    .info {
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin: 25px 0;
+        background: $background-primary-light;
+
+        .date {
+            background: url("/img/front/icons/components/news/date.svg") top 1px left no-repeat;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 30px;
+            padding-left: 24px;
+        }
+
+        .category {
+            background: url("/img/front/icons/components/news/category.svg") top 3px left no-repeat;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            padding-left: 24px;
+        }
+    }
+}

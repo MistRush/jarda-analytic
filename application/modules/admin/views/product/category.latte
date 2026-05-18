@@ -1,0 +1,70 @@
+{layout "../layout.latte"}
+{block content}
+    <div class="row productList">
+        <div class="product-filter">
+            <div id="productList-filter" class="mb-4 mb-md-0">
+                <div class="header open">
+                    <span>Filtr dle kategorie</span>
+                    <i class="ci ci-angle-down"></i>
+                </div>
+                <div class="content">
+                    <div id="category-tree" style="max-height: 320px; overflow:auto;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="productList-dataGrid">
+            {$categoryGrid->render()}
+        </div>
+    </div>
+{/block}
+{block scripts}
+    <script>
+        /**
+         * @namespace { Grid } categoryGrid
+         */
+        var categoryGrid;
+        var tree;
+
+        $(function () {
+            categoryGrid = {$categoryGrid|noescape};
+
+            tree = new TreeView('category-tree', {$tree}, true);
+            tree.onChange = function () {
+                let selected = tree.getSelected();
+                let query = {'section':[], 'type':[], 'pattern':[]}
+
+                categoryGrid.setUrlParameter('Category_IDs', selected);
+                categoryGrid.refresh();
+            };
+
+            $('#productList-filter .header').on('click', (e) => {
+                var target = $(e.target).is('.header')?$(e.target):$(e.target).closest('.header');
+                toggleFilter(target);
+            });
+        });
+
+        var previewCategory = function (eshopURL, languageCode) {
+            let slugProperty = 'slug' + languageCode;
+            window.open(eshopURL + '/{URL::CATEGORY|noescape}/' + categoryGrid.getCurrentItem()[slugProperty]);
+        };
+
+        var toggleFilter = function(target, time = 300) {
+            target.toggleClass('open');
+            if (target.hasClass('open')) {
+                target.parents('.product-filter').toggleClass('open', false);
+                target.parents('.product-filter').next('.productList-dataGrid').toggleClass('open', false);
+                setTimeout(() =>{
+                    target.parent().find('.content').slideDown(time);
+                }, ($(window).width() > 768)?300:0);
+            } else {
+                target.parents('.product-filter').toggleClass('open', true);
+                target.parents('.product-filter').next('.productList-dataGrid').toggleClass('open', true);
+                if ($(window).width() > 768) {
+                    target.parent().find('.content').hide(0);
+                } else {
+                    target.parent().find('.content').slideUp(time);
+                }
+            }
+        }
+    </script>
+{/block}

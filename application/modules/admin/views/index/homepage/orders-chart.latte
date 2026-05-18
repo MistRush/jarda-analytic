@@ -1,0 +1,21 @@
+<div class="col-xl-9" id="ordersChart" data-icon="ci ci-statistics">
+    <div class="panel">
+        <div class="title">Objednávky</div>
+        <div class="charts-wrap">
+            <div class="charts">
+                <div class="wrapper active" data-title="Objednávky">
+                    <div class="chooser">
+                        <select class="noselect" id="ordersChartRange">
+                            <option value="days" data-back="29">Dny</option>
+                            <option value="months" data-back="12" selected>Měsíce</option>
+                            <option value="quarters" data-back="8">Kvartály</option>
+                        </select>
+                    </div>
+                    <div class="chart">
+                        <canvas id="orders-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

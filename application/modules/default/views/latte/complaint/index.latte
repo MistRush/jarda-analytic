@@ -1,0 +1,167 @@
+{layout "../layout.latte"}
+{block content}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ld4ogArAAAAAN-5fVn8mxHa848vSIN4pqJ41BYy"></script>
+    <div class="complaint-container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="text-center">
+                    <h1>{_('Reklamace')}</h1>
+                </div>
+                <form method="post" id="complaint-form" action="/complaint/complaint-send/">
+                    <div class="form-block">
+                        <h2 class="with-icon user">{_('Základní údaje')}<span class="text-small">{_('Vaše kontaktní údaje')}</span></h2>
+                        <div class="row">
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Name">{_('Jméno a příjmení')}:</label>
+                                <input id="Name" type="text" name="Name" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše jméno a příjmení.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Email">{_('E-mail')}:</label>
+                                <input id="Email" type="text" name="Email" value="" data-validator='[{ "v":":email","m":"{_('Vyplňte e-mail ve správném formátu.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Phone">{_('Telefon')}:</label>
+                                <input id="Phone" type="text" name="Phone" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Váš telefon.')}","p":null}]'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-block">
+                            <h2 class="with-icon with-toggler company">{_('Firemní údaje')}<span class="text-small">{_('Nezapomeňte vyplnit IČ a DIČ, pokud jste firma.')}</span><span class="toggler"></span></h2>
+                        <div class="company-block pt-2">
+                            <input type="hidden" name="IsCompany" value="0">
+                            <div class="row">
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="CompanyName">{_('Název firmy')}:</label>
+                                    <input id="CompanyName" type="text" name="CompanyName" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte název Vaší firmy.')}","p":null,"d":".company-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="IC">{_('IČ')}:</label>
+                                    <input id="IC" type="text" name="IC" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte IČ Vaší firmy.')}","p":null,"d":".company-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2">
+                                    <label for="DIC">{_('DIČ')}:</label>
+                                    <input id="DIC" type="text" name="DIC" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-block">
+                        <h2 class="with-icon invoice-address">{_('Fakturační adresa')}</h2>
+                        <div class="row">
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="InvoiceStreet">{_('Ulice')}:</label>
+                                <input id="InvoiceStreet" type="text" name="InvoiceStreet" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaši ulici.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="InvoiceCity">{_('Město')}:</label>
+                                <input id="InvoiceCity" type="text" name="InvoiceCity" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše město.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="InvoiceZipCode">{_('PSČ')}:</label>
+                                <input id="InvoiceZipCode" type="text" name="InvoiceZipCode" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše PSČ.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="InvoiceCountry_ID">{_('Stát')}:</label>
+                                <select id="InvoiceCountry_ID" name="InvoiceCountry_ID" data-validator='[{ "v":":required","m":"{_('Vyberte prosím stát.')}","p":null}]'>
+                                    <option value="">{_('Vyberte stát')}</option>
+{*                                        {foreach $countries as $country}*}
+{*                                            <option value="{$country["ID"]}">{$country["countryLangs"][0]["Name"]}</option>*}
+{*                                        {/foreach}*}
+                                    <option value="50">Česká Republika</option>
+                                    <option value="166">Slovensko</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-block">
+                            <h2 class="with-icon with-toggler delivery-address">{_('Doručovací údaje')}<span class="text-small">{_('Vyplňte v případě, že se liší od fakturačních')}</span><span class="toggler"></span></h2>
+                        <div class="delivery-address-block pt-2">
+                            <input type="hidden" name="IsDeliveryAddress" value="0">
+                            <div class="row">
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DeliveryName">{_('Název firmy')}:</label>
+                                    <input id="DeliveryName" type="text" name="DeliveryName" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím název firmy.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DeliveryStreet">{_('Ulice')}:</label>
+                                    <input id="DeliveryStreet" type="text" name="DeliveryStreet" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím ulici.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DeliveryCity">{_('Město')}:</label>
+                                    <input id="DeliveryCity" type="text" name="DeliveryCity" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím město.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DeliveryZipCode">{_('PSČ')}:</label>
+                                    <input id="DeliveryZipCode" type="text" name="DeliveryZipCode" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím PSČ.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DeliveryCountry_ID">{_('Stát')}:</label>
+                                    <select id="DeliveryCountry_ID" name="DeliveryCountry_ID" data-validator='[{ "v":":required","m":"{_('Vyberte prosím stát.')}","p":null,"d":".delivery-address-block"}]'>
+                                        <option value="">{_('Vyberte stát')}</option>
+{*                                            {foreach $countries as $country}*}
+{*                                                <option value="{$country["ID"]}">{$country["countryLangs"][0]["Name"]}</option>*}
+{*                                            {/foreach}*}
+                                        <option value="50">Česká Republika</option>
+                                        <option value="166">Slovensko</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-block">
+                        <h2 class="with-icon box">{_('Zásilka')}</h2>
+                        <div class="row">
+                            <div class="col-lg-12 mt-2 position-relative">
+                                <label for="Package">{_('Zásilka')}:</label>
+                                <textarea id="Package" type="text" name="Package" placeholder="popis obsahu balení, např: originál balení, zařízení bez příslušenství, nepoužité, nekompletní" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím informace o zásilce')}","p":null}]'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-block">
+                        <h2 class="with-icon box">{_('Položky reklamace')}</h2>
+                        <div id="complaint-items">
+                            <div class="complaint-item">
+                                 <div class="complaint-item-title-holder">
+                                    <h3 class="complaint-item-title">{_('Položka č. 1')}</h3>
+                                     <button type="button" class="btn btn-primary remove-complaint-item"></button>
+                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-4 mt-2 position-relative">
+                                        <label for="InvoiceNumber">{_('Faktura')}:</label>
+                                        <input id="InvoiceNumber" type="text" name="InvoiceNumber1" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím číslo faktury.')}","p":null}]'>
+                                    </div>
+                                    <div class="col-lg-4 mt-2 position-relative">
+                                        <label for="ProductCode">{_('Kód zboží')}:</label>
+                                        <input id="ProductCode" type="text" name="ProductCode1" value="" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím kód zboží.')}","p":null}]'>
+                                    </div>
+                                    <div class="col-lg-4 mt-2 position-relative">
+                                        <label for="Quantity">{_('Množství')}:</label>
+                                        <input id="Quantity" type="number" name="Quantity1" value=""  data-validator='[{ "v":":required","m":"{_('Vyplňte prosím množství.')}","p":null}]'>
+                                    </div>
+                                    <div class="col-lg-12 mt-2 mb-2 position-relative">
+                                        <label for="DefectDescription">{_('Popis závady')}:</label>
+                                        <textarea id="DefectDescription" name="DefectDescription1" placeholder="popis obsahu balení, např: originál balení, zařízení bez příslušenství, nepoužité, nekompletní" rows="5" data-validator='[{ "v":":required","m":"{_('Vyplňte prosím popis závady.')}","p":null}]'></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" id="add-complaint-item" class="btn btn-primary">{_('Přidat další položku')}</button>
+                        </div>
+                    </div>
+                    <div class="gdpr-holder mt-3">
+                        <label class="with-checkbox">
+                            <input type="checkbox" name="gdpr" id="gdpr"><span class="checkmark"></span>Souhlasím se zpracováním svých osobních údajů uvedených výše pro účely zřízení a správy uživatelského účtu a seznámil/a jsem se s <a href="/page/ochrana-osobnich-udaju" target="_blank">podmínkami zpracování osobních údajů</a>.
+                        </label>
+                    </div>
+                    <div class="text-end">
+                        <input type="button" name="complaint" class="g-recaptcha btn btn-primary" value="{_('Odeslat reklamaci')}" id="confirm-complaint" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{/block}

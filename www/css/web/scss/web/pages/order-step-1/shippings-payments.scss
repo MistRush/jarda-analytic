@@ -1,0 +1,132 @@
+#order-step-1 {
+    .shippings, .payments {
+        background: #FFFFFF;
+        border-radius: 8px;
+        margin-bottom: 35px;
+        padding: 10px 10px 2px;
+
+        h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 20px;
+            padding-left: 36px;
+
+            &.with-icon {
+                &:before {
+                    width: 27px;
+                    height: 27px;
+                }
+
+                &:after {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+
+        .item {
+            padding: 15px 30px 15px 70px;
+            border: 1px solid $border-primary-item;
+            cursor: pointer;
+            position: relative;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            @include animation();
+
+            .image {
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            .headline {
+                font-size: 14px;
+                font-weight: 600;
+                padding-top: 1px;
+            }
+
+            .subline {
+                font-size: 12px;
+                font-weight: 400;
+                color: $font-primary-darklight;
+            }
+
+            &:hover {
+                border: 1px solid $border-primary-item-hover;
+            }
+
+            &:before {
+                content: "";
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                border: 1px solid $border-primary-item;
+                position: absolute;
+                left: 21px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &.active {
+                position: relative;
+                background: rgba(232, 33, 33, 0.05);
+                border: 1px solid $border-primary-red;
+
+                .price {
+                    color: $font-primary-red;
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                &:before {
+                    content: "";
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 100%;
+                    border: 1px solid $button-primary;
+                    position: absolute;
+                    left: 21px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 100%;
+                    background: $button-primary;
+                    position: absolute;
+                    left: 25px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+
+            .price {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            &.inactive {
+                cursor: default;
+                color: #999;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .payments {
+        .item {
+            .image {
+                img {
+                   width: 60px;
+                   height: 40px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+.summary-container {
+    background: $background-primary-light;
+    border: 1px solid $border-primary-item;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+
+    .coupon-block {
+        position: relative;
+
+        #coupon-form {
+            label {
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 5px;
+            }
+
+            input {
+                width: 100%;
+                background: #FFFFFF url('/img/front/icons/pages/cart/coupon.svg') left 15px center no-repeat;
+                padding: 15px 15px 15px 48px;
+                border-radius: 40px;
+            }
+
+            button {
+                position: absolute;
+                right: 4px;
+                bottom: 4px;
+                padding: 12px 25px 12px;
+                border-radius: 25px;
+            }
+        }
+    }
+
+    .summary-block {
+        font-size: 14px;
+        font-weight: 500;
+
+        .total-with-vat {
+            font-size: 16px;
+            font-weight: 700;
+            color: $font-primary-red;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .summary-container {
+        padding: 15px
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-products {
+        .header-row {
+            display: none;
+        }
+
+        .name {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .price, .total-price {
+            display: block;
+            text-align: center;
+        }
+
+        .delete-cart-item {
+            margin-top: 10px;
+        }
+    }
+
+    .cart-summary {
+        padding: 15px;
+
+        .coupon {
+            margin-top: 0;
+        }
+
+        .with-vat {
+            font-size: 18px;
+        }
+
+        .without-vat-label {
+            font-size: 18px;
+        }
+    }
+
+    .coupon form {
+        width: 100%;
+    }
+
+    .cart-products .cart-row .price {
+        display:none;
+    }
+}

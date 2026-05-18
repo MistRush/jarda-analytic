@@ -1,0 +1,123 @@
+{layout '@layout.latte'}
+{default $colorBlue = "#0076be"}
+
+{varType \Admin_Model_Feedback $feedback}
+{varType \Admin_Model_FeedbackState $state}
+
+{block headerText}
+    [{$type == 'state'?$state->State:$type} {$feedback->Priority|capitalize}{$feedback->ErrorReporting?'!'}]<br>
+    {if $authorSolver}{$authorSolver->author|noescape}{$authorSolver->hasDelim?' &#8594; ':''|noescape}{$authorSolver->solver|noescape}<br>{/if}
+    [{$feedback->FeedbackNumber|noescape}] {$feedback->Header}
+{/block}
+
+{block content}
+    {capture $reply}{_('Odpovědět')}{/capture}
+    {capture $replyButton}{include button src=>$web_url . "/admin/feedback/quick-reply?Feedback_Hash=".$feedback->Hash."&layout-inline=1",text=>$reply}{/capture}
+    <p style="text-align:center;font-size:16px;margin:0;">
+    {if $type == 'NF' || $type == 'NST'}
+        {_('Dobrý den')},<br>
+        {_('byl vytvořen nový požadavek')}<br><br>
+        {$replyButton}
+    {elseif $type == 'RF'}
+        {_('Dobrý den')},<br>
+        {_('byl změněn řešitel požadavku')}<br><br>
+        {$replyButton}
+    {elseif $type == 'state'}
+        {_('Dobrý den')},<br>
+        {_('byl přidán nový stav k požadavku')}<br><br>
+        {$replyButton}
+    {/if}
+    {if $type == 'state'}
+        </p>
+        <hr>
+        <table style="width: 100%">
+            {foreach array_reverse($feedback->feedbackStates->getData()) as $fbState}
+                <tr>
+                    <td style="vertical-align:top;width:40px;">
+                        <div style="width:35px;height:35px;line-height:35px;background-color:{$colorBlue|noescape};border-radius:50%;color:#fff;font-size:18px;font-weight:bold;text-align:center;margin-right:5px;">
+{*                            {print_r($fbState->user)}*}
+                            {if $fbState->User_ID}{$fbState->user->Name}{else}??{/if}
+                        </div>
+                    </td>
+                    <td>
+                        <div style="background-color:#F5F5F9;padding:7px;margin-bottom: 5px;">
+                            {$fbState->user->Name} - {$fbState->getStateString()} -
+                            <i>{$fbState->DateTime|date:'d. m. Y H:i:s'}</i>
+                        </div>
+                        <div style="margin-bottom: 5px">
+                            {$fbState->Description|noescape}<br><br>
+                        </div>
+                        <div style="background:#6d6d6e">
+                            <code>{$fbState->ScriptCodeContent}</code>
+                        </div>
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+    {/if}
+{/block}
+{block panel}
+        <p style="text-align:center;color:#6e6e6e;margin:0;"></p>
+        <h3 style="font-size:22px;margin:0;text-align:center;color:{$colorBlue|noescape};">{$feedback->Header}</h3>
+        <p style="margin:0 0 10px;color:#6e6e6e;text-align:center;">
+            {$feedback->creatorUser->Name|toLink:null,'mailto:'|noescape}
+            {if $feedback->SolverUser_ID}<br>{_('Primární řešitel')}: {$feedback->solverUser->Name|toLink:null,'mailto:'|noescape}{/if}
+            {if $feedback->Eshop_ID}
+                <br>
+                <a style="font-size:14px;color:{$colorBlue|noescape};" href="{$feedback->eshop->getURL()}">{$feedback->eshop->Name|noescape}</a>
+            {/if}
+        </p>
+        <div style="font-size:0;">
+            <p style="margin:0;display:inline-block;width:49%;font-size:16px;vertical-align:top;">
+                {_('Priorita')}: <b>{$feedback->Priority|capitalize}</b><br>
+                {capture $yes}{_('Ano')}{/capture}
+                {capture $no}{_('Ne')}{/capture}
+                {_('Hlášení chyby')}: <b>{$feedback->ErrorReporting?$yes:$no}</b><br>
+                {_('Číslo požadavku')}: <b>{$feedback->FeedbackNumber}</b>
+            </p>
+            <p style="margin:0;display:inline-block;width:49%;font-size:16px;vertical-align:top;" n:ifcontent>
+                {if count($attachments)}
+                    {_('Počet příloh')}: <b>{count($attachments)}</b><br>
+                {/if}
+            </p>
+        </div>
+        <div style="margin: 5px 0;font-size:0;">
+            <p style="margin:0;display:inline-block;width:49%;font-size:16px;vertical-align:top;">
+                {_('Datum vytvoření')}: <b>{$feedback->DateTime|date:'j.n.Y'}</b>
+            </p>
+            <p style="margin:0;display:inline-block;width:49%;font-size:16px;vertical-align:top;">
+                {_('Předpokládané datum řešení')}: <b>{$feedback->DateExpectedSolving|date:'j.n.Y'}</b>
+            </p>
+        </div>
+        <hr>
+        <div style="margin:0 10px;">
+            {$feedback->Content|noescape}
+        </div>
+    {if !empty($feedback->ScriptCodeContent)}
+        <h3>HTML/CSS/JS kódy</h3>
+        <div style="background:#6d6d6e">
+            <code>{$feedback->ScriptCodeContent}</code>
+        </div>
+    {/if}
+{/block}
+
+{block subPanel}
+    <div n:if="count($attachments)">
+        <h3 style="font-size:16px;margin:0;text-align:center;color:{$colorBlue|noescape};">{_('Stáhnout přílohy')} ({count($files)})</h3>
+        {implode('<br>', $files)|noescape}
+    </div>
+{/block}
+
+{block footer}
+    <div style="width:100%;margin:-8px 0 8px;text-align:center;">
+        {capture $visit}
+            {_('Přejít do administrace')}
+        {/capture}
+        {capture $show}
+            {_('Zobrazit feedback')}
+        {/capture}
+        {include button src => ($web_url . '/admin'), text => $visit}
+        {include buttonSpacer}
+        {include button-outline src => ($web_url . '/admin/feedback/index?search=' . $feedback->FeedbackNumber),text=>$show}
+    </div>
+{/block}

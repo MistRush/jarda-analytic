@@ -1,0 +1,27 @@
+<div class="contact-container">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-12">
+                <div class="logo-block">
+                    <img src="/img/front/logo-footer.svg" alt="logo">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-12">
+                <span class="item opening-hours">{$eshop->getSettings('OpeningHours')}</span>
+            </div>
+
+            <div class="col-lg-3 col-md-12">
+                <a href="mailto:{$eshop->getSettings('ContactEmail')|replaceRE:"/ /"}">
+                    <span class="item email">{$eshop->getSettings('ContactEmail')|noescape}</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-12">
+                <a href="tel:{$eshop->getSettings('ContactPhone')|replaceRE:"/ /"}">
+                    <span class="item phone">{$eshop->getSettings('ContactPhone')} <small>(Po-Pá 9-15 hod)</small></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

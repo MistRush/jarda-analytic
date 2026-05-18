@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<skipper version="3.2.36.1775" mvc="Without MVC" orm="Doctrine">
+  <module name="\Module User" local-name="Module User" namespace="\" export-format="DoctrineYml" export-path="../../configs/schema/user.yml" uuid="fb772055-96a8-40c1-bb05-c9636b76b8c0">
+    <entity name="\User_Model_LoginLog" local-name="User_Model_LoginLog" namespace="\" uuid="ddf37043-d53c-41dc-9baf-f909c4c7e710">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="e6560493-c70e-47d0-b927-0560f27424bd"/>
+      <field name="User_ID" type="integer" uuid="5ea5104e-3825-44b3-b786-d08312db420c"/>
+      <field name="Date" type="date" uuid="978d43ad-da15-462a-b941-2683b05a662b"/>
+      <field name="Time" type="time" uuid="5c5dee44-ac6e-4d7a-840a-0ed0918c0381"/>
+      <field name="Type" type="string" size="32" uuid="6e262ba4-4cfb-42ac-9cc1-685dae938232"/>
+    </entity>
+    <association from="\User_Model_LoginLog" to="\User_Model_User" caption="User LoginLog" owner-alias="logs" inverse-alias="user" many-owner="true" many-inverse="false" uuid="379b49cb-929b-420c-bd94-d4f299194589">
+      <association-field from="User_ID" to="ID" uuid="88f2a950-f196-4457-b60b-6ee70c8168b0"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="type">one</attribute>
+        </attribute>
+        <attribute name="side-owning">
+          <attribute name="type">many</attribute>
+          <attribute name="cascade">
+            <attribute name="value">delete</attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </association>
+    <entity name="\User_Model_User" local-name="User_Model_User" namespace="\" uuid="7e377e93-cc6d-43b1-b260-2ebc5c48b3ba">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="d8ea85c4-2ca7-4802-9cac-6c16b93f9118"/>
+      <field name="Eshop_ID" type="integer" uuid="a09c6e4c-3655-4bb9-9cb7-ea66cbf97be5"/>
+      <field name="User_ID" type="integer" uuid="7b084981-643c-4394-932a-f77d8ea64bf3"/>
+      <field name="UserSettings_ID" type="integer" uuid="914d88e5-0f74-4b4d-8b09-92e2712977cb"/>
+      <field name="Name" type="string" size="64" uuid="07fb2030-8bb3-4e6d-b393-85f359a0ba55"/>
+      <field name="Hash" type="string" size="256" uuid="b4b45fcc-b975-4500-b719-285310ef856f"/>
+      <field name="Salt" type="string" size="256" uuid="a7c2672a-bf04-4089-bf63-6554394e479c"/>
+      <field name="Type" type="string" size="64" uuid="45c14e1a-752c-44aa-b3df-3ed1d668cce0"/>
+      <field name="Active" type="boolean" uuid="2818ad74-c4a2-40bd-aae0-13e6db9dc018"/>
+      <field name="UserNumber" type="string" size="32" uuid="66c00351-c600-4ad1-8c93-5f2451f82e95"/>
+      <field name="ContactPhone" type="string" size="32" uuid="c6658758-0570-4feb-b309-5723000bd795"/>
+      <field name="ContactName" type="string" size="64" uuid="1d72db46-2f43-4a1d-b1dd-a580e760a6c5"/>
+      <field name="ContactDescription" type="string" size="128" uuid="d8a2f394-7f37-4db6-b1ed-6d1274abe20b"/>
+      <field name="RegistrationDate" type="date" uuid="152cd2dc-7735-4378-a7b5-e7bafe96cc86"/>
+      <field name="DateTimeUpdated" type="timestamp" uuid="b1c18016-7b2d-4e89-ba61-ee96ea4bffd4"/>
+      <field name="DateTimeCreated" type="timestamp" uuid="b84288f8-97e0-4061-8469-0ce36543599e"/>
+      <field name="ExternalID" type="string" size="128" uuid="0c74fa00-6790-4e77-b9b5-b4690d90d26e"/>
+      <field name="Synced" type="boolean" uuid="c028fc2e-d0f0-46f2-919c-e2732423e040"/>
+      <field name="AllowInvoicePayment" type="boolean" uuid="34f12b06-57a7-41e0-85ec-dd6183ab66ca"/>
+      <field name="BasePriceTypeCode" type="string" size="32" uuid="8381834e-aaa8-4a67-a88d-c7b6223726e2"/>
+      <field name="Code" type="string" size="64" uuid="373014c7-4fd7-40ff-bbf9-ba0f13532001"/>
+      <field name="Discount" type="decimal" uuid="d600f6f5-5f26-4467-9d72-b0476d4dc326"/>
+      <field name="DeactivateQuantityMin" type="boolean" uuid="c8605f39-a7a1-4a4e-8fb1-ebd862515142"/>
+      <field name="Newsletter" type="boolean" uuid="4df7f372-4686-461e-9321-cae58762b034"/>
+    </entity>
+    <association from="\User_Model_User" to="\User_Model_User" caption="User Parent" owner-alias="userParent" inverse-alias="user" many-owner="true" many-inverse="false" uuid="d4f4218c-a1e2-4bb4-9d4e-ecdeb12c0a50">
+      <association-field from="User_ID" to="ID" uuid="7a8f806b-913b-49e8-b63b-1864766e1b89"/>
+    </association>
+    <association from="\User_Model_User" to="\User_Model_UserSettings" caption="UserSettings" owner-alias="users" inverse-alias="userSettings" many-owner="true" many-inverse="false" uuid="3a18909b-6d6b-4921-85c7-5f80ab7ad3ae">
+      <association-field from="UserSettings_ID" to="ID" uuid="942bc76f-3c98-4637-9e0c-8af9aae212df"/>
+    </association>
+    <association from="\User_Model_User" to="\Eshop" caption="Eshop Users" owner-alias="users" inverse-alias="eshop" many-owner="true" many-inverse="false" uuid="aa9967eb-edce-4ef4-b1e3-f37625711ad1">
+      <association-field from="Eshop_ID" to="ID" uuid="06a58231-1ae3-41c3-b689-396dc047c292"/>
+    </association>
+    <entity name="\User_Model_UserSettings" local-name="User_Model_UserSettings" namespace="\" uuid="a7451322-4b60-4ecb-9414-e940a60493c6">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="a7fa8fa2-0334-41a5-851b-c0108bc560ba"/>
+      <field name="Currency_ID" type="integer" uuid="b98c1656-4e29-46d6-9369-a49f557cefa1"/>
+      <field name="Group_ID" type="integer" uuid="33fd5318-b3e0-4faf-88a5-932169f10e3f"/>
+      <field name="Discount" type="integer" uuid="08106617-377d-4aac-b2f9-edb31cbb62c6"/>
+      <field name="HidePrices" type="boolean" uuid="34e45886-a2ab-41fd-a3c5-4f6e09f4a1b5"/>
+      <field name="ShowOnMap" type="boolean" uuid="95f4cbc4-027d-4577-a388-5c28bc1445c0"/>
+    </entity>
+    <association from="\User_Model_UserSettings" to="\Admin_Model_Currency" caption="UserSettings Currency" owner-alias="userSettings" inverse-alias="currency" many-owner="true" many-inverse="false" uuid="32243ef8-d604-43c1-9b2b-9bf99b69bbe8">
+      <association-field from="Currency_ID" to="ID" uuid="e0ee2ffe-3527-4b3e-acbf-6c6719c001dc"/>
+    </association>
+    <association from="\User_Model_UserSettings" to="\User_Model_Group" caption="Group UserSettings" owner-alias="userSettings" inverse-alias="group" many-owner="true" many-inverse="false" uuid="32205087-484b-41f6-afe3-43d551876993">
+      <association-field from="Group_ID" to="ID" uuid="37ba2b66-599d-4a95-8a71-6140796237fe"/>
+    </association>
+    <entity name="\User_Model_Permission" local-name="User_Model_Permission" namespace="\" uuid="8073b11b-dfc7-4df8-a633-6d7b9697175e">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="4fe533a2-4cf3-448f-95b8-598b29044215"/>
+      <field name="Name" type="string" size="128" uuid="f6b4e893-b6a9-4621-9c7e-1ddab00f34b8"/>
+      <field name="Code" type="string" size="32" uuid="a6bd7c3b-145f-4e56-9025-b48261571f8e"/>
+    </entity>
+    <entity name="\User_Model_UserHasPermission" local-name="User_Model_UserHasPermission" namespace="\" uuid="daa6114d-ca37-4a17-a300-e475a68c142a">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="31700e14-ce03-45d1-8622-c0fc52358bf5"/>
+      <field name="Permission_ID" type="integer" uuid="67adc53e-ccee-495c-a004-75a97a433e5c"/>
+      <field name="User_ID" type="integer" uuid="d925b3ec-2ff2-4a94-a08c-75140001dd35"/>
+    </entity>
+    <association from="\User_Model_UserHasPermission" to="\User_Model_User" caption="UserHasPermission" owner-alias="userHasPermissions" inverse-alias="user" many-owner="true" many-inverse="false" uuid="38d90d3b-3381-4427-9957-7a841cbbcd2b">
+      <association-field from="User_ID" to="ID" uuid="71152438-d94b-4dcf-ac7a-88b52d097aea"/>
+    </association>
+    <association from="\User_Model_UserHasPermission" to="\User_Model_Permission" caption="UserHasPermission" owner-alias="userHasPermissions" inverse-alias="permission" many-owner="true" many-inverse="false" uuid="6af7ed1c-b247-4ccd-98f3-ab99fc763164">
+      <association-field from="Permission_ID" to="ID" uuid="b1cd21dc-ac62-4373-93c7-4e97f53bfb5b"/>
+    </association>
+    <entity name="\User_Model_UserEshop" local-name="User_Model_UserEshop" namespace="\" uuid="f46d473b-a422-4df1-836f-3268826f8d4f">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="d2e66720-0ced-4933-bdcf-5515964f7e99"/>
+      <field name="Eshop_ID" type="integer" uuid="e494ebf4-a840-48e3-a928-183c73de5bca"/>
+      <field name="User_ID" type="integer" uuid="647e411b-51db-41f2-88c1-3cb617f99f2a"/>
+    </entity>
+    <association from="\User_Model_UserEshop" to="\User_Model_User" caption="UserEshop" owner-alias="userEshops" inverse-alias="user" many-owner="true" many-inverse="false" uuid="aa7fc0d8-2ede-4cca-90f6-6e123a135fdd">
+      <association-field from="User_ID" to="ID" uuid="9a098251-047d-4042-a0fe-321b5455067d"/>
+    </association>
+    <association from="\User_Model_UserEshop" to="\Eshop" caption="UserEshop" owner-alias="userEshops" inverse-alias="eshop" many-owner="true" many-inverse="false" uuid="b1985304-63ac-476d-9fb7-09742d8b2ba4">
+      <association-field from="Eshop_ID" to="ID" uuid="5a1956ba-c37e-45a8-8e27-7dc00c9e91db"/>
+    </association>
+    <entity name="\User_Model_Group" local-name="User_Model_Group" namespace="\" uuid="f235d382-162c-471c-a281-fec0207f6675">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="39d44031-a594-4ba8-93c3-e1ad52ff0bcf"/>
+      <field name="Name" type="string" size="128" uuid="fe2a2951-f8e3-4b33-a9e7-99f8fe24acf7"/>
+    </entity>
+    <entity name="\User_Model_GroupDiscount" local-name="User_Model_GroupDiscount" namespace="\" uuid="107e863d-2522-4e5a-be6e-ae6428dc1500">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="8ebd80ce-7703-4d99-858b-59a7011aef3e"/>
+      <field name="Category_ID" type="integer" uuid="c02d5e65-0d21-4e34-988b-b9d97d48225e"/>
+      <field name="Group_ID" type="integer" uuid="0c21cc88-1bcf-41ec-8b3b-4173c06e9d4d"/>
+      <field name="Discount" type="integer" uuid="2b9485ab-3ad0-42f4-a5f4-58bb496ebd65"/>
+    </entity>
+    <association from="\User_Model_GroupDiscount" to="\User_Model_Group" caption="GroupDiscount" owner-alias="groupDiscounts" inverse-alias="group" many-owner="true" many-inverse="false" uuid="a232e6b6-739f-4d60-8b76-0c371aa38b97">
+      <association-field from="Group_ID" to="ID" uuid="31246042-484b-4ab1-b1e1-2ec2f72c3311"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="type">one</attribute>
+        </attribute>
+        <attribute name="side-owning">
+          <attribute name="type">many</attribute>
+          <attribute name="cascade">
+            <attribute name="value">delete</attribute>
+          </attribute>
+        </attribute>
+      </orm-attributes>
+    </association>
+    <association from="\User_Model_GroupDiscount" to="\Admin_Model_Category" caption="GroupDiscount Category" owner-alias="groupDiscounts" inverse-alias="category" many-owner="true" many-inverse="false" uuid="79728bf8-fde1-4c5f-894a-56f3306b0ec7">
+      <association-field from="Category_ID" to="ID" uuid="1fce0bef-8ab0-4268-8521-61c4d65d52a8"/>
+    </association>
+    <entity name="\User_Model_UserUtmParams" local-name="User_Model_UserUtmParams" namespace="\" uuid="0e721e7b-3260-49ba-b513-cef07c79326c">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="a595cb65-9d7f-4be1-93c7-9fb8b43a000c"/>
+      <field name="DateTime" type="timestamp" uuid="d1176c60-ccfd-4cdf-b057-c43ef553ea78"/>
+      <field name="Source" type="string" size="64" uuid="b73fe9fc-a6b3-497a-a248-9e30e2c56747"/>
+      <field name="Medium" type="string" size="128" uuid="5bd8b4f3-71a1-4908-a62c-f80e9d1dfc1e"/>
+      <field name="Name" type="string" size="128" uuid="5c9dfe7c-d78e-42ac-9e7f-aa31daaaab4e"/>
+      <field name="Content" type="string" uuid="cb81cb94-e86c-4dc2-8a41-38d8704f9dad"/>
+    </entity>
+    <entity name="\User_Model_UserMeta" local-name="User_Model_UserMeta" namespace="\" uuid="096baeb7-42b1-470b-9d61-9b9d03650a8d">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="de1472df-92f0-4bb4-8152-a84a26f2fb00"/>
+      <field name="Code" type="string" size="64" uuid="319e176d-3466-4371-986d-4bf5b8f2eae5"/>
+      <field name="Value" type="string" size="32" uuid="dbec89ea-8422-488f-be3c-00f331d08b2d"/>
+      <field name="User_ID" type="integer" uuid="704f5a95-e36a-4c19-9cb1-7a96cb4e3299"/>
+    </entity>
+    <association from="\User_Model_UserMeta" to="\User_Model_User" caption="UserMetas" owner-alias="userMetas" inverse-alias="user" many-owner="true" many-inverse="false" uuid="fc9313c6-f963-4325-9e13-c7cf921e04f9">
+      <association-field from="User_ID" to="ID" uuid="9f9394fa-b91a-434c-a32d-efa7f2c2eb35"/>
+    </association>
+    <entity name="\User_Model_OldUser" local-name="User_Model_OldUser" namespace="\" uuid="b8b2b182-b427-48c2-b0d1-14f5f02f6fe6">
+      <field name="ID" type="integer" required="true" primary="true" auto-increment="true" uuid="3437ebf0-3a1e-4503-804a-06ed2ac17f92"/>
+      <field name="Code" type="string" size="64" uuid="a693475c-d613-4c2f-b0d3-3f2782091347"/>
+      <field name="IsAdmin" type="blob" uuid="4588ac17-91a9-4754-9207-ab3ea56261e6"/>
+      <field name="LoginName" type="string" size="256" uuid="f7552c63-c4dc-46b0-850c-0509730ce50b"/>
+      <field name="Password" type="string" size="2056" uuid="de9cea24-8dc2-4be3-9060-4b55865c8e18"/>
+      <field name="Transfered" type="boolean" uuid="8296e6e5-77a9-4088-b4c0-dddb3cce5b89"/>
+      <field name="ContactPerson" type="string" size="128" uuid="12ff8925-dee9-4e36-ab96-c292e5d26ab7"/>
+      <field name="ContactPhone" type="string" size="64" uuid="956fee27-cdfc-4d32-a98f-2169a8f38d13"/>
+      <field name="ContactEmail" type="string" size="256" uuid="86de82d1-9484-4f77-90bb-b45dae829f06"/>
+      <field name="CompanyName" type="string" size="256" uuid="0c8cd911-92d3-4916-ac56-e99ddd7f7979"/>
+      <field name="CompanyStreet" type="string" size="256" uuid="bccae08d-81e9-40ce-bee1-02338b8e5d9f"/>
+      <field name="CompanyCity" type="string" size="256" uuid="33eb4379-7515-4c03-9aa8-9b3a17fe3bba"/>
+      <field name="CompanyZipCode" type="string" size="16" uuid="168820c1-a07c-46d2-b7b1-916ca7d0a977"/>
+      <field name="CompanyCountry" type="string" size="64" uuid="d37a09d6-a067-46fa-8ed4-4d6061829011"/>
+      <field name="CompanyID" type="string" size="32" uuid="d53e01f3-7b04-4035-a33b-040a41becd26"/>
+      <field name="CompanyVatID" type="string" size="32" uuid="c3fd9652-5399-4b95-946f-1f2b3771c1bd"/>
+      <field name="DeliveryName" type="string" size="256" uuid="e6f34848-ba5d-46f3-87f5-7564bdd3f7ee"/>
+      <field name="DeliveryStreet" type="string" size="256" uuid="f468dd10-5cd5-4f86-8f4c-f551c7ddb32a"/>
+      <field name="DeliveryCity" type="string" size="128" uuid="30b12637-2797-42a2-a29c-6f205b7d6e51"/>
+      <field name="DeliveryZipCode" type="string" size="16" uuid="64b23ac1-c27b-4529-9c11-00eacee7cd71"/>
+      <field name="DeliveryCountry" type="string" size="64" uuid="9a2df7b8-a5ea-4426-a612-9b484d2b9e7b"/>
+      <field name="Currency" type="string" size="64" uuid="fc779de1-b6e6-4bf3-9593-ed63a4db023b"/>
+      <field name="Lang" type="string" size="16" uuid="e3ba730c-a592-4332-908c-9996648c090d"/>
+      <field name="PaymentAvailability" type="string" size="32" uuid="5fd65088-4dcf-46f8-a47d-9760b0beea94"/>
+      <field name="PriceType" type="string" size="16" uuid="abeaac8e-736a-439b-af96-d9a3e84e5251"/>
+      <field name="Discount" type="decimal" uuid="401f666f-8b2f-4244-b009-e9249b9a1291"/>
+      <field name="State" type="boolean" uuid="56a1bc2e-9234-4881-8093-31ea92e577f4"/>
+      <field name="Newsletter" type="boolean" uuid="9575c836-95fe-4a23-a81f-2c014887e5b6"/>
+    </entity>
+  </module>
+  <visual-data>
+    <entity uuid="096baeb7-42b1-470b-9d61-9b9d03650a8d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="621" position-y="483" size-x="0" size-x2="107" size-y="0" size-y2="73"/>
+    <entity uuid="0e721e7b-3260-49ba-b513-cef07c79326c" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1107" position-y="112" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
+    <entity uuid="107e863d-2522-4e5a-be6e-ae6428dc1500" bg-color="4294967295" hdr-color="4292006610" position-x="914" position-y="442" size-x="0" size-x2="136" size-y="0" size-y2="73"/>
+    <entity uuid="7e377e93-cc6d-43b1-b260-2ebc5c48b3ba" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="393" position-y="103" size-x="0" size-x2="158" size-y="0" size-y2="241"/>
+    <entity uuid="8073b11b-dfc7-4df8-a633-6d7b9697175e" bg-color="4294967295" hdr-color="4292006610" position-x="134" position-y="367" size-x="0" size-x2="117" size-y="0" size-y2="59"/>
+    <entity uuid="a7451322-4b60-4ecb-9414-e940a60493c6" bg-color="4294967295" hdr-color="4292006610" position-x="901" position-y="95" size-x="0" size-x2="124" size-y="0" size-y2="73"/>
+    <entity uuid="b8b2b182-b427-48c2-b0d1-14f5f02f6fe6" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1364" position-y="69" size-x="0" size-x2="157" size-y="0" size-y2="409"/>
+    <entity uuid="daa6114d-ca37-4a17-a300-e475a68c142a" bg-color="4294967295" hdr-color="4292006610" position-x="237" position-y="498" size-x="0" size-x2="155" size-y="0" size-y2="59"/>
+    <entity uuid="ddf37043-d53c-41dc-9baf-f909c4c7e710" bg-color="4294967295" hdr-color="4292006610" position-x="140" position-y="89" size-x="0" size-x2="111" size-y="0" size-y2="87"/>
+    <entity uuid="f235d382-162c-471c-a281-fec0207f6675" bg-color="4294967295" hdr-color="4292006610" position-x="920" position-y="302" size-x="0" size-x2="103" size-y="0" size-y2="59"/>
+    <entity uuid="f46d473b-a422-4df1-836f-3268826f8d4f" bg-color="4294967295" hdr-color="4292006610" position-x="653" position-y="269" size-x="0" size-x2="116" size-y="0" size-y2="59"/>
+    <module uuid="fb772055-96a8-40c1-bb05-c9636b76b8c0" bg-color="16054771" size-x="-107" size-x2="1550" size-y="-52" size-y2="572"/>
+  </visual-data>
+</skipper>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer-configuration xmlns:Atx="http://www.inventic.cz" xmlns:yaml="http://www.inventic.cz/yaml2xml">
+     <orm-configuration name="Doctrine">
+        <attribute name="Behaviours" abstract="true">
+            <attribute name="Unit_Model_BelongToUnit">
+            </attribute>
+        </attribute>
+    </orm-configuration>
+</orm-designer-configuration>

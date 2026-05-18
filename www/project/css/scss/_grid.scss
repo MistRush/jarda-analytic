@@ -1,0 +1,43 @@
+.dataTable-package {
+  .dataTables_wrapper {
+    .dataTables_scrollBody, .DTFC_LeftBodyWrapper {
+      table {
+        tr {
+          &:hover{
+            background-color: rgba($color-primary, 0.15) !important;
+          }
+
+          &.selected {
+            background-color: rgba($color-primary, 0.15) !important;
+
+            td {
+              &.sorting_1 {
+                background-color: rgba($color-primary, 0.15) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dataTable-package {
+  .dataTables_wrapper {
+    .dataTables_scrollBody, .DTFC_LeftBodyWrapper {
+      table {
+        tr {
+          &.customColor {
+            &::after {
+              background: var(--rowColor, #0000);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dataTable-package .dataTables_wrapper .dataTables_scrollBody table.reorderable tr:before {
+  display:none;
+}

@@ -1,0 +1,47 @@
+<div class="products-container">
+	<div class="headline">
+		<div class="row">
+			<div class="col-md-5">{_('Produkty v košíku')}</div>
+			<div class="col-md-2 text-center">{_('Množství')}</div>
+			<div class="col-md-2 text-end">{_('Cena za kus (s DPH)')}</div>
+			<div class="col-md-2 text-end">{_('Cena celkem (s DPH)')}</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+	<div n:foreach="$cartItems as $cartItem" class="item" data-product-id="{isset($cartItem['cart']) ? $cartItem['cart']['product']['ID'] : $cartItem['product']['ID']}">
+		{var $imageUrl = isset($cartItem['product']['productImages'][0]) ? fu($cartItem['product']['productImages'][0], 'product/50') : '/img/no_image.svg'}
+		<div class="row align-items-center">
+			<div class="col-md-1 align-self-center">
+				<div class="image"><img src="{$imageUrl}" alt="{$cartItem['ProductName']|cleanEntities}"></div>
+			</div>
+			<div n:class="col-md-4,align-self-center,name">
+				<a href="/{URL::PRODUCT}/{$cartItem['slug']}">{$cartItem['ProductName']|cleanEntities}</a>
+				<div n:if="$cartItem['product']['Code']" class="code">Kód produktu: <span>{$cartItem['product']['Code']}</span></div>
+				<div n:if="$cartItem['product']['Code']" class="availability">
+					{if $cartItem['product']['OnStock'] > 0}Skladem{elseif $cartItem['product']['OnExternalStock'] > 0}{_('Externí sklad')}{/if}
+				</div>
+			</div>
+			<div class="col-12 col-md-2 align-self-center text-center no-padding  mt-2 mt-md-0">
+				<div class="quantity-block">
+                	<span class="quantity-change down">-</span>
+					<input name="{$cartItem['product']['ID']}" data-product-id="{$cartItem['product']['ID']}" maxlength="4" value="{$cartItem['Quantity']}" type="number" class="quantity" min="1">
+					<span class="quantity-change up">+</span>
+				</div>
+			</div>
+			<div class="d-none d-md-block col-4 col-md-2 align-self-center text-center text-md-end">
+				<span class="price">{price($cartItem['PriceWithVat'],$currency['Label'])}</span>
+			</div>
+			<div class="col-12 col-md-2 align-self-center text-end text-center text-md-end mt-2 mt-md-0">
+				<span class="total-price">{price($cartItem['PriceWithVat'] * $cartItem['Quantity'],$currency['Label'])}</span>
+			</div>
+			<div class="col-12 col-md-1 align-self-center text-center mt-2 mt-md-0">
+				<div n:if="!$cartItem['Cart_ID']" class="remove-item" data-product-id="{$cartItem['product']['ID']}"></div>
+			</div>
+		</div>
+	</div>
+	<div class="clear-cart-btn-wrapper">
+		<a class="btn btn-transparent text-center" href="#" id="clearCartContent">Vysypat košík &times;</a>
+	</div>
+
+	{include 'coupon.latte'}
+</div>

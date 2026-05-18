@@ -1,0 +1,50 @@
+site_name: Jolanda
+theme: readthedocs
+nav:
+  - 'Home': 'index.md'
+  - 'Instalace': 'install/install.md'
+  - 'Integrace Tracy s IDE': 'install/tracy-ide.md'
+  - 'Instalace Tracy panelů': 'install/tracy.md'
+  - 'PHP':
+      - 'Grid':
+          - 'Úvod': 'grid/grid.md'
+          - 'Sloupce': 'grid/columns.md'
+          - 'Možnosti': 'grid/options.md'
+          - 'JavaScript API': 'grid/js.md'
+      - 'Formuláře':
+          - 'Úvod': 'form/form.md'
+          - 'Formulářové prvky': 'form/inputs.md'
+          - 'Možnosti prvků': 'form/input-options.md'
+          - 'Validace': 'form/validation.md'
+          - 'JavaScript API': 'form/js.md'
+      - 'Editor':
+          'Úvod': 'editor/editor.md'
+          'Prvky': 'editor/fields.md'
+          'Možnosti': 'editor/options.md'
+          'JavaScript API': 'editor/js.md'
+          'QuickEditor': 'editor/quickeditor.md'
+      - 'Status Manager':
+          'Použití': 'statusmanager/usage.md'
+          'Třída StatusManager': 'statusmanager/statusmanager.md'
+          'Třída Status': 'statusmanager/status.md'
+      - 'Import':
+          - 'Úvod': 'import/uvod.md'
+          - 'Třída Import': 'import/import.md'
+          - 'Třída ImportBase': 'import/importBase.md'
+#          - 'JavaScript API': 'import/js.md'
+      - 'JsLogger':
+            - 'Použití': 'jslogger/usage.md'
+      - 'FileManager':
+            - 'Použití': 'filemanager/index.md'
+  - 'Šablony (Latte)':
+      - 'Obecné': 'latte/common.md'
+      - 'Filtry': 'latte/filters.md'
+      - 'Makra': 'latte/macros.md'
+      - 'Migrace 2 -> 3': 'latte/migration.md'
+      - 'Typehints': 'latte/typehints.md'
+  - 'JavaScript':
+      - 'Dialog': 'javascript/dialog.md'
+      - 'Panel': 'javascript/panel.md'
+      - 'Cookie': 'javascript/cookie.md'
+      - 'Alerts': 'javascript/alerts.md'
+      - 'Pomocníci': 'javascript/helpers.md'

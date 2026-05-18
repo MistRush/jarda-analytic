@@ -1,0 +1,21 @@
+{default $orderItem = null}
+{if $orderItem}}
+    {if $orderItem->Product_ID}
+        <td style="font-size: 11px; border-bottom: 1px solid #cccccc;">{$orderItem->product->getLang($order->Language_ID)->Name}<br><span style="font-size:9px;color: #666666;">({$orderItem->product->Code})</span></td>
+    {else}
+        <td style="font-size: 11px; border-bottom: 1px solid #cccccc;">{$orderItem->Name}<br><span style="font-size:9px;color: #666666;">({$orderItem->Code})</span></td>
+    {/if}
+    <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{$orderItem->Quantity}</td>
+{*    <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">*}
+{*        {if $order->Coupon_ID}*}
+{*            {$order->coupon->getDiscount(true, false, $order->eshop)}*}
+{*        {/if}*}
+{*    </td>*}
+{*    <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($orderItem->PriceWithoutVat, 0, ',', ' ')} CZK</td>*}
+    <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($orderItem->PriceWithoutVat, 2, ',', ' ')}</td>
+    <td style="font-weight: bolder;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($orderItem->Discount, 0, ',', ' ')}</td>
+    <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($orderItem->PriceWithoutVat * $orderItem->Quantity, 2, ',', ' ')}</td>
+    <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($orderItem->Vat??21.0, 0, ',', ' ')}</td>
+    <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format(($orderItem->PriceWithVat * $orderItem->Quantity) - ($orderItem->PriceWithoutVat * $orderItem->Quantity), 2, ',', ' ')}</td>
+    <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($orderItem->PriceWithVat * $orderItem->Quantity, 2, ',', ' ')}</td>
+{/if}

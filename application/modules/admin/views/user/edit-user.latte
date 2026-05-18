@@ -1,0 +1,31 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+
+<script>
+    /**
+     * @namespace { EntityEditor } editor
+     */
+    var editor;
+
+    $(() => {
+        editor = {$editor->getId()|noescape};
+    });
+
+    var checkUserExists = function () {
+        let valid = true;
+
+        $.ajax({
+            url: basePath + '/admin/user/check-user-exist/',
+            async: false,
+            data: {
+                User_ID: editor.form.getValue('ID'),
+                UserName: editor.form.getValue('Name'),
+            },
+            success: function (data) {
+                if (data === 'exists')
+                    valid = false;
+            }
+        });
+
+        return valid;
+    }
+</script>

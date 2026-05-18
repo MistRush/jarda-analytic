@@ -1,0 +1,23 @@
+@import "cart/import";
+@import "cart/products";
+@import "cart/summary";
+
+#cart {
+    padding: 50px 0 70px;
+
+    .clear-cart-btn-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+        .btn {
+            padding:5px 10px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #cart {
+        padding: 30px 0 50px;
+    }
+}

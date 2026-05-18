@@ -1,0 +1,68 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="register" class="step1">
+        <div class="register-title">
+            <div class="container">
+                <div class="register-title-holder">
+                    <div class="logo">
+                        <img src="/img/front/login-logo.svg" alt="Deník pleti">
+                    </div>
+                    <h2>{_('Vytvoř svůj profil')}</h2>
+                    <div class="subtitle">
+                        Zadejte uživatelské údaje
+                    </div>
+                </div>
+            </div>
+        </div>
+        {if $eshop->getSettings('EnableRegistration')}
+        <script src="https://www.google.com/recaptcha/api.js?render=6Ld4ogArAAAAAN-5fVn8mxHa848vSIN4pqJ41BYy"></script>
+            <div class="container">
+                <div class="register-holder">
+                    <form method="post" id="main-form" action="/customer/register-done">
+                        <div class="form-block">
+                            <div n:if="$msg" class="error" style="display: block">{_('Registraci se nepodařilo dokončit. Uživatelský účet s tímto názvem již existuje. Zkuste to prosím ještě jednou.')}</div>
+                            <div class="gender-select">
+                                <div class="gender-holder">
+                                    <div class="gender-item active">Žena</div>
+                                    <div class="gender-item">Muž</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 no-padding">
+                                    <input id="birthday" type="number" placeholder="Rok narození" name="Birthday" value="" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 no-padding">
+                                    <input id="weight" type="number" placeholder="Váha" name="Weight" value="">
+                                </div>
+                                <div class="col-lg-12 no-padding">
+                                    <input id="height" type="number" placeholder="Výška"  name="Height">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-block">
+                            <div class="row">
+                                <div class="col-lg-12 no-padding">
+                                    <input id="goals" type="text" placeholder="Vaše cíle" name="Goals" value="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <input class="g-recaptcha btn-green" type="button" name="register" value="{_('Uložit a vytvořit účet')}" id="confirm-registration" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+
+            </div>
+        </div>
+
+        {else}
+            <p>{_('Registrace není na tomto webu dostupná.')}</p>
+        {/if}
+    </div>
+{/block}

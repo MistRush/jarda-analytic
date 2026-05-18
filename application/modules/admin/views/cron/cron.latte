@@ -1,0 +1,99 @@
+{layout '../layout.latte'}
+{block content}
+    <div class="cron__wrapper" data-graph-data="{json_encode($graph)}">
+        <div class="cron__items" id="cron_items"></div>
+        {for $i = 0; $i < $graph->range; $i += $graph->step}
+            <div class="cron__time__delimiter" n:if="$i > 0" style="left:{$i/$graph->range*100|noescape}%;">&nbsp;</div>
+            <div class="cron__time" style="left:{$i/$graph->range*100|noescape}%;">{$graph->offset->add(new DateInterval('PT60M'))->format('H:i')|noescape}</div>
+        {/for}
+    </div>
+    <style>
+        div[data-title]:hover:after {
+            content: attr(data-title);
+            padding: 4px 8px;
+            color: #333;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            z-index: 20;
+            white-space: nowrap;
+        }
+    </style>
+    <div class="row" style="padding-top:30px">
+        <div class="col-md-12">
+            {$cronGrid->render()}
+        </div>
+    </div>
+{/block}
+
+{block scripts}
+    <script>
+        var cron = new Cron('/admin/cron/log', '/admin/cron/run');
+
+        $(function () {
+            cron.grid = {$cronGrid|noescape};
+            cron.defaults.logPanelTitle = {_('Log')};
+            cron.defaults = {
+                logPanelTitle: {_('Log')},
+                start: {_('Začátek')},
+                stop: {_('Konec')},
+                runtime: {_('Doba běhu')},
+            }
+            cron.init();
+
+            cron.grid.onCurrentItemUnSelect = function() {
+                $('#cron_items').find('.cron__items__box').removeClass('selected');
+            }
+
+            $('#cron_datagrid>tbody').on('mouseenter mouseleave click', 'tr', function(ev) {
+                let cronId = $(this).find('td').first().text();
+                let allItems = $('#cron_items').find('.cron__items__box');
+
+                allItems.removeClass('fading');
+
+                if(ev.type === 'click')
+                    allItems.removeClass('selected');
+
+                $('#cron_items').find('.item_' + cronId).each(function() {
+                    if (ev.type === 'mouseenter')
+                        $(this).addClass('hovered');
+                    else if (ev.type === 'mouseleave')
+                        $(this).removeClass('hovered');
+                    else {
+                        if($(this).hasClass('selected'))
+                            $(this).removeClass('selected');
+                        else
+                            $(this).addClass('selected');
+                    }
+                });
+
+                allItems.each(function() {
+                    if($(this).hasClass('selected') || $(this).hasClass('hovered'))
+                        allItems.addClass('fading');
+                });
+            });
+        });
+
+        window.runCron = function () {
+            let currentItem = cron.grid.getCurrentItem();
+
+            if (!currentItem) {
+                alerts.error({_('Vyberte cron pro spuštění')});
+                return;
+            }
+
+            cron.run(currentItem['ID']);
+        }
+
+        window.showLog = function () {
+            let currentItem = cron.grid.getCurrentItem();
+
+            if (!currentItem) {
+                alerts.error({_('Vyberte cron pro zobrazení')});
+                return;
+            }
+
+            cron.log(currentItem['ID']);
+        }
+    </script>
+{/block}

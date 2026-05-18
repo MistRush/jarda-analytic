@@ -1,0 +1,2 @@
+const a=()=>{const P={TYPE_GOPAY:"gopay",TYPE_GOPAY_PAYPAL:"gopaypaypal",TYPE_GOPAY_APPLE_PAY:"gopayapplepay",TYPE_BANK:"bank",TYPE_COD:"cod",TYPE_CASH:"cash",TYPE_CSOB:"csob"};return{types:P,getTypes:()=>({[P.TYPE_GOPAY]:"GoPay",[P.TYPE_GOPAY_PAYPAL]:"GoPay - PayPal",[P.TYPE_GOPAY_APPLE_PAY]:"GoPay - ApplePay",[P.TYPE_CSOB]:"ČSOB",[P.TYPE_BANK]:"Bankovní převod",[P.TYPE_COD]:"Dobírka",[P.TYPE_CASH]:"Platba hotové"})}};export{a as u};
+//# sourceMappingURL=build-usePayment-YGQK1JMb.js.map

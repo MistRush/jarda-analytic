@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+  #toggleMenu {
+    z-index: 10001;
+  }
+  header{
+    .right {
+      .logout {
+        width: $menu-small-width;
+      }
+    }
+  }
+
+}

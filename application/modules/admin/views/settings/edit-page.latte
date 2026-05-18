@@ -1,0 +1,17 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+
+<script>
+    /**
+     * @namespace { EntityEditor } editor
+     */
+    var editor;
+
+    $(() => {
+        editor = {$editor->getId()|noescape};
+        editor.onAfterShow = function () {
+            setTimeout( function() {
+                $('.tox.tox-tinymce.tox-tinymce--toolbar-sticky-off').css('height', '1000px');
+            }, 500);
+        }
+    });
+</script>

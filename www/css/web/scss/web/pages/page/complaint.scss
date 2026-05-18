@@ -1,0 +1,85 @@
+.complaint-container {
+    h2 {
+        .text-small {
+            color: #002541;
+            font-size: 13px;
+            line-height: 21px;
+            margin: 7px 0 7px 15px;
+            font-weight: 400;
+        }
+    }
+
+    .form-block {
+
+        .complaint-item {
+            border-top: 1px solid #d4d8e0;
+            margin-top: 25px;
+            padding-top: 35px;
+            textarea {
+                height: 105px;
+            }
+
+            &:first-child {
+                border-top: none;
+                margin-top: 0;
+                padding-top: 0;
+
+                .complaint-item-title {
+                    margin-top: 20px;
+                }
+            }
+
+            .complaint-item-title {
+                margin-top: 0px;
+            }
+
+            .complaint-item-title-holder {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .remove-complaint-item {
+                position: relative;
+                width: 30px;
+                height: 30px;
+                padding: 0;
+
+                &:before {
+                    content: url(/img/front/icons/trashcan.svg);
+                    position: absolute;
+                    top: 7px;
+                    left: 8px;
+                    width: 14px;
+                }
+            }
+        }
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .input-error {
+        .select2-selection--single {
+            border-color: #FF0000 !important;
+
+        }
+    }
+
+    .select2-container--default {
+        .select2-selection--single {
+            height: 39px !important;
+            border-radius: 7px !important;
+            padding: 5px !important;
+            border: 1px solid #CEDBF0;
+
+            .select2-selection__arrow {
+                top: 6px !important;
+            }
+        }
+    }
+
+
+
+}

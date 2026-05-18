@@ -1,0 +1,50 @@
+#my-account {
+    .layout {
+        .navigation-container {
+            background: #ebf1fb;
+            border-radius: 8px 8px 0 0;
+
+            ul {
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 0;
+
+                li {
+                    display: inline-block;
+                    list-style: none;
+                    position: relative;
+
+                    a {
+                        cursor: pointer;
+                        padding: 13px 20px;
+                        color: $font-primary-dark;
+                        display: inline-block;
+                        border-radius: 8px 8px 0 0;
+                        position: relative;
+                        @include animation();
+
+                        &:hover {
+                            background: #FFFFFF;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            background: #FFFFFF;
+
+                            &:before {
+                                content: "";
+                                width: calc(100% - 20px);
+                                height: 2px;
+                                background: $background-primary-red;
+                                position: absolute;
+                                bottom: 0px;
+                                left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

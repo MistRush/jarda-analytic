@@ -1,0 +1,7 @@
+/tmp
+/test/config.json
+/vendor
+/composer.lock
+/test/config.json.old
+/test/phpunit_report
+.idea/

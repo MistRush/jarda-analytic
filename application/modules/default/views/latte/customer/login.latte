@@ -1,0 +1,21 @@
+{layout "../layout.latte"}
+{block content}
+    <div class="login-wrapper">
+        <div class="login-title">
+            <div class="container">
+                <div class="login-title-holder">
+                    <div class="logo">
+                        <img src="/img/front/login-logo.svg" alt="Deník pleti">
+                    </div>
+                    <h2>{_('Přihlásit se ke svému účtu')}</h2>
+                    <div class="subtitle">
+                        Zadejte uživatelské jméno a heslo
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="vue-app" id="login-app"></div>
+        </div>
+    </div>
+{/block}

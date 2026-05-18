@@ -1,0 +1,59 @@
+.free-shipping-block {
+    border-radius: 8px;
+    border: 1px solid $border-primary-light;
+    background: $background-primary-light;
+    padding: 10px 15px;
+    margin: 25px 0;
+
+    .state {
+        background: url('/img/front/icons/components/free-shipping/delivery-car.svg') left center no-repeat;
+        font-size: 12px;
+        font-weight: 500;
+        padding-left: 24px;
+        margin-bottom: 5px;
+    }
+
+    .loader {
+        border-radius: 7px;
+        background-color: #FFFFFF;
+        height: 9px;
+        margin: 8px 0 7PX;
+        padding: 2px;
+        font-size: 0;
+
+        > span {
+            display: inline-block;
+            height: 5px;
+            width: 80px;
+            border-radius: 8px;
+            background: $font-primary-red;
+            box-shadow: 0 2px 7px 0 rgba(67, 71, 103, 0.10) inset;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 1px;
+                right: 1px;
+                width: 3px;
+                height: 3px;
+                border-radius: 2px;
+                background-color: #FFFFFF;
+            }
+        }
+    }
+
+    .values {
+        margin-top: 5px;
+        font-size: 12px;
+
+        .current {
+            color: $font-primary-red;
+            font-weight: 700;
+        }
+
+        .target {
+            color: $font-primary-darklight;
+        }
+    }
+}

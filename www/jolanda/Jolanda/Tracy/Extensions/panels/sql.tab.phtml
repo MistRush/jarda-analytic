@@ -1,0 +1,3 @@
+<span title="<?= $trimmed?('More than ' . $total_count . ' queries (trimmed)'):($total_count . ' queries') ?> (<?=$size?>)">
+	<span class="tracy-label"><?= $trimmed?'> ':'' ?><?=$total_count?> queries | <?= number_format($total_time,1 )?> ms</span>
+</span>

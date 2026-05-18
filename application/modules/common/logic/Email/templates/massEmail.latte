@@ -1,0 +1,8 @@
+{layout 'layout.latte'}
+
+{block content}
+<div style="">
+{*    {include 'components/header.latte' 'title' => ($title . ' ' . ($eshop->settings->ProjectShortURL|formatUrl))}*}
+    {$content|noescape}
+</div>
+{/block}

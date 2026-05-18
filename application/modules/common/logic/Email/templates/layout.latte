@@ -1,0 +1,28 @@
+{import 'components/components.latte'}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+        <meta name="viewport" content="width=device-width">
+    </head>
+
+    <body style="font-family:Realist,Calibri,Arial,sans-serif;font-size:14px;color:#1C293B;width:100%">
+        <div style="width:700px;max-width:98vw;margin:auto;padding:40px 0;">
+            <div id="content" style="padding:10px;">
+                <img src="https://trym.cz/img/front/header-logo.png" alt="trym.com" style="display:block;width:230px;margin:15px auto;">
+
+                <div style="padding:24px 12px 0">
+                    {include content}
+                    <p n:if="isset($generated) && $generated" style="text-align:center;color:#6e6e6e;font-size:12px;margin:24px 0 0;">{_('Zprávu vygeneroval systém společnosti evidsoft.cz.')}</p>
+                </div>
+            </div>
+            <div id="footer">
+                <hr>
+                <div style="text-align: center;">
+                    In case of any questions, feel free to contact us at <a href="mailto:{$footer_email}" style="color: #FF4D9B">{$footer_email}</a>.
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

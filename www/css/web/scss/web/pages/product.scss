@@ -1,0 +1,14 @@
+@import "product/basic-info";
+@import "product/control";
+@import "product/extended-info";
+@import "product/image";
+@import "product/main-info";
+@import "product/similiar-products";
+
+#product {
+    padding-bottom: 40px;
+
+    h1 {
+        margin: 15px 0 5px;
+    }
+}

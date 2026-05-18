@@ -1,0 +1,12 @@
+$color-font: #fff;
+$color-main: #202124;
+$color-main-lighter: #292a2d;
+
+html.prefer-dark {
+  @import "homepage";
+  @import "product";
+  @import "login";
+  @import "news";
+  @import "layout";
+  @import "order";
+}

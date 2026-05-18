@@ -1,0 +1,30 @@
+#search-result {
+  .category-list {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    row-gap: 20px;
+
+    a {
+      text-decoration: none;
+      font-weight: 500;
+      &:hover {
+        .item {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+    .item {
+      border: 1px solid #CEDBF0;
+      border-radius: 10px;
+      display:flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      transition: all 0.3s;
+
+      .item-name {
+        font-size: 16px;
+      }
+    }
+  }
+}

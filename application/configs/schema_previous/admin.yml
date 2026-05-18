@@ -1,0 +1,2930 @@
+Admin_Model_ProductSimiliar:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    ProductSimiliar_ID:
+      type: integer
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productSimiliars
+      type: one
+      foreignType: many
+      local: Product_ID
+      foreign: ID
+    productSimiliar:
+      class: Admin_Model_Product
+      type: one
+      foreignType: many
+      local: ProductSimiliar_ID
+      foreign: ID
+Admin_Model_Product:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Manufacturer_ID:
+      type: integer
+    Video:
+      type: string
+    OnStock:
+      type: integer
+    Code:
+      type: string(128)
+    Viewed:
+      default: 0
+      type: integer
+    CreatedDate:
+      type: date
+    EAN:
+      type: string(64)
+    FlagNews:
+      type: boolean
+    FlagClearanceSale:
+      type: boolean
+    Weight:
+      type: decimal
+    PohodaStock:
+      type: string(16)
+    API_ID:
+      type: integer
+    UpdateDateTime:
+      type: timestamp
+    OnExternalStock:
+      type: integer
+    IsAvailable:
+      type: boolean
+    Archived:
+      type: boolean
+  relations:
+    manufacturer:
+      class: Admin_Model_Manufacturer
+      foreignAlias: products
+      local: Manufacturer_ID
+      foreign: ID
+    productSimiliars:
+      class: Admin_Model_ProductSimiliar
+      foreignAlias: product
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Product_ID
+    Admin_Model_ProductSimiliar:
+      foreignAlias: productSimiliar
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: ProductSimiliar_ID
+    parameters:
+      class: Admin_Model_ProductParameter
+      foreignAlias: product
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Product_ID
+    productImages:
+      class: Admin_Model_ProductImage
+      foreignAlias: product
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Product_ID
+    categories:
+      class: Admin_Model_ProductInCategory
+      foreignAlias: product
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Product_ID
+    productLangs:
+      class: Admin_Model_ProductLang
+      foreignAlias: product
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Product_ID
+    productEshops:
+      class: Admin_Model_ProductEshop
+      foreignAlias: product
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Product_ID
+Admin_Model_ProductParameter:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Parameter_ID:
+      type: integer
+    ParameterValue_ID:
+      type: integer
+    Value:
+      type: string(256)
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: parameters
+      type: one
+      foreignType: many
+      local: Product_ID
+      foreign: ID
+    parameter:
+      class: Admin_Model_Parameter
+      foreignAlias: productParameters
+      local: Parameter_ID
+      foreign: ID
+    parameterValue:
+      class: Admin_Model_ParameterValue
+      foreignAlias: productParameters
+      local: ParameterValue_ID
+      foreign: ID
+Admin_Model_ProductImage:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    File_ID:
+      type: integer
+    Description:
+      type: string(256)
+    Main:
+      type: boolean
+    Rank:
+      type: integer
+  relations:
+    file:
+      class: Common_Model_File
+      foreignAlias: productImage
+      local: File_ID
+      foreign: ID
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productImages
+      type: one
+      foreignType: many
+      local: Product_ID
+      foreign: ID
+Admin_Model_ProductInCategory:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Category_ID:
+      type: integer
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: categories
+      type: one
+      foreignType: many
+      local: Product_ID
+      foreign: ID
+    category:
+      class: Admin_Model_Category
+      foreignAlias: products
+      local: Category_ID
+      foreign: ID
+Admin_Model_Category:
+  actAs:
+    Clevis_Behavior_Hierarchy:
+      ColumnChildren: CategoryIDs
+      ColumnParent: Category_ID
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    File_ID:
+      type: integer
+    Category_ID:
+      type: integer
+    API_ID:
+      type: integer
+    Code:
+      type: string(64)
+    IsAvailable:
+      type: boolean
+    DateTimeUpdated:
+      type: timestamp
+    DateTimeCreated:
+      type: timestamp
+    Archived:
+      type: boolean
+  relations:
+    category:
+      class: Admin_Model_Category
+      foreignAlias: categories
+      local: Category_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: categories
+      local: File_ID
+      foreign: ID
+    categoryLangs:
+      class: Admin_Model_CategoryLang
+      foreignAlias: category
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Category_ID
+    categoryEshops:
+      class: Admin_Model_CategoryEshop
+      foreignAlias: category
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Category_ID
+Admin_Model_Parameter:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Unit:
+      type: string(32)
+    ToFilter:
+      type: boolean
+    API_ID:
+      type: integer
+    FilterType:
+      type: string(64)
+    Code:
+      type: string(64)
+Admin_Model_ProductRelated:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    ProductRelated_ID:
+      type: integer
+    LinkType:
+      type: string(64)
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productRelateds
+      local: Product_ID
+      foreign: ID
+    productRelated:
+      class: Admin_Model_Product
+      local: ProductRelated_ID
+      foreign: ID
+Admin_Model_ParameterValue:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Parameter_ID:
+      type: integer
+    Value:
+      type: string(128)
+    Additional:
+      type: string(128)
+  relations:
+    parameter:
+      class: Admin_Model_Parameter
+      foreignAlias: parameterValues
+      local: Parameter_ID
+      foreign: ID
+Admin_Model_CategoryLang:
+  actAs:
+    Sluggable:
+      fields: [Name]
+      canUpdate: true
+      unique: true
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Name:
+      type: string(128)
+    Description:
+      type: string
+    ShortDescription:
+      type: string
+    Title:
+      type: string(512)
+    MetaDescription:
+      type: string(512)
+    H1Name:
+      type: string(256)
+    Note:
+      type: string
+    Rank:
+      type: integer
+  relations:
+    category:
+      class: Admin_Model_Category
+      foreignAlias: categoryLangs
+      type: one
+      foreignType: many
+      local: Category_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: categoryLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_CategoryEshop:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    Rank:
+      type: integer
+    Active:
+      type: boolean
+  relations:
+    category:
+      class: Admin_Model_Category
+      foreignAlias: categoryEshops
+      type: one
+      foreignType: many
+      local: Category_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: categoryEshops
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_ProductLang:
+  actAs:
+    Sluggable:
+      canUpdate: true
+      unique: true
+      fields: [Name]
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Name:
+      type: string(128)
+    Description:
+      type: string
+    ShortDescription:
+      type: string
+    SearchName:
+      type: string(256)
+    Title:
+      type: string(256)
+    MetaDescription:
+      type: string(256)
+    MetaKeywords:
+      type: string(256)
+    InfoText:
+      type: string
+    CustomAvailabilityInfo:
+      type: string
+    Perex:
+      type: string
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productLangs
+      type: one
+      foreignType: many
+      local: Product_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: productLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_ProductEshop:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    User_ID:
+      type: integer
+    Currency_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    Product_ID:
+      type: integer
+    Vat_ID:
+      type: integer
+    Homepage:
+      type: boolean
+    Active:
+      type: boolean
+    Price:
+      type: float
+    Discount:
+      type: integer
+    VipDiscount:
+      type: decimal
+    SpecialDiscount:
+      type: decimal
+    DateTimeCreated:
+      type: timestamp
+    DateTimeUpdated:
+      type: timestamp
+    Description:
+      type: string(256)
+    ProductPriceTypeCode:
+      type: string(32)
+    IsDiscountable:
+      type: boolean
+    QuantityMin:
+      type: integer
+    QuantityMax:
+      type: integer
+    ValidFrom:
+      type: timestamp
+    ValidTo:
+      type: timestamp
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productEshops
+      type: one
+      foreignType: many
+      local: Product_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: productEshops
+      local: Eshop_ID
+      foreign: ID
+    vat:
+      class: Admin_Model_Vat
+      foreignAlias: productEshops
+      local: Vat_ID
+      foreign: ID
+    currency:
+      class: Admin_Model_Currency
+      foreignAlias: productEshops
+      local: Currency_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: productEshops
+      local: User_ID
+      foreign: ID
+Admin_Model_ParameterLang:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Language_ID:
+      type: integer
+    Parameter_ID:
+      type: integer
+    Name:
+      type: string(128)
+  relations:
+    parameter:
+      class: Admin_Model_Parameter
+      foreignAlias: parameterLangs
+      local: Parameter_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: parameterLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_ProductDocumment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    File_ID:
+      type: integer
+    Description:
+      type: string
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productDocumments
+      local: Product_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: productDocumments
+      local: File_ID
+      foreign: ID
+Admin_Model_ProductDescriptionAccordion:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Headline:
+      type: string(256)
+    Content:
+      type: string
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productDescriptionAccordions
+      local: Product_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: productDescriptionAccordions
+      local: Language_ID
+      foreign: ID
+Admin_Model_WishList:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    User_ID:
+      type: integer
+    Product_ID:
+      type: integer
+    SessionID:
+      type: string(64)
+    DateAdded:
+      type: timestamp
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: wishLists
+      local: User_ID
+      foreign: ID
+    product:
+      class: Admin_Model_Product
+      foreignAlias: wishLists
+      local: Product_ID
+      foreign: ID
+Admin_Model_PPLPackageNrSettings:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    ProductType_ID:
+      type: integer
+    ProductTypeName:
+      type: string(128)
+    PackageNumberSeriesFrom:
+      type: integer
+    PackageNumberSeriesTo:
+      type: integer
+    LastPackageNumber:
+      type: integer
+Admin_Model_ProductOnHomepage:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Rank:
+      type: integer
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productsOnHomepage
+      local: Product_ID
+      foreign: ID
+Admin_Model_ProductMeta:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Code:
+      type: string(64)
+    Value:
+      type: string(32)
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productMetas
+      local: Product_ID
+      foreign: ID
+Admin_Model_Stock:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(256)
+    Code:
+      type: string(128)
+Admin_Model_ProductStock:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Stock_ID:
+      type: integer
+    Code:
+      type: string(256)
+    Quantity:
+      type: integer
+    Note:
+      type: string(128)
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productStocks
+      local: Product_ID
+      foreign: ID
+    stock:
+      class: Admin_Model_Stock
+      foreignAlias: productStocks
+      local: Stock_ID
+      foreign: ID
+Admin_Model_ProductAttachment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    File_ID:
+      type: integer
+    UrlPath:
+      type: string
+    Hash:
+      type: string(64)
+    Alt:
+      type: string(256)
+    DateTimeCreated:
+      type: timestamp
+    DateTimeUpdated:
+      type: timestamp
+    AttachmentType:
+      type: string(64)
+    DateTimeLastSynchronized:
+      type: timestamp
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productAttachments
+      local: Product_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: productAttachments
+      local: File_ID
+      foreign: ID
+Admin_Model_CategoryMeta:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    Code:
+      type: string(64)
+    Value:
+      type: string(32)
+  relations:
+    category:
+      class: Admin_Model_Category
+      foreignAlias: categoryMetas
+      local: Category_ID
+      foreign: ID
+Admin_Model_CategoryAttachment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    File_ID:
+      type: integer
+    UrlPath:
+      type: string
+    Hash:
+      type: string(64)
+    Alt:
+      type: string(256)
+    DateTimeCreated:
+      type: timestamp
+    DateTimeUpdated:
+      type: timestamp
+    AttachmentType:
+      type: string(64)
+    DateTimeLastSynchronized:
+      type: timestamp
+    AttachmentData:
+      type: blob
+  relations:
+    category:
+      class: Admin_Model_Category
+      foreignAlias: categoryAttachments
+      local: Category_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: categoryAttachments
+      local: File_ID
+      foreign: ID
+Admin_Model_ProductWatchDog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    User_ID:
+      type: integer
+    DateTimeCreated:
+      type: timestamp
+    Reported:
+      type: boolean
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productWatchDogs
+      local: Product_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: productWatchDogs
+      local: User_ID
+      foreign: ID
+Admin_Model_ProductSlugHistory:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    DateTimeCreated:
+      type: timestamp
+    Slug:
+      type: string
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: productSlugHistories
+      local: Product_ID
+      foreign: ID
+Admin_Model_CategorySlugHistory:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    DateTimeCreated:
+      type: timestamp
+    Slug:
+      type: string
+  relations:
+    category:
+      class: Admin_Model_Category
+      foreignAlias: categorySlugHistories
+      local: Category_ID
+      foreign: ID
+Admin_Model_Question:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    Product_ID:
+      type: integer
+    Description:
+      type: string
+    Name:
+      type: string(128)
+    Email:
+      type: string(128)
+    Phone:
+      type: string(128)
+    Date:
+      type: date
+    Time:
+      type: time
+    State:
+      type: string(32)
+    Solved:
+      type: boolean
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: questions
+      local: Product_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: questions
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_QuestionAnswer:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Question_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    Description:
+      type: string
+  relations:
+    question:
+      class: Admin_Model_Question
+      foreignAlias: answers
+      local: Question_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: answer
+      local: User_ID
+      foreign: ID
+Admin_Model_Cart:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Cart_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    Product_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Coupon_ID:
+      type: integer
+    Quantity:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    SessionID:
+      type: string(64)
+    Code:
+      type: string(16)
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: cart
+      local: Product_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: cart
+      local: User_ID
+      foreign: ID
+    cart:
+      class: Admin_Model_Cart
+      foreignAlias: carts
+      local: Cart_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: carts
+      local: Eshop_ID
+      foreign: ID
+    coupon:
+      class: Admin_Model_Coupon
+      foreignAlias: carts
+      local: Coupon_ID
+      foreign: ID
+Admin_Model_OrderItem:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    Order_ID:
+      type: integer
+    Quantity:
+      type: integer
+    PriceWithoutVat:
+      type: decimal
+    PriceWithVat:
+      type: decimal
+    Discount:
+      type: integer
+    Vat:
+      type: decimal
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: orderItem
+      local: Product_ID
+      foreign: ID
+    order:
+      class: Admin_Model_Order
+      foreignAlias: orderItems
+      type: one
+      foreignType: many
+      local: Order_ID
+      foreign: ID
+Admin_Model_Order:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Balikovna_ID:
+      type: integer
+    Currency_ID:
+      type: integer
+    User_ID:
+      type: integer
+    InvoiceAddress_ID:
+      type: integer
+    DeliveryAddress_ID:
+      type: integer
+    OrderStateType_ID:
+      type: integer
+    Payment_ID:
+      type: integer
+    Shipping_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    Vat_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Coupon_ID:
+      type: integer
+    UserUtmParams_ID:
+      type: integer
+    PPL_ID:
+      type: integer
+    Zasilkovna_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    DateFinished:
+      type: date
+    PriceProductWithoutVat:
+      type: decimal
+    PriceProductWithVat:
+      type: decimal
+    PriceTotalWithoutVat:
+      type: decimal
+    PriceTotalWithVat:
+      type: decimal
+    OrderNumber:
+      type: integer
+    Description:
+      type: string
+    Folder:
+      type: string(32)
+    PriceShippingWithoutVat:
+      type: decimal
+    PriceShippingWithVat:
+      type: decimal
+    PricePaymentWithoutVat:
+      type: decimal
+    PricePaymentWithVat:
+      type: decimal
+    CurrencyRatio:
+      type: decimal
+    DatePayed:
+      type: date
+    DateShipped:
+      type: date
+    DateShipmentTransit:
+      type: date
+    BalikobotID:
+      type: string(32)
+    BalikobotPackageID:
+      type: string(32)
+    BalikobotTrackingURL:
+      type: string(512)
+    BalikobotLabelIURL:
+      type: string
+    BalikobotCarrierID:
+      type: string(32)
+    TotalWeight:
+      type: float
+    WithoutVat:
+      type: boolean
+    InPohoda:
+      type: boolean
+    ConversionReferer:
+      type: string(256)
+    ParcelNumber:
+      type: string
+    TrackingUrl:
+      type: string
+    InvoiceNumber:
+      type: string(32)
+    DateTimeUpdated:
+      type: timestamp
+    Synced:
+      type: boolean
+    CompleteOrder:
+      type: boolean
+  relations:
+    deliveryAddress:
+      class: Admin_Model_Address
+      foreignAlias: order
+      local: DeliveryAddress_ID
+      foreign: ID
+    invoiceAddress:
+      class: Admin_Model_Address
+      local: InvoiceAddress_ID
+      foreign: ID
+    payment:
+      class: Admin_Model_Payment
+      foreignAlias: order
+      local: Payment_ID
+      foreign: ID
+    shipping:
+      class: Admin_Model_Shipping
+      foreignAlias: order
+      local: Shipping_ID
+      foreign: ID
+    orderStateType:
+      class: Admin_Model_OrderStateType
+      foreignAlias: orders
+      local: OrderStateType_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: orders
+      local: User_ID
+      foreign: ID
+    currency:
+      class: Admin_Model_Currency
+      foreignAlias: orders
+      local: Currency_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: orders
+      local: Eshop_ID
+      foreign: ID
+    vat:
+      class: Admin_Model_Vat
+      foreignAlias: orders
+      local: Vat_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: orders
+      local: Language_ID
+      foreign: ID
+    coupon:
+      class: Admin_Model_Coupon
+      foreignAlias: orders
+      local: Coupon_ID
+      foreign: ID
+    userUtmParams:
+      class: User_Model_UserUtmParams
+      foreignAlias: orders
+      local: UserUtmParams_ID
+      foreign: ID
+    zasilkovna:
+      class: Admin_Model_Zasilkovna
+      foreignAlias: orders
+      local: Zasilkovna_ID
+      foreign: ID
+    PPL:
+      class: Admin_Model_PPL
+      foreignAlias: orders
+      local: PPL_ID
+      foreign: ID
+    balikovna:
+      class: Admin_Model_Balikovna
+      foreignAlias: orders
+      local: Balikovna_ID
+      foreign: ID
+    orderItems:
+      class: Admin_Model_OrderItem
+      foreignAlias: order
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Order_ID
+    orderStates:
+      class: Admin_Model_OrderState
+      foreignAlias: order
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Order_ID
+    gopayPayments:
+      class: Admin_Model_GopayPayment
+      foreignAlias: order
+      cascade: [delete]
+      type: many
+      foreignType: one
+      local: ID
+      foreign: Order_ID
+    balikobotPackages:
+      class: Admin_Model_BalikobotPackage
+      foreignAlias: order
+      cascade: [delete]
+      type: many
+      foreignType: one
+      local: ID
+      foreign: Order_ID
+Admin_Model_OrderState:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Order_ID:
+      type: integer
+    OrderStateType_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    Description:
+      type: string
+    DescriptionCustomer:
+      type: string
+    TrackingNumber:
+      type: string(32)
+    UserName:
+      type: string(128)
+  relations:
+    order:
+      class: Admin_Model_Order
+      foreignAlias: orderStates
+      type: one
+      foreignType: many
+      local: Order_ID
+      foreign: ID
+    orderStateType:
+      class: Admin_Model_OrderStateType
+      foreignAlias: orderStates
+      local: OrderStateType_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: orderStates
+      local: User_ID
+      foreign: ID
+Admin_Model_OrderStateType:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    SendEmail:
+      type: boolean
+    Color:
+      type: string(32)
+Admin_Model_OrderStateTypeLang:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    OrderStateType_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    EmailHeader:
+      type: string(128)
+    EmailContent:
+      type: string
+    Name:
+      type: string(64)
+  relations:
+    orderStateType:
+      class: Admin_Model_OrderStateType
+      foreignAlias: orderStateTypeLangs
+      local: OrderStateType_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: oderStateTypeLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_GopayPayment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Order_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    GopayID:
+      type: integer
+    GopayURL:
+      type: string(512)
+  relations:
+    order:
+      class: Admin_Model_Order
+      foreignAlias: gopayPayments
+      type: one
+      foreignType: many
+      local: Order_ID
+      foreign: ID
+    gopayPaymentStates:
+      class: Admin_Model_GopayPaymentState
+      foreignAlias: gopayPayment
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: GopayPayment_ID
+Admin_Model_GopayPaymentState:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    GopayPayment_ID:
+      type: integer
+    OrderStateType_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+  relations:
+    gopayPayment:
+      class: Admin_Model_GopayPayment
+      foreignAlias: gopayPaymentStates
+      type: one
+      foreignType: many
+      local: GopayPayment_ID
+      foreign: ID
+    orderStateType:
+      class: Admin_Model_OrderStateType
+      foreignAlias: gopayPaymentState
+      local: OrderStateType_ID
+      foreign: ID
+Admin_Model_BalikobotPackage:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Order_ID:
+      type: integer
+    PackageID:
+      type: string(32)
+    TrackingURL:
+      type: string(512)
+    LabelURL:
+      type: string
+    CarrierID:
+      type: string(32)
+    BalikobotOrderID:
+      type: integer
+    State:
+      type: string(64)
+  relations:
+    order:
+      class: Admin_Model_Order
+      foreignAlias: balikobotPackages
+      type: one
+      foreignType: many
+      local: Order_ID
+      foreign: ID
+    balikobotStates:
+      class: Admin_Model_BalikobotState
+      foreignAlias: balikobotPackage
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: BalikobotPackage_ID
+Admin_Model_BalikobotState:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    BalikobotPackage_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    State:
+      type: string(128)
+    Message:
+      type: string(512)
+    StatusID:
+      type: string(16)
+  relations:
+    balikobotPackage:
+      class: Admin_Model_BalikobotPackage
+      foreignAlias: balikobotStates
+      type: one
+      foreignType: many
+      local: BalikobotPackage_ID
+      foreign: ID
+Admin_Model_Coupon:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Code:
+      type: string(64)
+    Type:
+      type: string(16)
+    Quantity:
+      type: integer
+    Discount:
+      type: float
+    TotalCount:
+      type: integer
+    UsedCount:
+      type: integer
+    ExpiryDate:
+      type: date
+    CreatedDate:
+      type: date
+    MinOrder:
+      type: float
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: coupons
+      local: Product_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: coupons
+      local: User_ID
+      foreign: ID
+    couponLangs:
+      class: Admin_Model_CouponLang
+      foreignAlias: coupon
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Coupon_ID
+Admin_Model_CouponLang:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Coupon_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Name:
+      type: string(128)
+  relations:
+    coupon:
+      class: Admin_Model_Coupon
+      foreignAlias: couponLangs
+      type: one
+      foreignType: many
+      local: Coupon_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: couponLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_BankTransaction:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    DateTime:
+      type: timestamp
+    FromAccount:
+      type: string(32)
+    ToAccount:
+      type: string(32)
+    AccountName:
+      type: string
+    Amount:
+      type: float
+    KS:
+      type: string(32)
+    VS:
+      type: string(32)
+    Message:
+      type: string
+Admin_Model_Zasilkovna:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    PickupPlace_ID:
+      type: integer
+    PickupPlaceName:
+      type: string(256)
+    PickupPlaceAddress:
+      type: string
+Admin_Model_PPL:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    PickupPlaceName:
+      type: string
+    PickupPlaceAddress:
+      type: string
+    PickupPlace_ID:
+      type: integer
+    PickupPlaceCode:
+      type: string(64)
+Admin_Model_CsobPayment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Order_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    CsobID:
+      type: string(256)
+    CsobURL:
+      type: string
+  relations:
+    order:
+      class: Admin_Model_Order
+      foreignAlias: csobPayments
+      local: Order_ID
+      foreign: ID
+Admin_Model_CsobPaymentState:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    CsobPayment_ID:
+      type: integer
+    OrderStateType_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+  relations:
+    csobPayment:
+      class: Admin_Model_CsobPayment
+      foreignAlias: csobPaymentStates
+      local: CsobPayment_ID
+      foreign: ID
+    orderStateType:
+      class: Admin_Model_OrderStateType
+      foreignAlias: csobPaymentStates
+      local: OrderStateType_ID
+      foreign: ID
+Admin_Model_Balikovna:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    PickupPlace_ID:
+      type: string(64)
+    PickupPlaceName:
+      type: string(256)
+    PickupPlaceAddress:
+      type: string
+Admin_Model_CartLog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Product_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Quantity:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    IPAddress:
+      type: string(64)
+  relations:
+    product:
+      class: Admin_Model_Product
+      foreignAlias: cartLogs
+      local: Product_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: cartLogs
+      local: User_ID
+      foreign: ID
+Admin_Model_Address:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Country_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Type:
+      type: string(32)
+    CustomerType:
+      type: string(32)
+    CompanyName:
+      type: string(256)
+    FirstName:
+      type: string(64)
+    LastName:
+      type: string(64)
+    Email:
+      type: string(64)
+    EmailAlternative:
+      type: string(64)
+    Phone:
+      type: string(64)
+    Street:
+      type: string(128)
+    City:
+      type: string(128)
+    DescriptionNumber:
+      type: string(32)
+    ZipCode:
+      type: string(16)
+    IC:
+      type: string(32)
+    DIC:
+      type: string(32)
+    Lat:
+      type: float
+    Lng:
+      type: float
+    Main:
+      type: boolean
+    Label:
+      type: string(256)
+  relations:
+    country:
+      class: Common_Model_Country
+      foreignAlias: address
+      local: Country_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: addresses
+      local: User_ID
+      foreign: ID
+Admin_Model_Shipping:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    File_ID:
+      type: integer
+    Vat_ID:
+      type: integer
+    Active:
+      type: boolean
+    Price:
+      type: decimal
+    VatType:
+      type: string(32)
+    FreeShipping:
+      type: decimal
+    Type:
+      type: string(16)
+    Name:
+      type: string(128)
+    Description:
+      type: string
+    PohodaCode:
+      type: string(128)
+    ExternalID:
+      type: integer
+    Code:
+      type: string(128)
+    Rank:
+      type: integer
+  relations:
+    vat:
+      class: Admin_Model_Vat
+      foreignAlias: shippings
+      local: Vat_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: shippings
+      local: Eshop_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: shippings
+      local: File_ID
+      foreign: ID
+Admin_Model_Payment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    File_ID:
+      type: integer
+    Vat_ID:
+      type: integer
+    Active:
+      type: boolean
+    Name:
+      type: string(128)
+    Description:
+      type: string
+    Price:
+      type: decimal
+    BankAccount:
+      type: string(128)
+    VatType:
+      type: string(32)
+    Type:
+      type: string(16)
+    PohodaCode:
+      type: string(128)
+    IBAN:
+      type: string(128)
+    ExternalID:
+      type: integer
+    Code:
+      type: string(128)
+  relations:
+    vat:
+      class: Admin_Model_Vat
+      foreignAlias: payments
+      local: Vat_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: payments
+      local: Eshop_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: payments
+      local: File_ID
+      foreign: ID
+Admin_Model_Vat:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(64)
+    Value:
+      type: decimal
+Admin_Model_Banner:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    File_ID:
+      type: integer
+    Active:
+      type: boolean
+    Headline:
+      type: string(256)
+    Description:
+      type: string
+    Url:
+      type: string(512)
+    Rank:
+      type: integer
+    Subline:
+      type: string(256)
+    LinkBtnText:
+      type: string(128)
+    Template:
+      type: string(128)
+  relations:
+    file:
+      class: Common_Model_File
+      foreignAlias: banners
+      local: File_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: banners
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_ShippingPayment:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Shipping_ID:
+      type: integer
+    Payment_ID:
+      type: integer
+  relations:
+    shipping:
+      class: Admin_Model_Shipping
+      foreignAlias: shippingPayments
+      local: Shipping_ID
+      foreign: ID
+    payment:
+      class: Admin_Model_Payment
+      foreignAlias: shippingPayment
+      local: Payment_ID
+      foreign: ID
+Admin_Model_Manufacturer:
+  actAs:
+    Sluggable:
+      canUpdate: false
+      fields: [Name]
+      unique: true
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    File_ID:
+      type: integer
+    Name:
+      type: string(128)
+    API_ID:
+      type: integer
+    Description:
+      type: string
+    MetaDescription:
+      type: string
+  relations:
+    manufacturerFile:
+      class: Common_Model_File
+      foreignAlias: manufacturer
+      local: File_ID
+      foreign: ID
+Admin_Model_Currency:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(64)
+    Ratio:
+      type: float
+    Label:
+      type: string(16)
+    Mark:
+      type: string(16)
+Admin_Model_ShippingCategory:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Category_ID:
+      type: integer
+    Shipping_ID:
+      type: integer
+    Vat_ID:
+      type: integer
+    Price:
+      type: decimal
+    VatType:
+      type: string(32)
+    PricePerPiece:
+      type: boolean
+    PriceAlways:
+      type: boolean
+  relations:
+    shipping:
+      class: Admin_Model_Shipping
+      foreignAlias: shippingCategories
+      local: Shipping_ID
+      foreign: ID
+    category:
+      class: Admin_Model_Category
+      foreignAlias: shippingCategories
+      local: Category_ID
+      foreign: ID
+    vat:
+      class: Admin_Model_Vat
+      foreignAlias: shippingCategories
+      local: Vat_ID
+      foreign: ID
+Admin_Model_ShippingCategoryBlacklist:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Shipping_ID:
+      type: integer
+    Category_ID:
+      type: integer
+  relations:
+    shipping:
+      class: Admin_Model_Shipping
+      foreignAlias: shippingCategoryBlacklists
+      local: Shipping_ID
+      foreign: ID
+    category:
+      class: Admin_Model_Category
+      foreignAlias: shippingCategoryBlacklists
+      local: Category_ID
+      foreign: ID
+Admin_Model_ShippingCategoryWhitelist:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Shipping_ID:
+      type: integer
+    Category_ID:
+      type: integer
+  relations:
+    shipping:
+      class: Admin_Model_Shipping
+      foreignAlias: shippingCategoryWhitelists
+      local: Shipping_ID
+      foreign: ID
+    category:
+      class: Admin_Model_Category
+      foreignAlias: shippingCategoryWhitelists
+      local: Category_ID
+      foreign: ID
+Admin_Model_ShippingPrice:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Shipping_ID:
+      type: integer
+    MaxWeight:
+      type: float
+    MaxWidth:
+      type: float
+    MaxDepth:
+      type: float
+    MaxHeight:
+      type: float
+    PriceWithoutVat:
+      type: decimal
+    Note:
+      type: string
+  relations:
+    shipping:
+      class: Admin_Model_Shipping
+      foreignAlias: shippingPrices
+      local: Shipping_ID
+      foreign: ID
+Admin_Model_SearchLog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    SearchTerm:
+      type: string(128)
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: searchLogs
+      local: User_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: searchLogs
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_EmailLog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    Subject:
+      type: string(512)
+    Body:
+      type: string
+    Sender:
+      type: string(128)
+    Recipients:
+      type: string(512)
+  relations:
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: emailLogs
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_ApiLog:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    User:
+      type: string(256)
+    DateTime:
+      type: timestamp
+    Url:
+      type: string
+    StatusCode:
+      type: string(32)
+    Message:
+      type: string
+Admin_Model_Page:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Page_ID:
+      type: integer
+  relations:
+    page:
+      class: Admin_Model_Page
+      foreignAlias: pages
+      local: Page_ID
+      foreign: ID
+    pageLangs:
+      class: Admin_Model_PageLang
+      foreignAlias: page
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Page_ID
+    pageEshops:
+      class: Admin_Model_PageEshop
+      foreignAlias: page
+      type: many
+      cascade: [delete]
+      foreignType: one
+      local: ID
+      foreign: Page_ID
+Admin_Model_Menu:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(64)
+    Type:
+      type: string(32)
+Admin_Model_MenuItem:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    Menu_ID:
+      type: integer
+    Active:
+      type: boolean
+    InNewWindow:
+      type: boolean
+    Name:
+      type: string(128)
+    Url:
+      type: string(128)
+    Rank:
+      type: integer
+  relations:
+    menu:
+      class: Admin_Model_Menu
+      foreignAlias: menuItems
+      local: Menu_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: menuItems
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_Popup:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    Active:
+      type: boolean
+    Header:
+      type: string(128)
+    Content:
+      type: string
+  relations:
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: popups
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_News:
+  actAs:
+    Sluggable:
+      unique: true
+      fields: [Headline]
+      canUpdate: false
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    NewsCategory_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    File_ID:
+      type: integer
+    Date:
+      type: date
+    Active:
+      type: boolean
+    Perex:
+      type: string
+    Content:
+      type: string
+    Headline:
+      type: string(256)
+    ReadingTime:
+      type: integer
+  relations:
+    file:
+      class: Common_Model_File
+      foreignAlias: news
+      local: File_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: news
+      local: Eshop_ID
+      foreign: ID
+    newsCategory:
+      class: Admin_Model_NewsCategory
+      foreignAlias: news
+      local: NewsCategory_ID
+      foreign: ID
+Admin_Model_PageLang:
+  actAs:
+    Sluggable:
+      canUpdate: false
+      fields: [Name]
+      unique: true
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Language_ID:
+      type: integer
+    Page_ID:
+      type: integer
+    Name:
+      type: string(64)
+    Content:
+      type: string
+    Title:
+      type: string(256)
+    MetaDescription:
+      type: string(512)
+    MetaKeywords:
+      type: string(256)
+  relations:
+    page:
+      class: Admin_Model_Page
+      foreignAlias: pageLangs
+      type: one
+      foreignType: many
+      local: Page_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: pageLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_PageEshop:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Page_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    Active:
+      type: boolean
+  relations:
+    page:
+      class: Admin_Model_Page
+      foreignAlias: pageEshops
+      type: one
+      foreignType: many
+      local: Page_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: pageEshops
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_Announcement:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    Hash:
+      type: string(32)
+    Type:
+      type: string(16)
+    Content:
+      type: string
+    Active:
+      type: boolean
+    DateFrom:
+      type: date
+    DateTo:
+      type: date
+    InEmail:
+      type: boolean
+  relations:
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: announcements
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_Instagram:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(128)
+    AccessToken:
+      type: string
+Admin_Model_InstagramMedia:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Instagram_ID:
+      type: integer
+    Internalmedia_ID:
+      type: string(64)
+    Collection_ID:
+      type: string(64)
+    Cdnpath:
+      type: string
+    Permalink:
+      type: string
+    MediaType:
+      type: string(64)
+    DateTime:
+      type: timestamp
+  relations:
+    instagram:
+      class: Admin_Model_Instagram
+      foreignAlias: instagramMedia
+      local: Instagram_ID
+      foreign: ID
+Admin_Model_NewsCategory:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    NewsCategory_ID:
+      type: integer
+    File_ID:
+      type: integer
+    CategoryIds:
+      type: string
+  relations:
+    file:
+      class: Common_Model_File
+      foreignAlias: newsCategory
+      local: File_ID
+      foreign: ID
+    newsCategory:
+      class: Admin_Model_NewsCategory
+      foreignAlias: newsCategories
+      local: NewsCategory_ID
+      foreign: ID
+Admin_Model_NewsCategoryLang:
+  actAs:
+    Sluggable:
+      canUpdate: false
+      fields: [Name]
+      unique: true
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    NewsCategory_ID:
+      type: integer
+    Language_ID:
+      type: integer
+    Name:
+      type: string(128)
+    Description:
+      type: string
+    ShortDescription:
+      type: string
+  relations:
+    newsCategory:
+      class: Admin_Model_NewsCategory
+      foreignAlias: newsCategoryLangs
+      local: NewsCategory_ID
+      foreign: ID
+    language:
+      class: Common_Model_Language
+      foreignAlias: newsCategoryLangs
+      local: Language_ID
+      foreign: ID
+Admin_Model_Block:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(64)
+    Code:
+      type: string(32)
+    Content:
+      type: string
+Admin_Model_NewsletterSubscriber:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Eshop_ID:
+      type: integer
+    Date:
+      type: date
+    Time:
+      type: time
+    Subscriber:
+      type: string(128)
+    Active:
+      type: boolean
+  relations:
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: newsletterSubscribers
+      local: Eshop_ID
+      foreign: ID
+Admin_Model_Feedback:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    CreatorUser_ID:
+      type: integer
+    SolverUser_ID:
+      type: integer
+    Eshop_ID:
+      type: integer
+    Project_ID:
+      type: integer
+    Header:
+      type: string(256)
+    DateTime:
+      type: timestamp
+    Content:
+      type: string
+    Priority:
+      type: string(32)
+    DateExpectedSolving:
+      type: date
+    DateSolved:
+      type: date
+    tmpState:
+      type: string(32)
+    FeedbackNumber:
+      type: string(32)
+    Hash:
+      type: string(32)
+    ErrorReporting:
+      type: boolean
+    DateStartSolving:
+      type: date
+    WorkedTimePrivate:
+      type: decimal
+    WorkedTimePublic:
+      type: decimal
+    ScriptCodeContent:
+      type: string
+  relations:
+    creatorUser:
+      class: User_Model_User
+      foreignAlias: creatorFeedbacks
+      local: CreatorUser_ID
+      foreign: ID
+    solverUser:
+      class: User_Model_User
+      foreignAlias: solverFeedbacks
+      local: SolverUser_ID
+      foreign: ID
+    eshop:
+      class: Common_Model_Eshop
+      foreignAlias: feedbacks
+      local: Eshop_ID
+      foreign: ID
+    project:
+      class: Admin_Model_Project
+      foreignAlias: feedbacks
+      local: Project_ID
+      foreign: ID
+Admin_Model_FeedbackState:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Feedback_ID:
+      type: integer
+    User_ID:
+      type: integer
+    DateTime:
+      type: timestamp
+    State:
+      type: string(32)
+    Description:
+      type: string
+    SendEmail:
+      type: boolean
+    ScriptCodeContent:
+      type: string
+  relations:
+    feedback:
+      class: Admin_Model_Feedback
+      foreignAlias: feedbackStates
+      local: Feedback_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: feedbackStates
+      local: User_ID
+      foreign: ID
+Admin_Model_FeedbackFile:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Feedback_ID:
+      type: integer
+    File_ID:
+      type: integer
+  relations:
+    feedback:
+      class: Admin_Model_Feedback
+      foreignAlias: feedbackFiles
+      local: Feedback_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: feedbackFiles
+      local: File_ID
+      foreign: ID
+Admin_Model_FeedbackReadLastState:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Feedback_ID:
+      type: integer
+    User_ID:
+      type: integer
+    ReadState:
+      type: boolean
+  relations:
+    feedback:
+      class: Admin_Model_Feedback
+      foreignAlias: feedbackReadLastStates
+      local: Feedback_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: feedbackReadLastStates
+      local: User_ID
+      foreign: ID
+Admin_Model_Project:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    DefaultSolver_ID:
+      type: integer
+    Name:
+      type: string(64)
+    Www:
+      type: string(64)
+    Description:
+      type: string
+  relations:
+    defaultSolver:
+      class: User_Model_User
+      foreignAlias: defaultSolverProjects
+      local: DefaultSolver_ID
+      foreign: ID
+Admin_Model_Complaint:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    DeliveryCountry_ID:
+      type: integer
+    InvoiceCountry_ID:
+      type: integer
+    Name:
+      type: string(128)
+    Email:
+      type: string(128)
+    Phone:
+      type: string(128)
+    IC:
+      type: string(32)
+    DIC:
+      type: string(32)
+    CompanyName:
+      type: string(256)
+    InvoiceStreet:
+      type: string(128)
+    InvoiceCity:
+      type: string(128)
+    InvoiceZipCode:
+      type: string(16)
+    DeliveryName:
+      type: string(128)
+    DeliveryStreet:
+      type: string(128)
+    DeliveryZipCode:
+      type: string(16)
+    Package:
+      type: string
+    DeliveryCity:
+      type: string(128)
+    DateCreated:
+      type: timestamp
+  relations:
+    invoiceCountry:
+      class: Common_Model_Country
+      foreignAlias: invoiceComplaints
+      local: InvoiceCountry_ID
+      foreign: ID
+    deliveryCountry:
+      class: Common_Model_Country
+      foreignAlias: deliveryComplaints
+      local: DeliveryCountry_ID
+      foreign: ID
+Admin_Model_ComplaintItem:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Complaint_ID:
+      type: integer
+    InvoiceNumber:
+      type: string(64)
+    ProductNumber:
+      type: string(64)
+    Amount:
+      type: integer
+    Description:
+      type: string
+  relations:
+    complaint:
+      class: Admin_Model_Complaint
+      foreignAlias: complaintItems
+      local: Complaint_ID
+      foreign: ID
+Admin_Model_Day:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Date:
+      type: date
+    Name:
+      type: string(128)
+Admin_Model_Meal:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Day_ID:
+      type: integer
+    User_ID:
+      type: integer
+    MealType:
+      type: string(128)
+    OffCode:
+      type: string(64)
+    Quantity:
+      type: decimal
+    DateCreated:
+      type: timestamp
+    Carbs:
+      type: integer
+    Sugar:
+      type: integer
+    Fat:
+      type: integer
+    Kcal:
+      type: integer
+  relations:
+    user:
+      class: User_Model_User
+      foreignAlias: meals
+      local: User_ID
+      foreign: ID
+    day:
+      class: Admin_Model_Day
+      foreignAlias: meals
+      local: Day_ID
+      foreign: ID
+Admin_Model_Cosmetic:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    User_ID:
+      type: integer
+    Day_ID:
+      type: integer
+    Name:
+      type: string(128)
+    Quantity:
+      type: integer
+  relations:
+    day:
+      class: Admin_Model_Day
+      foreignAlias: cosmetics
+      local: Day_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: cosmetics
+      local: User_ID
+      foreign: ID
+Admin_Model_DayPhoto:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Day_ID:
+      type: integer
+    User_ID:
+      type: integer
+    File_ID:
+      type: integer
+  relations:
+    day:
+      class: Admin_Model_Day
+      foreignAlias: dayPhotos
+      local: Day_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: dayPhotos
+      local: User_ID
+      foreign: ID
+    file:
+      class: Common_Model_File
+      foreignAlias: dayPhotos
+      local: File_ID
+      foreign: ID
+Admin_Model_DayStress:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Day_ID:
+      type: integer
+    User_ID:
+      type: integer
+    StressLevel:
+      type: integer
+  relations:
+    day:
+      class: Admin_Model_Day
+      foreignAlias: dayStresses
+      local: Day_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: dayStresses
+      local: User_ID
+      foreign: ID
+Admin_Model_DaySleep:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Day_ID:
+      type: integer
+    User_ID:
+      type: integer
+    Hours:
+      type: integer
+    StartTime:
+      type: time
+    FinishTime:
+      type: time
+  relations:
+    day:
+      class: Admin_Model_Day
+      foreignAlias: daySleeps
+      local: Day_ID
+      foreign: ID
+    user:
+      class: User_Model_User
+      foreignAlias: daySleeps
+      local: User_ID
+      foreign: ID
+Admin_Model_Condition:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(128)
+    Parameter:
+      type: string(128)
+    Value:
+      type: string(128)
+    Comparison:
+      type: string
+    Active:
+      type: boolean
+    Type:
+      type: string(64)
+    Description:
+      type: string
+    IsPositive:
+      type: boolean
+Admin_Model_CustomMeal:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(256)
+    Type:
+      type: string(64)
+    Fat:
+      type: integer
+    Carbs:
+      type: integer
+    Protein:
+      type: integer
+    Sugar:
+      type: integer
+    Kcal:
+      type: integer
+Admin_Model_Recomendation:
+  columns:
+    ID:
+      primary: true
+      type: integer
+      notnull: true
+      autoincrement: true
+    Name:
+      type: string(128)
+    Type:
+      type: string(64)
+    Description:
+      type: string

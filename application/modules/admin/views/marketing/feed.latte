@@ -1,0 +1,47 @@
+{layout "../layout.latte"}
+{block content}
+    <h1>Feedy</h1>
+    <div class="block">
+        <h2>Google Merchant</h2>
+        <a href="/common/cron/google-merchant" target="_blank">Přegenerovat feedy</a><br><br>
+
+        {foreach $eshops as $eshopItem}
+            <a href="{$eshopItem->URL}/files/feeds/google-merchant-{$eshopItem->language->Code}.xml" target="_blank">Google Merchant {$eshopItem->Name}</a><br>
+        {/foreach}
+    </div>
+
+    <div class="block">
+        <h2>Heureka</h2>
+        <a href="/common/cron/heureka-feed" target="_blank">Přegenerovat feedy</a><br><br>
+
+        {foreach $eshops as $eshopItem}
+            <a href="{$eshopItem->URL}/files/feeds/heureka-feed-{$eshopItem->language->Code}.xml" target="_blank">Heureka {$eshopItem->Name}</a><br>
+        {/foreach}
+    </div>
+
+    <div class="block">
+        <h2>Zboží</h2>
+        <a href="/common/cron/zbozi-feed" target="_blank">Přegenerovat feedy</a><br><br>
+
+        {foreach $eshops as $eshopItem}
+            <a href="{$eshopItem->URL}/files/feeds/zbozi-feed-{$eshopItem->language->Code}.xml" target="_blank">Zboží {$eshopItem->Name}</a><br>
+        {/foreach}
+    </div>
+
+    <div class="block">
+        <h2>Mall</h2>
+        <a href="/common/cron/mall-feed" target="_blank">Přegenerovat feedy</a><br><br>
+
+        {foreach $eshops as $eshopItem}
+            <a href="{$eshopItem->URL}/files/feeds/mall-feed-{$eshopItem->language->Code}.xml" target="_blank">Mall {$eshopItem->Name}</a><br>
+        {/foreach}
+    </div>
+
+    <style>
+        .block { background: #fff; border: 1px solid #ccc; padding: 15px; margin-bottom: 30px }
+        .block h2 { font-weight: bold; border-bottom: 1px solid #ccc }
+    </style>
+{/block}
+
+{block scripts}
+{/block}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/evidsoft/CDBLayout.js"],"names":["CDBLayout","bindEvents"],"mappings":";;;;;;IAAMA,S;AACF,uBAAc;AAAA;;AACV,SAAKC,UAAL;AACH;;;;WAED,sBAAa,CACZ","sourcesContent":["class CDBLayout {\r\n    constructor() {\r\n        this.bindEvents();\r\n    }\r\n\r\n    bindEvents() {\r\n    }\r\n}"],"file":"CDBLayout.js"}

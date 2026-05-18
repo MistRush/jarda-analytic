@@ -1,0 +1,79 @@
+<div class="news-item">
+    <a href="/{URL::NEWS}/{$newsItem['slug']}">
+        <div href="/{URL::NEWS}/{$newsItem['slug']}" class="no-underline">
+            <div class="image{!isset($newsItem['file']) ? ' default-image' : ''}" style='background-image: url("{isset($newsItem['file']) ? fu($newsItem, "news/350") : "/img/front/logo-dark.svg"}")'></div>    </div>
+        <div href="/{URL::NEWS}/{$newsItem['slug']}">
+            <h3>{$newsItem['Headline']}</h3>
+        </div>
+
+        <div class="info">
+            <div class="date">{formatDate($newsItem['Date'])}</div>
+            <div class="category">{$newsItem['newsCategory']['newsCategoryLangs'][0]['Name']}</div>
+        </div>
+        <div class="perex">{$newsItem['Perex']|truncate:200,'...'}</div>
+        <div class="buttons">
+            <div href="/{URL::NEWS}/{$newsItem['slug']}" class="link">Číst článek →</div>
+        </div>
+    </a>
+</div>
+
+<style>
+    .news-list {
+        .news-item {
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.0901960784);
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+
+            &:hover {
+                box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+            }
+
+            a {
+                text-decoration: none;
+                color: unset;
+
+                &:hover {
+                    text-decoration: none;
+                    color: black !important;
+                }
+            }
+            .default-image {
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            .image {
+                border: unset;
+
+                &:hover {
+                    border: unset;
+                }
+            }
+
+            .info{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .date {
+                    padding-left: 0;
+                }
+            }
+
+            .perex {
+                min-height: 110px;
+            }
+
+            .buttons {
+                padding: 10px 15px;
+                text-align: right;
+
+                .link {
+                    &:hover {
+                        color: #0abf7e;
+                    }
+                }
+            }
+        }
+    }
+</style>

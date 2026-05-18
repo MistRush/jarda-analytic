@@ -1,0 +1,60 @@
+<div class="col-xl-4" id="activity" data-icon="ci ci-analytics">
+    <div class="panel">
+        <div class="title">Přehled činnosti</div>
+
+        <div class="big-one grey">
+            <div class="row align-self-center">
+                <div class="col-8">
+                    <div class="headline">Návštěvníci</div>
+                    Aktivní návštěvníci dnes
+                </div>
+                <div class="col-4 text-right align-self-center">
+                    <span class="value">{$todayVisits}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="big-one">
+            <div class="row align-self-center">
+                <div class="col-8">
+                    <div class="headline">Nákupní košíky (<a href="/admin/customer/show-current-carts">seznam položek</a>)</div>
+                    Vytvořené během dnešního dne
+                </div>
+                <div class="col-4 text-right align-self-center">
+                    <span class="value">{$todayCarts}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stats-title">Statistiky za posledních 30 dní</div>
+
+            <div class="small-one grey">
+                <div class="row align-self-center">
+                    <div class="col-8">Prodeje</div>
+                    <div class="col-4 text-right align-self-center">
+                        <span class="value">{price($last30DaysOrdersPrice)}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-one">
+                <div class="row align-self-center">
+                    <div class="col-8">Počet objednávek</div>
+                    <div class="col-4 text-right align-self-center">
+                        <span class="value">{$last30DaysOrdersCount}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-one grey">
+                <div class="row align-self-center">
+                    <div class="col-8">Návštěvy</div>
+                    <div class="col-4 text-right align-self-center">
+                        <span class="value">{$last30DaysVisits |number,0,'',' '}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

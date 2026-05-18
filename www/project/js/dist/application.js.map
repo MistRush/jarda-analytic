@@ -1,0 +1,1 @@
+{"version":3,"file":"application.js","names":["evidsoft","Evidsoft"],"sources":["../src/application.js"],"sourcesContent":["var evidsoft = new Evidsoft();"],"mappings":"AAAA,IAAIA,QAAQ,GAAG,IAAIC,QAAQ,EAAE"}

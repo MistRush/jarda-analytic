@@ -1,0 +1,223 @@
+{layout "../layout.latte"}
+{block content}
+    <div id="order-step-2">
+        <div class="text-center">
+            <h1 class="d-inline-block">{_('Informace o Vás')}</h1>
+        </div>
+
+        {$cartSteps|noescape}
+        <div class="row">
+            <div class="col-lg-8">
+                <form method="post" id="main-form" action="/order/step-1-process/">
+                    <div n:if="$msg" class="error" style="display: block">{_('Objednávku se nepodařilo dokončit. Uživatelský účet s tímto názvem již existuje. Zkuste to prosím ještě jednou.')}</div>
+                    <div class="form-block">
+                        <div class="row align-items-center">
+                            <div n:class="$invoiceAddresses && count($invoiceAddresses) > 1?col-lg-6:col-lg-12">
+                                <h2 class="with-icon invoice-address">{_('Fakturační adresa')}</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                {if $invoiceAddresses && count($invoiceAddresses) > 1}
+                                    <label for="invoiceAddressesSelect">{_('Vyberte fakturační adresu')}:</label>
+                                    <select id="invoiceAddressesSelect" name="invoice-addresses">
+                                        <option n:foreach="$invoiceAddresses as $invoiceAddressItem"
+                                                value="{$invoiceAddressItem->ID}">
+                                            {!empty($invoiceAddressItem->Label)?$invoiceAddressItem->Label:($invoiceAddressItem->FirstName . ' ' . $invoiceAddressItem->LastName . ', ' . $invoiceAddressItem->Street .', ' . $invoiceAddressItem->City)}
+                                        </option>
+                                    </select>
+                                {/if}
+                            </div>
+                        </div>
+
+                        <p>{_('Vezměte prosím na vědomí, že zadané údaje jsou závazné a po odeslání objednávky je již nebude možné měnit.')}</p>
+                        <div class="row">
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="FirstName">{_('Jméno')}:</label>
+                                <input id="FirstName" placeholder="např: Jana" type="text" name="FirstName"
+                                       value="{$invoiceAddress ? $invoiceAddress->FirstName : $userInfo['FirstName']}"
+                                       data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše jméno.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="LastName">{_('Příjmení')}:</label>
+                                <input id="LastName" type="text" name="LastName" placeholder="např: Nováková"
+                                       value="{$invoiceAddress ? $invoiceAddress->LastName : $userInfo['LastName']}"
+                                       data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše příjmení.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Street">{_('Ulice')}:</label>
+                                <input id="Street" type="text" name="Street"
+                                       value="{$invoiceAddress ? $invoiceAddress->Street : $userInfo['Street']}"
+                                       data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaší ulici.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="City">{_('Město')}:</label>
+                                <input id="City" type="text" placeholder="např: Opava" name="City"
+                                       value="{$invoiceAddress ? $invoiceAddress->City : $userInfo['City']}"
+                                       data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše město.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="ZipCode">{_('PSČ')}:</label>
+                                <input id="ZipCode" type="text" placeholder="např: 74601, ve tvaru: XXXXX"
+                                       name="ZipCode" value="{$invoiceAddress ? $invoiceAddress->ZipCode : $userInfo['ZipCode']}"
+                                       data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše PSČ.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Email">{_('E-mail')}:</label>
+                                <input id="Email" type="text" placeholder="@" name="Email"
+                                       value="{$user ? $user->Name : $userInfo['Email']}" {$user ? 'readOnly'}
+                                       data-validator='[{ "v":":email","m":"{_('')}Vyplňte e-mail ve správném formátu.","p":null}, { "v":"orderAddress.validateEmail","m":"{_('Tento uživatel je již registrován.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Phone">{_('Telefon')}:</label>
+                                <input id="Phone" type="text" name="Phone" placeholder="+420"
+                                       value="{$invoiceAddress ? $invoiceAddress->Phone : $userInfo['Phone']}"
+                                       data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaš telefon.')}","p":null}]'>
+                            </div>
+                            <div class="col-lg-6 mt-2 position-relative">
+                                <label for="Country">{_('Stát')}:</label>
+                                <select id="Country" type="text" name="Country">
+                                    <option value="" selected disabled>Vyberte zemi</option>
+                                    <option {if (isset($invoiceAddress['Country_ID']) && ($invoiceAddress['Country_ID'] === $country['Country_ID'])) || (isset($userInfo['Country']) && ($userInfo['Country'] === $country['Country_ID']))} selected  {else}{if $country['Country_ID'] == 50}selected{/if}{/if} n:foreach="$countries as $country"
+                                            value="{$country['Country_ID']}">{$country['Name']}</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 mt-2 position-relative">
+                                <label for="Description">{_('Poznámka')}:</label>
+                                <textarea id="Description" type="text" placeholder="Zanechte vzkaz" name="Description"></textarea>
+                            </div>
+                            <div class="col-lg-12 mt-2 position-relative">
+                                <label class="with-checkbox">
+                                    <input type="checkbox" name="CompleteOrder" id="completeOrder" {if isset($completeOrder) && $completeOrder}checked{/if}>
+                                    <span class="checkmark"></span>Kompletní objednávka
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-block">
+                        <h2 class="with-icon with-toggler company">{_('Firemní údaje')}<span class="toggler"></span></h2>
+                        <div class="company-block pt-2" {if $invoiceAddress && $invoiceAddress->CompanyName || $userInfo['CompanyName']}style="display: block"{/if}>
+                            <input type="hidden" name="IsCompany" value="0">
+                            <p>{_('Nezapomeňte vyplnit IČ a DIČ, pokud jste firma.')}</p>
+
+                            <div class="row">
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="CompanyName">{_('Název firmy')}:</label>
+                                    <input id="CompanyName" type="text" name="CompanyName"
+                                           value="{$invoiceAddress ? $invoiceAddress->CompanyName : $userInfo['CompanyName']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte název Vaší firmy.')}","p":null,"d":".company-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="IC">{_('IČ')}:</label>
+                                    <input id="IC" type="text" name="IC" value="{$invoiceAddress ? $invoiceAddress->IC : $userInfo['IC']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte IČ Vaší firmy.')}","p":null,"d":".company-block"}]' {if $invoiceAddress && $invoiceAddress->DIC}readonly{/if}>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DIC">{_('DIČ')}:</label>
+                                    <input id="DIC" type="text" name="DIC" value="{$invoiceAddress ? $invoiceAddress->DIC : $userInfo['DIC']}" {if $invoiceAddress && $invoiceAddress->DIC}readonly{/if}>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-block">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12">
+                                <h2 class="with-icon with-toggler delivery-address">{_('Doručovací údaje')}<span class="toggler"></span></h2>
+                            </div>
+                        </div>
+                        <div class="delivery-address-block pt-2" {if $deliveryAddress || $userInfo['DStreet']}style="display: block"{/if}>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="hidden" name="IsDeliveryAddress" value="{(!empty($deliveryAddress) && $deliveryAddress) || ($userInfo['DStreet'] && $userInfo['DCity'] && $userInfo['DZipCode'])?1:0}">
+                                    <p>{_('Vyplňte v případě, že se liší od fakturačních')}</p>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    {if $deliveryAddresses && count($deliveryAddresses) > 1}
+                                        <label for="deliveryAddressesSelect">{_('Vyberte doručovací adresu')}:</label>
+                                        <select id="deliveryAddressesSelect" name="deliveryAddressesSelect">
+                                            <option n:foreach="$deliveryAddresses as $deliveryAddressItem"
+                                                    value="{$deliveryAddressItem->ID}">
+                                                {$deliveryAddressItem->Label??($deliveryAddressItem->FirstName . ' ' . $deliveryAddressItem->LastName . ', ' . $deliveryAddressItem->Street . ', ' . $deliveryAddressItem->City)}
+                                            </option>
+                                        </select>
+                                    {/if}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DFirstName">{_('Jméno')}:</label>
+                                    <input id="DFirstName" type="text" name="DFirstName"
+                                           value="{$deliveryAddress ? $deliveryAddress->FirstName : $userInfo['DFirstName']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše jméno.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DLastName">{_('Příjmení')}:</label>
+                                    <input id="DLastName" type="text" name="DLastName"
+                                           value="{$deliveryAddress ? $deliveryAddress->LastName : $userInfo['DLastName']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše příjmení.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DStreet">{_('Ulice')}:</label>
+                                    <input id="DStreet" type="text" name="DStreet"
+                                           value="{$deliveryAddress ? $deliveryAddress->Street : $userInfo['DStreet']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaší ulici.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DCity">{_('Město')}:</label>
+                                    <input id="DCity" type="text" name="DCity"
+                                           value="{$deliveryAddress ? $deliveryAddress->City : $userInfo['DCity']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše město.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DZipCode">{_('PSČ')}:</label>
+                                    <input id="DZipCode" type="text" name="DZipCode"
+                                           value="{$deliveryAddress ? $deliveryAddress->ZipCode : $userInfo['DZipCode']}"
+                                           data-validator='[{ "v":":required","m":"{_('Vyplňte prosím Vaše PSČ.')}","p":null,"d":".delivery-address-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="DCountry">{_('Stát')}:</label>
+                                    <select id="DCountry" type="text" name="DCountry">
+                                        <option value="" selected disabled>Vyberte zemi</option>
+                                        <option {if (isset($deliveryAddress['Country_ID']) && ($deliveryAddress['Country_ID'] === $country['Country_ID'])) || (isset($userInfo['Country']) && ($userInfo['Country'] === $country['Country_ID']))} selected  {else}{if $country['Country_ID'] == 50}selected{/if}{/if} n:foreach="$countries as $country"
+                                                value="{$country['Country_ID']}">{$country['Name']}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div n:if="!$user" class="form-block">
+                        <h2 class="with-icon with-toggler user">{_('Chci se zaregistrovat')}<span class="toggler"></span></h2>
+                        <div class="register-block pt-2" {if $user}style="display: block"{/if}>
+                            <input type="hidden" name="IsRegister" value="0">
+                            <div class="row">
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="Password">{_('Heslo')}:</label>
+                                    <input type="password" name="Password" autocomplete="off" data-validator='[{ "v":":min_length","m":"{_('Heslo musí obsahovat alespoň 5 znaků.')}","p":5,"d":".register-block"}, { "v":"orderAddress.validatePassword","m":"{_('Zadaná hesla se neshodují.')}","p":null,"d":".register-block"}]'>
+                                </div>
+                                <div class="col-lg-6 mt-2 position-relative">
+                                    <label for="PasswordAgain">{_('Heslo znovu')}:</label>
+                                    <input type="password" name="PasswordAgain"  autocomplete="off"">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {*                    <input type="hidden" id="Shipping_ID" name="Shipping_ID" value="{$shippingID}">
+                                       <input type="hidden" id="Payment_ID" name="Payment_ID" value="{$paymentID}">
+                                        {if isset($pickupPointID)}
+                                            <input type="hidden" id="PickupPoint_ID" name="Pickup_Point_ID" value="{$pickupPointID}">
+                                            <input type="hidden" id="PickupPoint_Name" name="Pickup_Point_Name" value="{$pickupPointName}">
+                                            <input type="hidden" id="PickupPoint_Address" name="Pickup_Point_Address" value="{$pickupPointAddress}">
+                                        {/if}*}
+                </form>
+            </div>
+            <div class="col-lg-4">
+                {$orderRecapitulation|noescape}
+            </div>
+        </div>
+    </div>
+{/block}

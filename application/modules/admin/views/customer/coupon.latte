@@ -1,0 +1,26 @@
+{layout "../layout.latte"}
+{block content}
+    {$couponGrid->render()}
+{/block}
+{block scripts}
+    {include parent}
+    <script>
+
+        var formatCount = function (data, name,row) {
+            var limit = data > 0?data:'&infin;'
+            var used = row.UsedCount > 0 ? row.UsedCount:0;
+            return (used + ' / ' + limit);
+        }
+
+        var formatDiscount = function (data, name,row) {
+            return row.Type == 'percentage'?(data+'%'):data;
+        }
+
+        var formatRow = function (el, data) {
+            if (!(data.IsActive > 0)) {
+                $(el).css('--rowColor', '#f00');
+                $(el).addClass('customColor');
+            }
+        }
+    </script>
+{/block}

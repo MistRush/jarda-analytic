@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         verbose="false"
+         bootstrap="test/bootstrap.php"
+>
+    <logging>
+        <junit outputFile="build/unit_report.xml"/>
+    </logging>
+    <php>
+      <ini name="display_errors" value="on"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="PplMyApi Tests Suite">
+            <directory>test</directory>
+        </testsuite>
+    </testsuites>
+    <coverage includeUncoveredFiles="true"
+              processUncoveredFiles="true"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+
+        <report>
+            <html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>
+        </report>
+    </coverage>
+
+</phpunit>
+

@@ -1,0 +1,68 @@
+<?= $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            <?= Clevis_Layout::renderTitle($this); ?>
+        </title>
+        <?= Clevis_Layout::renderHeader($this); ?>
+        <link href="<?= _bu(); ?>/css/admin/admin.css" media="screen" rel="stylesheet" type="text/css" />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="<?= _bu(); ?>/js/tinymce/tinymce.min.js"></script>
+        
+        <script type="text/javascript" src="<?= _bu(); ?>/js/admin.js"></script>
+    </head>
+    <body class="claro <?php if (Clevis_Layout::isFullSize($this)) echo "fullsize"; ?>">
+
+        <!-- SITE HEADER BEGIN -->
+        <div class="site-header">
+            <div style="width: 100%; height: 43px; position: relative;">
+                <div id="index-JSDH-directory-preheader" style="top: -4px;">
+                    <a href="<?= _bu() ?>/admin/" class="logo-holder">
+                        <img src="<?= _bu(); ?>/img/admin-icons/admin-logo.png">
+                    </a>
+                    <!-- render user -->
+                    <div class="site-header-navigation-item" style="margin-right: 15px;">
+                        <div>
+                            <?= user\logic\UserSession::getCurrentUserName(); ?>
+                            [<a href="<?= Clevis_Helper::formatUrl(array('module' => 'user', 'controller' => 'login', 'action' => 'logout')); ?>"><b>Odhlásit se</b></a>]
+                        </div>
+                    </div>
+                    <?php if ( user\logic\UserSession::getCurrentUserType() == 'admin' ) { ?>
+                    <div class="site-header-navigation-item" style="margin-right: 15px;">|</div>
+                    <div class="site-header-navigation-item" style="margin-right: 25px;">
+                        <div style="position: relative;">
+                            <?php
+                            ?>
+                            <a href="<?= Clevis_Helper::formatUrl(array('module' => 'admin', 'controller' => 'order', 'action' => 'index')); ?>" style="font-weight: normal;">Objednávky</a>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <!-- SITE HEADER END -->
+
+        <!-- SITE BODY BEGIN -->
+        <div class="site-body">
+            <div class="site-content-border">
+                <div class="site-content">
+                    <?= $this->layout()->content ?>
+                </div>
+            </div>
+        </div>
+        <!-- SITE BODY END -->
+
+        <!-- SITE FOOTER BEGIN -->
+        <div class="site-footer">
+            <?= Clevis_Layout::renderFooter($this); ?>
+
+            <?php
+            Clevis_Layout::setEnd(
+                    '   </div>' . PHP_EOL .
+                    '   <!-- SITE FOOTER END -->' . PHP_EOL .
+                    '</body>' . PHP_EOL .
+                    '</html>' . PHP_EOL
+            );
+            ?>

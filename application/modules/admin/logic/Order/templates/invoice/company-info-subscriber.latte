@@ -1,0 +1,81 @@
+{default $companyInfo = null}
+<div class="company-info col-12">
+    {var $cba = $companyInfo['orderInfo']}
+    <div class="item col-12" n:if="isset($cba['VS'])">
+        <div class="item-name col-6">
+            {_('Variabilní symbol')}:
+        </div>
+        <div class="item-value col-6">
+            {$cba['VS']}
+        </div>
+        <div class="item-name col-6">
+            {_('Konstantní symbol')}:
+        </div>
+        <div class="item-value col-6">
+            {$cba['KS']}
+        </div>
+        <div class="item-name col-6">
+            {_('Objednávka č.:')} {$cba['OrderNumber']}
+        </div>
+        <div class="item-value col-6">
+            ze dne: {$cba['OrderDate']|date:'d. m. Y'}
+        </div>
+    </div>
+    <div class="customer-box">
+        <div n:class="!empty($companyInfo['ic'])?col-4:col-12, contract-type">
+            Odběratel:
+        </div>
+        <div n:if="!empty($companyInfo['ic'])" class="col-4">
+            IČ:
+        </div>
+        <div n:if="!empty($companyInfo['ic'])" class="col-4 vat-id">
+            {$companyInfo['ic']}
+        </div>
+        <div n:class="!empty($companyInfo['dic'])?col-4:col-12">
+            <div class="empty-space">&nbsp;</div>
+        </div>
+        <div n:if="!empty($companyInfo['dic'])" class="col-4">
+            DIČ:
+        </div>
+        <div style="font-size:14px" n:if="!empty($companyInfo['dic'])" class="col-4 vat-id">
+            {$companyInfo['dic']}
+        </div>
+        <div class="customer-address">
+            <div n:if="isset($companyInfo['fullName'])">
+                {$companyInfo['fullName']}
+            </div>
+            <div n:if="isset($companyInfo['street'])">
+                {$companyInfo['street']}
+            </div>
+            <div n:if="isset($companyInfo['zip']) || isset($companyInfo['city'])">
+                {capture $zipCity}{$companyInfo['zip']??null} {$companyInfo['city']??null}{/capture}
+                {trim($zipCity)}
+            </div>
+            <div n:if="isset($companyInfo['country'])">
+                {$companyInfo['country']}
+            </div>
+            <div n:if="isset($companyInfo['phone'])">
+                <span class="font-weight-light">Tel.:</span> {$companyInfo['phone']}
+            </div>
+        </div>
+    </div>
+    {*
+    <div class="final-delivery">
+        <div class="col-12 contract-type">
+            Konečný příjemce:
+        </div>
+        <div n:if="isset($companyInfo['fullName'])">
+            {$companyInfo['fullName']}
+        </div>
+        <div n:if="isset($companyInfo['street'])">
+            {$companyInfo['street']}
+        </div>
+        <div n:if="isset($companyInfo['zip']) || isset($companyInfo['city'])">
+            {capture $zipCity}{$companyInfo['zip']??null} {$companyInfo['city']??null}{/capture}
+                {trim($zipCity)}
+        </div>
+        <div n:if="isset($companyInfo['country'])">
+            {$companyInfo['country']}
+        </div>
+    </div> *}
+</div>

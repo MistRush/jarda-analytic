@@ -1,0 +1,36 @@
+{if $editor->isNextPrevButtonsEnabled()}
+    <div class="nextPrevHolder">
+        <div class="d-flex">
+            <button id="{$editor->getId()|noescape}_editor_prev_entity_button" class="btn btn-white" data-create="false" data-update="true" onclick="window['{$editor->getId()|noescape}'].gotoPrev();"><span class="new-arrow left"></span></button>
+            {if $editor->isNextPrevCounterEnabled()}
+                <div class="nextPrevCounterHolder">
+                    [<span id="{$editor->getId()|noescape}_editor_iterator_current">-</span> / <span id="{$editor->getId()|noescape}_editor_iterator_length">-</span>]
+                </div>
+            {/if}
+            <button id="{$editor->getId()|noescape}_editor_next_entity_button" class="btn btn-white" data-create="false" data-update="true" onclick="window['{$editor->getId()|noescape}'].gotoNext();"><span class="new-arrow right"></span></button>
+        </div>
+    </div>
+{/if}
+{foreach $editor->getActions() as $action}
+    {$action|noescape}
+{/foreach}
+{if !$editor->isReadonly()}
+    <div class="flex-break d-flex d-sm-none mb-1"></div>
+    {if $editor->isShowSaveButtons()}
+        {if $editor->getEntityId() != null}
+            <button class="btn btn-green" onclick="{$editor->getId()|noescape}.confirm()" type="button">
+                {jlang 'SAVE'}
+            </button>
+        {/if}
+        {if $editor->isAjax() || $editor->getBackUrl() != null}
+            <button class="btn btn-green" onclick="{$editor->getId()|noescape}.confirm(true)" type="button">
+                {jlang 'SAVE_CLOSE'}
+            </button>
+            {if $editor->getEntityId() == null && $editor->isAjax()}
+                <button class="btn btn-green" onclick="{$editor->getId()|noescape}.confirm(true, true)" type="button">
+                    {jlang 'SAVE_CONTINUE'}
+                </button>
+            {/if}
+        {/if}
+    {/if}
+{/if}

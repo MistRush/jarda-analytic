@@ -1,0 +1,24 @@
+{layout 'layout.latte'}
+
+{block content}
+    <div style="">
+        {capture $title}{_('Hlídací pes')}{/capture}
+    {include 'components/header.latte' 'title' => ($title . ' ' . ($eshop->settings->ProjectShortURL|formatUrl))}
+        <p>{_('Dobrý den,')}</p>
+
+        <p>{_('následující produkty, které máte ve sledování hlídacím psem, jsou již na e-shopu HADEX dostupné. Zde je seznam těchto produktů:')}</p>
+        {foreach $productsToBeReported as $reportedProduct}
+            <p style="margin:25px 0 34px;font-size:16px;">
+                <b>{_('Produkt')}:</b> <a
+                        href="{$eshop->settings->ProjectShortURL|formatUrl}/p/{$reportedProduct['ProductSlug']}">{$reportedProduct['ProductCode']} - {$reportedProduct['ProductName']|cleanEntities} </a>
+                <br>
+                <b>{_('Skladem')}:</b> {$reportedProduct['TotalQuantity']} ks
+            </p>
+            {if !$iterator->last}
+                <hr style="background:gray">
+            {/if}
+        {/foreach}
+    </div>
+{/block}
+
+

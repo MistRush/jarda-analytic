@@ -1,0 +1,64 @@
+<?php
+
+use Tracy\Dumper;
+use Tracy\Helpers;
+
+/** @var \Jolanda\Tracy\Extensions\TypehintPanel $this */
+?>
+    <style class="tracy-debug">
+        #tracy-debug .typehint th {
+            text-align: center;
+        }
+        #tracy-debug .typehint td {
+            text-align: center;
+            width: 50%;
+            cursor: pointer;
+        }
+        #tracy-debug .typehint td:hover {
+            background-color: #fff9;
+        }
+        #tracy-debug .typehint h2 {
+            text-align: center;
+        }
+    </style>
+
+    <h1>Typhint</h1>
+
+    <div class="tracy-inner typehint">
+        <div class="tracy-inner-container">
+            <table>
+                <tbody>
+                <tr>
+                    <th colspan="2">Rebuild</th>
+                </tr>
+                <tr>
+                    <td onclick="typehintRebuild(0);">Add</td>
+                    <td onclick="typehintRebuild(1);">Force</td>
+                </tr>
+                </tbody>
+        </table>
+        </div>
+    </div>
+
+<?php if ($this->getData()) { ?>
+
+    <br />
+
+    <?php foreach ($this->getData() as $typehintFile => $typehintParams) { ?>
+
+        <?= Helpers::editorLink($typehintFile, 0) ?>
+        <div class="tracy-inner">
+            <?= Dumper::toHtml($typehintParams, [Dumper::LIVE => true]); ?>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<script>
+    window.typehintRebuild = function (type) {
+        var url = new URL(location.href);
+
+        url.searchParams.set('__rebuildTypehintTemplate', type);
+
+        fetch(url.toString());
+    }
+</script>

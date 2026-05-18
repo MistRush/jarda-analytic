@@ -1,0 +1,85 @@
+{varType \Admin_Model_Order $order}
+{include 'style.latte'}
+<div id="invoice">
+    <div class="header">
+        <div class="contractor col-6">
+            {include 'company-info-supplier.latte' 'companyInfo' => $contractor}
+            <br><br>
+        </div>
+        <div class="subscriber col-6">
+            {include 'company-info-subscriber.latte' 'companyInfo' => $customer, 'order'=>$order, 'invoiceDate'=>$invoiceDate, 'dueDate'=>$dueDate}
+            <br><br>
+        </div>
+    </div>
+    <table style="width: 100%;border-collapse: collapse;  margin-right: auto; margin-left: auto; border-top: 1px solid black; border-bottom: 1px solid black">
+        <thead>
+        <tr>
+            <th style="font-weight: bold;text-align: left;font-size: 11px; border-bottom: 1px solid #666666;color:#212121">{_('Označení dodávky')}</th>
+            <th style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:45px;">{_('Mn.')}</th>
+            <th style="font-weight: bold;white-space:nowrap;text-align: right;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:70px;">{_('Cena MJ')}</th>
+            <th style="font-weight: bold;text-align: left;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:35px;">{_('Sleva')}</th>
+            <th style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:75px;">{_('Cena')}</th>
+            <th style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:63px;">{_('DPH %')}</th>
+            <th style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:75px;">{_('DPH')}</th>
+            <th style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #666666;color:#212121;width:125px;">{$currency} {_('Celkem')}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr n:foreach="$order->orderItems as $orderItem">
+            {include 'product-item.latte' 'orderItem' => $orderItem}
+        </tr>
+        {*        <tr n:if="$order->Coupon_ID">*}
+{*            <td style="text-align: left;font-size: 11px; border-bottom: 1px solid #cccccc;">{_('Kupón')}: {$order->coupon->getLang($order->Language_ID)->Name}<br><span style="font-size:9px;color: #666666;">({$order->coupon->Code})</span></td>*}
+{*            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{$order->coupon->Quantity}</td>*}
+{*            <td style="font-size: 11px; border-bottom: 1px solid #cccccc;">{_('ks')}</td>*}
+{*            <td style="border-bottom: 1px solid #cccccc;"></td>*}
+{*            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">0 CZK</td>*}
+{*            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">0 CZK</td>*}
+{*        </tr>*}
+        <tr n:if="$order->Shipping_ID">
+            <td style="text-align: left;font-size: 11px; border-bottom: 1px solid #cccccc;">{_('Doprava')}: {$order->shipping->Name}</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">1</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PriceShippingWithoutVat, 2, ',', ' ')}</td>
+            <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">0</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PriceShippingWithoutVat, 2, ',', ' ')}</td>
+            <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">0</td>
+            <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PriceShippingWithVat - $order->PriceShippingWithoutVat, 2, ',', ' ')}</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PriceShippingWithVat, 2, ',', ' ')}</td>
+        </tr>
+        <tr n:if="$order->Payment_ID">
+            <td style="text-align: left;font-size: 11px; border-bottom: 1px solid #cccccc;">{_('Platba')}: {$order->payment->Name}</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">1</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PricePaymentWithoutVat, 2, ',', ' ')}</td>
+            <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">0</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PricePaymentWithoutVat, 2, ',', ' ')}</td>
+            <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">0</td>
+            <td style="text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PricePaymentWithVat - $order->PricePaymentWithoutVat, 2, ',', ' ')}</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($order->PricePaymentWithVat, 2, ',', ' ')}</td>
+        </tr>
+        <tr n:if="$coupon->Discount">
+            <td colspan="7" style="text-align: left;font-size: 11px; border-bottom: 1px solid #cccccc;">{_('Slevový kupón')}: {$coupon->Code}</td>
+            <td style="font-weight: bold;text-align: right;font-size: 11px; border-bottom: 1px solid #cccccc;">{number_format($couponValue, 2, ',', ' ')}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7" style="font-weight: normal;text-align: left;font-size: 12px;padding: 7px 0; border-top: 2px solid #000000;"><br>&nbsp;&nbsp;{_('Součet položek')}</td>
+            <td colspan="1" style="text-align: right;font-size: 12px; padding: 0; padding-right: 7px; border-top: 2px solid #000000;"><br>{number_format($order->PriceTotalWithVat, 2, ',', ' ')} Kč</td>
+        </tr>
+        <tr>
+            <td colspan="7" style="font-weight: normal;text-align: left;font-size: 12px;padding: 0;">&nbsp;&nbsp;{_('Zaokrouhlení')}</td>
+            <td colspan="1" style="text-align: right; font-size: 12px; padding:0; padding-right: 7px">{number_format(round($order->PriceTotalWithVat) - $order->PriceTotalWithVat, 2, ',', ' ')} Kč</td>
+        </tr>
+        <tr>
+            <td colspan="7" style="font-weight: normal;text-align: left;font-size: 14px;padding: 7px 0;">&nbsp;&nbsp;<strong>{_('CELKEM K ÚHRADĚ')}</strong></td>
+            <td colspan="1" style="font-weight: bold; text-align: right;font-size: 14px;padding: 7px 0; padding-right: 7px">{number_format(round($order->PriceTotalWithVat), 2, ',', ' ')} Kč</td>
+        </tr>
+        {*
+        <tr n:if="$order->payment->Type == 'gopay'">
+            <td colspan="4" style="font-weight: normal; text-align: left;font-size: 14px;padding: 7px 0; color:red">{_('ZAPLACENO!')}</td>
+        </tr>*}
+        </tfoot>
+    </table>
+
+{include "footer.latte"}
+</div>

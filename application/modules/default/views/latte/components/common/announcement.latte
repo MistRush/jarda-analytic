@@ -1,0 +1,8 @@
+{varType \Admin_Model_Announcement $announcement}
+
+<div id="announcement" class="announcement-{$announcement->Type??'info'}" data-announcement="{$announcement->Hash}">
+    <div class="container">
+        <span class="close">&times;</span>
+        {$announcement->Content|noescape}
+    </div>
+</div>

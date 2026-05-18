@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-6 pe-0">
+        <div class="login-block">
+            <div class="headline">{_('Přihlášení zákazníka')}</div>
+            <form method="post" id="login-form" action="">
+                <div class="position-relative">
+                    <label for="LoginEmail">E-mail</label>
+                    <input id="LoginEmail" type="text" placeholder="email@email.cz">
+                    <div class="error userError">{_('Neplatné přihlašovací údaje.')}</div>
+                </div>
+                <label for="LoginPassword">Heslo</label>
+                <input id="LoginPassword" type="password" placeholder="">
+                <div class="text-center mt-4 mb-4">
+                    <input type="button" value="Přihlásit se" id="confirm-login" class="btn btn-primary">
+                </div>
+                <div class="text-center">
+                    <a href="/customer/lost-password/" class="lost-password">{_('Zapomněli jste heslo?')}</a><br>
+
+                    <div class="d-block d-lg-none">
+                        <a href="/customer/register">{_('Chci se zaregistrovat')}</a><br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-6 ps-0 d-none d-lg-block">
+        <div class="benefits-block">
+            <div class="headline">{_('Proč se registrovat?')}</div>
+            <ul>
+                <li>{_('Přístup do sekce s historií objednávek')}</li>
+                <li>{_('Uložení vašich fakturačních a dodacích údajů pro další nákupy')}</li>
+                <li>{_('Nejlepší nabídky odesíláme do vašeho e-mailu jako první')}</li>
+                <li>{_('Přehled o svých oblíbených produktech')}</li>
+            </ul>
+
+            <div class="text-center">
+                <a href="/customer/register">{_('Chci se zaregistrovat')}</a><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

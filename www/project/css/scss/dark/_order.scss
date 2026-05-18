@@ -1,0 +1,22 @@
+.orderPreviewModal {
+    background-color: $dark-color-main;
+    .products {
+        .wrapper {
+            table{
+                tbody {
+                    tr {
+                        border: 1px solid #333333;
+                        border-left: none;
+                        border-right: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#orderStateTypeSelect {
+    .tab-item {
+        color: $dark-color-font;
+    }
+}

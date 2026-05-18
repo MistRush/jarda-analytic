@@ -1,0 +1,29 @@
+.block-editor-holder{
+  margin-top: -50px;
+}
+
+.block-editor{
+  input, select {
+    padding: 3px !important;
+    background: transparent;
+
+    &:focus{
+      background: transparent;
+      padding: 3px;
+      border: none !important;
+    }
+
+    &:hover{
+      background: transparent;
+      border: none !important;;
+    }
+  }
+
+  .gjs-input-unit{
+    border: none;
+  }
+
+  [data-gjs-type="image"] {
+    max-width: 100%;
+  }
+}

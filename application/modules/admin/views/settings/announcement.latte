@@ -1,0 +1,19 @@
+{layout "../layout.latte"}
+
+{block content}
+    {$announcementGrid->render()}
+{/block}
+
+{block scripts}
+    {include parent}
+    <script>
+        /**
+         * @namespace { Grid } grid
+         */
+        var grid;
+
+        $(function() {
+            grid = {$announcementGrid|noescape};
+        });
+    </script>
+{/block}

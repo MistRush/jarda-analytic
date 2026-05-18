@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<skipper version="3.2.36.1775" mvc="Without MVC" orm="Doctrine" name="denikpleti" uuid="9957af06-d0d7-43aa-9470-49f3d47289c7">
+  <external-module storage-path="modules/user/model.user.xml"/>
+  <external-module storage-path="modules/common/model.common.xml"/>
+  <external-module storage-path="modules/admin/model.admin.xml"/>
+  <visual-data>
+    <association uuid="0068014c-8db8-44d0-b284-c3c8847068fd" color="#969696" split="1"/>
+    <association uuid="01d0c977-f8e2-4bf7-ac13-c88347f5cbf2" caption1-position-x="0" caption1-position-y="2" center-position-x="0" center-position-y="-20" color="4288059030"/>
+    <association uuid="0354de08-b628-4f7a-91c6-6bf6afe5fc53" caption1-position-x="24" caption1-position-y="-47" center-position-x="-37" center-position-y="0" color="4288059030"/>
+    <association uuid="0426e622-add8-4aa6-99eb-fafd5a9e038c" caption1-position-x="1" caption1-position-y="1" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="072c1765-b0fa-4e3e-9d04-e54687b1a200" caption1-position-x="-4" caption1-position-y="0" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="087218d6-90ba-4027-9bec-e898723587df" caption1-position-x="13" caption1-position-y="0" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="0b3434d4-3e0a-4499-aab0-301bbccb7ebf" caption1-position-x="-60" caption1-position-y="5" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="0bec9445-81a5-4a37-96c8-86b75d72ead3" caption1-position-x="0" caption1-position-y="0" center-position-x="-39" center-position-y="0" color="4288059030"/>
+    <association uuid="0ca2ebef-ff9d-4b83-9fdf-a2930175bfbb" color="#969696" split="1"/>
+    <association uuid="120c3042-bcac-42b7-abf2-0f254ceadf79" color="4288059030"/>
+    <association uuid="13fa3aae-aff4-4d35-a4db-892eacdbf977" caption1-position-x="6" caption1-position-y="1" center-position-x="0" center-position-y="-20" color="4288059030"/>
+    <association uuid="148da92a-d66f-4e66-b03c-57c778ff6652" color="4288059030" split="1"/>
+    <association uuid="14de7fe7-b0b6-4e5d-99e2-deea9b8e4be3" color="#969696" split="1"/>
+    <association uuid="14fe10ee-dd81-4bb8-abda-e5cee2f692b4" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="1573c85a-587a-4bdd-afd2-d18c452dfb65" caption1-position-x="13" caption1-position-y="2" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="18faab48-84cd-47fd-851b-a3bdc9aa2250" color="4288059030" split="1"/>
+    <association uuid="1b9d63e2-253a-4ac6-8e19-dda1ff4ee2a6" color="4288059030"/>
+    <association uuid="1c1df170-825d-49cb-8aba-5827164fa760" color="4288059030" split="1"/>
+    <association uuid="1f023e14-44e5-444e-8d23-fe980bfa4415" caption1-position-x="-11" caption1-position-y="-4" center-position-x="0" center-position-y="-30" color="4288059030"/>
+    <association uuid="1f9377f9-4af1-437b-9923-5a9a2d1dc3a0" color="#969696" split="1"/>
+    <association uuid="211cc488-f25b-4731-b2bc-613c837c1704" color="#969696"/>
+    <association uuid="22ed690f-4f70-467b-ba02-013a1753fc73" color="#969696"/>
+    <association uuid="230b0c09-654a-4cf4-8ccc-1d218cc1e575" caption1-position-x="2" caption1-position-y="-9" center-position-x="-24" center-position-y="0" color="4288059030"/>
+    <association uuid="24f956ad-8b5d-4ada-b793-13be8cf5fafd" color="4288059030" split="1"/>
+    <association uuid="26c422ad-939d-4e26-96f7-3c361f3904d6" caption1-position-x="18" caption1-position-y="2" caption2-position-x="0" caption2-position-y="50" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="26cca770-0bd7-4b6c-a840-35d817f859a1" caption1-position-x="5" caption1-position-y="-3" center-position-x="0" center-position-y="-2" color="4288059030"/>
+    <association uuid="270a9d68-a46f-4748-8caa-734d62ddc44b" color="#969696" split="1"/>
+    <association uuid="2a4d4903-bcf1-437e-8836-fa20e6173238" color="4288059030" split="1"/>
+    <association uuid="2af115c4-0855-45b6-ba5f-ce0c6559fb68" color="4288059030" split="1"/>
+    <association uuid="2c1d410b-ef69-4b59-b858-19a97af21a4f" color="4288059030"/>
+    <association uuid="2cb645d7-584d-4f36-8789-538a73a7a368" color="4288059030" split="1"/>
+    <association uuid="2d10f5ce-51a7-4b70-873c-76b3caadd95e" color="#969696"/>
+    <association uuid="2e8ac578-c7d6-49f9-9ee1-cc80238d9ee4" caption1-position-x="19" caption1-position-y="0" center-position-x="0" center-position-y="-20" color="#969696"/>
+    <association uuid="2f8fa40b-0b77-4bcc-9893-bcdd5a2f0ac8" color="#969696" split="1"/>
+    <association uuid="2fb67a1a-0026-420c-b48d-be03c86e2635" color="#969696" split="1"/>
+    <association uuid="305597d0-3073-4c50-a4fe-f18331a714b3" color="#969696"/>
+    <association uuid="30dfd311-783a-4651-9725-71d14031d57d" color="#969696"/>
+    <association uuid="314b4e74-5a32-4b5e-a9ee-f177fd97ee91" color="4288059030" split="1"/>
+    <association uuid="31de9b11-0d49-494d-9437-72dc6e38158f" color="4288059030" split="1"/>
+    <association uuid="32205087-484b-41f6-afe3-43d551876993" color="4288059030"/>
+    <association uuid="32243ef8-d604-43c1-9b2b-9bf99b69bbe8" caption1-position-x="0" caption1-position-y="0" caption2-position-x="46" caption2-position-y="5" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="334fcd89-1ee8-4f41-9715-4705398f3b07" caption1-position-x="11" caption1-position-y="2" caption2-position-x="7" caption2-position-y="11" center-position-x="0" center-position-y="-67" color="4288059030" split="1"/>
+    <association uuid="337b78e4-d57d-46c8-b04c-f2d29af9dd8f" color="4288059030" split="1"/>
+    <association uuid="34a7f551-a44c-4266-a16a-57ff2ebc460e" color="#969696"/>
+    <association uuid="34c1ebd7-de64-4b0c-a93f-814a9714f9c1" color="#969696" split="1"/>
+    <association uuid="34fdbae1-0420-4cc7-afbc-393377de25e2" color="#969696" split="1"/>
+    <association uuid="379b49cb-929b-420c-bd94-d4f299194589" caption1-position-x="-15" caption1-position-y="1" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="38d90d3b-3381-4427-9957-7a841cbbcd2b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="3" color="4288059030"/>
+    <association uuid="3a18909b-6d6b-4921-85c7-5f80ab7ad3ae" caption1-position-x="-28" caption1-position-y="35" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="3d82b76a-4c8c-4c34-acf7-c033f7318a48" color="#969696" split="1"/>
+    <association uuid="3e66952a-bb1d-4162-b0b4-b3db2166e34e" color="4288059030" split="1"/>
+    <association uuid="3ec73dee-5821-4910-9934-694ec18eaeb8" caption1-position-x="27" caption1-position-y="-2" center-position-x="-41" center-position-y="0" color="4288059030"/>
+    <association uuid="43aafdcb-d781-4643-b291-03a1ff1c69b6" caption1-position-x="-10" caption1-position-y="-5" center-position-x="0" center-position-y="-47" color="4288059030" split="1"/>
+    <association uuid="45e257b3-a44d-4cb4-9f90-003aae13fa3e" caption1-position-x="-5" caption1-position-y="-121" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="46b45cdd-0414-46e0-8f77-fe5cf6c1c9be" color="#969696" split="1"/>
+    <association uuid="48030b49-07b9-4215-994c-5101f437c41b" color="#969696" split="1"/>
+    <association uuid="49806b6b-aa37-42f0-8a48-dc45a04c97c5" color="4288059030" split="1"/>
+    <association uuid="49823eef-e9b9-4fe6-9e9a-996924cf3fbf" caption1-position-x="34" caption1-position-y="-17" center-position-x="-43" center-position-y="0" color="4288059030"/>
+    <association uuid="49a137a3-a312-4854-b277-a25e0708a8e2" color="#969696" split="1"/>
+    <association uuid="4c0bcdca-e7f8-4a37-80c5-f3683ac3d5fa" color="#969696" split="1"/>
+    <association uuid="4ccda0cc-8425-45aa-9946-eee80ebb57fe" color="#969696"/>
+    <association uuid="5180d1eb-8166-4436-9d46-29e2398ac138" caption1-position-x="-22" caption1-position-y="4" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="55de38ff-59af-40a9-87c0-252c7d5f0ac0" color="4288059030" split="1"/>
+    <association uuid="560f30f9-8c2d-4796-8f77-77d15bd09c71" color="4288059030" split="1"/>
+    <association uuid="568bd046-056f-45b9-81fc-e8395254e742" caption1-position-x="-19" caption1-position-y="-59" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="57854073-4953-423a-8d00-b1697e25a5e6" color="#969696" split="1"/>
+    <association uuid="579102dd-0e7f-4924-9e23-f6977c8b6e61" center-position-x="2" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="58736160-10cc-4c4a-a7a7-5a6e30c49e8a" color="4288059030"/>
+    <association uuid="5a92a021-750f-491c-98e7-4a464a2f5ba7" color="#969696" split="1"/>
+    <association uuid="5ac27cf3-473d-4f08-83a5-7cfa7abd8bac" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="1" color="#969696" split="1"/>
+    <association uuid="5db72d2f-fae2-411b-a86e-7084b6fd4809" color="#969696"/>
+    <association uuid="5f1b6520-de48-4d7f-b6c6-0c2c150ac8b6" caption1-position-x="27" caption1-position-y="2" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="614e772b-3bb1-4180-a376-e5167773e154" color="4288059030" split="1"/>
+    <association uuid="6153bfa0-6d3b-49ab-b1c5-6fbb1fb9d6b8" color="#969696"/>
+    <association uuid="61a2f547-8f04-484c-9339-a8bd244dc26f" caption1-position-x="31" caption1-position-y="6" caption2-position-x="0" caption2-position-y="0" center-position-x="3" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="64eebac1-f157-4efc-bfe4-0ee5f35ed1af" caption1-position-x="0" caption1-position-y="0" center-position-x="1" center-position-y="0" color="4288059030"/>
+    <association uuid="656c0b7e-dd41-4b37-b1a9-80f6075e96ee" color="#969696" split="1"/>
+    <association uuid="6572a3e0-4003-4a21-83ba-e482bc946b64" color="#969696" split="1"/>
+    <association uuid="660a0da0-842c-4682-baf8-8d7fd652d366" caption1-position-x="4" caption1-position-y="76" center-position-x="-34" center-position-y="0" color="4288059030"/>
+    <association uuid="6af7ed1c-b247-4ccd-98f3-ab99fc763164" color="4288059030"/>
+    <association uuid="6b1eb8ff-2036-48f4-8e51-ccc5890e019b" color="4288059030"/>
+    <association uuid="6b311984-673d-4e6b-aa04-44c0cd7d7f90" color="#969696" split="1"/>
+    <association uuid="6b4bbe7c-b4d6-4a1a-898f-034bd6e59486" center-position-x="-34" center-position-y="0" color="#969696"/>
+    <association uuid="6bcd88dc-f74c-4b2d-8032-ea20f8c96169" caption1-position-x="0" caption1-position-y="0" caption2-position-x="6" caption2-position-y="-14" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="6d9734fa-df46-45e2-857e-caad69fe686f" color="4288059030" split="1"/>
+    <association uuid="706d9248-9d74-4d15-8230-acc41054cc51" color="#969696" split="1"/>
+    <association uuid="76e5fcf5-bd9f-4dca-a0bf-929bf92a79d2" color="4288059030" split="1"/>
+    <association uuid="7938cba3-c483-4bfc-9e33-d0fcc53220d9" color="4288059030"/>
+    <association uuid="79728bf8-fde1-4c5f-894a-56f3306b0ec7" color="4288059030" split="1"/>
+    <association uuid="7a35064a-4b9c-4c59-9f05-1e725749d0ac" color="4288059030"/>
+    <association uuid="7e593eec-9fc2-4e9d-a7b4-00d2f266fcac" caption1-position-x="21" caption1-position-y="9" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="816e082f-566f-425d-99bf-c1a3f10a539e" color="#969696" split="1"/>
+    <association uuid="819875aa-aa79-4bca-b2e5-de52edeeccda" color="#969696" split="1"/>
+    <association uuid="82ac9d7f-2358-4b7f-ab6c-5e3ec35b3083" caption1-position-x="0" caption1-position-y="0" caption2-position-x="43" caption2-position-y="1" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="82e58321-2098-49ab-a092-b15c9b4c6dc4" color="4288059030" split="1"/>
+    <association uuid="83d00d4f-9e66-4272-bb2e-c23e44b1f998" caption1-position-x="29" caption1-position-y="0" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="83f20fbb-e53b-44ae-9c9c-f5a61f60a346" caption1-position-x="10" caption1-position-y="38" center-position-x="28" center-position-y="0" color="4288059030"/>
+    <association uuid="84fc1582-20cf-442c-9c7b-4cbdec6f10fd" caption1-position-x="0" caption1-position-y="-1" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="85574bfb-01f7-44e5-ad77-d64b86cb9538" color="#969696" split="1"/>
+    <association uuid="88662b99-238b-4ee3-9c80-ec5e763b2e40" color="4288059030" split="1"/>
+    <association uuid="88fe65bb-3714-47bf-b8a5-988b1b43a016" color="#969696"/>
+    <association uuid="8b10d93f-fbf7-4799-a753-ea2f4a25256a" color="4288059030" split="1"/>
+    <association uuid="8b316369-132b-47fd-b8a3-7eaf9ae5c12a" caption1-position-x="-10" caption1-position-y="-1" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="8ba2f269-aa6f-4db2-ac34-697f7c7abecd" caption1-position-x="-13" caption1-position-y="1" center-position-x="0" center-position-y="-20" color="4288059030"/>
+    <association uuid="8cb8e247-bd81-4027-b194-26c8e8fa65c5" color="4288059030"/>
+    <association uuid="8dfcf366-c77d-4926-a2e4-e7aea61e1608" caption1-position-x="42" caption1-position-y="4" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="8f1d36d2-dd2f-4b07-99e5-68c5cdf42cfe" caption1-position-x="-3" caption1-position-y="5" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="904a2a02-8a4c-4662-a5b0-a0daebc77893" color="4288059030"/>
+    <association uuid="91d7f9d9-0b7b-4c5e-8c8b-e574635d2249" color="#969696"/>
+    <association uuid="924d1713-d8b0-4f2e-b4b9-a855131cc876" color="#969696"/>
+    <association uuid="9349b0f6-818a-402d-91d3-b3f3f38f15b9" caption1-position-x="0" caption1-position-y="0" center-position-x="-48" center-position-y="0" color="#969696"/>
+    <association uuid="938d3a61-3c8b-4727-adb3-4f2f4b8a297b" caption1-position-x="0" caption1-position-y="1" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="94d0dea5-5a0d-402f-b0b3-2e94c4c1f1f2" color="4288059030"/>
+    <association uuid="959f0eb9-f097-468c-a9aa-2aee014f6734" color="4288059030" split="1"/>
+    <association uuid="95ea3b14-1179-4959-83b7-978c24e60455" color="#969696"/>
+    <association uuid="9829007b-3c9f-4338-a462-a232bdd303f0" color="#969696" split="1"/>
+    <association uuid="9a949d58-27ba-49e8-b2d5-beb316b21d14" color="4288059030" split="1"/>
+    <association uuid="9b18e6f1-9e08-4e82-b39a-73db52c7e25a" caption1-position-x="15" caption1-position-y="-1" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="9cf6f807-1fbf-4448-879e-1fc43339b90f" caption1-position-x="0" caption1-position-y="0" caption2-position-x="2" caption2-position-y="2" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="a232e6b6-739f-4d60-8b76-0c371aa38b97" color="4288059030"/>
+    <association uuid="a29a215c-40e5-446a-8363-bd9350dbd3ac" caption1-position-x="53" caption1-position-y="34" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="a3233c5f-167e-4410-ba44-b7ccf183181a" color="#969696" split="1"/>
+    <association uuid="a4a672b3-eba2-4105-8643-2ca5150b7ad6" color="4288059030" split="1"/>
+    <association uuid="a5ef3eb3-7ced-4d58-8b53-4aaf31edc972" color="#969696" split="1"/>
+    <association uuid="a6c97eee-b535-43f8-8eed-72e3d6de3336" color="4288059030" split="1"/>
+    <association uuid="a7c476ef-0cbb-499b-9c9b-cb1458e31e82" caption1-position-x="19" caption1-position-y="9" caption2-position-x="-20" caption2-position-y="-9" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="a9f58c8d-db66-45a3-a5f7-7f4252491b28" caption1-position-x="35" caption1-position-y="0" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="aa673511-2470-4de6-8764-14846eafa46e" color="#969696" split="1"/>
+    <association uuid="aa7fc0d8-2ede-4cca-90f6-6e123a135fdd" caption1-position-x="0" caption1-position-y="0" center-position-x="-3" center-position-y="0" color="4288059030"/>
+    <association uuid="aa8d01f9-5016-4aa8-80b8-2b6101657c79" color="4288059030" split="1"/>
+    <association uuid="aa9967eb-edce-4ef4-b1e3-f37625711ad1" color="4288059030" split="1"/>
+    <association uuid="ac119d1e-ebff-4c39-a79c-3ae0558ae0cd" color="4288059030" split="1"/>
+    <association uuid="adaaefb6-5e26-4261-8cd3-8109d465c7ff" caption1-position-x="24" caption1-position-y="-2" center-position-x="-33" center-position-y="0" color="4288059030"/>
+    <association uuid="addffb01-6b3a-4762-b2a2-3c01d55fcc5d" color="#969696"/>
+    <association uuid="b1985304-63ac-476d-9fb7-09742d8b2ba4" color="4288059030" split="1"/>
+    <association uuid="b2fbe218-7645-4ba7-81b6-ccb06ef9d4bb" color="4288059030" split="1"/>
+    <association uuid="b3cf4358-92ba-4958-ac93-97c668d0685a" color="4288059030"/>
+    <association uuid="b5142f88-20ba-4050-b06e-2eeb3695cf57" color="4288059030" split="1"/>
+    <association uuid="b73bab73-7a4e-44e5-b7d6-e4a7b6a1aa5e" center-position-x="2" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="b83da1b4-ef3b-451d-bf05-050b3dc8bbfd" caption1-position-x="0" caption1-position-y="0" caption2-position-x="30" caption2-position-y="3" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="bac957aa-d443-42dd-a401-d3f4741a15ec" caption1-position-x="0" caption1-position-y="0" caption2-position-x="29" caption2-position-y="2" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="bbcd4038-b139-4ad3-9383-3ee6ed9f7e01" caption1-position-x="-13" caption1-position-y="0" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="bc45dc56-0f51-4218-b1b1-ca3d51b7de67" color="4288059030" split="1"/>
+    <association uuid="bce4591c-e99e-4014-bd7a-471f9a32511c" caption1-position-x="-28" caption1-position-y="0" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="bef43375-40ec-4f8e-a29b-77e1dd16beda" caption1-position-x="36" caption1-position-y="-1" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <association uuid="c0a17e48-ce65-4e22-8c9d-f1ab20e16fa4" color="4288059030"/>
+    <association uuid="c1cb93e9-d5e6-4996-8571-439256108235" color="4288059030" split="1"/>
+    <association uuid="ca628ca0-c6f1-4a61-a336-0e5b1ba65c93" color="#969696"/>
+    <association uuid="cbd3a51b-d6df-4a82-8a67-cbaa7afa1980" color="#969696"/>
+    <association uuid="cd5d06a5-d998-4eaf-9bbc-496a7aec7a70" color="#969696" split="1"/>
+    <association uuid="d0394c1e-1915-424d-9dda-c924c85d9f08" color="4288059030" split="1"/>
+    <association uuid="d4f4218c-a1e2-4bb4-9d4e-ecdeb12c0a50" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-20" color="4288059030"/>
+    <association uuid="d4fe9060-7be4-4b45-8301-eb9425b2ddcc" color="4288059030" split="1"/>
+    <association uuid="d632e52e-01b2-44ee-a065-ecfec4f14b5f" color="4288059030" split="1"/>
+    <association uuid="d6d3d924-13a2-40df-80ea-742fd46d8173" color="4288059030" split="1"/>
+    <association uuid="d6d6b8db-7c96-499a-ac00-caf9480bca36" color="4288059030" split="1"/>
+    <association uuid="db186da2-6d31-4f74-b4f7-90864e6f52d7" color="4288059030" split="1"/>
+    <association uuid="db499cbc-f2b8-4cb7-8504-4215d19133ce" color="#969696" split="1"/>
+    <association uuid="dc0464f9-e8c8-4a79-8949-d73d31879b3b" color="#969696" split="1"/>
+    <association uuid="dc7fcde1-d5e0-4b1c-b1a2-a3b868b2914f" color="#969696" split="1"/>
+    <association uuid="de22ca07-c904-48a5-9738-de8d80a15c2a" caption1-position-x="-11" caption1-position-y="8" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="de90380a-cea9-43ec-97cf-495a4302981f" color="4288059030" split="1"/>
+    <association uuid="df0d7b27-cb28-4a82-a070-b1f75f2c1a00" color="4288059030" split="1"/>
+    <association uuid="df3c3cea-d292-4327-90ab-f3efddabea95" color="4288059030" split="1"/>
+    <association uuid="df62e1c2-cbf8-4dba-bf74-ca8a8dd49810" color="4288059030" split="1"/>
+    <association uuid="e072a483-e195-41c1-b76d-d7066772f931" color="4288059030" split="1"/>
+    <association uuid="e544391a-aed6-47e8-87c1-dfd6e1a6a8bf" caption1-position-x="0" caption1-position-y="-2" caption2-position-x="-3" caption2-position-y="1" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="e5b174d0-243e-49dd-99b8-b9f190983562" color="4288059030" split="1"/>
+    <association uuid="e745dcc3-78b0-4974-a3f0-892d64d226fd" color="4288059030" split="1"/>
+    <association uuid="e7c04c75-3a1e-4eed-a061-c8dde9fb25cb" color="#969696" split="1"/>
+    <association uuid="e9981242-348f-4885-b436-56777db3243c" color="#969696" split="1"/>
+    <association uuid="ea5089d8-1a81-4886-88f9-7ce71fd7d64f" color="#969696" split="1"/>
+    <association uuid="eae6e461-aa4f-40a1-94e8-58d9dd7fb0c6" color="4288059030" split="1"/>
+    <association uuid="ebd25063-51dc-4551-a689-ea9ba79f09ea" color="4288059030" split="1"/>
+    <association uuid="ed18b46c-3edc-4de6-a32f-d763770d30e1" caption1-position-x="0" caption1-position-y="0" center-position-x="104" center-position-y="0" color="4288059030"/>
+    <association uuid="f3ae33e1-800f-43f8-9e15-10eb2fc22762" color="#969696" split="1"/>
+    <association uuid="f4489c4a-426b-4171-9908-21d445b9fc4a" color="4288059030" split="1"/>
+    <association uuid="f7502187-4422-4241-8ad5-3516ccf82747" color="#969696"/>
+    <association uuid="fa03f734-cb22-4486-9336-24da1ef37fc5" caption1-position-x="-20" caption1-position-y="1" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="4288059030" split="1"/>
+    <association uuid="fb401c4c-0432-497f-a0ac-4bc95af98914" caption1-position-x="-3" caption1-position-y="3" center-position-x="0" center-position-y="-35" color="4288059030" split="1"/>
+    <association uuid="fc9313c6-f963-4325-9e13-c7cf921e04f9" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-1" color="#969696"/>
+    <association uuid="fd336e0a-0f74-4d2c-b2c5-f8fd7d2f469b" caption1-position-x="-6" caption1-position-y="4" center-position-x="0" center-position-y="0" color="4288059030"/>
+    <module uuid="0197fe49-8276-4331-881a-89099d3430de" position-x="-242" position-y="-6"/>
+    <module uuid="22c7c8d0-f235-4e63-9770-ef17a6000a5f" position-x="-492" position-y="538"/>
+    <module uuid="fb772055-96a8-40c1-bb05-c9636b76b8c0" position-x="816" position-y="-64"/>
+    <project uuid="9957af06-d0d7-43aa-9470-49f3d47289c7" size-x="569" size-x2="2984" size-y="50" size-y2="3140"/>
+  </visual-data>
+</skipper>

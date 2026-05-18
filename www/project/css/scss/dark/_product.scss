@@ -1,0 +1,80 @@
+#product-detail{
+  .number{
+    background-color: #ffffff0d;;
+  }
+
+  .wrapper {
+    background-color: #ffffff0d;;
+  }
+  
+  .oem{
+    .code, .show-more {
+      background: #ffffff0d;;
+    }
+  
+    .show-more {
+      color: $color-font;
+      text-decoration: none;
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        background: $color-main!important;
+        color: darken($color-font,5);
+      }
+
+      .ci {
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
+  .price-row{
+    background-color: #ffffff0d;
+  }
+}
+
+#productList-filter {
+  background-color: $color-main-lighter;
+}
+
+.right-popup {
+  &.product-popup {
+    .product-popup-content {
+      .product-info {
+        .row {
+          .btn.btn-outline-green {
+            &:hover {
+              color: $color-font;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#added-to-cart table thead th{
+  background-color: #ffffff0d;
+}
+
+#added-to-cart {
+  .heading {
+    color: $color-font;
+  }
+
+  table {
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: $color-main;
+        }
+      }
+    }
+  }
+}
+
+
+#product-unavailable {
+  .heading, p {
+    color: $color-font;
+  }
+}

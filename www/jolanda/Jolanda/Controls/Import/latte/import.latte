@@ -1,0 +1,56 @@
+{varType Jolanda\Controls\Import\Import $import}
+<div id="{$import|noescape}">
+    <div class="import__uploader" style="display: none;">
+        <div class="import__upload">
+            <input type="file" class="import__upload__input" id="input_{$import->getUID()|noescape}"
+                   accept="{$import->getInputAccept()}">
+            <label for="input_{$import->getUID()|noescape}" class="import__upload__label">{jlang "SELECT_FILE"}</label>
+        </div>
+        <button type="button" class="import__list btn btn-primary" id="list_{$import->getUID()|noescape}">
+            <i class="ci ci-files btn-ci"></i>
+            {jlang "SELECT_FROM_HISTORY"}
+            <span class="import__list__count">{$import->getFileCount()}</span>
+        </button>
+        <div class="import__progress" style="--percentage: 0;display:none;" data-status=""></div>
+    </div>
+    <div class="import__list__file" style="display: none;">
+        <button type="button" class="import__reset btn btn-outline-red">
+            <i class="ci ci-file btn-ci"></i>
+            {jlang "UPLOAD_FILE"}
+        </button>
+        {$import->getFileGrid()->render()}
+    </div>
+    <div class="import__selected" style="display: none;">
+        {$import->getForm()->render()}
+        <div class="import__selected__item">
+            <span class="import__selected__item__filename">-</span>
+            <button type="button" class="import__reset btn btn-outline-red">
+                <i class="ci ci-refresh btn-ci"></i>
+                {jlang "CHANGE"}</button>
+        </div>
+        <div class="import__selected__item__data">
+
+        </div>
+        <button id="import_{$import->getUID()}_submit" class="btn btn-red"><i class="ci ci-import btn-ci"></i>{jlang "IMPORT"}</button>
+        {if $import->hasOutput()}
+            <button id="import_{$import->getUID()}_download" data-download-output="" style="display: none;" class="btn btn-dark ml-3"><i class="ci ci-download btn-ci"></i>{jlang "DOWNLOAD_OUTPUT"}</button>
+        {/if}
+    </div>
+</div>
+
+<script>
+    window["import_" + {$import->getUID()}] = null;
+
+    window["import_" + {$import->getUID()} + "_formatSize"] = function (val) {
+        return Helpers.humanFileSize(val);
+    }
+
+    $(function () {
+        window["import_" + {$import->getUID()}] = new {$import->getClass()|noescape}({$import->getUID()});
+        window["import_" + {$import->getUID()}].setReturnBlob({$import->getReturnBlob()});
+        window["import_" + {$import->getUID()}].setType({$import->getType()});
+        window["import_" + {$import->getUID()}].setHandleUrl({$import->getHandleURL()});
+        window["import_" + {$import->getUID()}].setColumns({$import->getColumns(true)|noescape});
+        window["import_" + {$import->getUID()}].init();
+    })
+</script>

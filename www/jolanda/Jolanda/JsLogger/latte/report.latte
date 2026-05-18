@@ -1,0 +1,24 @@
+<div>
+    <h1>JS - Na stránce se vyskytly chyby (js)</h1>
+    <p>WEB: {$serverName}</p>
+    <b>Chyby:</b>
+    <div style="color: red">
+        {foreach $errors as $source => $sourceErrors}
+            <p>SOURCE: {$source}</p>
+            {foreach $sourceErrors as $errorMessage => $errorData}
+                <p>ERROR: {$errorMessage} ({$errorData['count']}x)</p>
+                <p>DETAILS: {$errorData['error']}</p>
+                <p>URL Params: {$errorData['params']}</p>
+                <p>User Agent: {$errorData['userAgent']}</p>
+
+                <p>URLS:</p>
+                <ul>
+                    {foreach $errorData['urls'] as $url => $count}
+                        <li>{$url} ({$count}x)</li>
+                    {/foreach}
+                </ul>
+            {/foreach}
+            <br>
+        {/foreach}
+    </div>
+</div>

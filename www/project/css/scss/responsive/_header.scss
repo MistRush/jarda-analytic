@@ -1,0 +1,73 @@
+@media (max-width: 768px) {
+  header {
+    .right {
+      .videohelp {
+        position: inherit;
+
+        .content {
+          left: 15px;
+          right: 15px;
+          width: auto;
+          transform: none;
+          margin-top: 0;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+
+      .user-info {
+        .user {
+          .role {
+            .loginBack {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &>.loginBack {
+        margin-right: 10px;
+        height: 14px;
+        display: block;
+      }
+    }
+    .cartContainer {
+      .content {
+        display: none!important;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 575px) {
+  header {
+    .right {
+      .mac-dropdown>a {
+        padding: 7px 4px;
+        width: 30px;
+
+        span {
+          display: none;
+        }
+
+        .ci {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 349px) {
+  header {
+    .right {
+
+      .mac-dropdown {
+        display: none;
+      }
+    }
+  }
+}

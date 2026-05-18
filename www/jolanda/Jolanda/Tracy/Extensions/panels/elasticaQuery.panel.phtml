@@ -1,0 +1,16 @@
+<?php if ($data) {
+    $maxDepth = \Tracy\Debugger::$maxDepth;
+    \Tracy\Debugger::$maxDepth = 10;
+    ?>
+<h1>Elastica query</h1>
+
+<div class="tracy-inner">
+    <div class="tracy-inner-container">
+        <?php foreach ($data as $k => $v) { ?>
+            <p><?php dump($v) ?></p>
+        <?php } ?>
+    </div>
+</div>
+<?php
+    \Tracy\Debugger::$maxDepth = $maxDepth;
+} ?>

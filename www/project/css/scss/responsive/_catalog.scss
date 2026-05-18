@@ -1,0 +1,146 @@
+#productCatalog {
+  @media only screen and (max-width: 991px) {
+    
+    .catalog {
+      .wrapper {
+        overflow-x: auto;
+        max-width: 100%;
+        padding: 0 0 5px;
+        @include scrollbar(#F9FAFC, $color-green);
+
+        .products {
+          width: max-content;
+
+          .header {
+            min-width: 570px;
+          }
+        }
+      }
+    }
+
+    .head {
+      ul {
+        li {
+          a {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    padding: 20px 15px 35px;
+
+    .catalog {
+      .part-number {
+        flex-direction: column;
+
+        .ci-search {
+          top: 25%;
+        }
+
+        select {
+          display: block;
+        }
+      }
+
+      .wrapper {
+        .products {
+          .header {
+            min-width: 470px;
+          }
+
+          .row.header, .tbody>.row {
+            .col:nth-child(2) {
+              display: none;
+            }
+
+            .col {
+              font-size: 12px;
+              &:nth-child(2) {
+                display: none;
+              }
+
+              &:nth-child(3) {
+                max-width: 125px;
+              }
+
+              &:nth-child(5), &:nth-child(6), &:nth-child(7) {
+                max-width: 75px;
+              }
+
+              &:not(:first-child):last-child {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .head {
+      flex-flow: column;
+      ul {
+        li {
+          a {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 525px) {
+
+    .head {
+      ul {
+        margin-top: 10px;
+        display: block;
+        li {
+          display: block;
+          text-align: center;
+
+          a {
+            padding: 3px 10px;
+          }
+        }
+      }
+    }
+
+    .catalog {
+      .part-number {
+        flex-flow: wrap;
+        justify-content: stretch;
+
+        select {
+          width: 100%;
+        }
+
+        .fa-search {
+          top: 20px;
+        }
+      }
+
+      .wrapper {
+        .products {
+          .row {
+            font-size: 12px;
+          }
+
+          .tbody {
+            min-height: 300px;
+            max-height: 300px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 425px) {
+    .catalog {
+      .didyouknow {
+        font-size: 10px;
+      }
+    }
+  }
+}

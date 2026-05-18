@@ -1,0 +1,10 @@
+.latest-news-container {
+    margin: 0;
+    padding: 30px 0;
+}
+
+@media (max-width: 768px) {
+    .latest-news-container {
+        padding: 0;
+    }
+}

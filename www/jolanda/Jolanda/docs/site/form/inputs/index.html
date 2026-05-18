@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Formulářové prvky - Jolanda</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Formul\u00e1\u0159ov\u00e9 prvky";
+        var mkdocs_page_input_path = "form/inputs.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Jolanda
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/install/">Instalace</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy-ide/">Integrace Tracy s IDE</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy/">Instalace Tracy panelů</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PHP</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Grid</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/grid/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/columns/">Sloupce</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Formuláře</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../form/">Úvod</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Formulářové prvky</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#addajaxcomboboxstore">addAjaxComboBoxStore</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setselectwidth">setSelectWidth</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addboolradiobutton">addBoolRadioButton</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addcheckbox">addCheckBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addcomboboxenum">addComboBoxEnum</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setselectwidth_1">setSelectWidth</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addcomboboxstore">addComboBoxStore</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setselectwidth_2">setSelectWidth</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addcurrencybox">addCurrencyBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adddatebox">addDateBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addeditor">addEditor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addempty">addEmpty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addfilebox">addFileBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addmultifilebox">addMultiFileBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addfloatingpointbox">addFloatingPointBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addhidden">addHidden</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addnumericbox">addNumericBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addpassword">addPassword</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addradiobutton">addRadioButton</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addtextarea">addTextArea</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addtextbox">addTextBox</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#addblockeditor">addBlockEditor</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#bloky">Bloky</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addtimebox">addTimeBox</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../input-options/">Možnosti prvků</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../validation/">Validace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Editor</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/editor/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/fields/">Prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/js/">JavaScript API</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/quickeditor/">QuickEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Status Manager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/usage/">Použití</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/statusmanager/">Třída StatusManager</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/status/">Třída Status</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Import</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/uvod/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/import/">Třída Import</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/importBase/">Třída ImportBase</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">JsLogger</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../jslogger/usage/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">FileManager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../filemanager/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Šablony (Latte)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/common/">Obecné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/filters/">Filtry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/macros/">Makra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/migration/">Migrace 2 -> 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/typehints/">Typehints</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">JavaScript</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/dialog/">Dialog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/panel/">Panel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/cookie/">Cookie</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/alerts/">Alerts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/helpers/">Pomocníci</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Jolanda</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">PHP</li>
+          <li class="breadcrumb-item">Formuláře</li>
+      <li class="breadcrumb-item active">Formulářové prvky</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="seznam-formularovych-prvku">Seznam formulářových prvků</h1>
+<h2 id="addajaxcomboboxstore">addAjaxComboBoxStore</h2>
+<p><code>addAjaxComboBoxStore(string $name, ?string $label = null, array $storeUrl = ['module' =&gt; 'admin'], string $storeField = 'Name',?string $depends, bool $required = false)</code></p>
+<p>Přidává dynamický select box, který je závislý na jiném select boxu. Tzn. jeho hodnoty se z manageru načtou až po výběru hodnoty nadřezeného selectboxu.</p>
+<p>V parametru <em>$storeUrl</em> nastavujeme cestu k manageru (modul a controller). Parametr <em>$storeField</em> je název sloupce, ze kterého budeme brát zobrazované hodnoty a parametrem <em>$depends</em> nastavujeme ID(Name) nadřazeného prvku.</p>
+<p>Pokud chceme využít select box samostatně, nastavíme parametr depends na null.</p>
+<p>Z vyhledávácího okna pak select box posílá do ajaxového požadavku parametr '<em>q</em>'. Musíme pak ale definovat, jak má manager s tímto parametrem '<em>q</em>' dále pracovat (funkce onDataList). Například si do <em>$storeUrl</em> přidat parametr 'SearchAs' =&gt; 'colummn_name' a ve funkci <em>onDataList</em> si k tomu napsat potřebnou logiku.</p>
+<h3 id="setselectwidth">setSelectWidth</h3>
+<p><code>setSelectWidth($width = 165): ComboBox</code></p>
+<p>Nastavení šírky selectBoxu. Můžeme nastavit číslo (165 = '165px'), nebo jako string ('100%', '165px')</p>
+<h2 id="addboolradiobutton">addBoolRadioButton</h2>
+<p><code>addBoolRadioButton(string $name, ?string $label = null, bool $noneOption = false)</code></p>
+<p>Přidá přepinací tlačítka pro boolean hodnoty (Ano / Ne). Parametrem <em>$noneOption</em> můžeme přidat třetí možnost None s hodnotou null.</p>
+<pre><code class="language-php">$group-&gt;addBoolRadioButton('bool_radio', 'Bool radio input');
+</code></pre>
+<h2 id="addcheckbox">addCheckBox</h2>
+<p><code>addCheckBox(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidá zaškrtávací políčko. Políčko vrací hodnotu buď true nebo false, podle toho, zda je zaškrtnuté či nikoliv.</p>
+<pre><code class="language-php">$group-&gt;addCheckBox('checkbox_input', 'Checkbox input');
+</code></pre>
+<h2 id="addcomboboxenum">addComboBoxEnum</h2>
+<p><code>addComboBoxEnum(string $name, ?string $label = null, array $enumValues = [], bool $required = false, $multi = false)</code></p>
+<p>Přidá select box se statickými hodnotami. Pole nabízených hodnot předáme jako třetí parametr. Parametr <em>$multi</em> umožníme výběr více možností.</p>
+<pre><code class="language-php">$group-&gt;addComboBoxEnum('select', 'Statický select', ['1' =&gt; 'One', '2' =&gt; 'Two', '3' =&gt; 'Three']);
+</code></pre>
+<h3 id="setselectwidth_1">setSelectWidth</h3>
+<p><code>setSelectWidth($width = 165): ComboBox</code></p>
+<p>Nastavení šírky selectBoxu. Můžeme nastavit číslo (165 = '165px'), nebo jako string ('100%', '165px')</p>
+<h2 id="addcomboboxstore">addComboBoxStore</h2>
+<p><code>addComboBoxStore(string $name, ?string $label = null, array $storeUrl = ['module' =&gt; 'admin'], string $storeField = 'Name', bool $required = false)</code></p>
+<p>Přidá select box s dynamickými hodnotami branými z Clevis Manageru. </p>
+<p>V parametru <em>$storeUrl</em> nastavujeme cestu k manageru (modul a controller). Parametr <em>$storeField</em> je název sloupce, ze kterého budeme brát zobrazované hodnoty</p>
+<h3 id="setselectwidth_2">setSelectWidth</h3>
+<p><code>setSelectWidth($width = 165): ComboBox</code></p>
+<p>Nastavení šírky selectBoxu. Můžeme nastavit číslo (165 = '165px'), nebo jako string ('100%', '165px')</p>
+<p>Parametrem <em>$multi</em> umožníme výběr více možností.</p>
+<pre><code class="language-php">$group-&gt;addComboBoxStore('select-dynamic', 'Dynamický select', [
+            'module' =&gt; 'admin',
+            'controller' =&gt; 'employee'
+        ], 'Name');
+</code></pre>
+<h2 id="addcurrencybox">addCurrencyBox</h2>
+<p><code>addCurrencyBox(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přídá pole pro zadávání float hodnoty, která je při odeslání vynásobena číslem 100.</p>
+<h2 id="adddatebox">addDateBox</h2>
+<p><code>addDateBox(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidá políčko pro výběr data. Datum je zobrazováno ve formátu DD. MM. YYYY a při odeslání formuláře je přeformátováno do podoby YYYY-MM-DD.</p>
+<pre><code class="language-php">$group-&gt;addDateBox('date', 'Datebox');
+</code></pre>
+<h2 id="addeditor">addEditor</h2>
+<p><code>addEditor(string $name, ?string $label = null)</code></p>
+<p>Přidává pole s WYSIWYG tinyMCE editorem.</p>
+<pre><code class="language-php">$group-&gt;addEditor('editor', 'Editor');
+</code></pre>
+<p>Vlastní parametry do tinyMCE</p>
+<pre><code class="language-php">$baseParams['tiniMceCustomParams'] = [
+    'color_map' =&gt; [        
+        '000000', 'Black',        
+        '808080', 'Gray',        
+        'FFFFFF', 'White',        
+        'FF0000', 'Red',        
+        'FFFF00', 'Yellow',        
+        '008000', 'Green',        
+        '0000FF', 'Blue'    
+    ],
+];
+</code></pre>
+<h2 id="addempty">addEmpty</h2>
+<p><code>addEmpty()</code></p>
+<p>Přidává prázdné pole. Vhodné pro vytvoření mezery a oddělení prvků v případě rozložení do více sloupců.</p>
+<pre><code class="language-php">$group-&gt;addEmpty();
+</code></pre>
+<h2 id="addfilebox">addFileBox</h2>
+<pre><code class="language-php">$form-&gt;addFileBox(string $name, ?string $label = null, array $fileUploadUrl = [ 'module' =&gt; 'common', 'controller' =&gt; 'file', 'action' =&gt; 'upload' ])
+</code></pre>
+<p>Přidá políčko pro upload souboru. Parametrem <em>$fileUploadUrl</em> nastavujeme URL, na kterou se má soubor odeslat.</p>
+<p>Je možné taky zapnout náhled obrázku (čtvrtý parametr jestli hcceem povolit náhled, poslední parametr je cesta k souboru)</p>
+<pre><code class="language-php">$form-&gt;addFileBox('File_ID', translate('Obrázek: '), [
+    'module' =&gt; 'common',
+    'controller' =&gt; 'file',
+    'action' =&gt; 'upload',
+    'nowatermark' =&gt; '1'
+], true, _bu() . '/files/images/800/');
+</code></pre>
+<p>Filebox nemá žádná validační pravidla. Nelze na něj tedy použít setRequired, parametr $required nebo addRule</p>
+<pre><code class="language-php">$group-&gt;addFileBox('file', 'Filebox');
+</code></pre>
+<h2 id="addmultifilebox">addMultiFileBox</h2>
+<p><code>addMultiFileBox(string $name, ?string $label = null, array $fileUploadUrl = [ 'module' =&gt; 'common', 'controller' =&gt; 'file', 'action' =&gt; 'upload' ], $callback, array $options)</code></p>
+<p>Možnost přidávat více souborů najednou. Pro lepší pužití je zde parametr <em>$options</em>, do kterého dáme pole ['url' =&gt; 'url k provázané tabulce', 'identifier' =&gt; 'jméno sloupce v této tabulce k původnímu sloupci ID hlavní entity']</p>
+<pre><code class="language-php"> $editor-&gt;addMultiFileBox(&quot;File_ID&quot;, translate(&quot;Fotky:&quot;), [
+            'module' =&gt; 'common',
+            'controller' =&gt; 'file',
+            'action' =&gt; 'upload-photo-for-order-state'
+        ], options: [
+            'url' =&gt; 'admin/order-image',
+            'identifier' =&gt; 'OrderState_ID'
+        ]);
+</code></pre>
+<h2 id="addfloatingpointbox">addFloatingPointBox</h2>
+<p><code>addFloatingPointBox(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidává pole pro zadávání hodnoty s desetinnou čárkou.</p>
+<h2 id="addhidden">addHidden</h2>
+<p><code>addHidden(string $name)</code></p>
+<p>Přidává neviditelný input.</p>
+<pre><code class="language-php">$group-&gt;addHidden('hidden');
+</code></pre>
+<h2 id="addnumericbox">addNumericBox</h2>
+<p><code>addNumericBox(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidá políčko pro zadání celočíselného čísla.</p>
+<pre><code class="language-php">$group-&gt;addNumericBox('numeric', 'Numeric box');
+</code></pre>
+<h2 id="addpassword">addPassword</h2>
+<p><code>addPassword(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidá políčko pro zadání hesla.</p>
+<pre><code class="language-php">$group-&gt;addPassword('password', 'Password');
+</code></pre>
+<h2 id="addradiobutton">addRadioButton</h2>
+<p><code>addRadioButton(string $name, ?string $label = null, array $items = [])</code></p>
+<p>Přidá seznam s přepinacími tlačítky. Pole hodnot předáváme třetím parametrem.</p>
+<pre><code class="language-php">$group-&gt;addRadioButton('radio', 'Radio', ['1' =&gt; 'One', '2' =&gt; 'Two', '3' =&gt; 'Three']);
+</code></pre>
+<h2 id="addtextarea">addTextArea</h2>
+<p><code>addTextArea(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidává textové pole bez možnosti formátování.</p>
+<pre><code class="language-php">$group-&gt;addTextArea('textarea', 'Textarea');
+</code></pre>
+<h2 id="addtextbox">addTextBox</h2>
+<p><code>addTextBox(string $name, ?string $label = null, bool $required = false)</code></p>
+<p>Přidá jednořádkové textové políčko</p>
+<pre><code class="language-php">$group-&gt;addTextBox('text_input', 'Text box', true);
+</code></pre>
+<h2 id="addblockeditor">addBlockEditor</h2>
+<p><code>addBlockEditor(string $name): BlockEditor</code></p>
+<p>Přidává block editor pro tvordu stránek, blogů atd. </p>
+<pre><code class="language-php">$group-&gt;addBlockEditor('blockEditor');
+</code></pre>
+<p>Další možnst je použití tzv. dynamickeho block editoru. Inicializuje se pouze jeden block editor a přepíná se s jakým inputem má pracovat.</p>
+<pre><code class="language-php">$blockeditor = $form-&gt;addDynamicBlockEditor('testBlockEditor', 'Contentcs', [
+    'Contentcs' =&gt; 'Článek cs',
+    'Contentfr' =&gt; 'Článek fr',
+    'Contentsk' =&gt; 'Článek sk',
+]);
+</code></pre>
+<h3 id="bloky">Bloky</h3>
+<p>Do block editoru musíme definovat bloky ze kterých se následně sestavuje content stránky/blogu.</p>
+<h4 id="addblockashtml">addBlockAsHTML</h4>
+<p><code>addBlockAsHTML(string $html): void</code></p>
+<p>Přidá blok jako string. Zadává se ve formátu <em>editor.BlockManager.add(...)</em> (více v dokumentaci grapesjs)</p>
+<h4 id="addblockfromfile">addBlockFromFile</h4>
+<p><code>addBlockFromFile(string $filePath, array $params = []): void</code></p>
+<p>Přidá blok z latte šablony. V šabloně si bloky definujeme ve formátu <em>editor.BlockManager.add(...)</em> (více v dokumentaci grapesjs)</p>
+<p>Příklad přidání jednoduchého bloku </p>
+<pre><code class="language-php">$blockeditor = $form-&gt;addBlockEditor('Contentfr');
+$blockeditor-&gt;addBlockAsHTML(&quot;
+    editor.BlockManager.add('h1-block', {
+        label: 'H1',
+        content: '&lt;h1&gt;Put your title here&lt;/h1&gt;',
+        category: 'Basic',
+        attributes: {
+            title: 'Insert h1 block'
+        }
+    });
+&quot;);
+</code></pre>
+<h4 id="dynamicke-bloky">Dynamické bloky</h4>
+<p>Dynamické bloky jsou bloky, u kterých se data načítájí až při vykreslení obsahu na webu. To znamená používání aktuálních dat (ceny, názvy kategorií, slugy atd.).</p>
+<p>Dynamický blok si musíme definovat v html kódu bloku pomocí tagů.</p>
+<pre><code class="language-html">&lt;div storeblock storeblock-tablename=&quot;Admin_Model_Product&quot; storeblock-identifyby=&quot;ID&quot; storeblock-value=&quot;160&quot; class=&quot;container section-with-image&quot;&gt;
+    &lt;h2 storeblock-column=&quot;tmpName&quot;&gt;Název Produktu&lt;/h2&gt;
+    &lt;span storeblock-column=&quot;productType.getLang.Name&quot;&gt;Název kategorieu&lt;/span&gt;
+    &lt;div storeblock-column=&quot;withVAT&quot; storeblock-column-type=&quot;price&quot;&gt;Cena s DPH&lt;/div&gt;
+    &lt;div storeblock-column=&quot;withoutVAT&quot; storeblock-column-type=&quot;price&quot;&gt;Cena bez DPH&lt;/div&gt;
+    &lt;div class=&quot;image&quot;&gt;
+        &lt;img src=&quot;/front/img/engine.png&quot; alt=&quot;warehouse&quot; class=&quot;w-100&quot; storeblock-column=&quot;productPhotoPath&quot; storeblock-column-type=&quot;productPhoto&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>[storeblock] - značí že blok využívá dynamické načítání</li>
+<li>[storeblock-tablename]- tabulka ze ktere se má brát entita</li>
+<li>[storeblock-identifyby] - sloupec v DB podle kterého vybíráme</li>
+<li>[storeblock-value] - hodnota sloupce v DB</li>
+<li>[storeblock-params] - libovolné parametry bloku pro předání do formátovací funkce</li>
+<li>[storeblock-column] - název sloupce z DB pro výpis (u vlastních column-type sloupců se používá jako identifikátor)</li>
+<li>[storeblock-column-type] - typ sloupce (žádný = "default")</li>
+<li>[storeblock-column-params] - libovolné parametry sloupce pro předání do formátovací funkce</li>
+</ul>
+<h5 id="renderovani-bloku">Renderování bloků</h5>
+<p>Takto vytvořené bloky musíme vyrenderovat na frontendu před předáním do šablony.</p>
+<p>Pro render se využívá třída BlockEditorRenderer. Metoda render vrací pole ['html' =&gt; 'content jako html string', 'css' =&gt; 'css styly']</p>
+<pre><code class="language-php">use \Jolanda\Controls\Form\Controls\Renderers\BlockEditorRenderer;
+...
+$blogRenderer = new BlockEditorRenderer();
+$blogRenderer-&gt;render($blogDetail-&gt;content, Default_Logic_Translation::getInstance()-&gt;getLocaleId());
+</code></pre>
+<p>U každého typu sloupce([storeblock-column-type]), který není default, si můžeme před renderem nastavit vlastní formátovací funkci.</p>
+<pre><code class="language-php">//příklad formatovací funkce pro storeblock-column-type=&quot;price&quot;
+//$product je získaná entita z DB
+//$column je atribut storeblock-column
+//$blockAttributes je pole atributů bloku ['tablename', 'identifyby', 'value', 'params']
+//$columnParams atribut storeblock-column-params (pro předávání libovolného parametru do formátovací funkce)
+$blogRenderer-&gt;setColumnTypeFormatFunction('price', function($product, $column, $blockAttributes, $columnParams){
+    $price = [
+        'withVAT' =&gt; $this-&gt;priceCalc-&gt;getFormatedPriceWithVat($product-&gt;productName-&gt;PriceRepair/100),
+        'withoutVAT' =&gt; $this-&gt;priceCalc-&gt;getFormatedPriceWithoutVat($product-&gt;productName-&gt;PriceRepair/100),
+    ];
+
+    return $price[$column];
+});
+</code></pre>
+<pre><code class="language-php">//příklad formatovací funkce pro produktový obrázek (u &lt;img&gt; elementů se nemění text, ale rovnou src obrázku)
+$blogRenderer-&gt;setColumnTypeFormatFunction('productPhoto', function($object, $column){
+    return _bu() . '/files/images/800/' . $object-&gt;productName-&gt;productNameImages[0]-&gt;file-&gt;Name . '.' . $object-&gt;productName-&gt;productNameImages[0]-&gt;file-&gt;Extension;
+});
+</code></pre>
+<p>Třídá má ještě možnost zapnout debug režim, ve kterém se vypisují errory přímo do šablony</p>
+<p>(normálně se errory vypisují pouze jako atribut storeblock-error, v produkčním režimu se také mažou veškere atributy kromě storeblock-error)</p>
+<p>Poté si předáme data z funkce render do šablony, kde html vypíšeme kam potřebujeme a css styly nalinkujeme do hlavičky například pomocí latte makra {block}</p>
+<h4 id="addhtml">addHtml</h4>
+<p>Do formu jde přidávat taky html element</p>
+<pre><code class="language-php">$form-&gt;addHtml('&lt;div&gt;xyz&lt;/div&gt;')
+</code></pre>
+<h3 id="addtimebox">addTimeBox</h3>
+<p>Přidá Time box. Parametr type nastavuje typ timeBoxu. Typy = [H =&gt; Hodiny, HM =&gt; Hodiny:Minuty, HMS =&gt; Hodiny:Minuty:Sekundy]</p>
+<pre><code class="language-php">$form-&gt;addTimeBox('Time', 'Čas', 'HM');
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../form/" class="btn btn-neutral float-left" title="Úvod"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../input-options/" class="btn btn-neutral float-right" title="Možnosti prvků">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../form/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../input-options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

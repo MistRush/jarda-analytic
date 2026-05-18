@@ -1,0 +1,106 @@
+{layout "../layout.latte"}
+{block content}
+    <div class="row blogList">
+        </div>
+        <div class="blogList-dataGrid">
+             <div class="row">
+                    <div class="col-md-10">
+                        {$newsGrid->render()}
+                    </div>
+                    <div class="col-md-2">
+                        <div><img src="" id="image-preview"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
+{*    *}
+{*            <div class="blog-filter">*}
+{*                <div id="blogList-filter" class="mb-4 mb-md-0">*}
+{*                    <div class="header open">*}
+{*                        <span>Filtr dle kategorie</span>*}
+{*                        <i class="ci ci-angle-down"></i>*}
+{*                    </div>*}
+{*                    <div class="content">*}
+{*                        <div id="category-tree" style="max-height: 320px; overflow:auto;"></div>*}
+{*                    </div>*}
+{*                </div>*}
+{*            </div>*}
+{*        <div class="col-md-11">*}
+{*            <div class="blogList-dataGrid">*}
+{*                <div class="row">*}
+{*                    <div class="col-md-10">*}
+{*                        {$newsGrid->render()}*}
+{*                    </div>*}
+{*                    <div class="col-md-2">*}
+{*                        <div><img src="" id="image-preview"></div>*}
+{*                    </div>*}
+{*                </div>*}
+{*            </div>*}
+{*    </div>*}
+{/block}
+
+{block scripts}
+    <script>
+        /**
+         * @namespace { Grid } newsGrid
+         */
+        var newsGrid;
+
+        $(function () {
+            newsGrid = {$newsGrid|noescape};
+            newsGrid.onSelect = function (e) {
+                let data = newsGrid.getCurrentItem();
+                if (data.File_ID) {
+                    $('#image-preview').attr('src', '/common/file/download?ID=' + data.File_ID);
+                } else {
+                    $('#image-preview').attr('src', '');
+                }
+            };
+
+            tree = new TreeView('category-tree', {$tree}, true);
+            tree.onChange = function () {
+                let selected = tree.getSelected();
+
+                newsGrid.setUrlParameter('Category_IDs', selected);
+                newsGrid.refresh();
+            }
+        });
+
+        var previewNews = function () {
+            window.open(basePath + '/{URL::NEWS|noescape}/' + newsGrid.getCurrentItem().slug);
+        }
+
+
+        $(function () {
+            if ($(window).width() < 769) {
+                toggleFilter($('#blogList-filter .header'), 0);
+            }
+            $('#blogList-filter .header').on('click', (e) => {
+                var target = $(e.target).is('.header') ? $(e.target) : $(e.target).closest('.header');
+                toggleFilter(target);
+            });
+        });
+
+        var toggleFilter = function (target, time = 300) {
+            target.toggleClass('open');
+            if (target.hasClass('open')) {
+                target.parents('.blog-filter').toggleClass('open', false);
+                target.parents('.blog-filter').next('.blogList-dataGrid').toggleClass('open', false);
+                setTimeout(() => {
+                    target.parent().find('.content').slideDown(time);
+                }, ($(window).width() > 768) ? 300 : 0);
+            } else {
+                target.parents('.blog-filter').toggleClass('open', true);
+                target.parents('.blog-filter').next('.blogList-dataGrid').toggleClass('open', true);
+                if ($(window).width() > 768) {
+                    target.parent().find('.content').hide(0);
+                } else {
+                    target.parent().find('.content').slideUp(time);
+                }
+            }
+        }
+    </script>
+{/block}

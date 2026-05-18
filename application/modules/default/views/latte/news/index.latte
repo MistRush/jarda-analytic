@@ -1,0 +1,120 @@
+{layout "../layout.latte"}
+{block content}
+    <style>
+        .news-title {
+            padding: 120px 0 25px 0;
+            background-image: url(/img/front/login-bg.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: right bottom;
+            text-align: center;
+        }
+
+        .news-title h1 {
+            font-family: Playfair Display;
+            font-weight: 600;
+            font-style: SemiBold;
+            font-size: 46px;
+            leading-trim: NONE;
+            line-height: 56px;
+            letter-spacing: 0px;
+            color: #013B53;
+            position: relative;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .news-title p {
+            font-family: Urbanist;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 16px;
+            leading-trim: NONE;
+            line-height: 26px;
+            letter-spacing: 0px;
+            text-align: center;
+            color: #013B53;
+        }
+
+        .categories {
+            text-align: left;
+
+            a {
+                transition: all 0.3s;
+                &:hover {
+                    color: #013B53 !important;
+
+                    .item {
+                        background: rgb(216 228 247);
+                    }
+                }
+            }
+        }
+
+        .categories .headline {
+            font-family: Playfair Display;
+            font-weight: 600;
+            font-style: SemiBold;
+            font-size: 26px;
+            leading-trim: NONE;
+            line-height: 56px;
+            letter-spacing: 0px;
+            color: #013B53;
+            position: relative;
+            text-align: left;
+            margin-top: 0;
+        }
+
+        .categories .item {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 14px;
+            margin-right: 15px;
+            border-radius: 6px;
+            border: 1px solid #CEDBF0;
+            background: rgba(216, 228, 247, 0.5);
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+        }
+
+
+    </style>
+    <div class="news-page">
+        <div class="news-title">
+            <div class="container">
+                <div class="logo">
+                    <img src="/img/front/login-logo.svg" alt="Deník pleti">
+                </div>
+              <h1>{_('Blog')}</h1>
+                <p>{_('Objevte tipy, triky a novinky, které vám pomohou pečovat o pleť zdravě a efektivně. Inspirujte se našimi radami pro krásnou a zářivou pokožku každý den."')}</p>
+                <div class="categories">
+                    <div class="headline">Kategorie</div>
+                    {foreach $blogCategories as $blogCategory}
+                        {if !empty($blogCategory['newsCategoryLangs'][0])}
+                            {var $categoryLang = $blogCategory['newsCategoryLangs'][0]}
+                            <a href="/{URL::BLOG_CATEGORY}/{$categoryLang['slug']}">
+                                <div class="item {if !empty($category['newsCategoryLangs'][0]) && $category['newsCategoryLangs'][0]['slug'] === $categoryLang['slug']}active{/if}">
+                                    {$categoryLang['Name']}
+                                </div>
+                            </a>
+                        {/if}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="news">
+                <div class="row news-list mt-4 mb-5">
+                    <div n:foreach="$news as $newsItem" class="col-lg-4 col-md-6 col-sm-6">
+                        {include '../components/news/item.latte', newsItem => $newsItem}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+

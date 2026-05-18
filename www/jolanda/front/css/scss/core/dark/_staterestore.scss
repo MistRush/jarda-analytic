@@ -1,0 +1,18 @@
+.stateRestore-dialog{
+  background: $dark-color-main 0% 0% no-repeat padding-box;
+
+  &:before{
+    border-color: transparent transparent $dark-color-main transparent;
+  }
+
+  .user-presets{
+    border-top: $color-font-secondary;
+  }
+
+  .presets {
+    .btn:not(.btn-green) {
+      @include button-gradient($color-dark-default-left, $color-dark-default-right);
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div n:if="$parameters" class="active-filter-container">
+    <div class="headline">{_('Aktivní filtry')}</div>
+
+    <div n:foreach="$parameters as $parameter" class="row item">
+        <div class="col-5 col-md-3 col-lg-2">
+            <div class="name">{$parameter['ParameterName']}:</div>
+        </div>
+        <div class="col-7 col-md-9 col-lg-10 ps-0">
+            <a n:foreach="$parameter['parameterValues'] as $parameterValue" href="{$currentUrl}{$parameterValue['FilterLink']}">
+                <div class="value">
+                    {if $eshop->getEshop()->language->ID == 2}
+                        {$parameterValue['Value']|replace: ['novější' => 'novšia']}
+                    {else}
+                        {$parameterValue['Value']}
+                    {/if}
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="remove-all">
+        <a href="{$currentUrl}">{_('Odebrat všechny filtry')}</a>
+    </div>
+</div>

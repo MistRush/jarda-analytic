@@ -1,0 +1,103 @@
+.feedback {
+  padding: 120px 0;
+
+  .text-holder {
+    .text {
+      font-family: Urbanist;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 20px;
+      leading-trim: NONE;
+      line-height: 28px;
+      letter-spacing: 0px;
+      color: #576583;
+      max-width: 90%;
+      margin: 20px 0;
+    }
+  }
+
+  .feedback-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .feedback-item {
+      background-color: #F1F6F9;
+      border-radius: 12px;
+      width: 32%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 154px;
+
+      .text {
+        font-family: Urbanist;
+        font-weight: 600;
+        font-style: SemiBold;
+        font-size: 18px;
+        leading-trim: NONE;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #0E1B36;
+      }
+
+      img {
+        width: 42px;
+        height: 42px;
+      }
+
+      &.green {
+        background-image: url("/img/front/feedback-green.webp");
+        background-size: cover;
+        background-position: center;
+        gap: 5px;
+
+        .headline {
+          font-family: Playfair Display;
+          font-weight: 600;
+          font-style: SemiBold;
+          font-size: 24px;
+          leading-trim: NONE;
+          line-height: 32px;
+          letter-spacing: 0px;
+          text-align: center;
+          color: #0E1B36;
+        }
+
+        .text {
+          font-family: Urbanist;
+          font-weight: 400;
+          font-style: Regular;
+          font-size: 20px;
+          leading-trim: NONE;
+          line-height: 30px;
+          letter-spacing: 0px;
+          text-align: center;
+          color: #576583;
+        }
+
+      }
+    }
+  }
+}
+
+@media (max-width: 678px) {
+    .feedback {
+        padding: 90px 0 60px 0;
+
+      .text-holder {
+        padding: 0 20px;
+      }
+
+      .feedback-items {
+        flex-direction: column;
+        gap: 20px;
+
+        .feedback-item {
+          width: 100%;
+        }
+      }
+
+    }
+}

@@ -1,0 +1,101 @@
+table.table{
+  color: $dark-color-font;
+}
+
+.dataTable-package {
+  .grid-title {
+    color: $dark-color-font;
+  }
+
+  .grid-controls{
+    .dropdown{
+      .dropdown-menu{
+        background-color: $dark-color-main;
+        color: $dark-color-font;
+      }
+    }
+  }
+
+  .dataTable-search {
+    &:before {
+      filter: none;
+    }
+
+    input {
+      box-shadow: none;
+    }
+  }
+
+  .dataTable-context{
+    background-color: $dark-color-main;
+    color: $dark-color-font;
+  }
+
+  .dataTables_wrapper {
+    .dataTables_scroll {
+      box-shadow: 0px 0px 12px 2px #0000002b;
+    }
+
+    .dataTables_scrollBody {
+      background: $dark-color-main !important;
+      border: none;
+
+      &::-webkit-scrollbar {
+        background: $dark-color-main;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $color-primary;
+      }
+
+      table {
+        background: $dark-color-main !important;
+
+        tr {
+          &.deactivated {
+            background-color: #707070;
+          }
+
+          &.odd {
+            background: #f9fafc0d;
+
+            &.deactivated {
+              background-color: #606060;
+            }
+
+            &.selected {
+              background-color: rgba($color-primary,.35);
+            }
+          }
+
+          &.red-full {
+            background-color: rgba(darken($color-red-default-right, 10), .2);
+          }
+
+          &.yellow-full {
+            background-color: rgba(darken($color-yellow-default-right, 10), .2);
+          }
+
+          &.green-full {
+            background-color: rgba(darken($color-green-default-right, 10), .2);
+          }
+
+          td {
+            color: $dark-color-font;
+            border-color: #fff0f038;
+          }
+        }
+      }
+    }
+  }
+
+    .active_filters{
+        .wrapper{
+            background: $dark-color-main-lighter;
+        }
+    }
+}
+
+.overflowHover {
+  background-color: $dark-color-main;
+}

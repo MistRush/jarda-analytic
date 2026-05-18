@@ -1,0 +1,32 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+<script>
+    /**
+     * @var { EntityEditor } editor
+     */
+    var editor;
+
+    $(() => {
+        editor = {$editor->getId()|noescape};
+        let entityID = editor.entity_id;
+
+        $('#customer-information').load('/admin/order/info-customer/Order_ID/' + entityID);
+        $('#products-information').load('/admin/order/info-items/Order_ID/' + entityID);
+
+        editor.onAfterLoad = function() {
+            if (editor.data.hasDelivery == 0) {
+                $('#deliveryAddress').hide();
+            } else {
+                $('#deliveryAddress').show();
+            }
+        }
+
+        orderItems_datagrid.onAfterRefresh = function () {
+            $('#products-information').load(basePath + '/admin/order/info-items/Order_ID/' + editor.entity_id);
+        }
+    });
+
+    var formatDate = function (val) {
+        var date = new Date(val);
+        return date.toLocaleDateString()
+    };
+</script>

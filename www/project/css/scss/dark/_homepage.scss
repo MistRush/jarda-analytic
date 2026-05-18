@@ -1,0 +1,103 @@
+#homepage {
+  #search {
+    .search-results {
+      background: #202124;
+    }
+  }
+
+  .panel {
+    background: lighten($color-main, 3);
+
+    &:hover {
+      box-shadow: 0 3px 15px lighten(#4f52582a, 5);
+    }
+  }
+
+  #otherInfo {
+    .news {
+      background: lighten($color-main, 3);
+    }
+
+    .help-contact {
+      background: lighten($color-main, 3);
+
+      .headline {
+        color: #43bbff;
+      }
+
+      .subline {
+        color: #b0e2ff;
+      }
+    }
+  }
+
+  #orders {
+    .panel {
+      .wrapper {
+        tbody {
+          tr {
+            &:nth-of-type(odd) {
+              background-color: darken($color-main-lighter,2);
+            }
+            td {
+              a {
+                color: darken(#fff,20);
+              }
+
+              .product-icon {
+                fill: $color-font!important;
+                color: $color-font!important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #ordersChart {
+    .panel {
+      .charts-wrap {
+        .charts {
+          .wrapper {
+            .chooser {
+              .btn.btn-icon {
+                border: 1px solid #383a3f!important;
+              }
+            }
+            .chart {
+              background: lighten($color-main, 3);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #activity {
+    .big-one.grey {
+      background: #202124;
+    }
+
+    .stats {
+      border: 1px solid #202124;
+
+      .small-one.grey {
+        background: #202124;
+      }
+    }
+  }
+
+  a.more {
+    color: #fff!important;
+  }
+
+  .svg-img {
+    
+    filter: invert(1);
+  }
+
+  a {
+    color: #f1f1f1;
+  }
+}

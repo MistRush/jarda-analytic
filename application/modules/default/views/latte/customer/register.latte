@@ -1,0 +1,24 @@
+{layout "../layout.latte"}
+{block content}
+
+    <div id="register">
+        <div class="register-title">
+            <div class="container">
+                <div class="register-title-holder">
+                    <div class="logo">
+                        <img src="/img/front/login-logo.svg" alt="Deník pleti">
+                    </div>
+                    <h2>{_('Registrace')}</h2>
+                    <div class="subtitle">
+                        Zadejte uživatelské údaje
+                    </div>
+                </div>
+            </div>
+        </div>
+        {if $eshop->getSettings('EnableRegistration')}
+            <div class="vue-app" id="registration-app"></div>
+        {else}
+            <p>{_('Registrace není na tomto webu dostupná.')}</p>
+        {/if}
+    </div>
+{/block}

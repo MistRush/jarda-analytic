@@ -1,0 +1,64 @@
+{default $companyInfo = null}
+<div class="company-info supplier col-12">
+    <div class="contract-type">
+        Dodavatel:
+    </div>
+
+    <div class="col-12 pl-1">
+        <div n:if="isset($companyInfo['fullName'])">
+            Hlavně v klidu, s.r.o.
+        </div>
+        <div n:if="isset($companyInfo['street'])">
+            {$companyInfo['street']}
+        </div>
+        <div n:if="isset($companyInfo['zip']) || isset($companyInfo['city'])">
+            {capture $zipCity}{$companyInfo['zip']??null} {$companyInfo['city']??null}{/capture}
+            {trim($zipCity)}
+        </div>
+        {*        <div n:if="isset($companyInfo['country'])">*}
+        {*            {$companyInfo['country']}*}
+        {*        </div>*}
+        <div class="mt-1 blue-font" n:if="!empty($companyInfo['ic'])">
+            {_('IČO')}: {$companyInfo['ic']}
+        </div>
+        <div class="blue-font" n:if="!empty($companyInfo['ic'])">
+            {if !empty($companyInfo['dic'])}
+                {*                    <td style="width:50%;color:#999999;"><strong>Nejsem plátcem DPH</strong></td>*}
+                {_('DIČ')}: {$companyInfo['dic']}
+            {else}
+                <b>{_('Neplátce DPH')}</b>
+            {/if}
+        </div>
+    </div>
+    <div class="col-3 mt-5 bank-account-label">
+        {_('Číslo účtu')}:
+    </div>
+    <div class="col-9 bank-account">
+        {var $cba = $companyInfo['bankAccount']}
+        {$cba['BankAccount']|replace:'/', '|'}
+    </div>
+    <div class="col-8 mt-1">
+        Datum vystavení:
+    </div>
+    <div class="col-4 text-right">
+        <div class="border">{$invoiceDate|date:'d. m. Y'}</div>
+    </div>
+    <div class="col-8 mt-05">
+        Datum splatnosti:
+    </div>
+    <div class="col-4 text-right">
+        <div class="border">{$dueDate|date:'d. m. Y'}</div>
+    </div>
+    <div class="col-8 mt-05">
+        Datum uskutečnění plnění:
+    </div>
+    <div class="col-4 text-right">
+        <div class="border">{$invoiceDate|date:'d. m. Y'}</div>
+    </div>
+    <div class="col-6 mt-1">
+        Forma úhrady:
+    </div>
+    <div class="col-6 text-right">
+        <div style="white-space: nowrap">{$order->payment->Name}</div>
+    </div>
+</div>

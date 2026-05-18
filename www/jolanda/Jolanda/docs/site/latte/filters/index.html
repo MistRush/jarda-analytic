@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Filtry - Jolanda</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Filtry";
+        var mkdocs_page_input_path = "latte/filters.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Jolanda
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/install/">Instalace</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy-ide/">Integrace Tracy s IDE</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy/">Instalace Tracy panelů</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PHP</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Grid</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/grid/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/columns/">Sloupce</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grid/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Formuláře</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/form/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/inputs/">Formulářové prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/input-options/">Možnosti prvků</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/validation/">Validace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Editor</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/editor/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/fields/">Prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/js/">JavaScript API</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/quickeditor/">QuickEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Status Manager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/usage/">Použití</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/statusmanager/">Třída StatusManager</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/status/">Třída Status</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Import</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/uvod/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/import/">Třída Import</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/importBase/">Třída ImportBase</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">JsLogger</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../jslogger/usage/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">FileManager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../filemanager/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Šablony (Latte)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../common/">Obecné</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Filtry</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#transformace-retezcu-nebo-poli">Transformace řetězců nebo polí</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#velikost-pismen">Velikost písmen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#formatovani-hodnot">Formátování hodnot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#escapovani">Escapování</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pouziti">Použití</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jednotlive-filtry">Jednotlivé filtry</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#truncate">truncate?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#strip">strip?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#indent">indent?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#webalize">webalize?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#breaklines">breakLines?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reverse">reverse?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#velikost-pismen_1">Velikost písmen?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#date">date?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#number">number?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bytes">bytes?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#datastream">dataStream?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#batch">batch?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#escapeurl">escapeUrl?</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../macros/">Makra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../migration/">Migrace 2 -> 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../typehints/">Typehints</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">JavaScript</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/dialog/">Dialog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/panel/">Panel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/cookie/">Cookie</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/alerts/">Alerts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/helpers/">Pomocníci</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Jolanda</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Šablony (Latte)</li>
+      <li class="breadcrumb-item active">Filtry</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="latte-filtry">Latte filtry</h1>
+<p>V šablonách můžeme používat funkce, které pomáhají upravit nebo přeformátovat data do výsledné podoby. Říkáme jim <em>filtry</em>.</p>
+<h2 id="transformace-retezcu-nebo-poli">Transformace řetězců nebo polí</h2>
+<table>
+<thead>
+<tr>
+<th>filtr</th>
+<th>popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>truncate</code> <code>(length, append = '...')</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-truncate">zkrátí délku se zachováním slov</a></td>
+</tr>
+<tr>
+<td><code>substr</code> <code>(offset [, length])</code></td>
+<td>vrátí část řetězce</td>
+</tr>
+<tr>
+<td><code>trim</code> <code>(charset = mezery)</code></td>
+<td>odstraní počáteční a koncové mezery či jiné znaky</td>
+</tr>
+<tr>
+<td><code>stripHtml</code></td>
+<td>odstraní HTML značky a HTML entity převede na znaky</td>
+</tr>
+<tr>
+<td><code>strip</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-strip">odstraní bílé místo</a>, podobně jako značka <a href="https://latte.nette.org/cs/tags">spaceless</a></td>
+</tr>
+<tr>
+<td><code>indent</code> <code>(level = 1, char = "\t")</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-indent">odsadí text zleva o daný počet tabulátorů</a></td>
+</tr>
+<tr>
+<td><code>replace</code> <code>(search, replace = '')</code></td>
+<td>zamění výskyty hledaného řetězce</td>
+</tr>
+<tr>
+<td><code>replaceRE</code> <code>(pattern, replace = '')</code></td>
+<td>zamění výskyty dle regulárního výrazu</td>
+</tr>
+<tr>
+<td><code>padLeft</code> <code>(length, pad = ' ')</code></td>
+<td>doplní řetězec zleva na požadovanou délku</td>
+</tr>
+<tr>
+<td><code>padRight</code> <code>(length, pad = ' ')</code></td>
+<td>doplní řetězec zprava na požadovanou délku</td>
+</tr>
+<tr>
+<td><code>repeat</code> <code>(count)</code></td>
+<td>opakování řetězce</td>
+</tr>
+<tr>
+<td><code>implode</code> <code>(glue = '')</code></td>
+<td>spojí pole do řetězce</td>
+</tr>
+<tr>
+<td><code>webalize</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-webalize">upraví UTF-8 řetězec do tvaru používaného v URL</a></td>
+</tr>
+<tr>
+<td><code>breakLines</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-breaklines">Před konce řádku přidá HTML odřádkování</a></td>
+</tr>
+<tr>
+<td><code>reverse</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-reverse">obrátí UTF-8 řetězec nebo pole</a></td>
+</tr>
+<tr>
+<td><code>length</code></td>
+<td>vrací délku řetězce ve znacích nebo pole</td>
+</tr>
+<tr>
+<td><code>batch</code> <code>(array, length [, item])</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-batch">výpis lineárních dat do tabulky</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 id="velikost-pismen">Velikost písmen</h2>
+<table>
+<thead>
+<tr>
+<th>filtr</th>
+<th>popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lower</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-velikost-pismen">převede na malá písmenka</a></td>
+</tr>
+<tr>
+<td><code>upper</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-velikost-pismen">převede na velká písmenka</a></td>
+</tr>
+<tr>
+<td><code>firstUpper</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-velikost-pismen">převede první písmenko na velké</a></td>
+</tr>
+<tr>
+<td><code>capitalize</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-velikost-pismen">malá písmena, první písmeno ve slovech velké</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 id="formatovani-hodnot">Formátování hodnot</h2>
+<table>
+<thead>
+<tr>
+<th>filtr</th>
+<th>popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date</code> <code>(format)</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-date">formátuje datum</a></td>
+</tr>
+<tr>
+<td><code>number</code> <code>(decimals = 0, decPoint = '.')</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-number">formátuje číslo</a></td>
+</tr>
+<tr>
+<td><code>bytes</code> <code>(precision = 2)</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-bytes">formátuje velikost v bajtech</a></td>
+</tr>
+<tr>
+<td><code>dataStream</code> <code>(mimetype = detect)</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-datastream">konverze pro Data URI protokol</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 id="escapovani">Escapování</h2>
+<table>
+<thead>
+<tr>
+<th>filtr</th>
+<th>popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>noescape</code></td>
+<td><a href="https://latte.nette.org/cs/tags#toc-vypsani-promenne">vypíše proměnnou bez escapování</a></td>
+</tr>
+<tr>
+<td><code>escapeUrl</code></td>
+<td><a href="https://latte.nette.org/cs/filters#toc-escapeurl">escapuje parametr v URL</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2 id="pouziti">Použití</h2>
+<p>Filtry se zapisují za svislítko (může být před ním mezera) do tzv. modifikátoru:</p>
+<pre><code>&lt;h1&gt;{$heading|upper}&lt;/h1&gt;
+
+</code></pre>
+<p>Filtry (ve starších verzích helpery) lze zřetězit a poté se aplikují v pořadí od levého k pravému:</p>
+<pre><code>&lt;h1&gt;{$heading|lower|capitalize}&lt;/h1&gt;
+
+</code></pre>
+<p>Parametry se zadávají za jménem filtru oddělené dvojtečkami nebo čárkami:</p>
+<pre><code>&lt;h1&gt;{$heading|truncate:20,''}&lt;/h1&gt;
+
+</code></pre>
+<p>Filtry lze aplikovat i na výraz:</p>
+<pre><code>{var $name = ($title|upper) . ($subtitle|lower)}&lt;/h1&gt;
+
+</code></pre>
+<p>Jako filtr lze do šablony zaregistrovat libovolný callback:</p>
+<pre><code>$latte = new Latte\Engine;
+$latte-&gt;addFilter('shortify', function (string $s, int $len = 10): string {
+    return mb_substr($s, 0, $len);
+});
+
+</code></pre>
+<p>V šabloně se potom volá takto:</p>
+<pre><code>&lt;p&gt;{$text|shortify}&lt;/p&gt;
+&lt;p&gt;{$text|shortify:100}&lt;/p&gt;
+
+</code></pre>
+<h2 id="jednotlive-filtry">Jednotlivé filtry</h2>
+<h3 id="truncate">truncate<a href="https://latte.nette.org/cs/filters#toc-truncate">?</a></h3>
+<p>Ořízne řetězec na uvedenou maximální délku, přičemž se snaží zachovávat celá slova. Pokud dojde ke zkrácení řetězce, přidá nakonec trojtečku (lze změnit druhým parametrem).</p>
+<pre><code>{var $title = 'Řekněte, jak se máte?'}
+{$title|truncate:5} Řekn...
+{$title|truncate:20} Řekněte, jak se...
+{$title|truncate:30} Řekněte, jak se máte?
+
+</code></pre>
+<h3 id="strip">strip<a href="https://latte.nette.org/cs/filters#toc-strip">?</a></h3>
+<p>Odstraní zbytečné bílé místo (mezery) z výstupu.</p>
+<pre><code>{block |strip}
+    &lt;ul&gt;
+        &lt;li&gt;Hello&lt;/li&gt;
+    &lt;/ul&gt;
+{/block}
+
+</code></pre>
+<p>Vygeneruje</p>
+<pre><code>&lt;ul&gt; &lt;li&gt;Hello&lt;/li&gt; &lt;/ul&gt;
+
+</code></pre>
+<h3 id="indent">indent<a href="https://latte.nette.org/cs/filters#toc-indent">?</a></h3>
+<p>Odsadí text zleva o daný počet tabulátorů nebo jiných znaků, které můžeme uvést ve druhém argumentu:</p>
+<pre><code>&lt;div&gt;
+{block |indent}
+&lt;p&gt;Hello&lt;/p&gt;
+{/block}
+&lt;/div&gt;
+
+</code></pre>
+<p>Vygeneruje</p>
+<pre><code>&lt;div&gt;
+    &lt;p&gt;Hello&lt;/p&gt;
+&lt;/div&gt;
+
+</code></pre>
+<h3 id="webalize">webalize<a href="https://latte.nette.org/cs/filters#toc-webalize">?</a></h3>
+<p>Filtr odstraní diakritiku a všechny znaky kromě písmen anglické abecedy a číslic nahradí spojovníkem. Vyžaduje instalaci <a href="https://api.nette.org/2.4/Nette/Utils.html">nette/utils</a>.</p>
+<pre><code>{var $s = 'Náš 10. produkt'}
+{$s|webalize} nas-10-produkt
+
+</code></pre>
+<h3 id="breaklines">breakLines<a href="https://latte.nette.org/cs/filters#toc-breaklines">?</a></h3>
+<p>Přidává před každý znak nového řádku HTML značku <code>&lt;br&gt;</code>. Vstupní text je automaticky escapován.</p>
+<pre><code>{var $s = &quot;Text &amp; with \n newline&quot;}
+{$s|breakLines} &quot;Text &amp;amp; with &lt;br&gt;\n newline&quot;
+
+</code></pre>
+<h3 id="reverse">reverse<a href="https://latte.nette.org/cs/filters#toc-reverse">?</a></h3>
+<pre><code>{var $s = 'Nette'}
+{$s|reverse} etteN
+{var $a = ['N', 'e', 't', 't', 'e']}
+{$a|reverse} ['e', 't', 't', 'e', 'N']
+
+</code></pre>
+<h3 id="velikost-pismen_1">Velikost písmen<a href="https://latte.nette.org/cs/filters#toc-velikost-pismen">?</a></h3>
+<pre><code>{var $s = 'dobrý DEN'}
+{$s|lower} dobrý den
+{$s|upper} DOBRÝ DEN
+{$s|firstUpper} Dobrý DEN
+{$s|capitalize} Dobrý Den
+
+</code></pre>
+<h3 id="date">date<a href="https://latte.nette.org/cs/filters#toc-date">?</a></h3>
+<p>Formátuje datum podle masky buď ve tvaru používaném PHP funkcí <a href="https://php.net/strftime">strftime</a> nebo <a href="https://php.net/date">date</a>. Filtr přijímá datum buď ve formátu UNIX timestamp, v podobě řetězce nebo jako objekt <code>DateTime</code>.</p>
+<pre><code>{$today|date:'%d.%m.%Y'}
+{$today|date:'j. n. Y'}
+
+</code></pre>
+<h3 id="number">number<a href="https://latte.nette.org/cs/filters#toc-number">?</a></h3>
+<p>Formátuje číslo na určitý počet desetinných míst. Lze určit znak pro desetinnou čárku a oddělovač tisíců.</p>
+<pre><code>{1234.20 |number}  1,234
+{1234.20 |number:1}  1,234.2
+{1234.20 |number:2}  1,234.20
+{1234.20 |number:2:',':' '}  1 234,20
+
+</code></pre>
+<h3 id="bytes">bytes<a href="https://latte.nette.org/cs/filters#toc-bytes">?</a></h3>
+<p>Formátuje velikost v bajtech do lidsky čitelné podoby.</p>
+<pre><code>{$size|bytes} 0 B, 10 B nebo 1.25 GB, ...
+
+</code></pre>
+<h3 id="datastream">dataStream<a href="https://latte.nette.org/cs/filters#toc-datastream">?</a></h3>
+<p>Konvertuje do data URI scheme. Pomocí něj lze do HTML nebo CSS vkládat obrázky bez nutnosti linkovat externí soubory. Podporují jej všechny moderní prohlížeče. Vyžaduje PHP rozšíření <a href="http://php.net/manual/en/fileinfo.installation.php">fileinfo</a>.</p>
+<p>Mějme v proměnné obrázek <code>$img = Image::fromFile('obrazek.gif')</code>, poté</p>
+<pre><code>&lt;img src=&quot;{$img|dataStream}&quot;&gt;
+
+</code></pre>
+<p>Vygeneruje například:</p>
+<pre><code>&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+9TXL0Y4OHwAAAABJRU5ErkJggg==&quot;&gt;
+
+</code></pre>
+<h3 id="batch">batch<a href="https://latte.nette.org/cs/filters#toc-batch">?</a></h3>
+<p>Zjednodušuje výpis lineárních dat do podoby tabulky. Prvním parametrem je počet sloupců, druhým (volitelným) doplňková hodnota, kterou se zarovná poslední řádek.</p>
+<pre><code>{var $items = ['a', 'b', 'c', 'd', 'e', 'f', 'g']}
+&lt;table&gt;
+{foreach ($items|batch:3:'No item') as $row}
+    &lt;tr&gt;
+        {foreach $row as $column}
+            &lt;td&gt;{$column}&lt;/td&gt;
+        {/foreach}
+    &lt;/tr&gt;
+{/foreach}
+&lt;/table&gt;
+
+</code></pre>
+<p>vygeneruje:</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;a&lt;/td&gt;
+        &lt;td&gt;b&lt;/td&gt;
+        &lt;td&gt;c&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;d&lt;/td&gt;
+        &lt;td&gt;e&lt;/td&gt;
+        &lt;td&gt;f&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;g&lt;/td&gt;
+        &lt;td&gt;No item&lt;/td&gt;
+        &lt;td&gt;No item&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+</code></pre>
+<h3 id="escapeurl">escapeUrl<a href="https://latte.nette.org/cs/filters#toc-escapeurl">?</a></h3>
+<p>Escapuje proměnnou pro použítí jakožto parametru v URL.</p>
+<pre><code>&lt;a href=&quot;http://example.com/{$name|escapeUrl}&quot;&gt;{$name}&lt;/a&gt;
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../common/" class="btn btn-neutral float-left" title="Obecné"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../macros/" class="btn btn-neutral float-right" title="Makra">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../common/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../macros/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

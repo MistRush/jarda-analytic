@@ -1,0 +1,19 @@
+{contentType application/xml}
+<createPacket>
+    <apiPassword>{$apiPassword}</apiPassword>
+    <packetAttributes>
+        <number>{$data->ID}</number>
+        <name>{$data->invoiceAddress->FirstName}</name>
+        <surname>{$data->invoiceAddress->LastName}</surname>
+        <email n:ifcontent>{$data->invoiceAddress->Email}</email>
+        <phone n:ifcontent>{$data->invoiceAddress->Phone}</phone>
+        <addressId>{$externalCarrierID}</addressId>
+        <value>{$data->PriceTotalWithVat}</value>
+        <weight>1</weight>
+        <street>{$data->deliveryAddress->Street}</street>
+        <city>{$data->deliveryAddress->City}</city>
+        <zip>{$data->deliveryAddress->ZipCode}</zip>
+        <cod n:if="$cod">{round($data->PriceTotalWithVat)}</cod>
+        <eshop>www.hadex.cz</eshop>
+    </packetAttributes>
+</createPacket>

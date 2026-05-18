@@ -1,0 +1,6 @@
+nainstalujes di node, tím mùžeš instalovat npm balíèky
+pøes npm si nainstalujes grunt - cli, to ti umožní spouštìt grunt skripty
+pak si nadefinuješ package.json, kde si definuješ které pluginy chceš používat (vždy tam musí být i samotný grunt)
+pak npm install nainstaluje všechny balíèky z package.json
+v Grunfile.js si nadefinuješ co chceš, a pøíkazem grunt to spustíš
+mùžeš si nadefinovat více táskù, nadefinovat watch atd.

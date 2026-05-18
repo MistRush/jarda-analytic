@@ -1,0 +1,26 @@
+    <video controls class="w-100" onplay="logVideo(this);">
+        <source src="{$video->commonFile->file->Name}.{$video->commonFile->file->Extension}">
+        {_('Your browser does not support the video tag.')}
+    </video>
+    <p class="mt-2 mb-0">
+        {_('Nahráno')}: {$video->commonFile->DateTime|date:'j. n. Y'}
+    </p>
+<script>
+    $(function() {
+        var dialog = {$dialog_id|noescape}
+        dialog.title = {$video->commonFile->Description};
+
+        $('.videohelp-video').on('play', (e) => {
+        });
+    });
+
+    function logVideo(e) {
+        $.ajax({
+            url: basePath + '/admin/log/log-video',
+            method: 'GET',
+            data: {
+                Video_ID: {$video->ID}
+            }
+        });
+    }
+</script>

@@ -1,0 +1,48 @@
+<div class="row justify-content-center scrollable">
+    <div class="col-lg-5" style="max-height:63vh;">
+        <canvas id="orderStatsChart"></canvas>
+    </div>
+    <div class="col-lg-7">
+        <div class="statistics">
+            {default $totalCount = 0}
+            {default $totalTurnover = 0}
+            {default $totalTurnoverWithoutVat = 0}
+            {default $orders = []}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>{_('Období')}</th>
+                    <th class="text-center">{_('Počet objednávek')}</th>
+                    <th class="text-right">{_('Obrat bez DPH')}</th>
+                    <th class="text-right">{_('Obrat')}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr n:foreach="$orders as $date=>$order" class="$order['Best']">
+                    <td>{$date}</td>
+                    <td class="text-center">{$order['Count']}</td>
+                    <td class="text-right">{price($order['TurnoverWithoutVat'])}</td>
+                    <td class="text-right">{price($order['Turnover'])}</td>
+                    {var $totalCount = $totalCount + $order['Count']}
+                    {var $totalTurnoverWithoutVat = $totalTurnoverWithoutVat + $order['TurnoverWithoutVat']}
+                    {var $totalTurnover = $totalTurnover + $order['Turnover']}
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>{_('Za celé období')}</th>
+                    <th class="text-center">{$totalCount}</th>
+                    <th class="text-right">{price($totalTurnoverWithoutVat)}</th>
+                    <th class="text-right">{price($totalTurnover)}</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    var OrderLabels = {json_encode(array_keys($orders))|noescape};
+    var Turnover = {json_encode(array_column($orders, 'Turnover'))|noescape};
+    var TurnoverWithoutVat = {json_encode(array_column($orders, 'TurnoverWithoutVat'))|noescape};
+    var OrderCount = {json_encode(array_column($orders, 'Count'))|noescape};
+</script>

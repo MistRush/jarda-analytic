@@ -1,0 +1,165 @@
+.import {
+  &__form {
+    position: relative;
+  }
+
+  &__uploader {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 0.5rem;
+    justify-content: space-between;
+  }
+
+  &__progress {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #c2c9d0;
+    min-height: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 6px #c2c9d0;
+    flex: 1 0 100%;
+
+    --status-color: #{$color-primary};
+
+    &:before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      background-color: var(--status-color);
+      width: calc(1% * var(--percentage));
+      opacity: 0.2;
+    }
+
+    &:after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      line-height: 1;
+      font-size: 0.8rem;
+      content: attr(data-status);
+      text-shadow: 0 0 10px #FFFFFF;
+    }
+  }
+
+  &__list {
+    border: none;
+    background: transparent;
+
+    &__count {
+      border: 1px solid #FFFFFF;
+      padding: 3px 4px;
+      font-size: 12px;
+      margin-left: 6px;
+      border-radius: 4px;
+    }
+  }
+
+  &__selected {
+
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px;
+      gap: 7px;
+      border: 1px solid $color-primary-default-left;
+      border-radius: 4px;
+
+      &__filename {
+        font-style: italic;
+      }
+
+      &__data {
+        overflow: auto;
+        margin: 1rem;
+        @include scrollbar();
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          table-layout: fixed;
+
+          th, td {
+            border: 1px solid $color-secondary-hover-left;
+            padding: 0.25rem;
+          }
+
+          th {
+            width: 7.5rem;
+
+            select {
+              width: 100%;
+            }
+          }
+
+          td {
+            span {
+              display: block;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+
+        &__empty {
+          padding: 1rem;
+
+          h2 {
+            margin: 0;
+            color: $color-red;
+            font-size: 2rem;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  &__upload {
+    display: inline-block;
+    flex: 1 0 auto;
+    position: relative;
+
+    &__input {
+      height: 2rem;
+      opacity: 0;
+    }
+
+    &__label {
+      position: absolute;
+      margin: 0;
+      inset: 0;
+      line-height: calc(2rem - 2px);
+      padding: 0 7px 0 calc(7px + 2rem);
+      border: 1px solid #c2c9d0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+
+      &::after {
+        position: absolute;
+        font-family: "Font Awesome 5 Free";
+        content: "\f07c";
+        top: 0;
+        bottom: 0;
+        left: 0;
+        min-width: 2rem;
+        text-align: center;
+        border-right: inherit;
+        background-color: #dde7ef;
+      }
+    }
+  }
+
+  &__template {
+    display: flex;
+    width: 40%;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 0;
+  }
+}

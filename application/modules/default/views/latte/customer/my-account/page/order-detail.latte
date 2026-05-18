@@ -1,0 +1,163 @@
+{block content}
+    {var $currencyLabel = $order['currency']['Label']}
+
+    <h1 class="with-icon order">{_('Objednávka')} {$order['OrderNumber']}</h1>
+    <p>
+        <strong>{_('Datum')}:</strong> {$order['Date']|date:'j. n. Y'}<br>
+        <strong>{_('Dopravce')}:</strong> {$order['shipping']['Name']}<br>
+        <strong>{_('Způsob platby')}:</strong> {$order['payment']['Name']}
+    </p>
+
+    <div class="block">
+        <h2 class="with-icon info small">{_('Historie stavů objednávek')}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>{_('Datum')}</th>
+                    <th>{_('Stav')}</th>
+                    <th>{_('Poznámka')}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr n:foreach="$order['orderStates'] as $orderState">
+                    <td>{formatDate($orderState['Date'])}</td>
+                    <td>{$orderState['orderStateType']['orderStateTypeLangs'][0]['Name']}</td>
+                    <td>{$orderState['DescriptionCustomer']}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block order-items">
+        <h2 class="with-icon box small">{_('Zboží v objednávce')}</h2>
+        <div class="headline">
+            <div class="row">
+                <div class="col-md-6">{_('Zboží v objednávce')}</div>
+                <div class="col-md-2 text-center">{_('Množství')}</div>
+                <div class="col-md-2 text-end">{_('Cena za kus')}</div>
+                <div class="col-md-2 text-end">{_('Cena celkem')}</div>
+            </div>
+        </div>
+
+        {foreach $order['orderItems'] as $orderItem}
+            <div class="item">
+                {var $imageUrl = isset($orderItem['product']['productImages'][0]) ? fu($orderItem['product']['productImages'][0], 'product/50') : '/img/no_image.svg'}
+                <div class="row align-items-center">
+                    <div class="col-md-1 text-center">
+                        <div class="image"><img src="{$imageUrl}" alt="{$orderItem['product']['productLangs'][0]['Name']}"></div>
+                    </div>
+                    <div class="col-md-5">
+                        <a href="/{URL::PRODUCT}/{$orderItem['product']['productLangs'][0]['slug']}">
+                            <span class="name">{$orderItem['product']['productLangs'][0]['Name']}</span>
+                        </a>
+                        <div n:if="$orderItem['product']['Code']" class="code">Kód produktu: <span>{$orderItem['product']['Code']}</span></div>
+                    </div>
+                    <div class="col-md-2 text-center">{$orderItem['Quantity']}</div>
+                    <div class="col-md-2 text-end price">{price($orderItem['PriceWithVat'], $currencyLabel)}</div>
+                    <div class="col-md-2 text-end price-total">{price($orderItem['PriceWithVat'] * $orderItem['Quantity'], $currencyLabel)}</div>
+                </div>
+            </div>
+        {/foreach}
+        <div class="order-summary">
+            <div class="row">
+                <div class="col-md-8 col-lg-10 text-end">{_('Cena zboží')}</div>
+                <div class="col-md-4 col-lg-2 price">{price($order['PriceProductWithVat'], $currencyLabel)}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-10 text-end">{_('Doprava a manipulace')}</div>
+                <div class="col-md-4 col-lg-2 price">{price($order['PriceShippingWithVat'], $currencyLabel)}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-10 text-end">{_('Platba')}</div>
+                <div class="col-md-4 col-lg-2 price">{price($order['PricePaymentWithVat'], $currencyLabel)}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-lg-10 total text-end">{_('Cena celkem s DPH')}</div>
+                <div class="col-md-4 col-lg-2 price total">{price($order['PriceProductWithVat'], $currencyLabel)}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block address">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="with-icon invoice-address small">{_('Fakturační adresa')}</h2>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Jméno a příjmení')}:</div>
+                    <div class="col-8 value">{$order['invoiceAddress']['FirstName']} {$order['invoiceAddress']['LastName']}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Mobil')}:</div>
+                    <div class="col-8 value">{$order['invoiceAddress']['Phone']}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('E-mail')}:</div>
+                    <div class="col-8 value">{$order['invoiceAddress']['Email']}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Adresa')}:</div>
+                    <div class="col-8 value">{$order['invoiceAddress']['Street']}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Město')}:</div>
+                    <div class="col-8 value">{$order['invoiceAddress']['City']} {$order['invoiceAddress']['ZipCode']}</div>
+                </div>
+
+                {if $order['invoiceAddress']['CompanyName']}
+                    <div class="row mt-2">
+                        <div class="col-4 text-end">{_('Společnost')}:</div>
+                        <div class="col-8 value">{$order['invoiceAddress']['CompanyName']}</div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end">{_('IČ')}:</div>
+                        <div class="col-8 value">{$order['invoiceAddress']['IC']}</div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end">{_('DIČ')}:</div>
+                        <div class="col-8 value">{$order['invoiceAddress']['DIC']}</div>
+                    </div>
+                {/if}
+            </div>
+
+            <div n:if="$order['DeliveryAddress_ID'] && $order['deliveryAddress']['FirstName']" class="col-md-6">
+                <h2 class="with-icon delivery-address small">{_('Doručovací adresa')}</h2>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Jméno a příjmení')}:</div>
+                    <div class="col-8 value">{$order['deliveryAddress']['FirstName']} {$order['deliveryAddress']['LastName']}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Adresa')}:</div>
+                    <div class="col-8 value">{$order['deliveryAddress']['Street']}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-4 text-end">{_('Město')}:</div>
+                    <div class="col-8 value">{$order['deliveryAddress']['City']} {$order['deliveryAddress']['ZipCode']}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <h2 class="with-icon shipping small">{_('Způsob dopravy')}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>{_('Datum')}</th>
+                    <th>{_('Dopravce')}</th>
+                    <th>{_('Hmotnost')}</th>
+                    <th>{_('Cena přepravy')}</th>
+                    <th>{_('Sledovací číslo zásilky')}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{$order['DateShipped']|date:'j. n. Y'}</td>
+                    <td>{$order['shipping']['Name']}</td>
+                    <td>-</td>
+                    <td>{price($order['PriceShippingWithVat'], $currencyLabel)}</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{/block}

@@ -1,0 +1,25 @@
+{layout $_SERVER['DOCUMENT_ROOT']._bu().'/../application/modules/'.$module.'/views/layout.latte'}
+{block content}
+<div class="entity-editor">
+    <div class="panel-heading row">
+        <div class="col-12 col-md-auto">
+            {if $editor->getBackUrl() != null}
+                <a class="btn btn-icon" href="{$basePath}/{$editor->getBackUrl()}" id="{$editor->getId()}_back"><i class="fa fa-arrow-left"></i> </a>
+            {/if}
+            <h1 class="d-inline-block" data-content="title">{$editor->getTitle()|noescape}</h1>
+        </div>
+        <div class="col-12 col-md text-right d-flex justify-content-end">
+            {include "buttons.latte"}
+        </div>
+        <div class="col-12" data-content="header">
+            {include "header.latte"}
+        </div>
+    </div>
+    <div class="panel-content" data-content="content">
+        {include "content.latte"}
+    </div>
+    <div data-content="footer">
+        {include "footer.latte"}
+    </div>
+</div>
+{/block}

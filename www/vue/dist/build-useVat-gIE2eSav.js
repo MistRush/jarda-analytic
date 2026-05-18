@@ -1,0 +1,2 @@
+const e=()=>{const _={ID_VAT_21:1,ID_VAT_20:2,ID_VAT_15:3,ID_VAT_10:4,ID_VAT_0:5},T={VAT_COUNT_TYPE_WITHOUT:"without-vat",VAT_COUNT_TYPE_WITH:"with-vat"};return{vats:_,vatCountTypes:T,getVats:()=>({[_.ID_VAT_21]:"Základní daň 21%",[_.ID_VAT_20]:"Základní daň 20%",[_.ID_VAT_15]:"Základní daň 15%",[_.ID_VAT_10]:"Základní daň 10%",[_.ID_VAT_0]:"Nulová daň"}),getVatCountTypes:()=>({[T.VAT_COUNT_TYPE_WITHOUT]:"uvedená cena je bez DPH",[T.VAT_COUNT_TYPE_WITH]:"uvedená cena je s DPH"})}};export{e as u};
+//# sourceMappingURL=build-useVat-gIE2eSav.js.map

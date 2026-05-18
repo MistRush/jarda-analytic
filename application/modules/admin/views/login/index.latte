@@ -1,0 +1,47 @@
+{layout "../layout.latte"}
+{block title}Vítejte zpět{/block}
+
+{block content}
+    <div class="row">
+        <div class="col-md-12 login-column">
+            <div class="text-center">
+                <img src="{$basePath}/img/front/logo-dark.svg" alt="denikpleti.cz" class="logo">
+            </div>
+            <form action="{$basePath}/admin/login/process" id="loginForm" data-ajax="true" method="post">
+                <div class="login-form">
+                    <div class="input">
+                        <label for="name">Uživatelský účet</label>
+                        <input type="text" name="Name" autocomplete="on">
+                        <span></span>
+                    </div>
+                    <div class="input">
+                        <label for="name">Password</label>
+                        <input type="password" name="Password" autocomplete="on">
+                        <span></span>
+                    </div>
+                </div><br>
+                <div class="text-right">
+                    <button class="btn btn-primary" type="submit" id="login">Přihlásit se</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{/block}
+{block scripts}
+    <script>
+        $(function () {
+            var loginForm = new Form('loginForm');
+            loginForm.onSuccess = function (data) {
+                if (data === "Fail") {
+                    alerts.alert("Přihlášení", "error", "Neplatné přihlášení!");
+                } else {
+                    window.location.replace(data);
+                }
+            };
+
+            if (window.location.hash.length > 0 && $('[href="' + window.location.hash + '"').length > 0) {
+                $('[href="' + window.location.hash + '"').click();
+            }
+        });
+    </script>
+{/block}

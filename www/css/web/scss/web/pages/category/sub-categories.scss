@@ -1,0 +1,45 @@
+#category {
+    .sub-categories-block {
+        margin-top: 25px;
+        margin-bottom: 15px;
+
+        a {
+            text-decoration: none;
+        }
+
+        .item {
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            min-height: 56px;
+            align-items: center;
+            transition: all 0.5s;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid $border-primary-item;
+            @include animation();
+            padding: 0 15px;
+
+            &:hover {
+                border: 1px solid $border-primary-item-hover;
+            }
+
+            .image {
+                display: inline-block;
+                width: 50px;
+                text-align: center;
+                margin-right: 10px;
+
+                img {
+                    max-width: 50px;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+}

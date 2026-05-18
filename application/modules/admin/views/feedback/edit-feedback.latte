@@ -1,0 +1,78 @@
+<script>
+    /**
+     * @namespace { EntityEditor } editor
+     */
+    var editor;
+
+    $(function () {
+        editor = {$editor|noescape};
+        $('select[name="CreatorUser_ID"]').select2().select2('val',userID);
+
+
+        editor.onAfterShow = function () {
+            setTimeout( function() {
+                $('.tox.tox-tinymce.tox-tinymce--toolbar-sticky-off').css('height', '1000px');
+            }, 500);
+            $('#ScriptCodeContent_group').hide();
+            $('#ScriptCodeContent_group label').hide();
+            $('#ScriptCodeContent_group').parent().children('.col-12').addClass('contentExpander');
+
+
+            $('.contentExpander h2').prepend('<div class="arrow"></div>');
+
+            $('.contentExpander').click(function() {
+                $('#ScriptCodeContent_group').toggle(500);
+                $('#ScriptCodeContent_group').parent().toggleClass('changed');
+            });
+
+            // $('select[name=Project_ID]').change(function(){
+            //     getDefaultSolver($(this).val());
+            // })
+        }
+
+
+        editor.onAfterLoad = function () {
+            if($('textarea[name=ScriptCodeContent]').val().length>1){
+                $('.contentExpander').click();
+            }
+        }
+
+    })
+
+
+    function previewFile() {
+        let data = feedback_files_datagrid.getCurrentItem();
+        if (data !== null) {
+            if (data.Extension == 'jpg' || data.Extension == 'png' || data.Extension == 'gif') {
+                let dialog = new Dialog();
+                dialog.content = '<img src="' + basePath + '/common/file/download?type=feedback&ID=' + data.File_ID + '">';
+                dialog.title = {_('Náhled')};
+                dialog.show();
+            } else {
+                window.open(basePath + '/common/file/download?type=feedback&ID=' + data.File_ID, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
+                window.focus();
+            }
+        }
+    }
+
+    function downloadFile() {
+        let data = feedback_files_datagrid.getCurrentItem();
+        if (data !== null) {
+            Helpers.downloadFile(basePath + '/common/file/download?type=feedback&Download=true&ID=' + data.File_ID, data.Name+'.'+data.Extension);
+        }
+    }
+
+    // function getDefaultSolver(projectId) {
+    //     $.ajax({
+    //         url: basePath + '/admin/feedback/get-default-solver-by-project/',
+    //         data: {
+    //             Project_ID: projectId,
+    //         },
+    //         success: function (data) {
+    //             $('select[name="SolverUser_ID"]').select2().select2('val',data);
+    //         }
+    //     });
+    // }
+
+
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer-configuration xmlns:Atx="http://www.inventic.cz" xmlns:yaml="http://www.inventic.cz/yaml2xml">
+     <orm-configuration name="Doctrine">
+        <attribute name="Behaviours" abstract="true">
+            <attribute name="Clevis_Behavior_EntityOther">
+                <attribute name="Column" type="string" />
+                <attribute name="ColumnOther" type="string" />
+                <attribute name="EntityColumn" type="string" />
+            </attribute>
+            <attribute name="Clevis_Behavior_Hierarchy">
+                <attribute name="ColumnParent" type="string" />
+                <attribute name="ColumnChildren" type="string" />
+            </attribute>
+            <attribute name="Clevis_Behavior_LogCreate">
+                <attribute name="ByClass" type="string" />
+                <attribute name="ByClassColumn" type="string" />
+            </attribute>
+            <attribute name="Clevis_Behavior_UuidAble">
+            </attribute>
+        </attribute>
+    </orm-configuration>
+</orm-designer-configuration>

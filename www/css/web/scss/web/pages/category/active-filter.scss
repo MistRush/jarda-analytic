@@ -1,0 +1,52 @@
+.active-filter-container {
+    margin: 30px 0 40px;
+    border-radius: 8px;
+    background: $background-primary-light;
+    border: 1px solid #D8E4F7;
+    padding: 15px 20px;
+
+    .headline {
+        font-size: 16px;
+        font-weight: 700;
+        border-bottom: 1px solid #D8E4F7;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .item {
+        margin-bottom: 15px;
+
+        .name {
+            text-align: right;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .value {
+            display: inline-block;
+            margin-right: 6px;
+            border-radius: 4px;
+            padding: 3px 20px 3px 6px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            background: $background-primary-red url("/img/front/icons/pages/category/filter-remove.png") center right 5px no-repeat;
+
+            &:hover {
+                opacity: .9;
+                text-decoration: line-through;
+                background-color: $background-primary-red;
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .remove-all {
+        text-align: right;
+        border-top: 1px solid #D8E4F7;
+        padding-top: 10px;
+    }
+}

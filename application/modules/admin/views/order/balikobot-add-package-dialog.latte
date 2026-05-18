@@ -1,0 +1,14 @@
+{$form->render()|noescape}
+
+<script>
+    $(function () {
+        {$form|noescape}.onSuccess = function () {
+            {$dialog_id|noescape}.close();
+            orderGrid.refresh();
+        }
+
+        window.confirmAddPackage = function () {
+            $({$form|noescape}.getForm()).submit();
+        }
+    })
+</script>

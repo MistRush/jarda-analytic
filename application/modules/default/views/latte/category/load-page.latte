@@ -1,0 +1,22 @@
+{block content}
+
+    {if $grid == \common\logic\Front\ProductList::GRID_LINE}
+        <div class="product-list">
+            {foreach $products as $product}
+                {include '../components/product/item-line.latte', product => $product}
+            {/foreach}
+        </div>
+    {else}
+        <div class="product-list row">
+            <div n:foreach="$products as $product" class="col-12 col-xl-4 col-lg-6 col-md-6">
+                {include '../components/product/item-classic.latte', product => $product}
+            </div>
+        </div>
+    {/if}
+
+    <div data-remaining-to-display="{$totalProducts-(($page - 1) * $offset + sizeof($products))}" class="hidden d-none pagination showing pagination-{$page}">
+        Zobrazují se
+        <strong>{(($page - 1) * $offset) + 1} - {($page - 1) * $offset + sizeof($products)} z {$totalProducts}</strong>
+        položek
+    </div>
+{/block}

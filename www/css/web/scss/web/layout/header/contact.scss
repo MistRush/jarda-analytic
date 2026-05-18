@@ -1,0 +1,65 @@
+#header {
+    .contact-container {
+        padding: 10px 0;
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background-color: #ffffff;
+            opacity: 0.1;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 0;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .item {
+            font-size: 14px;
+            padding: 10px 0 10px 25px;
+            background: left center no-repeat;
+
+            &.opening-hours {
+                background-image: url('/img/front/icons/layout/header/opening-hours.svg');
+                margin-right: 35px;
+            }
+
+            &.phone {
+                background-image: url('/img/front/icons/layout/header/phone.svg');
+                margin-right: 35px;
+            }
+
+            &.email {
+                background-image: url('/img/front/icons/layout/header/email.svg');
+                padding-left: 28px;
+            }
+        }
+
+        .client-links-block {
+            display: inline-block;
+            padding-left: 26px;
+            background: url('/img/front/icons/layout/header/client.svg') left center no-repeat;
+
+            a {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #header {
+        .contact-container {
+            display: none;
+        }
+    }
+}

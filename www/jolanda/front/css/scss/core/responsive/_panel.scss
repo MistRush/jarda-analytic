@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+  .entity-editor{
+    .panel-content{
+      padding: 0 0 20px 0;
+    }
+  }
+
+  .panel-heading{
+    &.locked{
+      width: 100vw;
+      left: 0;
+      top: 0;
+      margin-left: 0;
+    }
+    [data-content="buttons"] {
+      button{
+        transform: scale(.8);
+      }
+    }
+  }
+  .panel-content{
+    background: none;
+    box-shadow: none;
+  }
+}

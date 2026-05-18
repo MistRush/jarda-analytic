@@ -1,0 +1,25 @@
+<div class="payments">
+    <h2 class="with-icon payment">{_('Vyberte způsob platby')}</h2>
+    <div n:foreach="$payments as $payment" n:class="item" data-payment-id="{$payment['ID']}" data-payment-name="{$payment['Name']}" data-payment-price-without-vat="{$payment['PriceWithoutVat']}" data-payment-price-with-vat="{$payment['PriceWithVat']}">
+        <div class="row align-items-center">
+            <div class="col-1 no-padding">
+                <div n:if="$payment['File_ID']" class="image">
+                    <img src="{fu($payment, 'logo')}" alt="{$payment['Name']}">
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="headline">{$payment['Name']}</div>
+                <div n:if="$payment['Description']" class="subline">{$payment['Description']}</div>
+            </div>
+            <div class="col-4 text-end">
+                {if $payment['Price']}
+                    <div class="price">+ {price($payment['PriceWithVat'], $currency['Label'])}</div>
+                {else}
+                    <div class="price">{_('Zdarma')}</div>
+                {/if}
+            </div>
+        </div>
+    </div>
+
+    <div class="error no-payment"{_('Omlouváme se, pro tento typ dopravy nemáme v tuto chvíli aktivní žádnou platební metodu.')}></div>
+</div>

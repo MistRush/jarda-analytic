@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Sloupce - Jolanda</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Sloupce";
+        var mkdocs_page_input_path = "grid/columns.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Jolanda
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/install/">Instalace</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy-ide/">Integrace Tracy s IDE</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../install/tracy/">Instalace Tracy panelů</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">PHP</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Grid</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../grid/">Úvod</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Sloupce</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#zaklad">Základ</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formatovani">Formátování</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sloupce-enum-a-entity">Sloupce ENUM a ENTITY</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filtrovani-ve-sloupci">Filtrování ve sloupci</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inline-editace">Inline editace</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ajaxselect">AjaxSelect</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#skryti-sloupce">Skrytí sloupce</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Formuláře</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/form/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/inputs/">Formulářové prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/input-options/">Možnosti prvků</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/validation/">Validace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../form/js/">JavaScript API</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Editor</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/editor/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/fields/">Prvky</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/options/">Možnosti</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/js/">JavaScript API</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../editor/quickeditor/">QuickEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Status Manager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/usage/">Použití</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/statusmanager/">Třída StatusManager</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../statusmanager/status/">Třída Status</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Import</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/uvod/">Úvod</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/import/">Třída Import</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../import/importBase/">Třída ImportBase</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">JsLogger</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../jslogger/usage/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">FileManager</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../filemanager/">Použití</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Šablony (Latte)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/common/">Obecné</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/filters/">Filtry</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/macros/">Makra</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/migration/">Migrace 2 -> 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../latte/typehints/">Typehints</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">JavaScript</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/dialog/">Dialog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/panel/">Panel</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/cookie/">Cookie</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/alerts/">Alerts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../javascript/helpers/">Pomocníci</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Jolanda</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">PHP</li>
+          <li class="breadcrumb-item">Grid</li>
+      <li class="breadcrumb-item active">Sloupce</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="sloupce">Sloupce</h1>
+<h2 id="zaklad">Základ</h2>
+<p>Do gridu můžeme přidávat sloupce na základě dat z Clevis Manageru. </p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_TEXT, 'Name', 'Jméno');
+</code></pre>
+<p>Prvním parametrem je typ dat ve sloupci, dle kterého je prováděno následné formátování (viz. <a href="#formatovani">Formáty</a>), druhým název sloupce z DB, třetí potom popisek sloupce.</p>
+<h2 id="formatovani">Formátování</h2>
+<table>
+<thead>
+<tr>
+<th>Formát</th>
+<th>Funkce</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COLUMN_BOOL</td>
+<td>Formátování bool hodnoty na text Ano / Ne</td>
+</tr>
+<tr>
+<td>COLUMN_CHECKBOX</td>
+<td>Formátování bool hodnoty na text Ano / Ne s checboxem pro rychlé přepínání</td>
+</tr>
+<tr>
+<td>COLUMN_CURRENCY</td>
+<td>Formátuje číslo a vydělí 100</td>
+</tr>
+<tr>
+<td>COLUMN_CURRENCY_CZK</td>
+<td>Stejné jako COLUMN_CURRENCY jen doplní Kč</td>
+</tr>
+<tr>
+<td>COLUMN_CURRENCY_EUR</td>
+<td>Stejné jako COLUMN_CURRENCY jen doplní €</td>
+</tr>
+<tr>
+<td>COLUMN_CURRENCY_GBP</td>
+<td>Stejné jako COLUMN_CURRENCY jen doplní £</td>
+</tr>
+<tr>
+<td>COLUMN_CURRENCY_PLN</td>
+<td>Stejné jako COLUMN_CURRENCY jen doplní zŁ</td>
+</tr>
+<tr>
+<td>COLUMN_CURRENCY_USD</td>
+<td>Stejné jako COLUMN_CURRENCY jen doplní $</td>
+</tr>
+<tr>
+<td>COLUMN_DATE</td>
+<td>Formátuje datum do podoby DD. MM. YYYY</td>
+</tr>
+<tr>
+<td>COLUMN_ENTITY</td>
+<td>Zobrazuje data z relační tabulky</td>
+</tr>
+<tr>
+<td>COLUMN_ENUM</td>
+<td>Zobrazuje data na základě hodnot z předaného enumeračního pole</td>
+</tr>
+<tr>
+<td>COLUMN_LONGTEXT</td>
+<td>Zkracuje dlouhý text na 250 znaků</td>
+</tr>
+</tbody>
+</table>
+<p>Na každý sloupec lze také aplikovat vlastní JS formátovací funkci.</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_TEXT, 'Name', 'Jméno')
+     -&gt;setFormatFunction('formatovaciFunkce');
+</code></pre>
+<p>JS funkce pak může vypadat takto:</p>
+<pre><code class="language-javascript">var formatovaciFunkce = function (value, column, row_data, format) {
+    return '&lt;span class=&quot;text-red&quot;&gt;'+row_data.Name+'&lt;/span&gt;'
+}
+</code></pre>
+<h2 id="sloupce-enum-a-entity">Sloupce ENUM a ENTITY</h2>
+<p>Hodnoty ve sloupcích mohou mít dynamický obsah předávaný buď pomocí enumeračního pole.</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_ENUM, 'Position', 'Pozice')
+     -&gt;setEnumValues([
+        'admin'=&gt;&quot;Administrátor&quot;, 
+        'buyer'=&gt;'Nakupující'
+     ]);
+</code></pre>
+<p>Nebo brány z relační tabulky Clevis Manageru.</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_ENTITY, 'User_ID', 'Účet')
+     -&gt;setEntity('ID', 'Name', ['module' =&gt; 'user', 'controller' =&gt; 'user-list', 'nobuyer' =&gt; 1]);
+</code></pre>
+<p>Prvním parametrem metody je klíč cizí tabulky, druhým název / obsah který se má v gridu vypsat a třetím potom cesta k Clevis Manageru. Lze také použít parametry.</p>
+<h2 id="filtrovani-ve-sloupci">Filtrování ve sloupci</h2>
+<p>Filtrování daného sloupce lze vypnout metodou</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_TEXT, 'Name', 'Jméno')
+     -&gt;setFilter(true);
+</code></pre>
+<h2 id="inline-editace">Inline editace</h2>
+<p>Pro daný sloupec lze také zapnout inline editaci hodnot.</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_TEXT, 'Name', 'Jméno')
+     -&gt;setEditable(true);
+</code></pre>
+<p>Pro zobrazení editoru pak stačí kliknout na danou buňku při podržení klávesy Alt</p>
+<p>⚠ Editace nelze použít na sloupce, které jsou formátovány vlastní JS funkcí.</p>
+<h3 id="ajaxselect">AjaxSelect</h3>
+<p>do inline editoru lze nastavit i ajaxSelectBox. Problém je, že sloupec musí být nastavený jako text (nechceme zobrazovat ID, ale nějakou textovou value), ale chceme měnit ID. Takže musíme nastavit i jaká hodnota(sloupec) se má v DB měnit.</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_TEXT, 'LanguageCode', 'Jazyk', 20)-&gt;setEditable(true, Column::EDIT_TYPE_AJAX_SELECT, [
+    'storeUrl' =&gt; ['controller' =&gt; 'language'], //stejně jako u AjaxComboBoxStore
+    'storeField' =&gt; 'Code', //stejně jako u AjaxComboBoxStore
+    'name' =&gt; 'Language_ID' //sloupec který chceme měnit
+]);
+</code></pre>
+<h2 id="skryti-sloupce">Skrytí sloupce</h2>
+<p>Sloupce lze implicitně skrýt.</p>
+<pre><code class="language-php">$grid-&gt;addColumn(COLUMN_TEXT, 'Name', 'Jméno')
+     -&gt;setVisible(false);
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../grid/" class="btn btn-neutral float-left" title="Úvod"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../options/" class="btn btn-neutral float-right" title="Možnosti">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../grid/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

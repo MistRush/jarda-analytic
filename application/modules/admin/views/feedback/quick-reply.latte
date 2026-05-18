@@ -1,0 +1,157 @@
+{layout "../layout.latte"}
+{block title}{_('Rychlá odpověď')}{/block}
+{block content}
+    {capture $states}
+        {foreach array_reverse($feedback->feedbackStates->getData()) as $state}
+            <div class="row mb-2">
+                <div class="col-1">
+                    <div class="thumbnail">
+                        {if $state->User_ID}{$state->user->Name}{else}??{/if}
+                    </div>
+                </div>
+                <div class="col-11">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <strong>{$state->user->Name}</strong> - {$state->State} - <span class="text-muted">{$state->DateTime|date:'j.n.Y H:i:s'}</span>
+                        </div>
+                        <div class="card-body" n:ifcontent>
+                            {$state->Description|noescape}
+                            <code n:ifcontent>
+                                {$state->ScriptCodeContent}
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/foreach}
+        <div class="row mb-2">
+            <div class="col-1">
+                <div class="thumbnail">
+                    {if $feedback->CreatorUser_ID}{$feedback->creatorUser->Name}{else}??{/if}
+                </div>
+            </div>
+            <div class="col-11">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <strong>{$feedback->creatorUser->Name}</strong> - {_('Původní zpráva')} - <span class="text-muted">{$feedback->DateTime|date:'j.n.Y H:i:s'}</span>
+                    </div>
+                    <div class="card-body">
+                        {$feedback->Content|noescape}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {if count($feedback->feedbackFiles)}
+            <div class="row mb-2">
+                <div class="col-1">
+                    <div class="thumbnail">
+                        <i class="ci ci-file"></i>
+                    </div>
+                </div>
+                <div class="col-11">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <strong>{_('Soubory')}</strong> ({count($feedback->feedbackFiles)})
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {foreach $feedback->feedbackFiles as $file}
+                                    <li><a href="javascript:Helpers.downloadFile(basePath + '/common/file/download?type=feedback&Download=true&ID={$file->file->ID}', '{$file->file->Name}.{$file->file->Extension}')">{$file->file->Name}.{$file->file->Extension}</a></li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
+    {/capture}
+
+    {if $statesOnly}
+        {$states|noescape}
+    {else}
+        <div id="quickReply">
+            <h1>Odpověď na požadavek: <strong>{$feedback->Header}</strong></h1>
+{*            {if $layout=="../layout-inline.latte"}*}
+{*                <a n:href="feedback" class="btn btn-sm btn-white float-none">{_('Zpět na výpis')}</a>*}
+{*            {/if}*}
+            <div class="clearfix">
+                {$replyForm->render()}
+            </div>
+            <hr>
+            <div id="states">
+                {$states|noescape}
+            </div>
+        </div>
+
+        <script>
+            var replyForm;
+            $(function (){
+                replyForm = {$replyForm|noescape};
+
+                replyForm.setValue('ID', {$feedback->Hash});
+                $(replyForm.getForm()).attr('method', 'POST');
+
+                replyForm.onSuccess = function (data) {
+                    alerts.alert({_('Odpověď odeslána')}, 'success');
+                    $('#states').html(data);
+                    replyForm.reset();
+                    replyForm.setValue('ID', {$feedback->Hash});
+                    replyForm.setValue('State', 'state-new');
+                    closeDialog();
+                };
+                replyForm.onAfterValidate=function() {
+                    var form_data = new FormData();
+                    var input = replyForm.getInput('files');
+                    if ($(input).prop("files").length > 0) {
+                        $.each($(input).prop("files"), function (k, v) {
+                            form_data.append("uploadFile", v);
+                            form_data.append("Entity_ID", {$feedback->ID});
+                            $.ajax({
+                                url: basePath + '/common/file/upload?type={\Common_Model_File::TYPE_FEEDBACK_ATTACHMENT|noescape}&Entity_ID=' + {$feedback->ID},
+                                type: "POST",
+                                data: form_data,
+                                mimeTypes: "multipart/form-data",
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                                async: false,
+                            });
+                        });
+                    }
+                }
+
+                $('.select2').click(function() {
+                    $('.select2-results__options').css('max-height', '350px');
+                });
+            });
+
+
+            function closeDialog() {
+                const openedDialogId = $( "div[role='dialog'].show").attr('ID');
+                window[openedDialogId].close()
+            }
+
+            $(".fancybox").each(function(){
+                $(this).fancybox({
+                    href : $(this).attr('src'),
+                    padding:0
+                });
+            });
+
+            $(window).click(function() {
+                closeDialog();
+            });
+
+            $('.modal-dialog').click(function(event){
+                event.stopPropagation();
+            });
+
+            $(window).keydown(function(event) {
+                if (event.ctrlKey && event.keyCode === 13) {
+                    console.log("halo ke");
+                    $(".btn.btn-primary").click();
+                }
+            })
+        </script>
+    {/if}
+{/block}

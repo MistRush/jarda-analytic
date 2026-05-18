@@ -1,0 +1,70 @@
+.modal-dialog.login {
+    .modal-header {
+        padding: 0;
+        font-size: 0;
+        border: 0;
+    }
+
+    .modal-body {
+        padding: 0;
+
+        a {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .login-block {
+            background: $background-primary-light;
+            padding: 35px 30px;
+            border-radius: 6px 0 0 6px;
+
+            .headline {
+                font-size: 20px;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
+
+            label {
+                margin: 15px 0 2px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .benefits-block {
+            padding: 35px 30px;
+
+            .headline {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+
+            ul {
+                border-bottom: 1px solid $border-primary-light;
+                padding-bottom: 15px;
+
+                li {
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin: 15px 0;
+                    padding: 0 0 0 26px;
+                    background: url('/img/front/icons/components/modal/login-benefit.svg') left center no-repeat;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .modal-dialog.login {
+        .modal-header {
+            .close {
+                right: -30px;
+                background-color: rgb(217.5, 230, 255);
+            }
+        }
+    }
+}

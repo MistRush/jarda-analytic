@@ -1,0 +1,108 @@
+#my-account {
+    #order-detail-block {
+        .block {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid $border-primary-light;
+
+            table {
+                width: 100%;
+
+                th {
+                    padding: 6px 7px;
+                    font-size: 14px;
+                    line-height: 17px;
+                    font-weight: 600;
+                    border-bottom: 2px solid $border-primary-light;
+                }
+
+                td {
+                    padding: 15px 7px;
+                    font-size: 14px;
+                    line-height: 17px;
+                    font-weight: 400;
+                    border-bottom: 1px solid $border-primary-light;
+                }
+
+                tr:last-child {
+                    td {
+                        border-bottom: 0
+                    }
+                }
+            }
+
+            &.order-items {
+                .headline {
+                    font-size: 14px;
+                    font-weight: 600;
+                    padding: 8px 0;
+                    border-bottom: 1px solid $border-primary-light;
+                    margin: 0;
+                }
+
+                .item {
+                    padding: 20px 0;
+                    border-bottom: 1px solid $border-primary-light;
+
+                    .name {
+                        font-size: 13px;
+                        font-weight: 600;
+                        margin-bottom: 5px;
+                    }
+
+                    .code {
+                        font-size: 12px;
+
+                        span {
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                .price {
+                    font-weight: 500;
+                }
+
+                .price-total {
+                    font-weight: 600;
+                    color: $font-primary-red;
+                }
+            }
+
+            .order-summary {
+                background: $background-primary-light;
+                padding: 15px 20px;
+                border-radius: 4px;
+                margin-top: 25px;
+
+                .row {
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 3px 0;
+
+                    .price {
+                        font-weight: 600;
+                        text-align: right;
+                        color: $font-primary-dark;
+                    }
+
+                    .total {
+                        font-weight: 700;
+                        font-size: 16px;
+
+                        &.price {
+                            color: $font-primary-red
+                        }
+                    }
+                }
+            }
+
+            &.address {
+                .value {
+                    font-weight: 600;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}

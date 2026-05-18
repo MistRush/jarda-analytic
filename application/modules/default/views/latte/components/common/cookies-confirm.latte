@@ -1,0 +1,186 @@
+{if isset($_COOKIE['AnalyticsScripts']) || isset($_COOKIE['MarketingScripts'])}
+    <script>
+        {if isset($_COOKIE['AnalyticsScripts']) && ( $_COOKIE['AnalyticsScripts'] == 'true' || $_COOKIE['AnalyticsScripts'] == '1' )}
+        consentHandler.enableAnalyticsScripts();
+        {else}
+        consentHandler.disableAnalyticsScripts();
+        {/if}
+
+        {if isset($_COOKIE['MarketingScripts']) && ( $_COOKIE['MarketingScripts'] == 'true' || $_COOKIE['MarketingScripts'] == '1' )}
+        consentHandler.enableMarketingScripts();
+        {else}
+        consentHandler.disableMarketingScripts();
+        {/if}
+    </script>
+{else}
+    <div class="modal" id="cookies-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel" aria-hidden="true">
+        <div class="modal-dialog cookies-confirm modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="cookieModalLabel"><b>Souhlas</b> s COOKIES</div>
+                    <button type="button" class="close cookies-confirm-tooltip" aria-label="Close" title="Povolit všechny cookies"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cookie-content">
+                        <p>Pro co nejpohodlnější používání webu potřebujeme Váš souhlas se zpracováním
+                            souborů cookies. Souhlas udělíte kliknutím na tlačítko „<b>Povolit vše a ZAVŘÍT</b>“. Odmítnout
+                            souhlas můžete prostřednictvím nastavení.</p>
+                        <div class="mt-3 text-center text-lg-right align-self-center">
+                            <span class="btn btn-transparent cookies-setings">Nastavení cookies</span>
+                            <span class="btn-pink ms-2 confirm-all-cookies">Povolit vše a ZAVŘÍT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="cookies-settings-modal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg cookies-confirm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Co jsou cookies?</div>
+                    <button type="button" class="close cookies-confirm-tooltip" aria-label="Close" title="Povolit všechny cookies"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cookie-content">
+                        <p>Potkáváte se s nimi neustále, na každém webu na Vás „vyskakují“ a možná Vás i trochu
+                            otravují. Ale ve skutečnosti jsou cookies přátelské. Díky nim totiž webová stránka
+                            funguje podle Vás a přizpůsobuje se vašim preferencím. Soubory cookies Vás obvykle přímo
+                            neidentifikují, jen si pamatují, co a jak máte ve svém prohlížeči nastaveno.</p>
+                        <div class="accordion" id="cookies-accordion">
+                            <div class="block">
+                                <div class="block-header">
+                                    <div class="toggler collapsed" role="button" data-toggle="collapse" data-target="#collapseCookies1" aria-expanded="false" aria-controls="collapseCookies1">
+                                        Nezbytné systémové cookies
+                                    </div>
+                                    <span class="active">vždy aktivní</span>
+                                </div>
+                                <div id="collapseCookies1" class="collapse" aria-labelledby="heading6" data-parent="#cookies-accordion">
+                                    <div class="block-content">
+                                        <p>Tyto cookies jsou nezbytné pro fungování webu a nemohou být v našich
+                                            systémech vypnuty. Obvykle se nastavují pouze v reakci na Vámi
+                                            provedené akce, které odpovídají požadavku na služby, jako je nastavení
+                                            vašich preferencí ochrany osobních údajů, přihlášení nebo vyplnění
+                                            formulářů, či jiné komunikace s námi.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="block">
+                                <div class="block-header">
+                                    <div class="toggler collapsed" role="button" data-toggle="collapse" data-target="#collapseCookies2" aria-expanded="false" aria-controls="collapseCookies2">
+                                        Analytické a funkční cookies
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="analytics-cookies">
+                                        <label class="custom-control-label" for="analytics-cookies"></label>
+                                    </div>
+                                </div>
+                                <div id="collapseCookies2" class="collapse" aria-labelledby="heading6" data-parent="#cookies-accordion">
+                                    <div class="block-content">
+                                        <p>Slouží k anonymnímu a agregovanému shromažďování obecných informací např.
+                                            o pohybu na webu, typu prohlížeče, odkazových stránkách, rychlosti webu, chybách nebo např.
+                                            době, kterou jste u nás strávili. Tato data nám následně pomáhají vylepšovat vzhled a obsah, který Vám
+                                            prostřednictvím našich stránek nabízíme.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="block">
+                                <div class="block-header">
+                                    <div class="toggler collapsed" role="button" data-toggle="collapse" data-target="#collapseCookies3" aria-expanded="false" aria-controls="collapseCookies3">
+                                        Marketingové cookies
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="marketing-cookies">
+                                        <label class="custom-control-label" for="marketing-cookies"></label>
+                                    </div>
+                                </div>
+                                <div id="collapseCookies3" class="collapse" aria-labelledby="heading6" data-parent="#cookies-accordion">
+                                    <div class="block-content">
+                                        <p>Marketingové cookies nám pomáhají nabídnout Vám jen taková obchodní
+                                            sdělení, která by Vás mohla
+                                            skutečně zajímat (a to jak na našich stránkách, tak i na stránkách,
+                                            které rádi navštěvujete). Na základě těchto
+                                            dat není možná bezprostřední identifikace Vaší osoby.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-center text-lg-right align-self-center">
+                            <span class="btn btn-transparent save-cookies-setings">Uložit nastavení cookies</span>
+                            <span class="btn-green ms-2 confirm-all-cookies">Povolit vše a ZAVŘÍT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#cookies-confirm-modal').modal({
+                backdrop: false
+            });
+
+            $('.cookies-confirm-tooltip').tooltip();
+
+            $('#cookies-confirm-modal .close, #cookies-settings-modal .close').click(function () {
+                Cookie.setCookie('AnalyticsScripts', 1, 1);
+                Cookie.setCookie('MarketingScripts', 1, 1);
+                $('#cookies-confirm-modal').modal('hide');
+                $('#cookies-settings-modal').modal('hide');
+
+                analyticsScripts();
+                marketingScripts();
+            });
+
+            $('.confirm-all-cookies').click(function () {
+                Cookie.setCookie('AnalyticsScripts', 1, 1000);
+                Cookie.setCookie('MarketingScripts', 1, 1000);
+
+                $('#cookies-confirm-modal').modal('hide');
+                $('#cookies-settings-modal').modal('hide');
+
+                analyticsScripts();
+                marketingScripts();
+            });
+
+            $('.cookies-setings').click(function () {
+                $('#cookies-confirm-modal').modal('hide');
+                $('#cookies-settings-modal').modal({
+                    backdrop: false
+                });
+            });
+
+            $('.save-cookies-setings').click(function () {
+                let analyticsCookies = $('#analytics-cookies').prop('checked');
+                let marketingCookies = $('#marketing-cookies').prop('checked');
+
+                Cookie.setCookie('AnalyticsScripts', analyticsCookies, 1000);
+                Cookie.setCookie('MarketingScripts', marketingCookies, 1000);
+
+                if (analyticsCookies)
+                    analyticsScripts();
+
+                if (marketingCookies)
+                    marketingScripts();
+
+                $('#cookies-settings-modal').modal('hide');
+            });
+
+            $('.cookies-agreement').click(function () {
+                Cookie.setCookie('AnalyticsScripts', 1, 1);
+                Cookie.setCookie('MarketingScripts', 1, 1);
+                $('#cookies-confirm-modal').modal('hide');
+                $('#cookies-settings-modal').modal('hide');
+
+                analyticsScripts();
+                marketingScripts();
+
+                window.location.href = '/cookies/';
+                return;
+            });
+        });
+    </script>
+{/if}

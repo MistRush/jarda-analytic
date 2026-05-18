@@ -1,0 +1,9 @@
+.jstree-default{
+  @include scrollbar();
+  .jstree-wholerow-clicked{
+    background: none;
+  }
+  .jstree-wholerow-hovered{
+    background: rgba(lighten(desaturate(adjust-hue($color-primary, -28), 41.38), 13.53), 0.23) !important;
+  }
+}

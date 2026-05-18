@@ -1,0 +1,12 @@
+<div class="list-settings">
+    <div class="row align-items-center">
+        <div class="col-10 sorting pe-0">
+            <a n:foreach="common\logic\Front\ProductList::getSortings() as $key => $value" href="" data-sorting="{$key}" n:class="$sorting == $key?active">{$value}</a>
+        </div>
+        <div class="col-2 grid ps-0">
+            <a n:foreach="common\logic\Front\ProductList::getGrids() as $key => $value" href="" data-grid="{$key}">
+                <span n:class="$grid == $key?active,item,$key" title="{$value}"></span>
+            </a>
+        </div>
+    </div>
+</div>

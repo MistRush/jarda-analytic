@@ -1,0 +1,23 @@
+{
+	"sEmptyTable":     "Δεν υπάρχουν διαθέσιμα στοιχεία στον πίνακα",
+	"sInfo":           "Εμφάνιση της _START_ έως το _END_ των _TOTAL_ καταχωρήσεων",
+	"sInfoEmpty":      "Εμφάνιση 0 έως 0 από 0 καταχωρήσεις",
+	"sInfoFiltered":   "(φιλτραρισμένο από _MAX_ συνολικές καταχωρήσεις)",
+	"sInfoPostFix":    "",
+	"sInfoThousands":  ",",
+	"sLengthMenu":     "Εμφάνιση καταχωρήσεων _MENU_",
+	"sLoadingRecords": "Φόρτωση...",
+	"sProcessing":     "Επεξεργασία...",
+	"sSearch":         "Αναζήτηση:",
+	"sZeroRecords":    "Δεν βρέθηκαν ταιριαστές εγγραφές",
+	"oPaginate": {
+		"sFirst":    "Πρώτη",
+		"sLast":     "Τελευταία",
+		"sNext":     ">",
+		"sPrevious": "<"
+	},
+	"oAria": {
+		"sSortAscending":  ": ενεργοποίηση για αύξουσα ταξινόμηση της στήλης",
+		"sSortDescending": ": ενεργοποίηση για να ταξινομήσετε τη στήλη φθίνουσα"
+	}
+}

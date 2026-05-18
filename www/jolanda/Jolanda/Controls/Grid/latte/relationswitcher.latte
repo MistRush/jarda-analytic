@@ -1,0 +1,11 @@
+<div id="{$id|noescape}" class="relation-switcher">
+<h2>Test (<span class="from"></span>/<span class="to"></span>)</h2>
+</div>
+
+<script>
+    if ({$id|noescape} === undefined)
+    var {$id|noescape} = null;
+    $(function () {
+        {$id|noescape} = new RelationSwitcher({$rs->getSettings()}, $('#'+{$id}), {$rs->getEditor()->getEntityId()})
+    })
+</script>

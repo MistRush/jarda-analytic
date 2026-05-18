@@ -1,0 +1,61 @@
+{block content}
+    <section>
+        <p>{_('Vítejte v systému pro administraci Vašeho uživatelského účtu. Zde můžete sledovat stav Vaších právě vyřizovaných objednávek, sledovat historii objednávek, měnit informace o adrese, nebo změnit heslo k Vašemu uživatelskému účtu.')}</p>
+        <div class="order-list">
+            <h2>{_('Aktivní objednávky')}</h2>
+            {if sizeOf($activeOrders) > 0}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{_('Datum')}</th>
+                            <th>{_('Označení objednávky')}</th>
+                            <th>{_('Celková cena')}</th>
+                            <th>{_('Stav')}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {foreach $activeOrders as $activeOrder}
+                        <tr>
+                            <td>{$activeOrder['Date']|date:'j.n.Y'}</td>
+                            <td><a class="open-order-detail" data-id="{$activeOrder['ID']}">{$activeOrder['OrderNumber']}</a></td>
+                            <td class="price">{$activeOrder['PriceTotalWithVat']|number:2, ',', ' '} {$activeOrder['currency']['Label']}</td>
+                            <td><div class="order-state" style="background:{$activeOrder['orderStateType']['Color']|noescape}">{$activeOrder['orderStateType']['orderStateTypeLangs'][0]['Name']}</div></td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            {else}
+                <p>{_('Žádná aktivní objednávka.')}</p>
+            {/if}
+        </div>
+
+        <div class="order-list mt-5">
+            <h2>{_('Archivní objednávky')}</h2>
+            {if sizeOf($finishedOrders) > 0 }
+                <table>
+                    <thead>
+                    <tr>
+                        <th>{_('Datum')}</th>
+                        <th>{_('Označení objednávky')}</th>
+                        <th>{_('Celková cena')}</th>
+                        <th>{_('Stav')}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach $finishedOrders as $finishedOrder}
+                        <tr>
+                            <td>{$finishedOrder['Date']|date:'j.n.Y'}</td>
+                            <td><a class="open-order-detail" data-id="{$finishedOrder['ID']}">{$finishedOrder['OrderNumber']}</a></td>
+                            <td class="price">{$finishedOrder['PriceTotalWithVat']|number:2, ',', ' '} {$finishedOrder['currency']['Label']}</td>
+                            <td>{$finishedOrder['payment']['Name']}</td>
+                            <td><div class="order-state" style="background:{$finishedOrder['orderStateType']['Color']|noescape}">{$finishedOrder['orderStateType']['orderStateTypeLangs'][0]['Name']}</div></td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            {else}
+                <p>{_('Žádná dokončená objednávka.')}</p>
+            {/if}
+        </div>
+    </section>
+{/block}

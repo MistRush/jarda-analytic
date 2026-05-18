@@ -1,0 +1,49 @@
+{block head}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    {if !isset($__auth) || (isset($__auth) && !$__auth)}
+        <link rel="stylesheet" href="https://use.typekit.net/ftu1xtd.css" async="true">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" async="true">
+        <link rel="stylesheet" href="{$basePath}/jolanda/front/css/style.static.min.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/css/style.static.min.css')}" async="true">
+        <link rel="stylesheet" href="{$basePath}/jolanda/front/css/style.dynamic.min.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/css/style.dynamic.min.css')}" async="true">
+        <link rel="stylesheet" href="{$basePath}/project/css/project.min.css?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/project/css/project.min.css')}" async="true">
+    {/if}
+
+    <title>{ifset title}{include title|stripTags} | {/ifset}{include appTitle|strip}</title>
+    {if !isset($__auth) || (isset($__auth) && !$__auth)}
+        <script src="{$basePath}/jolanda/front/js/jquery.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/jquery.js')}"></script>
+    {/if}
+    <script>
+        var basePath = {$basePath};
+        var lang = {$lang};
+        var panels = [];
+        var translations = JSON.parse({$translations});
+        var request = {
+            'module': {$request['module']},
+            'controller': {$request['controller']},
+            'action': {$request['action']}
+        };
+        var settings = {
+            'filemanagerKey': {$filemanagerKey}
+        };
+        {if isset($JsLogger)}
+            var jsLogger = {
+                'ENABLED': {$JsLogger['ENABLED']},
+                'LOG_ACTION': {$JsLogger['LOG_ACTION']},
+                'LOG_ON_DEVELOPMENT': {$JsLogger['LOG_ON_DEVELOPMENT']},
+            };
+        {/if}
+        {ifset $user}
+            var userID = {$user->ID ?? $user['ID'] ?? null};
+        {/ifset}
+
+        var jolandaConfig = {$jolandaConfig};
+    </script>
+    {if isset($JsLogger) && !empty($JsLogger['ENABLED'])}
+        <script src="{$basePath}/jolanda/front/js/js-logger/dist/JsLogger.js?{filemtime($_SERVER['DOCUMENT_ROOT']._bu().'/jolanda/front/js/js-logger/dist/JsLogger.js')}"></script>
+    {/if}
+    {block headAfter}
+    {/block}
+{/block}

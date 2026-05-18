@@ -1,0 +1,24 @@
+{layout "../layout.latte"}
+
+{block content}
+    <div id="cart">
+        <div class="text-center">
+            <h1 class="with-icon cart d-inline-block">{_('Nákupní košík')}</h1>
+        </div>
+
+        {$cartSteps|noescape}
+        {include 'components/products.latte'}
+        {include 'components/summary.latte'}
+        {include 'components/import.latte'}
+
+        <div class="text-end mt-3">
+            <a href="/order/step-1/">
+                <span class="btn btn-primary">{_('Pokračovat')} &#8594</span>
+            </a>
+        </div>
+
+        <script>
+            const coupon = new Coupon();
+        </script>
+    </div>
+{/block}

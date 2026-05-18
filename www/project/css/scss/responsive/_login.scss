@@ -1,0 +1,104 @@
+@media (max-width: 991px) {
+  .nav-item {
+    padding-right: 1rem!important;
+  }
+}
+
+@media (max-width: 767px) {
+  #loginPage {
+    main {
+      .content-column{
+        padding: 20px 50px;
+
+        .nav-link{
+          text-align: center;
+        }
+
+        .parts-catalog {
+          padding: 15px 0 0;
+
+          h3 {
+            font-size: 18px;
+          }
+
+          .part-number {
+            flex-direction: column;
+
+            .ci-search {
+              top: 25%;
+            }
+
+            select {
+              display: block;
+            }
+          }
+
+          input {
+            padding-right: 10px;
+            font-size: 12px;
+          }
+        }
+
+        #contact {
+          padding-right: 0;
+
+          .questions {
+            .question {
+              .ci {
+                font-size: 22px;
+              }
+
+              .text {
+                font-size: 16px;
+              }
+            }
+          }
+
+          .people {
+            .person {
+              .person-card {
+                padding: 10px;
+              }
+
+              .content {
+
+                .info {
+
+                  p {
+                    margin-bottom: 0;
+                  }
+                  
+                  .name {
+                    margin-top: 0;
+                    margin-bottom: 8px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  #loginPage {
+    main {
+      .content-column {
+        .parts-catalog {
+
+          .didyouknow {
+            font-size: 10px;
+          }
+
+          .showparts {
+            .submit {
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}

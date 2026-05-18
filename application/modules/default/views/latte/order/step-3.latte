@@ -1,0 +1,238 @@
+{layout "../layout.latte"}
+{block content}
+    {*{if $eshop->getSettings('HeurekaMereniKonverzi') && $eshop->getSettings('HeurekaPublicKey') && false}
+        <script>
+            var _hrq = _hrq || [];
+            _hrq.push(['setKey', '{php echo $eshop->getSettings('HeurekaPublicKey')}']);
+            _hrq.push(['setOrderId', '{php echo $order['ID']}']);
+            {foreach $order['orderItems'] as $orderItem}
+            _hrq.push(['addProduct', '{php echo $orderItem['product']['productLangs'][0]['Name']}', '{php echo $orderItem['PriceWithVat']}', '{php echo $orderItem['Quantity']}', '{php echo $orderItem['Product_ID']}']);
+            {/foreach}
+            _hrq.push(['trackOrder']);
+
+            (function () {
+                var ho = document.createElement('script');
+                ho.type = 'text/javascript';
+                ho.async = true;
+                ho.src = 'https://im9.cz/js/ext/1-roi-async.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ho, s);
+            })();
+        </script>
+    {/if}*}
+
+    {*
+    <script>
+        gtag('event', 'conversion', {
+            'send_to': 'AW-10882368150/gtM2CPPq7sUDEJaFj8Uo',
+            'value': {$order['PriceTotalWithVat']},
+            'currency': {$order['Currency_ID']=='2'? 'EUR':'CZK'},
+            'transaction_id': {$order['OrderNumber']},
+        });
+    </script>*}
+
+    {if isset($_COOKIE['MarketingScripts']) && ( $_COOKIE['MarketingScripts'] == 'true' || $_COOKIE['MarketingScripts'] == '1' )}
+        <script>
+            window.addEventListener("load", (event) => {
+                if (typeof gtag !== 'undefined') {
+                gtag('set', 'user_data', {
+                    "email": {$order['invoiceAddress']['Email']},
+                    "phone_number": "+420{$order['invoiceAddress']['Phone']|replace: '+420',''|replace:' ',''|noescape}",
+                    "address": {
+                        "first_name": {$order['invoiceAddress']['FirstName']},
+                        "last_name":  {$order['invoiceAddress']['LastName']},
+                        "street":  {$order['invoiceAddress']['Street']},
+                        "city":  {$order['invoiceAddress']['City']},
+                        "postal_code":  {$order['invoiceAddress']['ZipCode']},
+                        "country": "CZ"
+                    }
+                });
+                }
+            });
+        </script>
+    {/if}
+{if isset($_COOKIE['AnalyticsScripts']) && ( $_COOKIE['AnalyticsScripts'] == 'true' || $_COOKIE['AnalyticsScripts'] == '1' )}
+    <script>
+        fbq('track', 'Purchase', { currency: "CZK", value: {$order['PriceTotalWithoutVat']} });
+        gtag("event", "purchase", {
+            transaction_id: {$order['OrderNumber']},
+            value: {$order['PriceTotalWithoutVat']},
+            tax: {$order['PriceTotalWithVat']-$order['PriceTotalWithoutVat']|number:'2','.',''},
+            shipping:  {$order['PriceShippingWithoutVat']},
+            currency: "CZK",
+            items: [
+                {foreach $order['orderItems'] as $orderItem}
+                {
+                    item_id: {$orderItem['product']['Code']},
+                    item_name: {$orderItem['product']['productLangs'][0]['Name']},
+                    price: {$orderItem['PriceWithVat']},
+                    quantity: {$orderItem['Quantity']}
+                },
+                {/foreach}
+            ]
+        });
+    </script>
+{/if}
+    <div id="order-step-3">
+        <div class="text-center">
+            <h1 class="d-inline-block">{_('Objednávka dokončena')}</h1>
+        </div>
+        <div class="container">
+            <div class="main-content">
+                {$cartSteps|noescape}
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2>{_('Vážený zákazníku, děkujeme za Vaši objednávku číslo')}
+                            <span>{$orderNumber}</span>.
+                        </h2>
+
+                        {if $order['payment']['Type'] == \Admin_Model_Payment::TYPE_COD}
+                            <p class="pb-4">A je to tu. Právě nám dorazila nová objednávka. Děkujeme :)<br>
+                                Náš tým už pracuje na přípravě, balení a odeslání zásilky. Jakmile bude vše připraveno, pošleme další zprávu.<br><br>
+                                tým hadex.cz</p>
+                        {else}
+                            <p class="pb-4">A je to tu. Právě nám dorazila nová objednávka. Děkujeme :)<br>
+                                Jakmile nám dorazí platba, zásilku připravíme.<br><br>
+                                tým hadex.cz</p>
+                        {/if}
+
+                        <div n:if="$showCsobRedirectionModal" class="redirection-box">
+                            {_('Probíhá přesměrování na platební bránu')} ...
+                            <script>
+                                setTimeout(() => {
+                                    location.href = {$eshop->getURL() . '/common/csob/payment/order/' . $order['Folder']}
+                                }, 2000);
+                            </script>
+                            <div class="progress-loader-wrap" style="float: right;top: -10px;">
+                                <div class="progress-loader"></div>
+                            </div>
+                        </div>
+
+                        {if in_array($order['payment']['Type'], [\Admin_Model_Payment::TYPE_CSOB])}
+                            <div n:if="!$showCsobRedirectionModal" style="margin: 5px 0 35px; font-size: 16px; text-align: center;">
+                                {if $state != 'PAID'}
+                                    <a href="{$eshop->getURL()}/common/csob/payment/order/{$order['Folder']}">
+                                        <button name="pay" type="submit" style="padding: 11px 25px">{_('Zaplatit objednávku')}</button>
+                                    </a>
+                                {else}
+                                    {_('Platba proběhla úspěšně. Děkujeme.')}
+                                {/if}
+                            </div>
+                        {elseif $order['payment']['Type'] == \Admin_Model_Payment::TYPE_BANK}
+                            <div style="margin: 20px 0; font-size: 16px; background: #ffffff; padding: 15px; text-align: center; border-radius: 10px; box-shadow: 0 6px 20px 0 rgba(39, 42, 52, 0.1)">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <b>{_('Číslo účtu')}:</b> {$order['payment']['BankAccount']}<br>
+                                    <b>{_('Variabilní symbol')}:</b> {$order['OrderNumber']}<br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {$qrPlatba->getQRCodeImage(true, 120)|noescape}
+                                    </div>
+                                </div>
+                            </div>
+                        {/if}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="address-block">
+                                    <h2 class="with-icon invoice-address">{_('Fakturační adresa')}</h2>
+                                    <div class="grid-wrap">
+                                        {if $order['invoiceAddress']['CompanyName'] !== ''}
+                                            <span class="item-name">{_('Firma')}</span>
+                                            <span class="item-value">{$order['invoiceAddress']['CompanyName']}</span>
+                                        {/if}
+                                        <span class="item-name">{_('Jméno')}:</span>
+                                        <span class="item-value">{$order['invoiceAddress']['FirstName']} {$order['invoiceAddress']['LastName']}</span>
+                                        <span class="item-name">{_('Mobil')}:</span>
+                                        <span class="item-value">{$order['invoiceAddress']['Phone']}</span>
+                                        <span class="item-name">{_('Adresa')}:</span>
+                                        <span class="item-value">{$order['invoiceAddress']['Street']}</span>
+                                        <span class="item-name">{_('Město')}:</span>
+                                        <span class="item-value">{$order['invoiceAddress']['City']} {$order['invoiceAddress']['ZipCode']} </span>
+                                        <span class="item-name">{_('Stát')}:</span>
+                                        <span class="item-value">{$order['invoiceAddress']['country']['countryLangs'][0]['Name']}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div n:if="!$order['Zasilkovna_ID'] && !$order['Balikovna_ID'] && !$order['PPL_ID']" class="col-lg-6">
+                                <div class="address-block">
+                                    <h2 class="with-icon delivery-address">{_('Dodací adresa')}</h2>
+                                    <div class="grid-wrap">
+                                        {if isset($order['deliveryAddress'])}
+                                            {var $addressDelivery = $order['deliveryAddress']}
+                                        {else}
+                                            {var $addressDelivery = $order['invoiceAddress']}
+                                        {/if}
+
+                                    {if $addressDelivery['CompanyName'] != ''}
+                                            <span class="item-name">{_('Firma')}</span>
+                                            <span class="item-value">{$addressDelivery['CompanyName']}</span>
+                                        {/if}
+                                        <span class="item-name">{_('Jméno')}:</span>
+                                        <span class="item-value">{$addressDelivery['FirstName']} {$addressDelivery['LastName']}</span>
+                                        <span class="item-name">{_('Mobil')}:</span>
+                                        <span class="item-value">{$addressDelivery['Phone']}</span>
+                                        <span class="item-name">{_('Adresa')}:</span>
+                                        <span class="item-value">{$addressDelivery['Street']}</span>
+                                        <span class="item-name">{_('Město')}:</span>
+                                        <span class="item-value">{$addressDelivery['City']} {$addressDelivery['ZipCode']} </span>
+                                        <span class="item-name">{_('Stát')}:</span>
+                                        <span class="item-value">{$addressDelivery['country']['countryLangs'][0]['Name']}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {if $order['Zasilkovna_ID']}
+                                <div class="col-lg-6 mt-4">
+                                    <div class="address-block">
+                                        <h2>Výdejní místo</h2>
+                                        <div class="grid-wrap">
+                                            <span class="item-name">ID:</span>
+                                            <span class="item-value">{$order['zasilkovna']['PickupPlace_ID']}</span>
+                                            <span class="item-name">Název:</span>
+                                            <span class="item-value">{$order['zasilkovna']['PickupPlaceName']}</span>
+                                            <span class="item-name">Adresa:</span>
+                                            <span class="item-value">{$order['zasilkovna']['PickupPlaceAddress']}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/if}
+                             {if $order['Balikovna_ID']}
+                                <div class="col-lg-6 mt-4">
+                                    <div class="address-block">
+                                        <h2>Výdejní místo</h2>
+                                        <div class="grid-wrap">
+                                            <span class="item-name">ID:</span>
+                                            <span class="item-value">{$order['balikovna']['PickupPlace_ID']}</span>
+                                            <span class="item-name">Název:</span>
+                                            <span class="item-value">{$order['balikovna']['PickupPlaceName']}</span>
+                                            <span class="item-name">Adresa:</span>
+                                            <span class="item-value">{$order['balikovna']['PickupPlaceAddress']}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/if}
+                             {if $order['PPL_ID']}
+                                <div class="col-lg-6 mt-4">
+                                    <div class="address-block">
+                                        <h2>Výdejní místo</h2>
+                                        <div class="grid-wrap">
+                                            <span class="item-name">ID:</span>
+                                            <span class="item-value">{$order['PPL']['PickupPlace_ID']}</span>
+                                            <span class="item-name">Název:</span>
+                                            <span class="item-value">{$order['PPL']['PickupPlaceName']}</span>
+                                            <span class="item-name">Adresa:</span>
+                                            <span class="item-value">{$order['PPL']['PickupPlaceAddress']}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        {$orderRecapitulation|noescape}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}

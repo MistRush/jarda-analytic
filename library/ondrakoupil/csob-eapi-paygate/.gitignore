@@ -1,0 +1,13 @@
+composer.phar
+composer.lock
+vendor/
+/nbproject/
+/zdroje/
+/sandbox/
+/keys/
+/*.sh
+/tests/coverage.*
+/tests/*/output
+.DS_Store
+.idea
+/apigen*

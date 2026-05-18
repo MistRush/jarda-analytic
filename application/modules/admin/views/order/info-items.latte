@@ -1,0 +1,62 @@
+{var $currencyLabel = $order->currency->Label}
+
+<style>
+    #products th { border-bottom: 1px solid #bbb; }
+    #products td { border-bottom: 1px solid #ddd; }
+</style>
+
+<table id="products">
+    <tr>
+        <th><b>Název produktu</b></th>
+        <th style="text-align: right"><b>Cena ks bez DPH</b></th>
+        <th style="text-align: right"><b>Cena ks s DPH</b></th>
+        <th style="width: 70px; text-align: center"><b>Počet</b></th>
+        <th style="text-align: right"><b>Cena celkem</b></th>
+        <th></th>
+    </tr>
+
+    {var $currencyLabel = $order->eshop->currency->Label}
+
+    <tr n:foreach="$order->orderItems as $orderItem">
+        <td style="width: 400px;">
+            {$orderItem->product->getLang($order->Language_ID)->Name}
+            <br>Kód: {$orderItem->product->Code}
+        </td>
+        <td style="width: 120px; text-align: right">{price($orderItem->PriceWithoutVat, $currencyLabel)}</td>
+        <td style="width: 120px; text-align: right">{price($orderItem->PriceWithVat, $currencyLabel)}</td>
+        <td style="padding: 5px; width: 70px; text-align: center">{$orderItem->Quantity}</td>
+        <td style="width: 120px; text-align: right">{price($orderItem->PriceWithoutVat * $orderItem->Quantity, $currencyLabel)}</td>
+    </tr>
+
+    <tr>
+        <th colspan="3" align="left"><b>Doprava s DPH</b> ({$order->shipping->Name})</th>
+        <th align="center"></th>
+        <th style="text-align: right; font-weight: bold;">{price($order->PriceShippingWithVat, $currencyLabel)}</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th colspan="3" align="left"><b>Platba s DPH</b> ({$order->payment->Name})</th>
+        <th align="center"></th>
+        <th style="text-align: right; font-weight: bold;">{price($order->PricePaymentWithVat, $currencyLabel)}</th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <th colspan="3" align="left"><b>Celkem s DPH</b></th>
+        <th align="center"></th>
+        <th style="text-align: right; font-weight: bold;">{price($order->PriceTotalWithVat, $currencyLabel)}</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th colspan="3" align="left"><b>Celkem DPH</b></th>
+        <th align="center"></th>
+        <th style="text-align: right; font-weight: bold;">{price($order->PriceTotalWithVat - $order->PriceTotalWithoutVat, $currencyLabel)}</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th colspan="3" align="left"><b>Celkem bez DPH</b></th>
+        <th align="center"></th>
+        <th style="text-align: right; font-weight: bold; font-size: 18px">{price($order->PriceTotalWithoutVat, $currencyLabel)}</th>
+        <th></th>
+    </tr>
+</table>

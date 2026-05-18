@@ -1,0 +1,89 @@
+input, select, textarea, .custom-file-label {
+  color: $dark-color-font !important;
+  background: transparent linear-gradient(180deg, #1d1d1f 0%, #1d1d1f 74%, lighten(#1d1d1f, 2) 100%) 0 0 no-repeat padding-box !important;
+  border: 1px solid lighten($dark-color-main, 10) !important;
+
+  &:hover, &:focus, &:active {
+    background: transparent linear-gradient(180deg, #1d1d1f 0%, lighten(#1d1d1f, 2) 74%, lighten(#1d1d1f, 2) 100%) 0 0 no-repeat padding-box !important;
+  }
+
+  option {
+    background: $dark-color-main !important;
+  }
+}
+
+button {
+  &:focus-visible {
+    outline: 0.25rem solid #FFFFFF35 !important;
+  }
+}
+
+.form-group {
+  .select2 {
+    .select2-search--inline .select2-search__field {
+      background: none !important;
+      border: none !important;
+    }
+
+    .select2-selection {
+      background: transparent linear-gradient(180deg, #1d1d1f 0%, #1d1d1f 74%, lighten(#1d1d1f, 2) 100%) 0 0 no-repeat padding-box !important;
+      border: 1px solid lighten($dark-color-main, 10);
+
+      .select2-selection__arrow {
+        background: transparent linear-gradient(180deg, #1d1d1f 0%, #1d1d1f 74%, lighten(#1d1d1f, 2) 100%) 0 0 no-repeat padding-box !important;
+        border-left: 1px solid lighten($dark-color-main, 10);
+        right: 0px!important;
+      }
+
+      .select2-selection__clear{
+        background: transparent linear-gradient(180deg, #1d1d1f 0%, #1d1d1f 74%, lighten(#1d1d1f, 2) 100%) 0 0 no-repeat padding-box !important;
+        box-shadow: -1px 0px 0px 0px lighten($dark-color-main, 10), 1px 0px 0px 0px lighten($dark-color-main, 10);
+      }
+
+      .select2-selection__rendered {
+        color: $dark-color-font !important;
+      }
+
+      .select2-selection__choice {
+        background-color: lighten($dark-color-main, 5);
+      }
+    }
+  }
+}
+
+.select2-dropdown {
+
+  .select2-results__option--highlighted, .select2-results__option[aria-selected=true] {
+    background-color: darken($dark-color-main, 5) !important;
+  }
+
+  .select2-results .select2-results__option {
+    color: $dark-color-font !important;
+
+    &:not(:last-of-type) {
+      border-color: #383a3f;
+    }
+  }
+}
+
+.select2-container {
+  .select2-dropdown {
+    box-shadow: 0 0 7px lighten($dark-color-main,10);
+    border: 1px solid #383a3f;
+    background: $dark-color-main;
+
+    .select2-search{
+      input{
+        border: 1px solid #383a3f;
+      }
+    }
+  }
+}
+
+.sub-form-group{
+    .form-group {
+        background-color: $dark-color-main-lighter;
+        border: none;
+        box-shadow: 1px 3px 3px 0 #000;
+    }
+}

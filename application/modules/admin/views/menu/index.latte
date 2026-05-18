@@ -1,0 +1,36 @@
+{varType Jolanda\Menu\MenuItem $item}
+
+{layout '../layout.latte'}
+{block content}
+    <div id="sitemap">
+        {foreach $menuitem->getChildren() as $child}
+            {if $child->isVisible()}
+                <div class="item">
+                    <div class="title">
+                        <h2><i class="ci ci-{$child->getIcon()}"></i> <a href="{$basePath}/{$child->getUrl()}">{$child->getName()}</a></h2>
+                        <div class="desc">
+                            {$child->getDescription()}
+                        </div>
+                    </div>
+                    {foreach $child->getChildren() as $c}
+                        {if $c->isVisible()}
+                            <a href="{$basePath}/{$c->getUrl()}" class="subitem">{$c->getName()}</a>
+                        {/if}
+                    {/foreach}
+                </div>
+            {/if}
+        {/foreach}
+    </div>
+{/block}
+
+{block scripts}
+    <script>
+        $(function () {
+            {if $smpath != null}
+                {foreach array_reverse($smpath) as $item}
+                    breadcrumb.addItem(basePath + '/' + {$item->getURL()}, 'page', {$item->getName()})
+                {/foreach}
+            {/if}
+        })
+    </script>
+{/block}

@@ -1,0 +1,131 @@
+#cart-steps {
+    margin: 30px 0 50px;
+
+    a {
+        text-decoration: none;
+        color: $font-primary-dark;
+    }
+
+    .step {
+        text-align: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        z-index: 0;
+        padding: 5px 0 5px 10px;
+        border-radius: 8px;
+        border: 1px solid #D8E4F7;
+        background: #FFFFFF;
+        @include animation();
+
+        .name {
+            font-size: 16px;
+            line-height: 40px;
+            font-weight: 600;
+            color: $font-primary-dark;
+            @include animation();
+        }
+
+        .counter {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-right: 12px;
+            background: $background-primary-red;
+            border-radius: 6px;
+            width: 34px;
+            min-width: 34px;
+            height: 34px;
+            background-size: contain;
+            padding-top: 5px;
+        }
+
+        &.active, &:not(.inactive):hover{
+            background: $background-primary-red;
+            border: 1px solid transparent;
+
+            .name {
+                color: #FFFFFF;
+            }
+
+            .counter {
+                color: $font-primary-red;
+                background: #FFFFFF;
+            }
+        }
+
+        &.passed {
+            .counter {
+                background: $font-primary-red url("/img/front/icons/components/order/cart-step-check.svg") center center no-repeat;
+                font-size: 0;
+            }
+
+            &:hover {
+                .counter {
+                    background: #FFFFFF url("/img/front/icons/components/order/cart-step-check-hover.svg") center center no-repeat;
+                }
+            }
+        }
+
+        &.inactive {
+            .name {
+                opacity: .4;
+            }
+        }
+    }
+}
+
+#cart-steps .row .col-md-3:nth-of-type(4) .step:after {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    #cart-steps {
+        &:before {
+            display: none;
+        }
+
+        .step {
+            .counter {
+                margin-right: 7px;
+            }
+
+            .name {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    #cart-steps {
+        .step {
+            .name {
+                font-size: 14px;
+                line-height: 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #cart-steps {
+        margin-bottom: 10px;
+        margin-top: 0;
+        text-align: center;
+
+        .step {
+            margin-bottom: 5px;
+
+            .name {
+                display: inline-block;
+                margin-left: 5px;
+                text-align: left;
+            }
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+}

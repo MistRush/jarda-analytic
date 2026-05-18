@@ -1,0 +1,43 @@
+#my-account {
+    .order-list {
+        h2 {
+            font-size: 18px;
+            margin: 25px 0 10px;
+        }
+
+        table {
+            width: 100%;
+
+            th {
+                padding: 15px 7px;
+                font-size: 14px;
+                line-height: 17px;
+                font-weight: 600;
+                border-bottom: 2px solid $border-primary-light;
+            }
+
+            td {
+                padding: 15px 7px;
+                font-size: 14px;
+                line-height: 17px;
+                font-weight: 400;
+                border-bottom: 1px solid $border-primary-light;
+            }
+
+            a.open-order-detail {
+                text-decoration: underline;
+                cursor: pointer;
+                font-weight: 500;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            .price {
+                color: $font-primary-red;
+                font-weight: 600;
+            }
+        }
+    }
+}

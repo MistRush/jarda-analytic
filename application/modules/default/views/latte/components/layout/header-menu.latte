@@ -1,0 +1,115 @@
+<div class="menu-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-xl-3 menu-holder position-relative">
+                <div n:class="category-menu, $isCategoryMenuActive?active">
+                    <div class="headline">{_('Katalog')}</div>
+                    <div class="items">
+                        <div n:foreach="$categories as $category" n:class="isset($category['categories']) && count($category['categories']) > 0?'':no-subcategories, category-wrapper">
+                            <a href="/{URL::CATEGORY}/{$category['slug']}" class="item {$category['slug']}" data-category-id="{$category['ID']}" data-sub-loaded="0">
+                                <span>{$category['Name']}</span>
+                                {if isset($category['categories']) && count($category['categories']) > 0}
+                                <img src="/img/front/icons/layout/header/category-link.svg" alt="Category-link">
+                                {/if}
+                            </a>
+                            <div class="subcategory-preview" data-category-id="{$category['ID']}">
+                                <div class="subcategory-holder">
+                                    <div class="arrow-pointer"></div>
+                                    <div class="subcategory-header">
+                                        <a href="/{URL::CATEGORY}/{$category['slug']}" aria-label="{$category['Name']}">{$category['Name']}</a>
+                                    </div>
+                                    <div class="subcategory-content">
+                                        <div class="row">
+                                            {if isset($category['categories']) && count($category['categories']) > 0}
+                                                {foreach $category['categories'] as $subcategory}
+                                                    <div class="col-xl-3 col-lg-3 col-md-12 subcategory-container mb-3">
+                                                        <div class="subcategory-item" data-subcategory-id="{$subcategory['ID']}">
+                                                            <div class="subcategory-image">
+                                                                <img n:if="$subcategory['File_ID']" src="{fu($subcategory, 'category/50', 'file')}" alt="menu-item">
+                                                            </div>
+                                                            <div class="subcategories">
+                                                                <div class="subcategory-name">
+                                                                    <a href="/{URL::CATEGORY}/{$subcategory['slug']}" aria-label="{$subcategory['Name']}">
+                                                                        <span><b>{$subcategory['Name']}</b></span>
+                                                                        {if isset($subcategory['categories']) && count($subcategory['categories']) > 0}
+                                                                            <img src="/img/front/icons/layout/header/category-link.svg" alt="Category-link">
+                                                                        {/if}
+                                                                    </a>
+                                                                </div>
+                                                                <div class="sub-subcategories">
+                                                                    {if isset($subcategory['categories']) && count($subcategory['categories']) > 0}
+                                                                        {var $counter = 0}
+                                                                        {foreach $subcategory['categories'] as $subSubcategory}
+                                                                            <div class="subcategories-item {if $counter >= 4}desktop-hidden{/if}">
+                                                                                <a href="/{URL::CATEGORY}/{$subSubcategory['slug']}" aria-label="{$subSubcategory['Name']}">
+                                                                                    {$subSubcategory['Name']}
+                                                                                </a>
+                                                                            </div>
+                                                                            {var $counter = $counter + 1}
+                                                                        {/foreach}
+                                                                        {if count($subcategory['categories']) > 4}
+                                                                            <div class="show-more desktop-only">
+                                                                                <a href="/{URL::CATEGORY}/{$subcategory['slug']}">Další kategorie</a>
+                                                                            </div>
+                                                                        {/if}
+                                                                    {/if}
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                {/foreach}
+                                            {else}
+                                                <div class="col-12">
+                                                    <div class="no-subcategories">
+                                                        <p>{_'No subcategories available'}</p>
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    <div class="subcategory-footer">
+                                        <div class="brand-holder">
+                                            <a href="/" class="brand-item">
+                                                <img src="/img/front/brand1.svg" alt="brand-name">
+                                            </a>
+                                            <a href="/" class="brand-item">
+                                                <img src="/img/front/brand2.svg" alt="brand-name">
+                                            </a>
+                                            <a href="/" class="brand-item">
+                                                <img src="/img/front/brand1.svg" alt="brand-name">
+                                            </a>
+                                            <a href="/" class="brand-item">
+                                                <img src="/img/front/brand2.svg" alt="brand-name">
+                                            </a>
+                                            <a href="/" class="brand-item">
+                                                <img src="/img/front/brand1.svg" alt="brand-name">
+                                            </a>
+                                            <a href="/" class="brand-item">
+                                                <img src="/img/front/brand2.svg" alt="brand-name">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-xl-9">
+                <div class="main-menu">
+                    <a n:foreach="$menuItems as $menuItem" href="{$menuItem['Url']}" {if $menuItem['InNewWindow']}target="_blank"{/if}>
+                        <div class="item">{$menuItem['Name']}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-menu">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+</div>

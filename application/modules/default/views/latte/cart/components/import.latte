@@ -1,0 +1,33 @@
+<div class="cart-import-container">
+	<div class="row">
+		<div class="col-lg-8 pe-5">
+			<h2 class="with-icon import small">{_('Import položek ze souboru')}</h2>
+			<p>Je podporován import z .CSV souborů (z např. MS Excel, OpenOffice apod.), jako oddělovač hodnot je možno použít jeden z uvedených znaků.<br>
+				Na řádku je vždy uveden kód položky a množství, např. A100 importuje položku A100 v množství 2ks. Řádky, které neodpovídají této syntaxi, jsou ignorovány.
+			</p>
+		</div>
+		<div class="col-lg-4">
+			<div class="file-upload-zone" id="dropzone">Nahrát přetáhnutím, nebo <u>vyberte soubor</u></div>
+			<div id="errorMessage" class="error-message">Lze nahrát pouze soubory ve formátu CSV (.csv)</div>
+			<div class="form-group">
+			<label for="csvDelimiter">Oddělovač hodnot:</label>
+			<select id="csvDelimiter" name="csvDelimiter">
+				<option value=";" selected>;</option>
+				<option value=",">,</option>
+				<option value="|">|</option>
+				<option value="\t">TAB</option>
+			</select>
+			</div>
+			<input type="file" id="fileInput" class="hidden-file-input">
+			<div id="fileInfo" class="file-info">
+				<div id="fileName" class="file-name"></div>
+				<div id="fileSize" class="file-size"></div>
+				<div id="fileRemove" class="file-remove">×</div>
+			</div>
+			<div class="text-end mt-3">
+				<a href="#" id="importButton"><span class="btn btn-primary">Importovat ze souboru</span></a>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+.benefits-container {
+    margin: 10px 0;
+    padding: 30px;
+    z-index: 20;
+    position: relative;
+    border-radius: 8px;
+    @include gradient-dark();
+
+    .item {
+        background: left center no-repeat;
+        padding-left: 50px;
+
+        .headline {
+            font-size: 16px;
+            font-weight: 600;
+            color: $font-primary-white;
+        }
+
+        .subline {
+            font-size: 14px;
+            font-weight: 400;
+            color: $font-primary-white;
+            opacity: .5;
+        }
+
+        &.shipping  {
+            background-image: url("/img/front/icons/components/benefit/shipping.svg");
+        }
+
+        &.delivery {
+            background-image: url("/img/front/icons/components/benefit/delivery.svg");
+        }
+
+        &.verified {
+            background-image: url("/img/front/icons/components/benefit/verified.svg");
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .benefits-container {
+        padding-bottom: 20px;
+
+        .item {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .benefits-container {
+        .item {
+            background: left center no-repeat;
+            margin-bottom: 20px;
+        }
+    }
+}

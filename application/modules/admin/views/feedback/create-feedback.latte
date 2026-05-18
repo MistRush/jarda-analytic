@@ -1,0 +1,99 @@
+<style>
+    .entity-editor .panel-content ul.nav .nav-item {
+        display:none;
+    }
+    </style>
+<script>
+    /**
+     * @namespace { EntityEditor } editor
+     */
+    var editor;
+
+    $(function () {
+        editor = {$editor|noescape};
+        editor.form.setValue('DateExpectedSolving', Helpers.nextDate(28));
+
+        editor.form.getInput('Priority').change(function () {
+            if ( editor.form.getValue('Priority') === {\Admin_Model_Feedback::PRIORITY_LOW} ) {
+                editor.form.setValue('DateExpectedSolving', Helpers.nextDate(28));
+            }
+
+            if ( editor.form.getValue('Priority') === {\Admin_Model_Feedback::PRIORITY_MEDIUM} ) {
+                editor.form.setValue('DateExpectedSolving', Helpers.nextDate(14));
+            }
+
+            if ( editor.form.getValue('Priority') === {\Admin_Model_Feedback::PRIORITY_HIGH} ) {
+                editor.form.setValue('DateExpectedSolving', Helpers.nextDate(7));
+            }
+        });
+
+        editor.onAfterShow = function () {
+            setTimeout( function() {
+                $('.tox.tox-tinymce.tox-tinymce--toolbar-sticky-off').css('height', '1000px');
+            }, 500);
+
+            $('.panel-heading.row  .text-right.d-flex').prepend('<button class="btn btn-info" onclick="this.disabled=true;saveAndProcessNewOne(this)" type="button"> Uložit a vytvořit další </button>');
+
+            // $('select[name=Project_ID]').change(function(){
+            //     getDefaultSolver($(this).val());
+            // })
+
+            $('#ScriptCodeContent_group').hide();
+            $('#ScriptCodeContent_group label').hide();
+            $('#ScriptCodeContent_group').parent().children('.col-12').addClass('contentExpander');
+
+
+            $('.contentExpander h2').prepend('<div class="arrow"></div>');
+
+            $('.contentExpander').click(function() {
+                $('#ScriptCodeContent_group').toggle(500);
+                $('#ScriptCodeContent_group').parent().toggleClass('changed');
+            });
+        }
+
+        editor.onAfterLoad = function () {
+            if($('textarea[name=ScriptCodeContent]').val().length>1){
+                $('.contentExpander').click();
+            }
+        }
+
+        editor.onAfterConfirm = function () {
+            location.href='/admin/feedback/create-feedback';
+        }
+
+        /*editor.onAfterConfirm = function (data) {
+            Helpers.ajax({
+                url: basePath + '/admin/feedback/send-feedback-email',
+                data: {
+                    FeedbackID: data[0].ID
+                }
+
+            })
+        }*/
+
+        $(window).keydown(function(event) {
+            if (event.ctrlKey && event.keyCode === 13) {
+                $(".btn.btn-green").click();
+            }
+        })
+    })
+
+    function saveAndProcessNewOne(button) {
+        editor.confirm();
+        setTimeout(()=>{
+            button.disabled = false
+        }, 1500)
+    }
+
+    // function getDefaultSolver(projectId) {
+    //     $.ajax({
+    //         url: basePath + '/admin/feedback/get-default-solver-by-project/',
+    //         data: {
+    //             Project_ID: projectId,
+    //         },
+    //         success: function (data) {
+    //             $('select[name="SolverUser_ID"]').select2().select2('val',data);
+    //         }
+    //     });
+    // }
+</script>

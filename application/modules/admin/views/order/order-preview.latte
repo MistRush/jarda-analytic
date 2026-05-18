@@ -1,0 +1,124 @@
+{varType \Admin_Model_Order $order}
+{varType \Admin_Model_OrderItem $orderItem}
+{varType \common\logic\Eshop\Eshop $eshop}
+
+<a href="javascript:void(0);" class="close"><i class="ci ci-times"></i></a>
+<div class="panel">
+    <div class="row">
+        <div class="col-md-4 user">
+            <div class="icons">
+                <i class="ci ci-user"></i>
+                <i class="ci ci-envelope" n:if="$order->invoiceAddress->Email"></i>
+                <i class="ci ci-phone" n:if="$order->invoiceAddress->Phone"></i>
+            </div>
+            <div class="info">
+                <div class="name">{$order->invoiceAddress->getFullName()}</div>
+                <div class="email" n:if="$order->invoiceAddress->Email"><a href="mailto:{$order->invoiceAddress->Email}">{$order->invoiceAddress->Email}</a></div>
+                <div class="phone" n:if="$order->invoiceAddress->Phone"><a href="tel:{$order->invoiceAddress->Phone}">{$order->invoiceAddress->Phone}</a></div>
+            </div>
+        </div>
+        {if $order->DeliveryAddress_ID}
+        <div class="col-md-4 address">
+            <div class="icons">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="info">
+                <div class="street">{$order->deliveryAddress->Street}</div>
+                <div class="city">{$order->deliveryAddress->ZipCode} {$order->deliveryAddress->City}</div>
+                {if $order->deliveryAddress->Country_ID}
+                <div class="country" n:if="$order->deliveryAddress->country->getLang($lang_id)">{$order->deliveryAddress->country->getLang($lang_id)->Name}</div>
+                {elseif $order->invoiceAddress->Country_ID}
+                <div class="country" n:if="$order->invoiceAddress->country->getLang($lang_id)">{$order->invoiceAddress->country->getLang($lang_id)->Name}</div>
+                {/if}
+            </div>
+        </div>
+        {else}
+        <div class="col-md-4 address">
+            <div class="icons">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="info">
+                <div class="street">{$order->invoiceAddress->Street}</div>
+                <div class="city">{$order->invoiceAddress->ZipCode} {$order->invoiceAddress->City}</div>
+                <div class="country" n:if="$order->invoiceAddress->Country_ID && $order->invoiceAddress->country->getLang($lang_id)">{$order->invoiceAddress->country->getLang($lang_id)->Name}</div>
+            </div>
+        </div>
+        {/if}
+        <div class="col-md-4 company" n:if="$order->invoiceAddress->IC">
+            <div class="icons">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="info">
+                <div class="company">{$order->invoiceAddress->CompanyName}</div>
+                <div class="ic"><b>{_('IČ')}:</b> {$order->invoiceAddress->IC}</div>
+                <div class="dic"><b>{_('DIČ')}:</b> {$order->invoiceAddress->DIC}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel">
+    <div class="row">
+        <div class="col-md-3 package">
+            <i class="icon ci ci-package"></i>
+            {var $packageCount = 0}
+            {foreach $order->orderItems as $orderItem}{php $packageCount += $orderItem->Quantity}{/foreach}
+            {$packageCount} {_('ks')}
+        </div>
+        <div class="col-md-3 payment" data-toggle="bstooltip" title="{$order->DatePayed|date:'j.n.Y'}">
+            <div n:class="'dot', $order->DatePayed?'paid'"></div>
+            {$order->payment->Name}
+        </div>
+        <div class="col-md-3 shipping">
+            <i class="icon fas fa-truck"></i>
+            {$order->shipping->Name}
+        </div>
+        <div class="col-md-3 status">
+            <i class="icon ci ci-invoice"></i>
+            {$order->orderStateType->getLang($lang_id)->Name??''}
+        </div>
+        <div class="col-md-3 orderNumber">
+            <i class="icon fas fa-hashtag"></i>
+            {$order->OrderNumber}
+        </div>
+    </div>
+</div>
+<div class="products">
+    <div class="wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:50px;white-space:nowrap;text-align:center"></th>
+                    <th style="width:50px;white-space:nowrap;text-align:center">{_('Kód')}</th>
+                    <th>{_('Produkt')}</th>
+                    <th style="width:50px;white-space:nowrap;text-align:center;line-height:1;">{_('Cena/ks')}<br><small class="text-muted">({$order->eshop->currency->Mark})</small></th>
+                    <th style="width:50px;white-space:nowrap;text-align:center;line-height:1;">{_('Množství')}</th>
+                    <th style="width:50px;white-space:nowrap;text-align:center;line-height:1;">{_('Cena celkem')}<br><small class="text-muted">({$order->eshop->currency->Mark})</small></th>
+                </tr>
+            </thead>
+            <tbody>
+                {var $currencyLabel = $order->eshop->currency->Mark}
+                <tr n:foreach="$order->orderItems as $orderItem">
+                    {var $imageUrl = count($orderItem->product->productImages) ? fu($orderItem->product->productImages[0], 'product/50') }
+                    <td style="white-space:nowrap;text-align:center;"><img src="{$order->eshop->URL}{$imageUrl}" onerror="this.style.display = 'none';"></td>
+                    <td style="white-space:nowrap;text-align:center;">{$orderItem->product->Code}</td>
+                    <td>
+                        <a href="{$order->eshop->URL}/{\URL::PRODUCT}/{$orderItem->product->getLang($order->eshop->Language_ID)->slug??''}" target="_product">{$orderItem->product->getLang($order->eshop->Language_ID)->Name??''}</a>
+                        {*<span style="white-space:nowrap;" n:class="'small', 'text-' . ($orderItem->product->OnStock >= $orderItem->Quantity?'green':($orderItem->product->OnStock > 0?'yellow':'red'))">({_('Skladem')} {$orderItem->product->OnStock} {_('ks')})</span>*}
+                    </td>
+                    <td style="white-space:nowrap;text-align:center;">{price($orderItem->PriceWithVat, $currencyLabel)}</td>
+                    <td style="white-space:nowrap;text-align:center;">{$orderItem->Quantity} {_('ks')}</td>
+                    <td style="white-space:nowrap;text-align:center;">{price($orderItem->PriceWithVat * $orderItem->Quantity, $currencyLabel)}</td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="text-right">{_('Částka k úhradě')}: <span>{price($order->PriceTotalWithVat, $currencyLabel)}</span></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div class="showMore text-right mt-3">
+    <a class="btn btn-sm btn-primary" href="{$eshop->getURL()}/admin/order/edit-order?entity_ID={$order->ID}">{_('Zobrazit více')}</a>
+</div>

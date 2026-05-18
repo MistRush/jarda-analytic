@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-6 align-self-center">
+        <div class="showing">
+            {php
+                $productsLabel = 'produkt';
+                if ( $totalProducts > 1 )
+                $productsLabel = 'produkty';
+                if ( $totalProducts > 4 )
+                $productsLabel = 'produktů';
+            }
+            <div data-remaining-to-display="{$totalProducts-(($page - 1) * $offset +  sizeof($products))}"
+                 class="showing pagination-{$page}">
+                Zobrazují se
+                <strong>1 - {($page - 1) * $offset + sizeof($products)} z {$totalProducts}</strong>
+                položek
+            </div>
+        </div>
+    </div>
+    <div n:if="$grid != 'row'" class="col-md-6 align-self-center">
+        <div n:if="$totalPages > 1" class="pages">
+            {if $totalPages > 1}
+                <a n:if="$page != 1" rel="prev" href="{$currentUrl}/page/{$page - 1}{$filterUrl}" class="arrow arrow--left"><</a>
+                <a href="{$currentUrl}/page/1{$filterUrl}" n:class="$page == 1?active">1</a>
+                <span n:if="$page != 1 && $page != 2 && $page != 3"> ... </span>
+                {for $i = 2; $i < $totalPages; $i++}
+                    {var $previous = $page - 1}
+                    {var $next = $page + 1}
+                    {continueIf $page != $i && $previous != $i && $next != $i}
+                    <a href="{$currentUrl}/page/{$i}{$filterUrl}" n:class="$page == $i?active">{$i}</a>
+                {/for}
+                <span n:if="$page != $totalPages && $page != $totalPages-1 && $page != $totalPages-2"> ... </span>
+                <a href="{$currentUrl}/page/{$totalPages}{$filterUrl}" n:class="$page == $totalPages?active">{$totalPages}</a>
+                <a n:if="$page != $totalPages" rel="next" href="{$currentUrl}/page/{$page + 1}{$filterUrl}" class="arrow arrow--right">></a>
+            {/if}
+        </div>
+    </div>
+</div>
+

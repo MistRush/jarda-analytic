@@ -1,0 +1,26 @@
+{layout '../layout.latte'}
+{block content}
+    <div id="translations">
+        {$form->render()}
+    </div>
+{/block}
+{block scripts}
+    <script>
+        var form;
+
+        $(function () {
+            evidsoft.modules.translation.trans = {
+                copyOriginal: {_('Zkopírovat původní')},
+                copyOriginalOpen: {_('Zkopírovat původní a otevřít v překládači')},
+                translateByGoogle: {_('Přeložit pomocí Googlu')},
+                saved: {_('Uloženo!')},
+                copied: {_('Zkopírováno')},
+                empty: {_('Text pro zkopírování je prázdný')},
+            }
+
+            evidsoft.modules.translation.setLang({$locale});
+            evidsoft.modules.translation.init({$form|noescape});
+        })
+
+    </script>
+{/block}

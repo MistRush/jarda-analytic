@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>{$eshop->getURL()}/</loc>
+        <changefreq>weekly</changefreq>
+            <lastmod>{$date}</lastmod>
+        <priority>1</priority>
+    </url>
+    {foreach $pages as $page}
+         <url>
+             <loc>{$eshop->getURL()}/{\URL::PAGE}/{$page['slug']}</loc>
+             <changefreq>weekly</changefreq>
+            <lastmod>{$date}</lastmod>
+             <priority>0.9</priority>
+         </url>
+     {/foreach}
+</urlset>

@@ -1,0 +1,100 @@
+header {
+  .right {
+    .mac-dropdown{
+
+      .dropdown-menu {
+        background-color: $color-main;
+
+        .header {
+          color: $color-font;
+          border-bottom: 1px solid darken($color-main, 3);
+        }
+
+        &:after {
+          background-color: $color-main;
+        }
+
+        .ci {
+          color: $color-font-disabled;
+        }
+
+        .dropdown-item {
+          &:hover, &:active {
+            color: $color-font;
+
+            .ci {
+              color: $color-font;
+            }
+          }
+        }
+      }
+    }
+
+    .cartContainer {
+      .content {
+        background-color: $color-main;
+
+        &::after {
+          border-bottom-color: $color-main;
+        }
+
+        .items {
+          .row {
+
+            &:not(:last-child) {
+              border-bottom-color: lighten($color-main, 15);
+            }
+          }
+        }
+
+        .showCart {
+          background-color: lighten($color-main, 1);
+
+          .btn {
+            color: $color-font;
+          }
+        }
+      }
+
+      .cart {
+        &:hover {
+          color: darken($color-font, 10)!important;
+        }
+      }
+    }
+
+    .videohelp {
+      .content {
+        background-color: $color-main;
+
+        &::before {
+          background-color: $color-main;
+        }
+
+        .items {
+          .row {
+            &.unwatched {
+              background-color: darken($color-main,3);
+            }
+
+            &:not(:first-child) {
+              border-top-color: lighten($color-main,3);
+            }
+          }
+        }
+      }
+    }
+
+    .language-selector {
+      .languagepicker {
+        .dropdown-menu {
+          .dropdown-item {
+            &.active{
+              color: $color-font;
+            }
+          }
+        }
+      }
+    }
+  }
+}

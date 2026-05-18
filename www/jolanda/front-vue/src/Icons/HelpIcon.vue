@@ -1,0 +1,22 @@
+<script setup>
+import {IconProps, useIcon} from './useIcon.js'
+
+const props = defineProps(IconProps(15,15));
+
+const { color } = useIcon(props);
+</script>
+
+<template>
+    <svg xmlns="http://www.w3.org/2000/svg" :width="props.width" :height="props.height" viewBox="0 0 15 15" fill="none" :style="{color: color}">
+        <g clip-path="url(#clip0_187_5937)">
+            <path d="M7.5 0C3.3645 0 0 3.36455 0 7.50005C0 11.6355 3.3645 15 7.5 15C11.6355 15 15 11.6355 15 7.50005C15 3.36455 11.6355 0 7.5 0ZM7.5 13.6364C4.11636 13.6364 1.36364 10.8836 1.36364 7.50005C1.36364 4.11646 4.11636 1.36364 7.5 1.36364C10.8836 1.36364 13.6364 4.11646 13.6364 7.50005C13.6364 10.8836 10.8836 13.6364 7.5 13.6364Z" fill="currentColor"/>
+            <path d="M7.49985 3.18182C6.99867 3.18182 6.59094 3.58982 6.59094 4.09132C6.59094 4.59237 6.99867 5.00001 7.49985 5.00001C8.00103 5.00001 8.40876 4.59237 8.40876 4.09132C8.40876 3.58982 8.00103 3.18182 7.49985 3.18182Z" fill="currentColor"/>
+            <path d="M7.50006 6.36363C7.12351 6.36363 6.81824 6.6689 6.81824 7.04545V11.1364C6.81824 11.5129 7.12351 11.8182 7.50006 11.8182C7.8766 11.8182 8.18187 11.5129 8.18187 11.1364V7.04545C8.18187 6.6689 7.8766 6.36363 7.50006 6.36363Z" fill="currentColor"/>
+        </g>
+        <defs>
+            <clipPath id="clip0_187_5937">
+                <rect width="15" height="15" fill="white"/>
+            </clipPath>
+        </defs>
+    </svg>
+</template>

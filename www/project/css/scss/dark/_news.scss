@@ -1,0 +1,24 @@
+.articles {
+    .article {
+        background: lighten($color-main, 3);
+        box-shadow: 0 0 7px #3e465427;
+        border-radius: 4px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 15px #1d212727;
+        }
+
+        .header {
+            background-color: lighten($color-main, 5);
+            box-shadow: 0 3px 3px rgba(darken($color-main, 5), 0.5);
+        }
+
+        .content {
+            color: $color-font;
+        }
+    }
+}

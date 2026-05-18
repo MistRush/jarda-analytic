@@ -1,0 +1,46 @@
+<div class="filter">
+    <div class="heading">Filtrovat</div>
+    <div class="block range-filter">
+        <div class="headline">Filtr dle ceny (bez DPH)</div>
+        <div class="content">
+            <div class="form-row align-items-center range" id="price-filter">
+                <div class="range-info">
+                    <div class="range-from"></div>
+                    <div class="range-to"></div>
+                </div>
+                <input data-from="{$maxMinRangeParams['MinPrice']}" data-to="{$maxMinRangeParams['MaxPrice']}" id="priceRange" type="hidden" class="range-slider slider-input" value="{$maxMinRangeParams['MinPrice']},{$maxMinRangeParams['MaxPrice']}" name="price-range"/>
+            </div>
+        </div>
+    </div>
+
+    <div n:foreach="$parameters as $parameter" class="block">
+        <div class="headline">{$parameter['ParameterName']}</div>
+        <div class="content">
+            {aasort($parameter['parameterValues'], "Value")}
+            {foreach $parameter['parameterValues'] as $parameterValue}
+                {var $paramCounter = isset($parameterCounter[$parameter['ID']][$parameterValue['ID']]) ? $parameterCounter[$parameter['ID']][$parameterValue['ID']] : 0 }
+                <a n:if="$paramCounter || $parameterValue['IsActive']" href="{$currentUrl}{$parameterValue['FilterLink']}">
+                    <div n:class="$parameterValue['IsActive']?'on',$paramCounter==0 && !$parameterValue['IsActive']?'disabled',item, $parameter['FilterType'] == 'color'?'has-color'">
+                        {if $parameter['FilterType'] == 'color'}
+                            <span class="color" style="background-color: {$parameterValue['Additional']|noescape}"></span>
+                        {/if}
+
+                        {$parameterValue['Value']}
+                        <span class="counter">({if !$parameterValue['IsActive'] && $paramCounter > 0 && in_array($parameter['ID'], $activeParameterIDs)}+{/if}{$paramCounter})</span>
+                    </div>
+                </a>
+            {/foreach}
+        </div>
+    </div>
+</div>
+
+<script>
+    window.activeRanges = [];
+    new Range('#priceRange', {
+        from: {$maxMinRangeParams['MinPrice']} ,
+        to: {$maxMinRangeParams['MaxPrice']},
+        paramNameFrom: 'PriceFrom',
+        paramNameTo: 'PriceTo'
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="/js/assets/jRange-master/jquery.range.css">

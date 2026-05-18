@@ -1,0 +1,104 @@
+{layout "../layout.latte"}
+{block content}
+    <style>
+        #breadcrumb span.home  {
+            background-size: contain;
+        }
+        #news-detail {
+            padding-top: 120px;
+
+            .info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .date {
+                    padding-left: 0;
+                }
+            }
+
+            .share-block {
+                background-image: url(/img/front/access-bg.webp);
+
+                span {
+                    font-family: Playfair Display;
+                    font-weight: 600;
+                    font-style: SemiBold;
+                    font-size: 24px;
+                    leading-trim: NONE;
+                    line-height: 32px;
+                    letter-spacing: 0px;
+                    text-align: center;
+                    color: #013B53;
+                    margin-bottom: 15px;
+                }
+
+                font-family: Playfair Display;
+                font-weight: 400;
+                font-style: SemiBold;
+                font-size: 24px;
+                leading-trim: NONE;
+                line-height: 32px;
+                letter-spacing: 0px;
+                text-align: center;
+                color: #013B53;
+                margin-bottom: 15px;
+            }
+
+            p {
+                font-family: Urbanist;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 16px;
+                leading-trim: NONE;
+                line-height: 22px;
+                letter-spacing: 0px;
+                color: #576583;
+                margin: 20px 0;
+            }
+
+            .image {
+                img {
+                    width: 100%;
+                    border-radius: 8px;
+                }
+            }
+        }
+    </style>
+    <div id="news-detail">
+        <div class="container">
+            {$breadcrumb|noescape}
+
+            <div class="row">
+                <div class="col-lg-4 text-center mb-5">
+                    <div class="image">
+                        <img src="{fu($news, 'news/350')}" alt="{$news->Headline}">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <h1>{$news->Headline}</h1>
+                    <p>{$news->Perex|noescape}</p>
+
+                    <div class="info">
+                        <div class="date">{formatDate($news->Date)}</div>
+                        <div class="category">{$news->newsCategory->newsCategoryLangs->getFirst()->Name}</div>
+                    </div>
+                </div>
+            </div>
+            {$news->Content|noescape}
+
+            <div class="share-block">
+                <span>{_('Líbí se vám článek?')}</span> {_('Sdílejte ho s přáteli')}!
+            </div>
+
+            {if $relatedNews}
+                <h2 class=" news">{_('Podobné články')}</h2>
+                <div class="row news-list mt-4">
+                    <div n:foreach="$relatedNews as $newsItem" class="col-lg-4 col-md-6">
+                        {include '../components/news/item.latte', 'newsItem' => $newsItem}
+                    </div>
+                </div>
+            {/if}
+        </div>
+    </div>
+{/block}

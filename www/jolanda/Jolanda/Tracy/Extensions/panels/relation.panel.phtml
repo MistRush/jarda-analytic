@@ -1,0 +1,30 @@
+<h1>Relation Loads</h1>
+
+<div class="tracy-inner">
+    <div class="tracy-inner-container">
+        <table>
+            <thead>
+            <th>Calls</th>
+            <th>Name</th>
+            <th>Called by:</th>
+            </thead>
+            <tbody>
+            <?php if (isset($data)) foreach ($data as $d) { ?>
+                <tr>
+                    <td><?= $d['calls']?>x</td>
+                    <td><?= $d['name'] ?></td>
+                    <td><span title="Dump in console" style="cursor: pointer;" onclick="showTree(this, '<?= $d['name'] ?>')" data-data='<?=json_encode($d['back_trace'])?>'>Show</span></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function showTree(e, name) {
+        var data = e.dataset.data;
+        data = JSON.parse(data);
+        console.log(name);
+        console.dir(data);
+    }
+</script>

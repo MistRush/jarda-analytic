@@ -1,0 +1,196 @@
+.slider-container {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    margin-bottom: 30px;
+    box-shadow: 0 12px 24px 0 rgba(22, 23, 51, 0.19);
+    margin-left: -2px !important;
+
+    a {
+        color: $font-primary-dark;
+        font-weight: 600;
+    }
+
+    .slider-headline {
+        color: $font-primary-white;
+        font-size: 22px;
+        font-weight: 600;
+        padding: 6px 15px;
+        background: linear-gradient(90deg, #190427 0%, #172050 100%);
+        border-radius: 8px 8px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .btn {
+            padding: 5px 10px;
+        }
+    }
+
+    .slider-item {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        //border-radius: 8px;
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .content {
+            width: 100%;
+            padding-top: 10px;
+
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .headline {
+                font-weight: 700;
+                color: $font-primary-black;
+                font-size: 24px;
+                margin-bottom: 25px;
+                margin-top: 5px;
+                position: relative;
+                line-height: 26px;
+            }
+
+            .code-info {
+                margin-top: -20px;
+            }
+
+            .subline {
+                color: $font-primary-black;
+                font-size: 14px;
+                line-height: 24px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+
+                .action-price {
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: $font-primary-red;
+                }
+
+                .origin-price {
+                    font-size: 20px;
+                    font-weight: 400;
+                    margin-left:14px;
+                    color: $font-primary-dark;
+                    text-decoration: line-through;
+                }
+
+                .discount {
+                    font-size: 22px;
+                    font-weight: 700;
+                }
+            }
+
+
+            .image {
+                width: 100%;
+                height: 250px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+    }
+
+    .centered-btns_tabs {
+        width: 100%;
+        position:relative;
+        margin-top: 0;
+        left:0;
+        padding: 10px 5px;
+        display: flex;
+        border-radius: 0 0 8px 8px;
+        margin-bottom: 0;
+        justify-content: center;
+        border-top: 1px solid rgba(103, 118, 170, 0.2);
+
+
+        li {
+            margin: 0;
+            display: block;
+            position: relative;
+            width: 26px;
+            z-index: 5;
+
+            a {
+                text-indent: 0;
+                overflow: visible;
+                display: block;
+                text-align: center;
+                width: 100%;
+                height: auto;
+                background: #fff;
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: none;
+                border: 0 !important;
+                box-shadow: none;
+                border-radius:4px;
+
+                &:hover {
+                    background: #f8f8f8;
+                }
+            }
+
+            &.centered-btns_here {
+                a {
+                    color: #FFFFFF;
+                    z-index: 10;
+                    @include gradient-red(false);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+    .slider-container {
+        .slider-item {
+            .content {
+                left: 40px;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 991px) {
+    .slider-container {
+        .slider-item {
+            .content {
+                .subline {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        .slider-item {
+            .content {
+                left: 15px;
+
+                .headline {
+                    background: none;
+                    padding: 0;
+                    font-size: 18px;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

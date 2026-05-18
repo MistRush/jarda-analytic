@@ -1,0 +1,45 @@
+@media (max-width: 768px) {
+  .dataTable-package {
+    .grid-controls{
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 100%;
+
+      .control-buttons, .main-buttons, .custom-buttons{
+        flex-wrap: nowrap;
+        flex: 1;
+        width: 100%;
+        display: flex;
+      }
+      .control-buttons{
+        order: 3;
+        .btn{
+          flex: 0 1 33%;
+          width: 33%;
+        }
+      }
+      .main-buttons{
+        order: 2;
+        margin-bottom: 5px;
+        .btn{
+          flex: 0 1 33%;
+          width: 33%;
+        }
+      }
+      .custom-buttons{
+        flex: 0 1 100%;
+        order: 1;
+        flex-wrap: wrap;
+
+        .btn {
+          margin-bottom: 5px;
+        }
+
+        .dropdown, .btn{
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

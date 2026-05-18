@@ -1,0 +1,34 @@
+{layout "../layout.latte"}
+{block content}
+    {$breadcrumb|noescape}
+    <div id="search-result">
+        <h1>{_('Vyhledávání')}</h1>
+        <p>
+            <strong>{_('Hledaný výraz')}: </strong>{$term}<br>
+            <strong>{_('Počet nalezených záznamů')}: </strong>{($productsCount + $categoryCount)??0}
+        </p>
+
+        <h2 class="no-margin-top">{_('Nalezené kategorie')}</h2>
+        <div n:if="$categoryCount > 0" class="row category-list">
+            <div n:foreach="$categories as $category" class="col-sm-6 col-md-4 col-lg-3">
+                <a href="/{URL::CATEGORY}/{$category['slug']}" title="{$category['Name']}">
+                    <div class="item">
+                        <div n:if="isset($category['file'])" class="image">
+                            <img src="{fu($category, 'category/50')}" class="wide-banner"/>
+                        </div>
+                        <div class="item-name">{$category['Name']}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <p n:if="$categoryCount == 0">{_('Je nám líto, na hledaný výraz jsme nic nenalezli. Zkontrolujte vyhledávaný výraz kvůli chybám nebo zkuste použít obecnější termín.')}</p>
+        <h2 class="no-margin-top">{_('Nalezené produkty')}</h2>
+        <div n:if="$productsCount > 0" class="row product-list">
+            <div n:foreach="$products as $product" class="col-sm-6 col-md-4 col-lg-3">
+                {include '../components/product/item-classic.latte', product => $product}
+            </div>
+        </div>
+        <p n:if="$productsCount == 0">{_('Je nám líto, na hledaný výraz jsme nic nenalezli. Zkontrolujte vyhledávaný výraz kvůli chybám nebo zkuste použít obecnější termín.')}</p>
+
+    </div>
+{/block}

@@ -1,0 +1,13 @@
+<div id="cart-steps">
+    <div class="row">
+        <div n:foreach="$cartSteps as $cartStep" class="col-md-3 col-lg-3">
+            {var $isLink = $cartStep->getLink() && !($cartStep->getOrder() == 3 && $currentCartStep == 1) && $currentCartStep != 4}
+            <a id="step-{$cartStep->getOrder()}" n:tag-if="$isLink" href="{$cartStep->getLink()}">
+                <div n:class="$cartStep->getOrder()==$currentCartStep?active, $currentCartStep>$cartStep->getOrder()?passed, $cartStep->getOrder()!=$currentCartStep && !$isLink?inactive, step">
+                    <div class="counter">{$cartStep->getOrder()}</div>
+                    <div class="name">{$cartStep->getName()}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

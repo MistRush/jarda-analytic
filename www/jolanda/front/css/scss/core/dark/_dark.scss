@@ -1,0 +1,19 @@
+
+
+html.prefer-dark {
+  @import "common";
+  @import "login";
+  @import "layout";
+  @import "buttons";
+  @import "grid";
+  @import "forms";
+  @import "editor";
+  @import "dialog";
+  @import "panel";
+  @import "header";
+  @import "menu";
+  @import "staterestore";
+}
+.dark-mode-switcher{
+  display: block !important;
+}

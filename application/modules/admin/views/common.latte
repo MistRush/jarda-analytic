@@ -1,0 +1,85 @@
+{block logo_path}{$basePath}/img/front/logo.png{/block}
+
+{block appTitle}
+Denik pleti.cz
+{/block}
+
+{block headAfter}
+{/block}
+
+{block headLeft}
+
+{/block}
+
+{block headRight}
+    <div class="eshop-switcher" n:if="count($eshop->getEshops()) > 1">
+        <select name="changeEshop" id="changeEshop">
+            <option n:foreach="$eshop->getEshops() as $shop" value="{$shop->ID}" {if $shop->ID == $eshop->getEshop()->ID}selected{/if}>{$shop->Name}</option>
+        </select>
+    </div>
+    <div class="language-switcher">
+        <select name="changeLanguage" id="changeLanguage">
+            <option n:foreach="$activeLanguages as $language" value="{$language['Code']}" {if $language['Code'] == $lang}selected{/if}>{$language['Name']}</option>
+        </select>
+    </div>
+
+    <div class="user-info">
+        <a href="{$basePath}/admin/user/edit-user?entity_ID={$user->ID}">
+            <div class="employee">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="user">
+                <div class="name">{$user->Name}</div>
+                <div class="role">{$user->Type}</div>
+            </div>
+        </a>
+    </div>
+{/block}
+
+{block menuBottom}
+    <div class="bottom">
+        <div class="item">
+            <a class="icon" href="/default/index/index" target="_blank"> <i class="ci ci-home"></i> </a>
+            <div class="right-part">
+                <a class="name menu-item-name" data-description="" data-level="1" href="/default/index/index" target="_blank">Zobrazit obchod</a>
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block layoutScripts}
+    <script src="{$basePath}/js/assets/dropzone/dropzone-min.js"></script>
+    <link href="{$basePath}/js/assets/dropzone/dropzone.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+    breadcrumb = new Breadcrumb([
+    {foreach $path as $item}
+        {
+        'url': {$basePath}+'/' +{$item->getURL()},
+        'type': 'page',
+        'name': {$item->getName()}
+        },
+    {/foreach}
+    ], basePath + '/admin/index/index');
+
+    function initDropZone(entityID) {
+        $( ".dropzoneUploader" ).each(function( index ) {
+            let type = $(this).data('type');
+            let dataAccepted = $(this).data('accepted');
+            let dataGrid = $(this).data('grid')+'_datagrid';
+            const options = `ParentEntity_ID=${ entityID }&Type=${ type }&AcceptedFiles=${ dataAccepted }&Index=${ index }&Grid=${ dataGrid }`;
+            $(this).load('/common/drop-zone/upload/?'+options);
+        });
+    }
+    </script>
+    <script src="{$basePath}/js/assets/ckeditor/ckeditor.js"></script>
+
+{/block}
+
+{block projectJs}
+    <script src="{$basePath}/project/js/src/evidsoft/Homepage.js"></script>
+    <script src="{$basePath}/project/js/src/evidsoft/Translation.js"></script>
+    <script src="{$basePath}/project/js/src/evidsoft/OrderList.js"></script>
+
+    <script src="{$basePath}/project/js/src/evidsoft/Evidsoft.js"></script>
+    <script src="{$basePath}/project/js/src/evidsoft/EvidsoftLayout.js"></script>
+{/block}

@@ -1,0 +1,132 @@
+{layout '../layout.latte'}
+{block content}
+    {$grid->render()}
+{/block}
+
+{block scripts}
+    <link href="/js/assets/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
+    <script src="/js/assets/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="/js/assets/fancybox/jquery.fancybox.pack.js"></script>
+    <script>
+        /**
+         * @namespace { Grid } grid
+         */
+        var grid;
+
+        $(function () {
+            grid = {$grid|noescape};
+            $('body').removeClass('menu-open');
+            if (window.innerWidth < 769) {
+                if (!$('body').hasClass('menu-open')) {
+                    $('body').addClass('menu-open');
+                }
+                return;
+            }
+            $('.breadcrumb').css('display', 'none');
+            $('.breadcrumb').removeClass('d-flex');
+
+            $('#feedback_datagrid_switches_showAll').change(function () {
+                $("#feedback_datagrid_switches_onlyPostponed").prop('checked', false);
+                handleCheckbox('#feedback_datagrid_switches_showAll', 'showAll');
+            });
+
+            $('#feedback_datagrid_switches_onlyAuthor').change(function () {
+                $("#feedback_datagrid_switches_onlyPostponed").prop('checked', false);
+                handleCheckbox('#feedback_datagrid_switches_onlyAuthor', 'onlyAuthor');
+            });
+
+            $('#feedback_datagrid_switches_onlyPostponed').change(function () {
+                $("#feedback_datagrid_switches_onlyAuthor").prop('checked', false);
+                $("#feedback_datagrid_switches_showAll").prop('checked', false);
+            });
+
+            PNotify.defaults.delay = 500;
+
+            $('.main-buttons').prepend('<button class="btn btn-green" onclick="location.href=\'/admin/feedback/create-feedback\'" type="button"><i class="ci ci-plus btn-ci"></i>Nový</button>');
+        });
+
+        var formatQuickReplyIcon = function (value) {
+            return '<i class="ci ci-feedback cursor-pointer" style="font-size: 19px;position: absolute;top: 6px;" onclick="Grid.callRow(this, showReply);"></i><span style="position: absolute;left: 35px;top: 5px;" ">' + value + '</span>';
+        }
+
+        var feedbackFormat = (row, data, index) => {
+            if (data.tmpState === 'state-new' && data.DateDifferrence >= 8)
+                $(row).addClass('green');
+
+            if (data.DateDifferrence < 8 && data.DateDifferrence >= 0)
+                $(row).addClass('yellow');
+
+            if (data.DateDifferrence < 0)
+                $(row).addClass('red');
+
+            if (data['HasOpened'] < 1) {
+                $(row).addClass('unopened');
+            }
+        }
+
+        var formatCopyIcon = function (data){
+            if (!data)
+                return;
+
+            var onClick = "window.copyFeedbackToClipboard('"+ data +"', 1)";
+            return '<i onClick="' + onClick + '" class="far fa-copy cursor-pointer mr-2"></i>' + data;
+        };
+
+        function showReply() {
+            let row = grid.getCurrentItem();
+            if (row) {
+                let dialog = new Dialog();
+                dialog.title = {_('Rychlá odpověď')};
+                dialog.enableCancelButton();
+                dialog.showFromUrl(basePath + '/admin/feedback/quick-reply', {
+                    Feedback_Hash: row.Hash
+                });
+                dialog.onAfterClose = function () {
+                    grid.refresh();
+                }
+            }
+        }
+
+        function handleCheckbox(selector, cname) {
+                if($(selector).is(":checked")) {
+                    setCookie(cname, 1, 30);
+                } else {
+                    setCookie(cname, 0, 30);
+                }
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function setUnread() {
+            if (!grid.getCurrentItem()) {
+                alerts.error({_('Vyberte feedback')});
+                return;
+            }
+
+            $.ajax({
+                url: basePath + '/admin/feedback/set-unread',
+                data: {
+                    Hash: grid.getCurrentItemValue('Hash')
+                },
+                success: function(data) {
+                    grid.refresh();
+                },
+                error: function () {
+                    alerts.error();
+                }
+            })
+        }
+
+        window.copyFeedbackToClipboard = function (column) {
+            alerts.alert('', 'info', {_('Číslo feedbacku bylo zkopírováno do schránky')});
+            Helpers.copyToClipboard(column);
+        };
+
+
+    </script>
+{/block}

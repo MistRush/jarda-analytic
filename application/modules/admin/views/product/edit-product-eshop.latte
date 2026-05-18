@@ -1,0 +1,28 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+
+<script>
+    /**
+     * @namespace { EntityEditor } editor
+     */
+    var editor;
+
+    $(() => {
+        editor = {$editor->getId()|noescape};
+
+        editor.form.getInput('Price').keyup(function() {
+            countPrice();
+        });
+
+        editor.form.getInput('Vat_ID').change(function() {
+            countPrice();
+        });
+    });
+
+    var countPrice = function () {
+        var price = editor.form.getValue('Price');
+        var vatValue = editor.form.getSelectValue('Vat_ID')[0].text;
+        var priceVat = (price * vatValue) / 100 - (- price);
+
+        editor.form.setValue('PriceVat', priceVat);
+    };
+</script>

@@ -1,0 +1,60 @@
+<div n:class="cart-block, !($cart->getTotalCount()>0)?empty">
+    <a class="current-state-block" href="/cart">
+        Položky:
+        <span class="count">{$cart->getTotalCount()}</span><br>
+        Cena:
+        <span class="price">{price($cart->getTotalPriceWithVat())}</span>
+    </a>
+    <div class="summary-block">
+        <div class="summary">
+            <div class="headline">{_('V košíku máte')}:</div>
+            <div class="items-block">
+                <div class="item" n:foreach="$cart->getCartItems() as $item" data-id="{$item['Product_ID']}">
+                    {var $imageUrl = isset($item['product']['productImages'][0]) ? fu($item['product']['productImages'][0], 'product/50') : '/img/no_image.svg'}
+                    <div class="photo-block">
+                        <img src="{$imageUrl}" alt="{$item['ProductName']|cleanEntities}">
+                    </div>
+                    <div class="info-block">
+                        <a href="/{URL::PRODUCT}/{$item['slug']}">{$item['ProductName']|cleanEntities}</a>
+                        <div class="code">{_('Kód zboží')}: <span>{$item['product']['Code']}</span></div>
+                        <div n:class="$item['product']['OnStock'] > 0 || $item['product']['OnExternalStock'] > 0 ?on-stock:out-stock, availability">
+                            {if $item['product']['OnStock'] > 0}
+                                {_('Skladem')}
+                            {elseif $item['product']['OnExternalStock'] > 0}
+                                {_('Externí sklad')}
+                            {else}
+                                {if !empty($item['product']['productLangs'][0]['CustomAvailabilityInfo'])}
+                                    {$item['product']['productLangs'][0]['CustomAvailabilityInfo']}
+                                {else}
+                                    {_('Na dotaz')}
+                                {/if}
+                            {/if}
+                        </div>
+                    </div>
+
+                    <div class="quantity-block">
+                        <span class="quantity-change down">-</span>
+                        <input type="number" value="{$item['Quantity']}" data-product-id="{$item['Product_ID']}" class="quantity" maxlength="4" min="1" max="999" step="1">
+                        <span class="quantity-change up">+</span>
+                    </div>
+
+                    <div class="price-block">{price($item['PriceWithVat'])}</div>
+                    <div class="remove-block">
+                        <a href="javascript:;" onClick="CartHeader.deleteCartItem(this)">
+                            <span class="remove">X</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="total-price-block">
+                <div>{_('Cena celkem')}</div>
+                <div class="price">{price($cart->getTotalPriceWithVat())}</div>
+            </div>
+            <div class="button-block">
+                <a href="/{URL::CART}">
+                    <span class="btn btn-primary d-inline-block">{_('Přejít do košíku')}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

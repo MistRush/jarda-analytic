@@ -1,0 +1,48 @@
+@import "modal/add-to-cart";
+@import "modal/cookies-confirm";
+@import "modal/login";
+@import "modal/registration-info";
+@import "modal/cart-out-stock-info";
+@import "modal/cart-clear-confirmation";
+@import "modal/watchdog-confirmation";
+@import "modal/delete-address-confirmation";
+
+.modal-content {
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 12px 24px 0 rgba(22, 23, 51, 0.19);
+
+    .modal-header {
+        padding: 15px 0;
+        border-bottom: 1px solid $border-primary-light;
+
+        h5 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .close {
+            background: $background-primary-light url('/img/front/icons/components/modal/close.svg') center center no-repeat;
+            opacity: 1 !important;
+            position: absolute;
+            border: 0;
+            z-index: 5;
+            width: 34px;
+            height: 34px;
+            border-radius: 17px;
+            top: -15px;
+            right: -15px;
+            @include animation();
+
+            &:hover {
+                background-color: darken($background-primary-light, 5);
+            }
+        }
+    }
+}
+
+.modal-backdrop {
+    opacity: 0.5;
+    background: #130B30;
+}
+

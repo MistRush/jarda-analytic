@@ -1,0 +1,42 @@
+{layout 'layout.latte'}
+
+{block content}
+    <div style="">
+        <strong>{_('Registrace do e-shopu')}</strong>
+        <a href="{$eshop->settings->ProjectURL}" style="color: #E82121">{$eshop->settings->ProjectShortURL}</a><strong> byla úspěšně dokončena.</strong><br>
+        <p style="margin:25px 0 10px;font-size:16px; font-family:Verdana, Arial, Helvetica, sans-serif">
+            {_('Děkujeme Vám za registraci do našeho internetového obchodu')} <strong>{$eshop->settings->ProjectShortURL}</strong> <br>
+            {_('Váš uživatelský účet byl úspěšně vytvořen a nyní můžete pohodlně nakupovat online.')}
+        </p>
+        <p style="margin:25px 0 10px;font-size:16px; font-family:Verdana, Arial, Helvetica, sans-serif">
+            <strong>{_('Zde se můžete přihlásit:')}</strong><br>
+            <a href="{$eshop->settings->ProjectURL}/#prihlaseni" style="color: #E82121">{$eshop->settings->ProjectShortURL}/#prihlaseni</a>
+         <hr />
+        <div style="margin:25px 0 34px; font-size:16px;  font-family:Verdana, Arial, Helvetica, sans-serif">
+        <b>{_('Informace o Vašem účtu')}</b><br />
+        {_('Email')}: {$user->Name}<br /><br /><br />
+   <hr />
+        <b>{_('Fakturační adresa')}</b><br />
+        {_('Jméno a příjmení')}: {$invoiceAddress->FirstName} {$invoiceAddress->LastName}<br />
+        {_('Adresa')}: {$invoiceAddress->Street}, {$invoiceAddress->City} {$invoiceAddress->ZipCode}<br />
+        {_('Email')}: {$user->Name}<br />
+        {_('Telefon')}: {$invoiceAddress->Phone}<br /><br />
+
+        {if $invoiceAddress->CompanyName}
+            {_('Společnost')}: {$invoiceAddress->CompanyName}<br />
+        {_('IČ')}: {$invoiceAddress>IC}<br />
+
+            {if $invoiceAddress->DIC}
+                D{_('IČ')}: {$invoiceAddress->DIC}<br />
+            {/if}
+        {/if}
+            <hr />
+
+            <p style="margin:25px 0 10px;font-size:16px; font-family:Verdana, Arial, Helvetica, sans-serif">
+            Pokud byste měla jakékoli dotazy nebo potřebovala s čímkoli pomoci, neváhejte nás kontaktovat. <br>
+            Těšíme se na Vaše budoucí objednávky. <br> <br>
+
+            S pozdravem, <br>
+            </p>
+    </div>
+{/block}

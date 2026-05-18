@@ -1,0 +1,45 @@
+<script>
+    if ({$editor->getId()|noescape} === undefined)
+        var {$editor->getId()|noescape} = null;
+    $(function () {
+        if({$editor->getId()|noescape} === null || {$editor->getId()|noescape} === undefined) {
+            {$editor->getId()|noescape} = new EntityEditor({$editor->getId()}, {$editor->getEntityId()}, {$editor->getEntityNameColumn()});
+            {$editor->getId()|noescape}.setSendOnEnter({$editor->getSendOnEnter()});
+            {if $panel_id}
+                {$editor->getId()|noescape}.setPanel(panels[{$panel_id}]);
+                {if $editor->isEnableStandalone() && $editor->getEntityId() == null}
+                    panels[{$panel_id}].setUrl({$request['url']});
+                {/if}
+            {/if}
+            {if $editor->getParentEntities() != null}
+                {foreach $editor->getParentEntities() as $column => $value}
+                    {$editor->getId()|noescape}.setParentEntity({$column}, {$value});
+                {/foreach}
+            {/if}
+            {foreach $editor->getSubGrids() as $subgrid}
+                if(typeof {$subgrid->getId()|noescape} !== 'undefined')
+                    {$editor->getId()|noescape}.subGrids.push({$subgrid->getId()|noescape});
+            {/foreach}
+            {foreach $editor->getRelationSwitches() as $relationSwitch}
+                if(typeof {$relationSwitch->getId()|noescape} !== 'undefined')
+                    {$editor->getId()|noescape}.relationSwitches.push({$relationSwitch->getId()|noescape});
+            {/foreach}
+            {foreach $editor->getCategoryTrees() as $categoryTree}
+                if(typeof {$categoryTree->getId()|noescape} !== 'undefined')
+                    {$editor->getId()|noescape}.categoryTrees.push({$categoryTree->getId()|noescape});
+            {/foreach}
+
+            {$editor->getId()|noescape}.forGrid = {$editor->forGrid};
+            {$editor->getId()|noescape}.dataSaveType = {$editor->dataSaveType};
+            {$editor->getId()|noescape}.local_tmp_id = {$editor->local_tmp_id};
+            {if empty($editor->getEntityId()) && isset($create_default_values)}
+                {$editor->getId()|noescape}.setCreateDefaultValues({$create_default_values});
+            {/if}
+
+            breadcrumb.addItem(null, 'panel', {$editor->getTitle()})
+            plugins.initPlugins();
+        }else{
+        }
+    });
+</script>
+{$custom_code|noescape}

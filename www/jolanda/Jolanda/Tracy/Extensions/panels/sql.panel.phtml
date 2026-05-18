@@ -1,0 +1,40 @@
+<h1>Queries (<?=$size?>)</h1>
+
+<div class="tracy-inner">
+    <div class="tracy-inner-container">
+        <table>
+            <thead style="white-space: nowrap;">
+                <th>ms <small style="display: block;">(avg ms)</small></th>
+                <th>Calls</th>
+                <th>SQL</th>
+                <th>Called by:</th>
+            </thead>
+            <tbody>
+            <?php foreach ($data as $ind => $d) { ?>
+                <tr>
+                    <td style="white-space: nowrap;<?= $d['time']>10?'color:red;font-weight:900;':'' ?>">
+                        <?= number_format($d['time'],3 )?> ms
+                        <small style="display: block;"><?= number_format($d['time'] / $d['calls'],3 )?> ms</small>
+                    </td>
+                    <td<?= $d['calls']>1?' style="color:red;font-weight:900;"':'' ?>><?= $d['calls']?>x</td>
+                    <td><?= $d['query'] ?></td>
+                    <td><span title="Dump in console" style="cursor: pointer;" onclick="showTree(this, 'Query dump #<?= $ind ?>')" data-data='<?=json_encode($d['back_trace'])?>'>Show</span></td>
+                </tr>
+            <?php } ?>
+            <?php if ($trimmed) { ?>
+                <tr>
+                    <td colspan="4" style="text-align: center;color:#999" title="The list is shortened due to memory usage">...</td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function showTree(e, name) {
+        var data = e.dataset.data;
+        data = JSON.parse(data);
+        console.log(name);
+        console.dir(data);
+    }
+</script>

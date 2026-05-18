@@ -1,0 +1,58 @@
+{block content}
+{if $productCount}
+    <div class="headline">{_('Nalezeno v kategoriích')} <span>{$categoryCount}</span></div>
+    <div class="categories">
+        <div class="item" n:foreach="$categories as $category"><a href="/{URL::CATEGORY}/{$category['slug']}">{$category['Name']}</a></div>
+        <div class="show-all">
+            <a href="/search/?SearchTerm={$searchTerm}&Type=category">Zobrazit všechny nalezené kategorie <span>({$categoryCount})</span> &#8594</a>
+        </div>
+    </div>
+
+    <div class="headline">{_('Nalezeno v produktech')} <span>{$productCount}</span></div>
+    <div class="products">
+        <div class="row">
+            <div n:foreach="$products as $product" class="col-lg-3">
+                <div class="item">
+                    <a href="/{URL::PRODUCT}/{$product['slug']}">
+                        <div class="photo">
+                            <img src="{$product['image']}" alt="{$product['Name']}">
+                        </div>
+                    </a>
+                    <a href="/{URL::PRODUCT}/{$product['slug']}" class="no-underline">
+                        <div class="name">
+                            {$product['Name']}
+                        </div>
+                    </a>
+                    <div class="text-center">
+                        <div n:class="$product['TotalQuantity'] > 0 ?on-stock:out-stock, availability">
+                            {if $product['TotalQuantity'] > 0}
+                                {_('Skladem')}
+                            {else}
+                                {_('Není skladem')}
+                            {/if}
+                        </div>
+                    </div>
+                    <div n:if="$product['PriceWithVat']" class="price">{price($product['PriceWithVat'])}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="show-all">
+            <a href="/search/?SearchTerm={$searchTerm}">Zobrazit všechny nalezené produkty <span>({$productCount})</span> &#8594</a>
+        </div>
+    </div>
+
+{*    <div class="headline">{_('Nalezeno v obsahu')} <span>12</span></div>*}
+{*    <div class="news">*}
+{*        <div class="item"><a href="">Olověné akumulátory: Životnost, nabíjení, údržba a vybíjení</a></div>*}
+{*        <div class="item"><a href="">Primární baterie a akumulátory? MOTOMA garantuje kvalitu a spolehlivost</a></div>*}
+
+{*        <div class="show-all">*}
+{*            <a href="">Zobrazit všechen nalezený obsah <span>(3)</span> &#8594</a>*}
+{*        </div>*}
+{*    </div>*}
+{else}
+    <div class="nothing-found">{_('Nic nenalezeno')}.</div>
+{/if}
+{/block}
+

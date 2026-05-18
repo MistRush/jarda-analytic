@@ -1,0 +1,19 @@
+<div class="content">{$content}</div>
+<div class="confirmation-buttons text-center mt-3">
+    <a id="confirmButton"><span class="btn btn-primary">Smazat</span></a>
+    <a id="cancelButton"><span class="btn btn-transparent">Zrušit</span></a>
+</div>
+<script>
+    $('#confirmButton').click(function () {
+        $.ajax({
+            url: '/default/cart/clear',
+            type: 'POST',
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+    });
+    $('#cancelButton').click(function () {
+        {$dialog_id|noescape}.close();
+    });
+</script>

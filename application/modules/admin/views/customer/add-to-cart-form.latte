@@ -1,0 +1,79 @@
+{$addToCartForm->render()}
+
+<script>
+    /**
+     * @namespace { Form } addToCartForm
+     */
+    var addToCartForm;
+
+    $(() => {
+        addToCartForm = {$addToCartForm->getId()|noescape};
+
+        addToCartForm.getInput('Product_ID').on('change', function () {
+            let str = addToCartForm.getSelectValue('Product_ID')[0].text;
+            let res = str.split("|");
+            let resToReplace = res[1];
+
+            resToReplace = resToReplace.replace(" ", "");
+            resToReplace = resToReplace.replace("OB:", "");
+            resToReplace = resToReplace.replace("Ks", "");
+            resToReplace = resToReplace.replace(" ", "");
+
+            let obValue = parseInt(resToReplace);
+
+            addToCartForm.setValue('Quantity', obValue);
+            addToCartForm.getInput('Quantity').attr('min', obValue);
+            addToCartForm.getInput('Quantity').attr('step', obValue);
+        });
+
+        addToCartForm.getInput('Quantity').keypress(function(event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+
+            if ( keycode == 13 ) {
+                event.preventDefault();
+                addToCart(false);
+            }
+        });
+    });
+
+    var addToCart = function (closeDialog) {
+        let product_ID = addToCartForm.getSelectValue('Product_ID')[0].id;
+        let quantity = addToCartForm.getValue('Quantity');
+        let user_ID = userForm.getSelectValue('UserToOrder_ID')[0].id;
+
+        if ( !product_ID || !quantity ) {
+            alerts.alert('Přídání produktu do košíku', 'error', 'Zadejte prosím počet kusů a vyberte produkt, který chcete přidat do košíku.');
+            return;
+        }
+
+        $.ajax({
+            url: basePath + '/admin/customer/add-to-cart/',
+            data: {
+                User_ID: user_ID,
+                Quantity: quantity,
+                Product_ID: product_ID,
+            },
+            success: function (data) {
+                let cartData = JSON.parse(data);
+
+                if ( cartData.successMsg )
+                    alerts.alert('Hotovo', 'success', cartData.successMsg);
+
+                if ( cartData.failMsg ) {
+                    alerts.alert('Chyba', 'error', cartData.failMsg);
+                } else {
+                    cartGrid.refresh();
+
+                    if (closeDialog)
+                        dialog.close();
+                    else {
+                        addToCartForm.setValue('Quantity', 1);
+                        addToCartForm.getInput('Quantity').attr('min', 1);
+                        addToCartForm.getInput('Quantity').attr('step', 1);
+                        addToCartForm.setValue('Product_ID', '');
+                    }
+                }
+            }
+        });
+    }
+</script>

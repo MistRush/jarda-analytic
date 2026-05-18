@@ -1,0 +1,108 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo Clevis_Layout::renderTitle($this); ?></title>
+    </head>
+    <body class="claro">
+        <!-- SITE BODY BEGIN -->
+        <div class="site-body">
+            <div class="site-content-border">
+                <div class="site-content">
+                    <h1>Na stránce se vyskytla chyba</h1>
+                    <?php
+                    use user\logic\UserAdminSession;
+                    use user\logic\UserClientSession;
+
+                    // Error
+                    echo '<b>Popis chyby:</b><p>';
+                    echo $this->type . ': ';
+                    echo '<span style="color: red;">' . $this->message . '</span>';
+                    // File and line
+                    if ($this->file != null && $this->line != null)
+                        echo ' [' . $this->file . ':line ' . $this->line . ']';
+                    echo '</p>';
+
+                    $formatUrlArgument = function($name, $value){
+                        return $name . "=" . $value;
+                    };
+                    $get = implode('&', array_map($formatUrlArgument, array_keys($_GET), array_values($_GET)));
+                    $post = implode('&', array_map($formatUrlArgument, array_keys($_POST), array_values($_POST)));
+                    $requestUrl = (strpos($_SERVER['REQUEST_URI'], '?') != false) ? substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?')) : '';
+
+                    echo '<b>Systémové údaje:</b><p>';
+                    echo 'Datum: ' . date('j.n.Y H:i:s') . '<br>';
+                    echo 'URL: ' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $requestUrl . '<br>';
+                    echo 'Method: ' . $_SERVER['REQUEST_METHOD'] . '<br>';
+                    echo 'GET: ' . $get . '<br>';
+                    echo 'POST: ' . $post . '<br>';
+                    echo 'User client: ' . UserClientSession::getCurrentUserName() . ' [ID=' . UserClientSession::getCurrentUserID() . ']<br>';
+                    echo 'User admin: ' . UserAdminSession::getCurrentUserName() . ' [ID=' . UserAdminSession::getCurrentUserID() . ']<br>';
+                    if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
+                        echo 'Browser: ' . $_SERVER['HTTP_USER_AGENT'] . '<br>';
+                    echo 'Client: ' . $_SERVER['REMOTE_ADDR'] . '<br>';
+                    echo '</p>';
+
+                    $url = 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
+                    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                        $pos = strpos($url, '?');
+                        if ($pos != false) {
+                            $url = substr($url, 0, $pos);
+                        }
+                        if ($get != null) {
+                            $url .= '?' . $get;
+                        }
+                    } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if ($post != null) {
+                            if (strpos($url, '?') == false)
+                                $url .= '?';
+                            else
+                                $url .= '&';
+                            $url .= $post;
+                        }
+                    }
+
+                    echo '<b>URL pro vyvolání:</b><p>';
+                    echo '<a href=\'' . $url . '\'>' . $url . '</a>';
+                    echo '</p>';
+
+                    // Stack trace
+                    if ($this->trace != null) {
+                        echo '<b>Výpis zásobníku:</b><p>';
+                        $index = count($this->trace);
+                        foreach ($this->trace as $item) {
+                            echo '<b>' . $index . '.</b> ';
+                            echo '<b>' . $item['class'] . '::' . $item['function'] . '</b>';
+                            if (array_key_exists('file', $item)) {
+                                echo ' [' . $item['file'] . ':line ' . $item['line'] . ']';
+                            }
+                            echo '<br/>';
+                            if (array_key_exists('args', $item) && count($item['args']) > 0) {
+                                $indexParam = 1;
+                                foreach ($item['args'] as $arg) {
+                                    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Param' . $indexParam . ': ';
+                                    if (is_object($arg))
+                                        echo get_class($arg);
+                                    else if (is_string($arg) || is_numeric($arg))
+                                        echo $arg;
+                                    else
+                                        echo gettype($arg);
+                                    echo '<br/>';
+                                    $indexParam++;
+                                }
+                            }
+                            $index--;
+                        }
+                        echo '</p>';
+                    }
+                    ?>
+                    <!-- EMAIL RESULT -->
+                    <p>
+                        <button  onClick="history.go(-1);">Zpět</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- SITE BODY END -->
+    </body>
+</html>

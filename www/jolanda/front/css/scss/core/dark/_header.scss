@@ -1,0 +1,20 @@
+header {
+  .right {
+    .language-selector {
+      .languagepicker {
+        .dropdown-menu {
+          .dropdown-item {
+            &.active{
+              color: $dark-color-font;
+            }
+          }
+        }
+      }
+    }
+    .logout{
+      &:hover{
+        background-color: darken(#383a3f, 5) !important;
+      }
+    }
+  }
+}

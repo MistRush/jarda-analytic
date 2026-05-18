@@ -1,0 +1,56 @@
+.day-holder {
+  padding: 120px 0 0 0;
+  background-image: url(/img/front/day-bg.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right bottom;
+  min-height: 1000px;
+
+  .days-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .day-item {
+      .day-name {
+        font-family: Urbanist;
+        font-weight: 500;
+        font-style: Medium;
+        font-size: 16px;
+        leading-trim: NONE;
+        line-height: 18px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #0E1B36;
+      }
+
+      .day-number {
+        font-family: Urbanist;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 14px;
+        leading-trim: NONE;
+        line-height: 18px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #576583;
+        border-radius: 77%;
+        background-color: white;
+        height: 31px;
+        width: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+      }
+
+      &.active {
+        .day-number {
+          color: #FFFFFF;
+          background-color: #0E1B36;
+        }
+
+      }
+    }
+  }
+}

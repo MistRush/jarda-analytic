@@ -1,0 +1,36 @@
+.relation-switcher, .dataTable-rs{
+  .btn{
+    padding: 5px;
+    min-height: 28px;
+    margin-left: 4px;
+  }
+
+  .rs-group-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .rs-arrow {
+      width: 16px;
+      height: 16px;
+      background-color: #C4CDD5;
+      clip-path: polygon(33% 20%, 33% 80%, 66% 50%);
+      transition: transform 300ms;
+      margin-right: 4px;
+    }
+
+    &:not(.collapsed) {
+      .rs-arrow {
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .rs-group {
+    .rs-checkbox {
+      margin-left: 32px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{import 'head.latte'}
+
+{block|strip}
+    <!doctype html>
+    <html n:class="$_COOKIE['color-mode']??''">
+    <head>
+        {include head}
+    </head>
+    <body class="layout-inline">
+    {include 'loader.latte'}
+    <main>
+        <div id="content">
+            <div id="main">
+                {block content}
+                {/block}
+            </div>
+        </div>
+    </main>
+    {include 'bottom.latte'}
+    {block scripts}
+    {/block}
+    </body>
+    </html>
+{/block}

@@ -1,0 +1,21 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+<script>
+    /**
+     * @var { EntityEditor } editor
+     */
+    var editor;
+
+    $(() => {
+        editor = {$editor->getId()|noescape};
+
+        editor.onAfterLoad = function() {
+            setTimeout(function (){
+                editor.form.setValue('ParameterValue_ID', editor.data.ParameterValue_ID);
+            }, 300);
+        }
+
+        editor.onAfterConfirm = function() {
+            productParameters_datagrid.refresh();
+        }
+    });
+</script>

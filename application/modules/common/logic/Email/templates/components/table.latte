@@ -1,0 +1,118 @@
+{block table-searched}
+<div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:none;border-spacing:0;border-collapse: collapse;"
+        n:if="count($products) > 1">
+        <thead>
+            <tr style="background-color:#F5F5F9;text-align:left;">
+                <th style="padding:10px 7px;">{_('Číslo dílu')}</th>
+                <th>{_('Název')}</th>
+                <th style="text-align:center;">{_('Stav produktu')}</th>
+                <th style="text-align:center;">{_('Cena')}</th>
+                <th style="text-align:center;">{_('Dostupnost')}</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 12px;">
+            {foreach $products as $product}
+            <tr {($iterator->isEven()) ? 'style="background-color:#f9f9f9;"'|noescape}>
+                <td style="padding:7px 7px;">{$product->Code}</td>
+                <td style="max-width: 130px;padding: 7px 0;padding-right: 7px;">{$product->Name}</td>
+                <td style="text-align:center;padding:0 7px;">{$product->ProductCondition}</td>
+                <td style="text-align:center;padding:0 7px;">{formatPrice($product->{'PriceWholesale' .
+                    $user->currency->Mark} / 100)} {$user->currency->Mark}</td>
+                <td style="text-align:center;padding:0 7px;">{$product->Availability1}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>
+{/block}
+
+{block table-order}
+<div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:none;border-spacing:0;border-collapse: collapse;">
+        <thead>
+            <tr style="background-color:#F5F5F9;text-align:left;">
+                <th style="padding:10px 7px;">{_('Název')}</th>
+                <th>{_('Kód')}</th>
+                <th>{_('Číslo dílu')}</th>
+                <th style="text-align:center;">{_('Množství')}</th>
+                <th style="text-align:center;">{_('Cena')}</th>
+                <th style="text-align:center;">{_('Kauce')}</th>
+                <th style="text-align:center;">{_('Celková cena')}</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 12px;">
+            {foreach $order->orderItems as $item}
+            <tr {($iterator->isEven()) ? 'style="background-color:#f9f9f9;"'|noescape}>
+                <td style="max-width: 130px;padding:7px 7px;">{$item->product->Name}</td>
+                <td style="padding-right:14px;">{$item->product->Code}</td>
+                <td style="padding-right:14px;">{$item->product->PartNumber}</td>
+                <td style="text-align:center;padding:0 7px;">{$item->Quantity}</td>
+                <td style="text-align:center;padding:0 7px;">{formatPrice($item->Price / 100)} {$order->CurrencyMark}
+                </td>
+                <td style="text-align:center;padding:0 7px;">{formatPrice($item->PriceDeposit / 100)}
+                    {$order->CurrencyMark}</td>
+                <td style="text-align:center;padding:0 7px;">{formatPrice($item->PriceTotal / 100)}
+                    {$order->CurrencyMark}</td>
+            </tr>
+            <tr {($iterator->isEven()) ? 'style="background-color:#f9f9f9;"'|noescape} n:if="$item->AlternativeName || $item->Note || $item->OutOfStock">
+                <td colspan="7" style="padding:7px 15px;">
+                    <small style="display:block"></small>
+                    <small style="display:block" n:if="$item->AlternativeName">{$item->AlternativeName}</small>
+                    <small style="display:block" n:if="$item->Note">{_('Note')}: {$item->Note}</small>
+                    <small style="display:block" n:if="$item->OutOfStock"><span style="font-weight: bold; color:red">{_('Varování')}</span>: {_('Tento produkt je k dispozici pouze jako starý díl a bude repasován do 15 až 30 dnů.')}.</small>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+        <tfoot>
+            <tr style="padding:15px 0;border-bottom:1px solid #E7E7EE;font-weight:600;">
+                <td style="padding:24px 7px 15px;" colspan="4">{_('Celkem')}:</td>
+                <td style="color:#00A34B;text-align:right;padding:0 7px;" colspan="3">{formatPrice($order->Price / 100)}
+                    {$order->CurrencyMark}</td>
+            </tr>
+            <tr style="font-size:12px;">
+                {if $order->shipping->Type != $shippingtype_own_carrier}
+                <td colspan="2" style="padding: 15px 7px;">{if $order->ShippingInsurance}{_('Doprava')}{else}{_('Doprava a pojištění')}{/if}: {$order->shipping->NameEN}</td>
+                <td colspan="2">{$order->shipping->RemanteCode}</td>
+                <td colspan="3" style="font-weight:600;text-align:right;padding:0 7px;">
+                    {formatPrice($order->ShippingPrice / 100)} {$order->CurrencyMark}</td>
+                {else}
+                <td style="padding: 15px 7px;" colspan="4">{_('Doprava')}: {_('Vlastní doprava')}</td>
+                <td style="font-weight:600;text-align:right;padding:0 7px;" colspan="3">
+                    {formatPrice($order->ShippingPrice / 100)} {$order->CurrencyMark}</td>
+                {/if}
+            </tr>
+            <tr style="font-size:16px;border-top:1px solid #E7E7EE; background-color:#FBFBFB;font-weight:600;">
+                <td style="padding: 12px 7px;" colspan="4">{_('Celková cena včetně dopravy')}:</td>
+                <td style="color:#00A34B;text-align:right;padding:0 7px;" colspan="3">{formatPrice(($order->Price +
+                    $order->ShippingPrice) / 100)} {$order->CurrencyMark}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{/block}
+
+{block table-order-soap}
+<div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:none;border-spacing:0;border-collapse: collapse;">
+        <thead>
+            <tr style="background-color:#F5F5F9;text-align:left;">
+                <th style="padding:10px 7px;">{_('Produkt')}</th>
+                <th style="text-align:center;">{_('Množství')}</th>
+                <th style="text-align:center;">{_('Celková cena')}</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 12px;">
+            {foreach $order->orderItems as $item}
+            <tr {($iterator->isEven()) ? 'style="background-color:#f9f9f9;"'|noescape}>
+                <td style="max-width: 130px;padding:7px 7px;">{$item->product->Code}</td>
+                <td style="text-align:center;padding:0 7px;">{$item->Quantity}</td>
+                <td style="text-align:center;padding:0 7px;">{formatPrice($item->PriceTotal / 100)}
+                    {$order->CurrencyMark}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>
+{/block}

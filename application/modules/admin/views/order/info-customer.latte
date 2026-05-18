@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <th style="font-weight: bold; width: 220px; text-align: right; padding: 5px 8px 2px; border-bottom: 1px solid #ddd;">Email:</th>
+        <td style="padding-top: 5px; border-bottom: 1px solid #ddd;">{$order->invoiceAddress->Email}</td>
+    </tr>
+    <tr>
+        <th style="font-weight: bold; width: 220px; text-align: right; padding: 5px 8px 2px; border-bottom: 1px solid #ddd;">Telefon:</th>
+        <td style="padding-top: 5px; border-bottom: 1px solid #ddd;">{$order->invoiceAddress->Phone}</td>
+    </tr>
+    <tr n:if="$order->User_ID">
+        <th style="font-weight: bold; width: 220px; text-align: right; padding: 5px 8px 2px; border-bottom: 1px solid #ddd;">Uživatel:</th>
+        <td style="padding-top: 5px; border-bottom: 1px solid #ddd;">{$order->user->Name}</td>
+    </tr>
+    <tr>
+        <th style="font-weight: bold; width: 220px; text-align: right; padding: 5px 8px 2px; border-bottom: 1px solid #ddd;">Poznámka k objednávce:</th>
+        <td style="padding-top: 5px; border-bottom: 1px solid #ddd;">{$order->Description}</td>
+    </tr>
+</table>

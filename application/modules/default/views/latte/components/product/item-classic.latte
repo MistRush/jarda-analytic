@@ -1,0 +1,90 @@
+{var $imageUrl = isset($product['productImages'][0])  ? fu($product['productImages'][0], 'product/200') : '/img/no_image.svg'}
+<div class="item-classic">
+    <div class="product-flags">
+        {if $product['FlagNews']}
+            <div class="flag news">{_('Novinka')}</div>
+        {/if}
+        {if $product['FlagClearanceSale']}
+            <div class="flag clearance-sale">{_('Akce')}</div>
+        {/if}
+        {if isset($product['ProductDiscount']) && $product['ProductDiscount'] > 0}
+            <div class="flag discount">-{$product['ProductDiscount']}%</div>
+        {/if}
+    </div>
+
+    {*<div class="favorite-block"></div> *}
+
+    <div class="image-block{if isset($product['additionalPrices'])} with-pieces{/if}">
+        <a href="/{URL::PRODUCT}/{$product['slug']}" title="{$product['ProductName']|cleanEntities}">
+            <img src="{$imageUrl}" alt="{$product['ProductName']|cleanEntities}">
+        </a>
+    </div>
+
+    <div class="name-block">
+        <div class="code">{_('Kód zboží')}: <span>{$product['Code']}</span></div>
+        <a href="/{URL::PRODUCT}/{$product['slug']}" title="{$product['ProductName']|cleanEntities}">
+            <h3>{$product['ProductName']|cleanEntities}</h3>
+        </a>
+    </div>
+
+    <div n:ifset="$product['additionalPrices']" class="col-lg-12">
+        <div class="price-per-piece-block">
+            <div class="row align-items-center">
+                {foreach $product['additionalPrices'] as $priceType => $priceInfo}
+                    <div class="col-lg-6">
+                        <div class="pieces">{$priceInfo['QuantityMin']}{if $priceInfo['QuantityMax']} - {$priceInfo['QuantityMax']}{else} a více {/if} Ks</div>
+                        {price($priceInfo['PriceWithoutVat'])} / ks
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+
+    <div class="price-block">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <div {if isset($product['productStocks'][0]) && !empty($product['productStocks'][0]['Note'])} title="{$product['productStocks'][0]['Note']}" {/if} n:class="isset($product['TotalQuantity']) && $product['TotalQuantity'] > 0 ?on-stock:out-stock, availability">
+                    {if isset($product['TotalQuantity']) && $product['TotalQuantity'] > 0}
+                        {_('Skladem')}
+                    {elseif $product['OnExternalStock'] > 0}
+                        {_('Externí sklad')}
+                    {else}
+                        {_('Není skladem')}
+                    {/if}
+                </div>
+            </div>
+            <div class="col-6 text-end">
+                <div n:if="isset($product['ProductDiscount']) && $product['ProductDiscount'] != null" class="original-with-vat"><span>{price($product['OriginalPriceWithVat'])}</span></div>
+                <div n:ifset="$product['PriceWithVat']" class="with-vat">{price($product['PriceWithVat'])}</div>
+                <div n:ifset="$product['PriceWithoutVat']" class="without-vat">{price($product['PriceWithoutVat'])} bez DPH</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-block">
+        <div class="row align-items-center">
+            {if isset($product['TotalQuantity']) && $product['TotalQuantity'] > 0}
+            <div class="col-6 d-flex">
+                <span class="quantity-change down">-</span>
+                <input type="number" value="1" class="quantity" maxlength="4" min="1" max="999" step="1">
+                <span class="quantity-change up">+</span>
+            </div>
+            <div class="col-6 text-end">
+                <button type="button" data-product-id="{$product['ID']}" class="btn btn-primary">Do košíku</button>
+            </div>
+            {else}
+                <div class="col-12 text-end no-padding">
+                    {if isset($product['Watchdog']) && $product['Watchdog']}
+                        <a class="disable-watchdog btn btn-transparent" data-product-id="{$product['ID']}"  href="/">
+                            <span class="item watchdog">Zrušit hlídacího psa</span>
+                        </a>
+                    {else}
+                        <a class="set-watchdog btn btn-transparent" data-product-id="{$product['ID']}" href="/">
+                            <span class="item watchdog">Hlídací pes</span>
+                        </a>
+                    {/if}
+                </div>
+            {/if}
+        </div>
+    </div>
+</div>

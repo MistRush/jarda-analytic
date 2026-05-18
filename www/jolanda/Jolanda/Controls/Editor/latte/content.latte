@@ -1,0 +1,97 @@
+{varType Jolanda\Controls\Editor\EntityEditor $editor}
+
+<form action="" id="{$editor->getId()}" data-datalist-url="{$editor->getDatalistUrl()}" data-datacreate-url="{$editor->getDatacreateUrl()}" data-dataupdate-url="{$editor->getDataupdateUrl()}" data-custom-data="{$editor->getCustomDataJson()}">
+    <input name="ID" type="hidden" value="{$editor->getEntityId()}">
+    {foreach $editor->getTabs() as $tab}
+        {if $tab->isNotSimple()}
+            <p class="pl-3">ℹ {jlang 'SAVE_TO_EDIT'}</p>
+        {/if}
+        {breakIf $tab->isNotSimple()}
+    {/foreach}
+    <ul class="nav nav-tabs" role="tablist">
+        {foreach $editor->getTabs() as $tab}
+            <li class="nav-item" id="tab-nav-{$tab->getId()}">
+                <a class="nav-link {if $iterator->isFirst()}active{/if} {if $tab->isNotSimple()}disabled{/if}" id="tab-{$tab->getId()}-link" data-toggle="tab"
+                   href="#tab-{$tab->getId()}" role="tab" aria-selected="true">{$tab->getTitle()} <span class="counter"></span></a>
+            </li>
+        {/foreach}
+    </ul>
+    <div class="header-static-content">
+        {if $editor->getHeaderTab()}
+            <div class="tab-pane fade show active" id="tab-{$editor->getHeaderTab()->getId()}">
+                <div class="row">
+                    {foreach $editor->getHeaderTab()->getGroups() as $group}
+                        <div {foreach $group->getAttributes() as $key=>$value}{$key}="{$value|noescape}" {/foreach}>
+                            {foreach $group->getGroupControls() as $control}
+                                {if $editor->getEntityId() != null && ($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue)}
+                                     {php $control->setDataSaveType(Jolanda\Controls\Grid\Grid::SAVE_DATA_SERVERSIDE)}
+                                {/if}
+                                {if !($editor->getEntityId() == null && ((($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue) && $control->getDataSaveType() === Jolanda\Controls\Grid\Grid::SAVE_DATA_SERVERSIDE) || $control instanceof Jolanda\Controls\Grid\RelationSwitcher || $control instanceof Jolanda\Controls\Editor\CategoryTree))}
+                                    {if $control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue || $control instanceof Jolanda\Controls\Grid\RelationSwitcher || $control instanceof Jolanda\Controls\Editor\CategoryTree}
+                                        <div class="form-group">
+                                            {$control->render()|noescape}
+                                        </div>
+                                    {else}
+                                        {$control|noescape}
+                                    {/if}
+                                {/if}
+                            {/foreach}
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+        {/if}
+    </div>
+    <div class="tab-content">
+        {foreach $editor->getTabs() as $tab}
+            <div class="tab-pane fade {if $iterator->isFirst()}show active{/if}" id="tab-{$tab->getId()}" role="tabpanel">
+                <div class="row">
+                    {foreach $tab->getGroups() as $group}
+                        <div {foreach $group->getAttributes() as $key=>$value}{$key}="{$value|noescape}" {/foreach}>
+                            {foreach $group->getGroupControls() as $control}
+                                {if $editor->getEntityId() != null && ($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue)}
+                                     {php $control->setDataSaveType(Jolanda\Controls\Grid\Grid::SAVE_DATA_SERVERSIDE)}
+                                {/if}
+                                {if ($editor->getEntityId() != null || ((($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue) && $control->getDataSaveType() === Jolanda\Controls\Grid\Grid::SAVE_DATA_LOCAL) || (($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue) && $control->isRenderInCreateEditor()) || (!($control instanceof Jolanda\Controls\Grid\RelationSwitcher) && !($control instanceof Jolanda\Controls\Editor\CategoryTree) && !($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue))))}
+                                    {if $control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue || $control instanceof Jolanda\Controls\Grid\RelationSwitcher || $control instanceof Jolanda\Controls\Editor\CategoryTree}
+                                        <div class="form-group">
+                                            {$control->render()|noescape}
+                                        </div>
+                                    {else}
+                                        {$control|noescape}
+                                    {/if}
+                                {/if}
+                            {/foreach}
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+        {/foreach}
+    </div>
+    <div class="footer-static-content">
+        {if $editor->getFooterTab()}
+            <div class="tab-pane fade show active" id="tab-{$editor->getFooterTab()->getId()}">
+                <div class="row">
+                    {foreach $editor->getFooterTab()->getGroups() as $group}
+                        <div {foreach $group->getAttributes() as $key=>$value}{$key}="{$value|noescape}" {/foreach}>
+                            {foreach $group->getGroupControls() as $control}
+                                {if $editor->getEntityId() != null && ($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue)}
+                                     {php $control->setDataSaveType(Jolanda\Controls\Grid\Grid::SAVE_DATA_SERVERSIDE)}
+                                {/if}
+                                {if !($editor->getEntityId() == null && ((($control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue) && $control->getDataSaveType() === Jolanda\Controls\Grid\Grid::SAVE_DATA_SERVERSIDE) || $control instanceof Jolanda\Controls\Grid\RelationSwitcher || $control instanceof Jolanda\Controls\Editor\CategoryTree))}
+                                    {if $control instanceof Jolanda\Controls\Grid\Grid || $control instanceof Jolanda\Controls\Grid\GridVue || $control instanceof Jolanda\Controls\Grid\RelationSwitcher || $control instanceof Jolanda\Controls\Editor\CategoryTree}
+                                        <div class="form-group">
+                                            {$control->render()|noescape}
+                                        </div>
+                                    {else}
+                                        {$control|noescape}
+                                    {/if}
+                                {/if}
+                            {/foreach}
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+        {/if}
+    </div>
+</form>

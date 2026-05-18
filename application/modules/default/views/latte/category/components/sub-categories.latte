@@ -1,0 +1,14 @@
+<div class="sub-categories-block row">
+    {foreach $subCategories as $category}
+        <div class="col-6 col-md-4 col-xl-3">
+            <a href="/{URL::CATEGORY}/{$category['categoryLangs'][0]['slug']}">
+                <div class="item">
+                    <div n:if="isset($category['file'])" class="image">
+                        <img src="{fu($category, 'category/50', 'file')}" alt="{$category['categoryLangs'][0]['Name']}" class="wide-banner" />
+                    </div>
+                    {$category['categoryLangs'][0]['Name']}
+                </div>
+            </a>
+        </div>
+    {/foreach}
+</div>
