@@ -20,9 +20,7 @@ const path = require('path');
 
 const PROPERTY_ID = process.argv[2];
 if (!PROPERTY_ID) {
-  console.error('Použití: node setup_oauth.js <PROPERTY_ID>');
-  console.error('Příklad: node setup_oauth.js 57151035');
-  process.exit(1);
+  console.log('ℹ️ Nebylo zadáno Property ID. Skript pouze vygeneruje OAuth token.');
 }
 
 const CLIENT_SECRET_PATH = path.join(__dirname, 'client_secret.json');
@@ -53,13 +51,12 @@ const oauth2Client = new google.auth.OAuth2(
 const SCOPES = [
   'https://www.googleapis.com/auth/analytics.manage.users',
   'https://www.googleapis.com/auth/analytics.readonly',
+  'https://www.googleapis.com/auth/webmasters.readonly'
 ];
 
 async function addServiceAccountToProperty(auth) {
   const analyticsAdmin = google.analyticsadmin({ version: 'v1alpha', auth });
-  
   console.log(`\nPřidávám ${SERVICE_ACCOUNT_EMAIL} do property ${PROPERTY_ID}...`);
-  
   try {
     const result = await analyticsAdmin.properties.accessBindings.create({
       parent: `properties/${PROPERTY_ID}`,
@@ -68,11 +65,7 @@ async function addServiceAccountToProperty(auth) {
         roles: ['predefinedRoles/viewer'],
       },
     });
-    
     console.log('\n✅ Service Account úspěšně přidán do Google Analytics!');
-    console.log('   Email:', SERVICE_ACCOUNT_EMAIL);
-    console.log('   Property:', PROPERTY_ID);
-    console.log('   Role: Prohlížeč (Viewer)');
     console.log('\n🚀 Teď můžeš spustit: node server.js');
   } catch (err) {
     if (err.code === 409) {
@@ -86,13 +79,22 @@ async function addServiceAccountToProperty(auth) {
   }
 }
 
+async function runSetup(auth) {
+  if (PROPERTY_ID) {
+    await addServiceAccountToProperty(auth);
+  } else {
+    console.log('\n✅ OAuth token je připraven k použití v server.js.');
+    console.log('🚀 Teď můžeš spustit: node server.js');
+  }
+}
+
 async function getTokenAndRun() {
   // Pokud máme uložený token, použijeme ho
   if (fs.existsSync(TOKEN_PATH)) {
     const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
     oauth2Client.setCredentials(token);
     console.log('✅ Používám uložený OAuth token.');
-    return addServiceAccountToProperty(oauth2Client);
+    return runSetup(oauth2Client);
   }
 
   // Jinak spustíme OAuth flow
@@ -130,7 +132,7 @@ async function getTokenAndRun() {
         oauth2Client.setCredentials(tokens);
         fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
         console.log('✅ OAuth token uložen.');
-        await addServiceAccountToProperty(oauth2Client);
+        await runSetup(oauth2Client);
         resolve();
       } catch (err) {
         reject(err);

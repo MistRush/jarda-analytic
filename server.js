@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const { BetaAnalyticsDataClient } = require('@google-analytics/data');
 const { AnalyticsAdminServiceClient } = require('@google-analytics/admin');
+const { google } = require('googleapis');
 
 const app = express();
 app.use(cors());
@@ -14,27 +15,61 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Google Analytics Data API client
 // Autentifikace přes credentials.json (Service Account)
 // ============================================================
-function getAnalyticsClient() {
+const fs = require('fs');
+
+const TOKEN_PATH = path.join(__dirname, 'oauth_token.json');
+const CLIENT_SECRET_PATH = path.join(__dirname, 'client_secret.json');
+
+function getAuthClient() {
+  // 1. Přednost má OAuth2 (osobní login přes oauth_token.json)
+  if (fs.existsSync(TOKEN_PATH) && fs.existsSync(CLIENT_SECRET_PATH)) {
+    const credentials = JSON.parse(fs.readFileSync(CLIENT_SECRET_PATH));
+    const { client_id, client_secret, redirect_uris } = credentials.installed || credentials.web;
+    const oauth2Client = new google.auth.OAuth2(client_id, client_secret, 'http://localhost:4567/callback');
+    const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
+    oauth2Client.setCredentials(token);
+    return oauth2Client;
+  }
+
+  // 2. Fallback na Service Account (credentials.json)
   if (process.env.GOOGLE_CREDENTIALS) {
     const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-    return new BetaAnalyticsDataClient({ credentials });
+    return new google.auth.GoogleAuth({
+      credentials,
+      scopes: [
+        'https://www.googleapis.com/auth/analytics.readonly',
+        'https://www.googleapis.com/auth/webmasters.readonly'
+      ],
+    });
   }
 
   const keyPath = path.join(__dirname, 'credentials.json');
-  const fs = require('fs');
-  if (!fs.existsSync(keyPath)) {
-    throw new Error('credentials.json nenalezen. Přidej soubor s klíčem Service Accountu nebo ENV proměnnou GOOGLE_CREDENTIALS.');
+  if (fs.existsSync(keyPath)) {
+    return new google.auth.GoogleAuth({
+      keyFile: keyPath,
+      scopes: [
+        'https://www.googleapis.com/auth/analytics.readonly',
+        'https://www.googleapis.com/auth/webmasters.readonly'
+      ],
+    });
   }
-  return new BetaAnalyticsDataClient({ keyFilename: keyPath });
+
+  return null;
+}
+
+function getAnalyticsClient() {
+  const auth = getAuthClient();
+  return new BetaAnalyticsDataClient({ auth });
 }
 
 function getAdminClient() {
-  if (process.env.GOOGLE_CREDENTIALS) {
-    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-    return new AnalyticsAdminServiceClient({ credentials });
-  }
-  const keyPath = path.join(__dirname, 'credentials.json');
-  return new AnalyticsAdminServiceClient({ keyFilename: keyPath });
+  const auth = getAuthClient();
+  return new AnalyticsAdminServiceClient({ auth });
+}
+
+function getSearchConsoleClient() {
+  const auth = getAuthClient();
+  return google.searchconsole({ version: 'v1', auth });
 }
 
 // ============================================================
@@ -421,6 +456,36 @@ apiRouter.get('/property-info', async (req, res) => {
       timeZone: property.timeZone || '',
     });
   } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+apiRouter.get('/search-console', async (req, res) => {
+  const { siteUrl, startDate, endDate } = req.query;
+
+  if (!siteUrl) {
+    return res.status(400).json({ error: 'Chybí siteUrl parametr' });
+  }
+
+  try {
+    const searchConsole = getSearchConsoleClient();
+    
+    // Získání dat z vyhledávání (Search Analytics)
+    const response = await searchConsole.searchanalytics.query({
+      siteUrl,
+      requestBody: {
+        startDate: startDate || new Date(Date.now() - 30 * 86400000).toISOString().split('T')[0],
+        endDate: endDate || new Date().toISOString().split('T')[0],
+        dimensions: ['query'],
+        rowLimit: 20
+      }
+    });
+
+    res.json({
+      rows: response.data.rows || []
+    });
+  } catch (err) {
+    console.error('Search Console API chyba:', err.message);
     res.status(500).json({ error: err.message });
   }
 });

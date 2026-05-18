@@ -142,6 +142,7 @@
         <label class="section-toggle"><input type="checkbox" data-target="sec-os-lang" checked> OS + Jazyk</label>
         <label class="section-toggle"><input type="checkbox" data-target="sec-campaigns" checked> Kampaně (UTM)</label>
         <label class="section-toggle"><input type="checkbox" data-target="sec-heatmap" checked> Heatmapa hodin</label>
+        <label class="section-toggle"><input type="checkbox" data-target="sec-gsc" checked> SEO - Google Search Console</label>
       </div>
     </div>
   </div>
@@ -235,6 +236,14 @@
       </div>
     </div>
 
+    <!-- Google Search Console -->
+    <div class="tables-row" data-section="sec-gsc">
+      <div class="chart-card">
+        <div class="card-head">SEO - Nejhledanější dotazy v Googlu (Search Console)</div>
+        <div class="card-body" id="gscTable" style="overflow-x:auto; padding:0;"></div>
+      </div>
+    </div>
+
     <!-- Kampaně -->
     <div class="tables-row" data-section="sec-campaigns">
       <div class="chart-card">
@@ -264,7 +273,7 @@ const customDates = document.getElementById('customDates');
 const dateTabs = document.querySelectorAll('.date-tab');
 
 const urlParams = new URLSearchParams(window.location.search);
-const urlPropertyId = urlParams.get('propertyId');
+const urlPropertyId = urlParams.get('propertyId') || '285638052';
 if (urlPropertyId) {
   document.getElementById('propInput').value = urlPropertyId;
 }
@@ -337,6 +346,7 @@ async function fetchPropertyInfo(propertyId) {
     const res = await fetch(`/api/property-info?propertyId=${encodeURIComponent(propertyId)}`);
     if (!res.ok) return;
     const info = await res.json();
+    window._currentWebsiteUri = info.websiteUri; // Uložíme pro GSC
     const el = document.getElementById('propertyName');
     if (el && info.displayName) {
       const domain = info.websiteUri ? ` — ${info.websiteUri.replace(/^https?:\/\//, '')}` : '';
@@ -344,6 +354,53 @@ async function fetchPropertyInfo(propertyId) {
       el.style.display = 'block';
     }
   } catch(e) {}
+}
+
+async function loadSearchConsoleData(siteUrl, start, end) {
+  const gscContainer = document.getElementById('gscTable');
+  gscContainer.innerHTML = '<div style="padding:20px; color:var(--text3);">Načítám SEO data z Search Console...</div>';
+
+  try {
+    const res = await fetch(`/api/search-console?siteUrl=${encodeURIComponent(siteUrl)}&startDate=${start}&endDate=${end}`);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Chyba GSC API');
+    renderGSC(data);
+  } catch (err) {
+    gscContainer.innerHTML = `<div style="padding:20px; color:#c5221f;">⚠️ Nepodařilo se načíst data z Search Console: ${err.message}<br><small>Ujistěte se, že Service Account má k webu ${siteUrl} přístup.</small></div>`;
+  }
+}
+
+function renderGSC(data) {
+  const rows = data.rows || [];
+  if (rows.length === 0) {
+    document.getElementById('gscTable').innerHTML = '<div style="padding:20px; color:var(--text3);">Pro toto období nebyla nalezena žádná data ve vyhledávání.</div>';
+    return;
+  }
+
+  document.getElementById('gscTable').innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Klíčové slovo (Dotaz)</th>
+          <th class="metric-col">Kliknutí</th>
+          <th class="metric-col">Zobrazení</th>
+          <th class="metric-col">CTR</th>
+          <th class="metric-col">Pozice</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(r => `
+          <tr>
+            <td style="font-weight:500; color:#1a73e8;">${r.keys[0]}</td>
+            <td class="metric-col">${fmt(r.clicks)}</td>
+            <td class="metric-col">${fmt(r.impressions)}</td>
+            <td class="metric-col">${(r.ctr * 100).toFixed(1)} %</td>
+            <td class="metric-col">${r.position.toFixed(1)}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
 }
 
 async function loadData() {
@@ -367,6 +424,12 @@ async function loadData() {
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Chyba API');
     render(data);
+    
+    // Načtení Search Console dat (pokud je k dispozici websiteUri)
+    if (window._currentWebsiteUri) {
+      loadSearchConsoleData(window._currentWebsiteUri, start, end);
+    }
+
     state.style.display = 'none';
     dash.style.display = 'block';
   } catch (err) {
